@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,21 @@
       flex-direction: column;
       height: 100vh;
       margin: 0;
-      background-color: #1e1e1e; /* Dark background color */
-      color: #fff; /* Light text color */
+      background-color: #1e1e1e;
+      /* Dark background color */
+      color: #fff;
+      /* Light text color */
     }
+
     #diceLog {
-      position: fixed; /* Fixed positioning */
-      left: 0; /* Align to the left side of the screen */
-      top: 0; /* Align to the top of the screen */
-      max-height: 50vh; /* 100% of the viewport height */
+      position: fixed;
+      /* Fixed positioning */
+      left: 0;
+      /* Align to the left side of the screen */
+      top: 0;
+      /* Align to the top of the screen */
+      max-height: 50vh;
+      /* 100% of the viewport height */
       max-width: 50vh;
       overflow-y: auto;
       border: 1px solid #ccc;
@@ -27,11 +35,16 @@
       margin: 10px;
       text-align: left;
     }
+
     .logEntry {
-      margin-bottom: 8px; /* Adjust the margin between log entries */
-      border-bottom: 1px solid #ddd; /* Add a slight line to separate entries */
-      padding-bottom: 8px; /* Add padding at the bottom of each entry */
+      margin-bottom: 8px;
+      /* Adjust the margin between log entries */
+      border-bottom: 1px solid #ddd;
+      /* Add a slight line to separate entries */
+      padding-bottom: 8px;
+      /* Add padding at the bottom of each entry */
     }
+
     #colorRectangle {
       width: 600px;
       height: 20px;
@@ -64,46 +77,53 @@
       cursor: pointer;
       user-select: none;
       margin-bottom: 10px;
-      background-color: #333; /* Darker box background color */
-      color: #fff; /* Light text color */
+      background-color: #333;
+      /* Darker box background color */
+      color: #fff;
+      /* Light text color */
     }
 
     .controls button {
       font-size: 18px;
       margin-top: 5px;
-      background-color: #555; /* Dark button background color */
-      color: #fff; /* Light text color */
-      border: 1px solid #777; /* Darker border color */
+      background-color: #555;
+      /* Dark button background color */
+      color: #fff;
+      /* Light text color */
+      border: 1px solid #777;
+      /* Darker border color */
     }
 
     .controls button:hover {
-      background-color: #777; /* Slightly lighter background on hover */
+      background-color: #777;
+      /* Slightly lighter background on hover */
     }
   </style>
 </head>
+
 <body>
-    
-    <div class="display-container">
-        <div id="start" class="display-box" onclick="displayColorRectangle()">Click to Start</div>
-        <div id="colorRectangle" style="display: none;"></div>
-    </div>
-    <div id="diceLog" style="display: none;"></div>
+
+  <div class="display-container">
+    <div id="start" class="display-box" onclick="displayColorRectangle()">Click to Start</div>
+    <div id="colorRectangle" style="display: none;"></div>
+  </div>
+  <div id="diceLog" style="display: none;"></div>
   <div class="display-container">
     <div id="dices" class="display-box" onclick="rollDice()">Click to Roll Dice</div>
     <!-- <div id="totalDiceRolls" class="display-box">Total Dice Rolls</div> -->
     <div id="action" class="display-box">Action: None</div>
   </div>
   <div class="controls">
-      <button onclick="decreaseNumberBy10()">-10</button>
-      <button onclick="decreaseNumber()">-</button>
-      <button onclick="increaseNumber()">+</button>
-      <button onclick="increaseNumberBy10()">+10</button>
+    <button onclick="decreaseNumberBy10()">-10</button>
+    <button onclick="decreaseNumber()">-</button>
+    <button onclick="increaseNumber()">+</button>
+    <button onclick="increaseNumberBy10()">+10</button>
   </div>
   <div class="display-container">
     <div id="number" class="display-box">Monster Health: 0</div>
   </div>
   <div class="controls">
-      <button onclick="decreaseRound()">-</button>
+    <button onclick="decreaseRound()">-</button>
     <button onclick="increaseRound()">+</button>
   </div>
 
@@ -114,6 +134,7 @@
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <script>
+
     let monsterHealth = 0;
     let currentRound = 1;
     let totalDiceRolls = 0;
@@ -121,18 +142,29 @@
 
     function rollDice() {
       const diceElement = document.getElementById("dice");
-    //   const diceElement2 = document.getElementById("totalDiceRolls");
       const result = Math.floor(Math.random() * 20) + 1; // Generate a random number between 1 and 20
-    //   diceElement2.innerText= `Total Dice Rolls: ${++totalDiceRolls}`;
-    ++totalDiceRolls;
+      ++totalDiceRolls;
       performAction(result);
+      readJson();
+    }
+    function readJson() {
+      const filePath = 'Actions/EasyActions.json';
+
+    // Fetch the JSON file
+    fetch(filePath)
+      .then(response => response.json())
+      .then(jsonData => {
+        console.log('JSON data:', jsonData);
+        // Now you can work with the parsed JSON data
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
     }
 
     function updateMonsterHealth() {
       const monsterHealthElement = document.getElementById("number");
       monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
     }
-  
+
     function increaseNumber() {
       monsterHealth++;
       updateMonsterHealth();
@@ -144,12 +176,12 @@
     }
 
     function refreshPage() {
-    // Refresh the webpage
-    location.reload();
+      // Refresh the webpage
+      location.reload();
     }
 
     function increaseNumberBy10() {
-        monsterHealth = monsterHealth+10;
+      monsterHealth = monsterHealth + 10;
       updateMonsterHealth();
     }
 
@@ -163,7 +195,7 @@
       const round2Element = document.getElementById("rounds");
       roundElement.innerText = `Round: ${currentRound}`;
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
-      round2Element.innerText = `Roll this many times: `+ drValue;
+      round2Element.innerText = `Roll this many times: ` + drValue;
     }
 
     function increaseRound() {
@@ -200,52 +232,50 @@
     }
 
     function pickNumber() {
-        // Generate a random number between 1 and 100 (inclusive)
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+      // Generate a random number between 1 and 100 (inclusive)
+      const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-    // Define probability ranges
-    const colorRange = [
+      // Define probability ranges
+      const colorRange = [
         { range: [1, 5], probability: 40 },   // 1-5: 40% probability
         { range: [6, 15], probability: 30 },  // 6-15: 30% probability
         { range: [16, 25], probability: 20 }, // 16-25: 20% probability
         { range: [26, 30], probability: 7 },  // 26-27: 7% probability
         { range: [31, 32], probability: 3 }  // 26-27: 3% probability
-    ];
+      ];
 
-    // Calculate the selected range based on probabilities
-    let selectedRange;
-    let cumulativeProbability = 0;
+      // Calculate the selected range based on probabilities
+      let selectedRange;
+      let cumulativeProbability = 0;
 
-    for (const { range, probability } of colorRange) {
+      for (const { range, probability } of colorRange) {
         cumulativeProbability += probability;
         if (randomNumber <= cumulativeProbability) {
-            selectedRange = range;
-            break;
+          selectedRange = range;
+          break;
         }
+      }
+
+      // Pick a random number within the selected range
+      const pickedNumber = Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) + selectedRange[0];
+
+      const startElement = document.getElementById("start");
+      startElement.innerText = `${pickedNumber}`;
+      // startElement.style.display = "none";
+      var imgElement = document.createElement("img");
+
+      // Set the image source
+      imgElement.src = `BossMonsters/${pickedNumber}.jpeg`; // Replace with the actual image file name
+
+      // Set styling for the image (optional)
+      imgElement.style.width = "1200px";
+      imgElement.style.height = "600px";
+      imgElement.style.margin = "20px";
+
+      // Replace the div with the image
+      startElement.replaceWith(imgElement);
+      return pickedNumber;
     }
-
-    // Pick a random number within the selected range
-    const pickedNumber = Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) + selectedRange[0];
-
-    const startElement = document.getElementById("start");
-    startElement.innerText = `${pickedNumber}`;
-    // startElement.style.display = "none";
-    var imgElement = document.createElement("img");
-
-    // Set the image source
-    imgElement.src = `BossMonsters/${pickedNumber}.jpeg`; // Replace with the actual image file name
-
-    // Set styling for the image (optional)
-    imgElement.style.width = "1200px";
-    imgElement.style.height = "600px";
-    imgElement.style.margin = "20px";
-
-    // Replace the div with the image
-    startElement.replaceWith(imgElement);
-    return pickedNumber;
-    }
-
-console.log(result);
 
     function performAction(result) {
       const actionElement = document.getElementById("action");
@@ -280,7 +310,7 @@ console.log(result);
           break;
         case 12:
         case 13:
-          actionElement.innerText = `The Raid Monster creates (${1+diceRolledThisRound}) ${diceRolledThisRound+1}/${diceRolledThisRound+1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
+          actionElement.innerText = `The Raid Monster creates (${1 + diceRolledThisRound}) ${diceRolledThisRound + 1}/${diceRolledThisRound + 1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
           break;
         case 14:
           actionElement.innerText = "Each opponent sacrifices all enchantments.";
@@ -296,7 +326,7 @@ console.log(result);
           break;
         case 18:
         case 19:
-          actionElement.innerText = `Each opponent exiles their graveyard and drains (${1+diceRolledThisRound}) life.`;
+          actionElement.innerText = `Each opponent exiles their graveyard and drains (${1 + diceRolledThisRound}) life.`;
           break;
         case 20:
           actionElement.innerText = "Each opponent may immediately draw a card OR place a land from their hand into play OR gain 5 life.";
@@ -304,78 +334,79 @@ console.log(result);
         default:
           actionElement.innerText = "Action: None";
       }
-          // Create a new log entry
-        const logEntry = document.createElement("div");
-        logEntry.className = "logEntry";
-        logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
+      // Create a new log entry
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
 
-        // Get the dice log container
-        const diceLog = document.getElementById("diceLog");
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
 
-        // Append the new log entry to the top of the log
-        diceLog.insertAdjacentElement("beforeend", logEntry);
-        diceLog.scrollTop = diceLog.scrollHeight;
-        diceLog.style.display = "block";
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
     }
 
-    
-  function displayColorRectangle() {
-    const colorRectangle = document.getElementById('colorRectangle');
-    const pickedNumber = pickNumber();
 
-    // Color mapping based on the chosen number
-    const colorMap = {
-      1: 'White',
-      2: 'Blue',
-      3: 'Black',
-      4: 'Red',
-      5: 'Green',
-      6: 'White-Blue',
-      7: 'Blue-Black',
-      8: 'Black-Red',
-      9: 'Red-Green',
-      10: 'White-Green',
-      11: 'White-Black',
-      12: 'Blue-Red',
-      13: 'Black-Green',
-      14: 'Red-White',
-      15: 'Blue-Green',
-      16: 'White-Blue-Black',
-      17: 'Blue-Black-Red',
-      18: 'Black-Red-Green',
-      19: 'Red-Green-White',
-      20: 'White-Green-Blue',
-      21: 'White-Black-Green',
-      22: 'Blue-Red-White',
-      23: 'Black-Green-Blue',
-      24: 'Red-White-Black',
-      25: 'Green-Blue-Red',
-      26: 'Blue-Black-Red-Green',
-      27: 'White-Black-Red-Green',
-      28: 'White-Blue-Red-Green',
-      29: 'White-Blue-Black-Green',
-      30: 'White-Blue-Black-Red',
-      31: 'White-Blue-Black-Green-Red',
-      32: 'Grey'
-    };
+    function displayColorRectangle() {
+      const colorRectangle = document.getElementById('colorRectangle');
+      const pickedNumber = pickNumber();
 
-    // Set the background color of the rectangle based on the chosen number
-    const colorName = colorMap[pickedNumber];
+      // Color mapping based on the chosen number
+      const colorMap = {
+        1: 'White',
+        2: 'Blue',
+        3: 'Black',
+        4: 'Red',
+        5: 'Green',
+        6: 'White-Blue',
+        7: 'Blue-Black',
+        8: 'Black-Red',
+        9: 'Red-Green',
+        10: 'White-Green',
+        11: 'White-Black',
+        12: 'Blue-Red',
+        13: 'Black-Green',
+        14: 'Red-White',
+        15: 'Blue-Green',
+        16: 'White-Blue-Black',
+        17: 'Blue-Black-Red',
+        18: 'Black-Red-Green',
+        19: 'Red-Green-White',
+        20: 'White-Green-Blue',
+        21: 'White-Black-Green',
+        22: 'Blue-Red-White',
+        23: 'Black-Green-Blue',
+        24: 'Red-White-Black',
+        25: 'Green-Blue-Red',
+        26: 'Blue-Black-Red-Green',
+        27: 'White-Black-Red-Green',
+        28: 'White-Blue-Red-Green',
+        29: 'White-Blue-Black-Green',
+        30: 'White-Blue-Black-Red',
+        31: 'White-Blue-Black-Green-Red',
+        32: 'Grey'
+      };
 
-    if (colorName.includes('-')) {
+      // Set the background color of the rectangle based on the chosen number
+      const colorName = colorMap[pickedNumber];
+
+      if (colorName.includes('-')) {
         const colors = colorName.split('-');
-      const widthPercentage = 100 / colors.length;
-      const gradientColors = colors.map((color, index) => `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`);
-      colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
-    } else {
-      // Handle single-color scenarios
-      colorRectangle.style.background = colorName.toLowerCase();
+        const widthPercentage = 100 / colors.length;
+        const gradientColors = colors.map((color, index) => `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`);
+        colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
+      } else {
+        // Handle single-color scenarios
+        colorRectangle.style.background = colorName.toLowerCase();
+      }
+      colorRectangle.style.display = "block";
     }
-    colorRectangle.style.display = "block";
-  }
 
-  // Example: Call the displayColorRectangle function on page load
+    // Example: Call the displayColorRectangle function on page load
 
   </script>
 </body>
+
 </html>
