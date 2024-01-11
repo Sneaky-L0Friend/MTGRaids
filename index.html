@@ -382,8 +382,17 @@
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
+        img.addEventListener('click', function () {
+          removeImage(img);
+        });
         container.appendChild(img);
       }
+    }
+
+    // Function to remove a clicked image
+    function removeImage(img) {
+      const container = img.parentNode;
+      container.removeChild(img);
     }
 
 
