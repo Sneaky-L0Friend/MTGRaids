@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dice Roller App</title>
+  <title>MTG Raid Adventure</title>
   <style>
     body {
       display: flex;
@@ -204,7 +204,7 @@
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
     // Define probability ranges
-    const ranges = [
+    const colorRange = [
         { range: [1, 5], probability: 40 },   // 1-5: 40% probability
         { range: [6, 15], probability: 30 },  // 6-15: 30% probability
         { range: [16, 25], probability: 20 }, // 16-25: 20% probability
@@ -216,7 +216,7 @@
     let selectedRange;
     let cumulativeProbability = 0;
 
-    for (const { range, probability } of ranges) {
+    for (const { range, probability } of colorRange) {
         cumulativeProbability += probability;
         if (randomNumber <= cumulativeProbability) {
             selectedRange = range;
@@ -249,7 +249,7 @@ console.log(result);
 
     function performAction(result) {
       const actionElement = document.getElementById("action");
-      const drValue = Math.floor(currentRound / 2); // Calculate DR value
+      const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate DR value
       switch (result) {
         case 1:
           actionElement.innerText = "Each opponent discards 2 cards, Mill 2 cards, sacrifices 1 legendary permanent, 1 enchantment and 1 artifact.";
@@ -280,7 +280,7 @@ console.log(result);
           break;
         case 12:
         case 13:
-          actionElement.innerText = `The Raid Monster creates (${1+drValue}) ${drValue+1}/${drValue+1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
+          actionElement.innerText = `The Raid Monster creates (${1+diceRolledThisRound}) ${diceRolledThisRound+1}/${diceRolledThisRound+1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
           break;
         case 14:
           actionElement.innerText = "Each opponent sacrifices all enchantments.";
@@ -296,7 +296,7 @@ console.log(result);
           break;
         case 18:
         case 19:
-          actionElement.innerText = `Each opponent exiles their graveyard and drains (${1+drValue}) life.`;
+          actionElement.innerText = `Each opponent exiles their graveyard and drains (${1+diceRolledThisRound}) life.`;
           break;
         case 20:
           actionElement.innerText = "Each opponent may immediately draw a card OR place a land from their hand into play OR gain 5 life.";
