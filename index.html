@@ -138,7 +138,7 @@
     let monsterHealth = 0;
     let currentRound = 1;
     let totalDiceRolls = 0;
-    let easyActionsJson;
+    let easyActionsJson = null;
     let log = [];
 
     function rollDice() {
@@ -167,7 +167,6 @@
     }
 
     function increaseNumber() {
-      Console.log(easyActionsJson);
       monsterHealth++;
       updateMonsterHealth();
     }
