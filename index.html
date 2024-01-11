@@ -138,7 +138,7 @@
     let monsterHealth = 0;
     let currentRound = 1;
     let totalDiceRolls = 0;
-    let easyActionsJson = null;
+    let easyActionsJson;
     let log = [];
 
     function rollDice() {
@@ -146,19 +146,18 @@
       const result = Math.floor(Math.random() * 20) + 1; // Generate a random number between 1 and 20
       ++totalDiceRolls;
       performAction(result);
-      readJson();
     }
     function readJson() {
       const filePath = 'Actions/EasyActions.json';
 
-    // Fetch the JSON file
-    fetch(filePath)
-      .then(response => response.json())
-      .then(jsonData => {
-        console.log('JSON data:', jsonData);
-        easyActionsJson = jsonData;
-      })
-      .catch(error => console.error('Error fetching JSON:', error));
+      // Fetch the JSON file
+      fetch(filePath)
+        .then(response => response.json())
+        .then(jsonData => {
+          console.log('JSON data:', jsonData);
+          easyActionsJson = jsonData;
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
     }
 
     function updateMonsterHealth() {
@@ -200,7 +199,6 @@
     }
 
     function increaseRound() {
-      console.log(easyActionsJson);
       currentRound++;
       // Create a new log entry
       const logEntry = document.createElement("div");
@@ -404,9 +402,10 @@
         colorRectangle.style.background = colorName.toLowerCase();
       }
       colorRectangle.style.display = "block";
-    }
 
-    // Example: Call the displayColorRectangle function on page load
+      readJson();
+      console.log(easyActionsJson);
+    }
 
   </script>
 </body>
