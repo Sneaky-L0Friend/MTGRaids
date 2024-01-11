@@ -168,11 +168,34 @@
 
     function increaseRound() {
       currentRound++;
+      // Create a new log entry
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `ROUND ${currentRound}`;
+
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
+
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
       updateRound();
     }
 
     function decreaseRound() {
       currentRound = Math.max(1, currentRound - 1);
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `ROUND ${currentRound}`;
+
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
+
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
       updateRound();
     }
 
