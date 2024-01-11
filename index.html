@@ -98,6 +98,21 @@
       background-color: #777;
       /* Slightly lighter background on hover */
     }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .image-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -375,13 +390,24 @@
       const container = document.getElementById('imageContainer');
 
       for (let i = 0; i < numberOfImages; i++) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'image-container';
+
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
+
+        const imageText = document.createElement('div');
+        imageText.className = 'image-text';
+        imageText.textContent = `${numberOfImages}/${numberOfImages}`;
+
         img.addEventListener('click', function () {
-          removeImage(img);
+          removeImage(imageContainer);
         });
-        container.appendChild(img);
+
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(imageText);
+        container.appendChild(imageContainer);
       }
     }
 
