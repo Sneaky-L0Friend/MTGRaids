@@ -206,14 +206,14 @@
     function updateMonsterHealth() {
       const monsterHealthElement = document.getElementById("number");
       monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
-      if(startedGame){
+      if (startedGame) {
         const logEntry = document.createElement("div");
         logEntry.className = "logEntry";
         logEntry.textContent = `MONSTER HP CHANGED: ${monsterHealth}`;
-        
+
         // Get the dice log container
         const diceLog = document.getElementById("diceLog");
-        
+
         // Append the new log entry to the top of the log
         diceLog.insertAdjacentElement("beforeend", logEntry);
         diceLog.scrollTop = diceLog.scrollHeight;
@@ -496,6 +496,17 @@
       colorRectangle.style.display = "block";
 
       readJson();
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `ROUND ${currentRound}`;
+
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
+
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
       console.log(easyActionsJson);
     }
 
