@@ -103,8 +103,8 @@
       position: relative;
       display: inline-block;
       margin: 10px;
-      max-height: 85px;
-      max-width: 50px;
+      max-height: 170px;
+      max-width: 300px;
     }
 
     .image-text {
@@ -398,6 +398,9 @@
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
+
+        img.style.width = '300px';
+        img.style.height = '170px';
 
         const imageText = document.createElement('div');
         imageText.className = 'image-text';
