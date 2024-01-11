@@ -143,6 +143,7 @@
     let mediumActionsJson;
     let hardActionsJson;
     let log = [];
+    let bossMonsterImageUrl = "";
 
     function rollDice() {
       const diceElement = document.getElementById("dice");
@@ -287,7 +288,7 @@
 
       // Set the image source
       imgElement.src = `BossMonsters/${pickedNumber}.jpeg`; // Replace with the actual image file name
-
+      bossMonsterImageUrl = imgElement.src;
       // Set styling for the image (optional)
       imgElement.style.width = "1200px";
       imgElement.style.height = "600px";
@@ -332,12 +333,7 @@
         case 12:
         case 13:
           actionElement.innerText = `The Raid Monster creates (${1 + diceRolledThisRound}) ${diceRolledThisRound + 1}/${diceRolledThisRound + 1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
-          var imgElement = document.createElement("img");
-
-          // Set the image source
-
-
-          addMinions(imgElement.src, diceRolledThisRound + 1);
+          addMinions(bossMonsterImageUrl, diceRolledThisRound + 1);
           break;
         case 14:
           actionElement.innerText = "Each opponent sacrifices all enchantments.";
@@ -380,7 +376,6 @@
 
       for (let i = 0; i < numberOfImages; i++) {
         const img = document.createElement('img');
-        console.log(imageUrl);
         img.src = imageUrl;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
         img.addEventListener('click', function () {
