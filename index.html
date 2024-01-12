@@ -126,13 +126,13 @@
 
   <div class="display-container">
     <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
-    <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
-    <div id="startEasy" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy
-      Challenge</div>
-    <div id="startMedium" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start
-      Medium Challenge</div>
-    <div id="startHard" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard
-      Challenge</div>
+    <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()">
+    <button id="startEasy" disabled class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy
+      Challenge</button>
+    <button id="startMedium" disabled class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start
+      Medium Challenge</button>
+    <button id="startHard" disabled class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard
+      Challenge</button>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
@@ -354,6 +354,25 @@
       diceLog.scrollTop = diceLog.scrollHeight;
       diceLog.style.display = "block";
       updateRound();
+    }
+
+    function checkInput() {
+      var numberInput = document.getElementById("myTextbox").value;
+      var submitButton1 = document.getElementById("startEasy");
+      var submitButton2 = document.getElementById("startMedium");
+      var submitButton3 = document.getElementById("startHard");
+
+      // Check if the input is a number
+      if (!isNaN(numberInput) && numberInput !== "") {
+        console.log('here');
+        submitButton1.disabled = false;
+        submitButton2.disabled = false;
+        submitButton3.disabled = false;
+      } else {
+        submitButton1.disabled = true;
+        submitButton2.disabled = true;
+        submitButton3.disabled = true;
+      }
     }
 
     function pickMonster() {
