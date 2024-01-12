@@ -84,6 +84,11 @@
       /* Light text color */
     }
 
+    .button-container {
+      display: flex;
+      gap: 10px;
+    }
+
     .controls button {
       font-size: 18px;
       margin-top: 5px;
@@ -127,12 +132,13 @@
   <div class="display-container">
     <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()">
-    <button id="startEasy" disabled class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy
-      Challenge</button>
-    <button id="startMedium" disabled class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start
-      Medium Challenge</button>
-    <button id="startHard" disabled class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard
-      Challenge</button>
+    
+    <div class="button-container">
+      <button id="startEasy" disabled class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</button>
+      <button id="startMedium" disabled class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</button>
+      <button id="startHard" disabled class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</button>
+    </div>
+    
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
