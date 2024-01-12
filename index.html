@@ -188,11 +188,23 @@
         default:
           randomlyRolledList = hardActionsJson;
       }
-      const result = Math.floor(Math.random() * randomlyRolledList.Actions.Length); // Generate a random number on the rolled List
+      const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
       ++totalDiceRolls;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
       actionElement.innerText = randomlyRolledList.Actions[result];
+
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
+
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
+
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
 
     }
 
