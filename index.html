@@ -191,16 +191,16 @@
       modifier1: 10,
       modifier2: 1,
       modifier3: 0.8, //Must be between 0-1
-      easyProbability: 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5))),
-      mediumProbability: ((1 - easyProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3
+      easyProbability: 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.modifier1 / (currentRound * 1.5))),
+      mediumProbability: ((1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.modifier2))))) * EASY_MODE_MODIFIERS.modifier3
     }
     // Difficulty modifiers for medium mode 
     const MEDIUM_MODE_MODIFIERS = {
       modifier1: 5,
       modifier2: 2,
       modifier3: 0.6, //Must be between 0-1
-      easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3,
-      mediumProbability: 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5)))
+      easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-MEDIUM_MODE_MODIFIERS.modifier2))))) * MEDIUM_MODE_MODIFIERS.modifier3,
+      mediumProbability: 1 / (1 + Math.exp(-MEDIUM_MODE_MODIFIERS.modifier3 / (currentRound * 1.5)))
 
     }
     // Difficulty modifiers for hard mode 
@@ -208,8 +208,8 @@
       modifier1: .1,
       modifier2: 2,
       modifier3: 0.1, //Must be between 0-1
-      easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3,
-      mediumProbability: 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5)))
+      easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-HARD_MODE_MODIFIERS.modifier2))))) * HARD_MODE_MODIFIERS.modifier3,
+      mediumProbability: 1 / (1 + Math.exp(-HARD_MODE_MODIFIERS.modifier1 / (currentRound * 1.5)))
 
       
     }
