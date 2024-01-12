@@ -188,33 +188,40 @@
 
     // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
-      easy: 10,
-      medium: 1,
-      mWeight: 0.8
+      modifier1: 10,
+      modifier2: 1,
+      modifier3: 0.8, //Must be between 0-1
+      easyProbability = 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5))),
+      mediumProbability = ((1 - easyProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3
     }
     // Difficulty modifiers for medium mode 
     const MEDIUM_MODE_MODIFIERS = {
-      easy: -25,
-      medium: 5,
-      mWeight: 0.7
+      modifier1: 5,
+      modifier2: 2,
+      modifier3: 0.6, //Must be between 0-1
+      easyProbability = ((1 - mediumProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3,
+      mediumProbability = 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5)))
+
     }
     // Difficulty modifiers for hard mode 
     const HARD_MODE_MODIFIERS = {
-      easy: -50,
-      medium: 3.9,
-      mWeight: 0.3
+      modifier1: .1,
+      modifier2: 2,
+      modifier3: 0.1, //Must be between 0-1
+      easyProbability = ((1 - mediumProbability) * (1 / (1 + (Math.exp(-modifier2))))) * modifier3,
+      mediumProbability = 1 / (1 + Math.exp(-modifier1 / (currentRound * 1.5)))
+
+      
     }
     function takeMonsterAction() {
-      const easyProbability = 1 / (1 + Math.exp(-modifiersToUse.easy / (currentRound * 1.5)));
-      const mediumProbability = ((1 - easyProbability) * (1 / (1 + (Math.exp(-modifiersToUse.medium))))) * modifiersToUse.mWeight;
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
       let randomlyRolledList;
-      if (randomValue < easyProbability) {
+      if (randomValue < modifiersToUse.easyProbability) {
         randomlyRolledList = easyActionsJson;
         listRolledFrom = "E";
-      } else if (randomValue < (easyProbability + mediumProbability)) {
+      } else if (randomValue < (modifiersToUse.easyProbability + modifiersToUse.mediumProbability)) {
         randomlyRolledList = mediumActionsJson;
         listRolledFrom = "M";
       } else {
@@ -236,7 +243,7 @@
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
       logEntry.textContent = `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`;
-      console.log(modifiersToUse,randomValue,easyProbability,mediumProbability,)
+      console.log(modifiersToUse,randomValue)
 
       // Get the dice log container
       const diceLog = document.getElementById("diceLog");
