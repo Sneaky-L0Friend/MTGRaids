@@ -192,8 +192,8 @@
       ++totalDiceRolls;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
-      actionElement.innerText = randomlyRolledList.Actions[result].replace("${diceRolledThisRound}", diceRolledThisRound).replace("${currentRound}", currentRound);
-      if (result.includes(flying, deathtouch,)) {
+      actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound+1);
+      if (result.includes("flying, deathtouch,")) {
         //make minions
 
         var imgElement = document.createElement("img");
