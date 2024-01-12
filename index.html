@@ -193,7 +193,7 @@
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
       actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound+1);
-      if (result.includes("flying, deathtouch,")) {
+      if (randomlyRolledList.Actions[result].includes("monster creates")) {
         //make minions
 
         var imgElement = document.createElement("img");
