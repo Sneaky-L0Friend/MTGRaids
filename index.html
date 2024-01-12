@@ -485,16 +485,13 @@
     function setDifficultyAtStart(difficulty) {
       switch (difficulty) {
         case 'easy':
-          modifiersToUse = difficultyModifiers.easy;
-          finalProbability = difficultyProbabilities.easy;
+          modifiersToUse = EASY_MODE_MODIFIERS;
           break;
         case 'medium':
-          modifiersToUse = difficultyModifiers.medium;
-          finalProbability = difficultyProbabilities.mediumAndHard;
+          modifiersToUse = MEDIUM_MODE_MODIFIERS;
           break;
         case 'hard':
-          modifiersToUse = difficultyModifiers.hard;
-          finalProbability = difficultyProbabilities.mediumAndHard;
+          modifiersToUse = HARD_MODE_MODIFIERS;
           break;
       }
     }
