@@ -11,7 +11,7 @@
     "Until the beginning of the Monster’s next turn, players cannot play more than two spells each turn.",
     "Each opponent sacrifices half the number of tokens they control rounded up.",
     "For each opponent, destroy target enchantment of the player's choice.",
-    "The Raid monster creates 1 ${currentRound}/${currentRound} artifact creature in its colors, it must attack the player with the highest life total each turn.",
+    "The Raid Monster creates 1 ${currentRound}/${currentRound} artifact creature in its colors, it must attack the player with the highest life total each turn.",
     "The Raid Monster creates 2 ${diceRolledThisRound}/${diceRolledThisRound} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monsters next turn.",
     "Each opponent sacrifices half the number of enchantments they control rounded up.",
     "For each opponent, destroy target artifact of the player's choice.",
