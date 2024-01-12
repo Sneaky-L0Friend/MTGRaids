@@ -195,10 +195,9 @@
       actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound+1);
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
-
-        var imgElement = document.createElement("img");
+        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
-        addMinions(imgElement.src, diceRolledThisRound + 1);
+        addMinions(bossMonsterImageUrl, howManyToMake);
       }
 
       const logEntry = document.createElement("div");
