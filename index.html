@@ -165,19 +165,19 @@
     let startedGame = false;
     let log = [];
     const EASY_MODE_MODIFIERS = {
-      easy:10,
-      medium:1,
-      mWeight:0.8
+      easy: 10,
+      medium: 1,
+      mWeight: 0.8
     }
     let bossMonsterImageUrl = "";
 
     function rollDice() {
       const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
-      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium)*EASY_MODE_MODIFIERS.mWeight)));
+      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium) * EASY_MODE_MODIFIERS.mWeight)));
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
-      let randomlyRolledList; 
+      let randomlyRolledList;
       switch (true) {
         case randomValue < easyProbability:
           randomlyRolledList = easyActionsJson;
@@ -192,7 +192,14 @@
       ++totalDiceRolls;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
-      actionElement.innerText = randomlyRolledList.Actions[result];
+      actionElement.innerText = randomlyRolledList.Actions[result].replace("${diceRolledThisRound}", diceRolledThisRound).replace("${currentRound}", currentRound);
+      if (result.includes(flying, deathtouch,)) {
+        //make minions
+
+        var imgElement = document.createElement("img");
+        // Set the image source
+        addMinions(imgElement.src, diceRolledThisRound + 1);
+      }
 
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
