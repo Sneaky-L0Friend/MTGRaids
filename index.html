@@ -177,15 +177,15 @@
     }
     // Difficulty modifiers for medium mode 
     const MEDIUM_MODE_MODIFIERS = {
-      easy: 10,
-      medium: 1,
-      mWeight: 0.8
+      easy: -25,
+      medium: 5,
+      mWeight: 0.7
     }
     // Difficulty modifiers for hard mode 
     const HARD_MODE_MODIFIERS = {
-      easy: 10,
-      medium: 1,
-      mWeight: 0.8
+      easy: -50,
+      medium: 3.9,
+      mWeight: 0.3
     }
     function takeMonsterAction() {
       const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
