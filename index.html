@@ -210,13 +210,14 @@
     function takeMonsterAction() {
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
-
+      let baseProbability;
+      let additionalProbability;
       if (modifiersToUse == EASY_MODE_MODIFIERS) {
-        let baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
-        let additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+        baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
+        additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
       } else {
-        let baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
-        let additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+        baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
+        additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
       }
 
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
@@ -232,7 +233,7 @@
         listRolledFrom = "H";
       }
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
-      
+
       console.log(result);
       console.log("baseProbability: " + baseProbability);
       console.log("additionalProbability: " + additionalProbability);
