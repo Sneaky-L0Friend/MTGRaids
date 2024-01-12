@@ -475,6 +475,7 @@
         const imageText = document.createElement('div');
         imageText.className = 'image-text';
         imageText.textContent = `${numberOfImages}/${numberOfImages}`;
+        imageText.contentEditable = true;
 
         img.addEventListener('click', function () {
           removeImage(imageContainer);
