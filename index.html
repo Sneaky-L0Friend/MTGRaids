@@ -143,28 +143,57 @@
     let mediumActionsJson;
     let hardActionsJson;
     let log = [];
+    const EASY_MODE_MODIFIERS = {
+      easy:10,
+      medium:1,
+      mWeight:0.8
+    }
 
     function rollDice() {
+      const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
+      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium)*EASY_MODE_MODIFIERS.mWeight)));
+      const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
-      const result = Math.floor(Math.random() * 20) + 1; // Generate a random number between 1 and 20
+      // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
+      let randomlyRolledList; 
+      switch (true) {
+        case randomValue < easyProbability:
+          randomlyRolledList = easyActionsJson;
+          break;
+        case randomValue < easyProbability + mediumProbability:
+          randomlyRolledList = mediumActionsJson;
+          break;
+        default:
+          randomlyRolledList = hardActionsJson;
+      }
+      const result = Math.floor(Math.random() * randomlyRolledList.Actions.Length); // Generate a random number on the rolled List
       ++totalDiceRolls;
-      performAction(result);
+      const actionElement = document.getElementById("action");
+      const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
+      actionElement.innerText = randomlyRolledList.Actions[result];
+
     }
+
     function readJson() {
       const filePath = 'Actions/EasyActions.json';
       const filePathM = 'Actions/MediumActions.json';
       const filePathH = 'Actions/HardActions.json';
+      const options = {
+        method: 'GET',
+        mode: 'no-cors'
+      };
 
       // Fetch the JSON file
-      fetch(filePath)
-        .then(response => response.json())
+      fetch(filePath, options)
+        .then(
+          response => response.json())
         .then(jsonData => {
           console.log('JSON data:', jsonData);
           easyActionsJson = jsonData;
         })
         .catch(error => console.error('Error fetching JSON:', error));
 
-      fetch(filePathM)
+      fetch(filePathM, options)
         .then(response => response.json())
         .then(jsonData => {
           console.log('JSON data:', jsonData);
@@ -172,7 +201,7 @@
         })
         .catch(error => console.error('Error fetching JSON:', error));
 
-      fetch(filePathH)
+      fetch(filePathH, options)
         .then(response => response.json())
         .then(jsonData => {
           console.log('JSON data:', jsonData);
@@ -298,82 +327,82 @@
       return pickedNumber;
     }
 
-    function performAction(result) {
-      const actionElement = document.getElementById("action");
-      const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate DR value
-      switch (result) {
-        case 1:
-          actionElement.innerText = "Each opponent discards 2 cards, Mill 2 cards, sacrifices 1 legendary permanent, 1 enchantment and 1 artifact.";
-          break;
-        case 2:
-          actionElement.innerText = "Each opponent sacrifices all creatures.";
-          break;
-        case 3:
-          actionElement.innerText = "For each opponent, destroy target legendary permanent with the highest converted mana cost.";
-          break;
-        case 4:
-        case 5:
-          actionElement.innerText = "The Raid Monster deals 10 damage to every opponent and 5 to every planeswalker.";
-          break;
-        case 6:
-        case 7:
-          actionElement.innerText = "The Raid Monster gains 10 life and removes 5 infect counters.";
-          break;
-        case 8:
-        case 9:
-          actionElement.innerText = "Until the beginning of the Raid monster’s next turn, opponents cannot draw more than 1 card or play more than one spell each turn.";
-          break;
-        case 10:
-          actionElement.innerText = "Each opponent sacrifices all tokens.";
-          break;
-        case 11:
-          actionElement.innerText = "For each opponent, destroy target enchantment with the highest converted mana cost.";
-          break;
-        case 12:
-        case 13:
-          actionElement.innerText = `The Raid Monster creates (${1 + diceRolledThisRound}) ${diceRolledThisRound + 1}/${diceRolledThisRound + 1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
-          var imgElement = document.createElement("img");
+    // function performAction(result) {
+    //   const actionElement = document.getElementById("action");
+    //   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate DR value
+    //   switch (result) {
+    //     case 1:
+    //       actionElement.innerText = "Each opponent discards 2 cards, Mill 2 cards, sacrifices 1 legendary permanent, 1 enchantment and 1 artifact.";
+    //       break;
+    //     case 2:
+    //       actionElement.innerText = "Each opponent sacrifices all creatures.";
+    //       break;
+    //     case 3:
+    //       actionElement.innerText = "For each opponent, destroy target legendary permanent with the highest converted mana cost.";
+    //       break;
+    //     case 4:
+    //     case 5:
+    //       actionElement.innerText = "The Raid Monster deals 10 damage to every opponent and 5 to every planeswalker.";
+    //       break;
+    //     case 6:
+    //     case 7:
+    //       actionElement.innerText = "The Raid Monster gains 10 life and removes 5 infect counters.";
+    //       break;
+    //     case 8:
+    //     case 9:
+    //       actionElement.innerText = "Until the beginning of the Raid monster’s next turn, opponents cannot draw more than 1 card or play more than one spell each turn.";
+    //       break;
+    //     case 10:
+    //       actionElement.innerText = "Each opponent sacrifices all tokens.";
+    //       break;
+    //     case 11:
+    //       actionElement.innerText = "For each opponent, destroy target enchantment with the highest converted mana cost.";
+    //       break;
+    //     case 12:
+    //     case 13:
+    //       actionElement.innerText = `The Raid Monster creates (${1 + diceRolledThisRound}) ${diceRolledThisRound + 1}/${diceRolledThisRound + 1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
+    //       var imgElement = document.createElement("img");
 
-          // Set the image source
+    //       // Set the image source
 
 
-          addMinions(imgElement.src, diceRolledThisRound + 1);
-          break;
-        case 14:
-          actionElement.innerText = "Each opponent sacrifices all enchantments.";
-          break;
-        case 15:
-          actionElement.innerText = "For each opponent, destroy target artifact with the highest converted mana cost.";
-          break;
-        case 16:
-          actionElement.innerText = "Each opponent sacrifices all artifacts.";
-          break;
-        case 17:
-          actionElement.innerText = "For each opponent, destroy target creature with the highest converted mana cost.";
-          break;
-        case 18:
-        case 19:
-          actionElement.innerText = `Each opponent exiles their graveyard and drains (${1 + diceRolledThisRound}) life.`;
-          break;
-        case 20:
-          actionElement.innerText = "Each opponent may immediately draw a card OR place a land from their hand into play OR gain 5 life.";
-          break;
-        default:
-          actionElement.innerText = "Action: None";
-      }
-      // Create a new log entry
-      const logEntry = document.createElement("div");
-      logEntry.className = "logEntry";
-      logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
+    //       addMinions(imgElement.src, diceRolledThisRound + 1);
+    //       break;
+    //     case 14:
+    //       actionElement.innerText = "Each opponent sacrifices all enchantments.";
+    //       break;
+    //     case 15:
+    //       actionElement.innerText = "For each opponent, destroy target artifact with the highest converted mana cost.";
+    //       break;
+    //     case 16:
+    //       actionElement.innerText = "Each opponent sacrifices all artifacts.";
+    //       break;
+    //     case 17:
+    //       actionElement.innerText = "For each opponent, destroy target creature with the highest converted mana cost.";
+    //       break;
+    //     case 18:
+    //     case 19:
+    //       actionElement.innerText = `Each opponent exiles their graveyard and drains (${1 + diceRolledThisRound}) life.`;
+    //       break;
+    //     case 20:
+    //       actionElement.innerText = "Each opponent may immediately draw a card OR place a land from their hand into play OR gain 5 life.";
+    //       break;
+    //     default:
+    //       actionElement.innerText = "Action: None";
+    //   }
+    //   // Create a new log entry
+    //   const logEntry = document.createElement("div");
+    //   logEntry.className = "logEntry";
+    //   logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
 
-      // Get the dice log container
-      const diceLog = document.getElementById("diceLog");
+    //   // Get the dice log container
+    //   const diceLog = document.getElementById("diceLog");
 
-      // Append the new log entry to the top of the log
-      diceLog.insertAdjacentElement("beforeend", logEntry);
-      diceLog.scrollTop = diceLog.scrollHeight;
-      diceLog.style.display = "block";
-    }
+    //   // Append the new log entry to the top of the log
+    //   diceLog.insertAdjacentElement("beforeend", logEntry);
+    //   diceLog.scrollTop = diceLog.scrollHeight;
+    //   diceLog.style.display = "block";
+    // }
 
     function addMinions(imageUrl, numberOfImages) {
       const container = document.getElementById('imageContainer');
