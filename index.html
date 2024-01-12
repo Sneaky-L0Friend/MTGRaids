@@ -127,9 +127,12 @@
   <div class="display-container">
     <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
-    <div id="startEasy" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</div>
-    <div id="startMedium" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</div>
-    <div id="startHard" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</div>
+    <div id="startEasy" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy
+      Challenge</div>
+    <div id="startMedium" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start
+      Medium Challenge</div>
+    <div id="startHard" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard
+      Challenge</div>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
@@ -171,6 +174,7 @@
     let log = [];
     let bossMonsterImageUrl = "";
     let modifiersToUse;
+
     // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
       easy: 10,
@@ -210,7 +214,7 @@
       ++totalDiceRolls;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
-      actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound+1);
+      actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1);
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
@@ -434,7 +438,7 @@
     }
 
     function setDifficultyAtStart(difficulty) {
-      switch(difficulty) {
+      switch (difficulty) {
         case 'easy':
           modifiersToUse = EASY_MODE_MODIFIERS;
           break;
