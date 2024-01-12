@@ -125,6 +125,8 @@
 <body>
 
   <div class="display-container">
+    <label class="display-box" for="myTextbox">Enter number of players:</label>
+    <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
     <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame()">Click to Start</div>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
@@ -421,6 +423,13 @@
 
 
     function displayColorRectangleAndStartGame() {
+      var textBox = document.getElementById("myTextbox");
+
+      // Get the number of players
+      var value = textBox.value;
+      monsterHealth = value * 25;
+      updateMonsterHealth();
+
       startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
       const pickedNumber = pickMonster();
@@ -488,6 +497,8 @@
       diceLog.scrollTop = diceLog.scrollHeight;
       diceLog.style.display = "block";
       console.log(easyActionsJson);
+
+
     }
 
   </script>
