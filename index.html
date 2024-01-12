@@ -180,6 +180,7 @@
     let log = [];
     let bossMonsterImageUrl = "";
     let modifiersToUse;
+    let listRolledFrom;
 
     // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
@@ -209,12 +210,15 @@
       switch (true) {
         case randomValue < easyProbability:
           randomlyRolledList = easyActionsJson;
+          listRolledFrom = "E"
           break;
         case randomValue < easyProbability + mediumProbability:
           randomlyRolledList = mediumActionsJson;
+          listRolledFrom = "M"
           break;
         default:
           randomlyRolledList = hardActionsJson;
+          listRolledFrom = "H"
       }
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
       ++totalDiceRolls;
@@ -230,7 +234,7 @@
 
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
-      logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
+      logEntry.textContent = `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`;
 
       // Get the dice log container
       const diceLog = document.getElementById("diceLog");
@@ -418,8 +422,10 @@
       imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
       bossMonsterImageUrl = imgElement.src;
       // Set styling for the image
-      imgElement.style.width = "1100px";
-      imgElement.style.height = "550px";
+      imgElement.style.MaxWidth = "200px"; 
+      imgElement.style.MaxHeight = "200px";
+      imgElement.style.width = "auto"; //width scales with height
+      imgElement.style.height = "100%"; //height is set to max
       imgElement.style.margin = "20px";
 
       // Replace the div with the image
