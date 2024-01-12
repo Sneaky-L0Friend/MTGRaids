@@ -207,16 +207,13 @@
       const diceElement = document.getElementById("dice");
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
       let randomlyRolledList;
-      switch (true) {
-        case randomValue < easyProbability:
-          randomlyRolledList = easyActionsJson;
-          listRolledFrom = "E"
-          break;
-        case randomValue < easyProbability + mediumProbability:
+      if (randomValue < easyProbability) {
+        randomlyRolledList = easyActionsJson;
+        listRolledFrom = "E"
+      } if else (randomValue < (easyProbability+mediumProbability)) {
           randomlyRolledList = mediumActionsJson;
           listRolledFrom = "M"
-          break;
-        default:
+      } else {
           randomlyRolledList = hardActionsJson;
           listRolledFrom = "H"
       }
