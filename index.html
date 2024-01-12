@@ -26,13 +26,14 @@
       /* Align to the left side of the screen */
       top: 0;
       /* Align to the top of the screen */
-      max-height: 50vh;
+      max-height: 40vh;
       /* 100% of the viewport height */
       max-width: 50vh;
       overflow-y: auto;
       border: 1px solid #ccc;
       padding: 10px;
       margin: 10px;
+      margin-top: 20px;
       text-align: left;
     }
 
@@ -98,6 +99,25 @@
       background-color: #777;
       /* Slightly lighter background on hover */
     }
+
+    .image-container {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+      max-height: 170px;
+      max-width: 300px;
+    }
+
+    .image-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: yellow;
+      font-size: 80px;
+      font-weight: bold;
+      text-shadow: -2px -2px 2px black, 2px -2px 2px black, -2px 2px 2px black, 2px 2px 2px black;
+    }
   </style>
 </head>
 
@@ -142,12 +162,14 @@
     let easyActionsJson;
     let mediumActionsJson;
     let hardActionsJson;
+    let startedGame = false;
     let log = [];
     const EASY_MODE_MODIFIERS = {
       easy:10,
       medium:1,
       mWeight:0.8
     }
+    let bossMonsterImageUrl = "";
 
     function rollDice() {
       const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
@@ -213,6 +235,19 @@
     function updateMonsterHealth() {
       const monsterHealthElement = document.getElementById("number");
       monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
+      if (startedGame) {
+        const logEntry = document.createElement("div");
+        logEntry.className = "logEntry";
+        logEntry.textContent = `MONSTER HP CHANGED: ${monsterHealth}`;
+
+        // Get the dice log container
+        const diceLog = document.getElementById("diceLog");
+
+        // Append the new log entry to the top of the log
+        diceLog.insertAdjacentElement("beforeend", logEntry);
+        diceLog.scrollTop = diceLog.scrollHeight;
+        diceLog.style.display = "block";
+      }
     }
 
     function increaseNumber() {
@@ -316,10 +351,10 @@
 
       // Set the image source
       imgElement.src = `BossMonsters/${pickedNumber}.jpeg`; // Replace with the actual image file name
-
+      bossMonsterImageUrl = imgElement.src;
       // Set styling for the image (optional)
-      imgElement.style.width = "1200px";
-      imgElement.style.height = "600px";
+      imgElement.style.width = "1100px";
+      imgElement.style.height = "550px";
       imgElement.style.margin = "20px";
 
       // Replace the div with the image
@@ -408,13 +443,27 @@
       const container = document.getElementById('imageContainer');
 
       for (let i = 0; i < numberOfImages; i++) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'image-container';
+
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
+
+        img.style.width = '300px';
+        img.style.height = '170px';
+
+        const imageText = document.createElement('div');
+        imageText.className = 'image-text';
+        imageText.textContent = `${numberOfImages}/${numberOfImages}`;
+
         img.addEventListener('click', function () {
-          removeImage(img);
+          removeImage(imageContainer);
         });
-        container.appendChild(img);
+
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(imageText);
+        container.appendChild(imageContainer);
       }
     }
 
@@ -426,6 +475,7 @@
 
 
     function displayColorRectangle() {
+      startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
       const pickedNumber = pickNumber();
 
@@ -480,6 +530,17 @@
       colorRectangle.style.display = "block";
 
       readJson();
+      const logEntry = document.createElement("div");
+      logEntry.className = "logEntry";
+      logEntry.textContent = `ROUND ${currentRound}`;
+
+      // Get the dice log container
+      const diceLog = document.getElementById("diceLog");
+
+      // Append the new log entry to the top of the log
+      diceLog.insertAdjacentElement("beforeend", logEntry);
+      diceLog.scrollTop = diceLog.scrollHeight;
+      diceLog.style.display = "block";
       console.log(easyActionsJson);
     }
 
