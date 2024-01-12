@@ -188,8 +188,8 @@
       mWeight: 0.3
     }
     function takeMonsterAction() {
-      const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
-      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium) * EASY_MODE_MODIFIERS.mWeight)));
+      const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5))); //Need to change EASY_MODE_MODIFIERS to difficulty variable when implemented
+      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium) * EASY_MODE_MODIFIERS.mWeight)));//Need to change EASY_MODE_MODIFIERS to difficulty variable when implemented
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
