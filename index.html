@@ -127,9 +127,9 @@
   <div class="display-container">
     <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
-    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</div>
-    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</div>
-    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</div>
+    <div id="startEasy" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</div>
+    <div id="startMedium" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</div>
+    <div id="startHard" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</div>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
@@ -451,6 +451,9 @@
       setDifficultyAtStart(difficulty);
       var textBox = document.getElementById("myTextbox");
       var playerLabel = document.getElementById("playerLabel");
+      var startEasy = document.getElementById("startEasy");
+      var startMedium = document.getElementById("startMedium");
+      var startHard = document.getElementById("startHard");
 
       // Get the number of players
       var value = textBox.value;
@@ -459,6 +462,9 @@
 
       textBox.style.display = "none";
       playerLabel.style.display = "none";
+      startEasy.style.display = "none";
+      startMedium.style.display = "none";
+      startHard.style.display = "none";
 
       startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
