@@ -125,14 +125,13 @@
 <body>
 
   <div class="display-container">
-    <div id="start" class="display-box" onclick="displayColorRectangle()">Click to Start</div>
+    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame()">Click to Start</div>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
   <div id="imageContainer"></div>
   <div class="display-container">
-    <div id="dices" class="display-box" onclick="rollDice()">Click to Roll Dice</div>
-    <!-- <div id="totalDiceRolls" class="display-box">Total Dice Rolls</div> -->
+    <div id="dices" class="display-box" onclick="takeMonsterAction()">Click to Roll Dice</div>
     <div id="action" class="display-box">Action: None</div>
   </div>
   <div class="controls">
@@ -165,14 +164,17 @@
     let hardActionsJson;
     let startedGame = false;
     let log = [];
+    let bossMonsterImageUrl = "";
+
+    // Difficulty modifiers for easy mode 
+    // TODO: add for hard and medium
     const EASY_MODE_MODIFIERS = {
       easy: 10,
       medium: 1,
       mWeight: 0.8
     }
-    let bossMonsterImageUrl = "";
 
-    function rollDice() {
+    function takeMonsterAction() {
       const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5)));
       const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium) * EASY_MODE_MODIFIERS.mWeight)));
       const randomValue = Math.random(); // Random value between 0 and 1
@@ -215,7 +217,7 @@
 
     }
 
-    function readJson() {
+    function readActionJsonFiles() {
       const filePath = 'Actions/EasyActions.json';
       const filePathM = 'Actions/MediumActions.json';
       const filePathH = 'Actions/HardActions.json';
@@ -335,7 +337,7 @@
       updateRound();
     }
 
-    function pickNumber() {
+    function pickMonster() {
       // Generate a random number between 1 and 100 (inclusive)
       const randomNumber = Math.floor(Math.random() * 100) + 1;
 
@@ -369,9 +371,9 @@
       var imgElement = document.createElement("img");
 
       // Set the image source
-      imgElement.src = `BossMonsters/${pickedNumber}.jpeg`; // Replace with the actual image file name
+      imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
       bossMonsterImageUrl = imgElement.src;
-      // Set styling for the image (optional)
+      // Set styling for the image
       imgElement.style.width = "1100px";
       imgElement.style.height = "550px";
       imgElement.style.margin = "20px";
@@ -381,83 +383,6 @@
       return pickedNumber;
     }
 
-    // function performAction(result) {
-    //   const actionElement = document.getElementById("action");
-    //   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate DR value
-    //   switch (result) {
-    //     case 1:
-    //       actionElement.innerText = "Each opponent discards 2 cards, Mill 2 cards, sacrifices 1 legendary permanent, 1 enchantment and 1 artifact.";
-    //       break;
-    //     case 2:
-    //       actionElement.innerText = "Each opponent sacrifices all creatures.";
-    //       break;
-    //     case 3:
-    //       actionElement.innerText = "For each opponent, destroy target legendary permanent with the highest converted mana cost.";
-    //       break;
-    //     case 4:
-    //     case 5:
-    //       actionElement.innerText = "The Raid Monster deals 10 damage to every opponent and 5 to every planeswalker.";
-    //       break;
-    //     case 6:
-    //     case 7:
-    //       actionElement.innerText = "The Raid Monster gains 10 life and removes 5 infect counters.";
-    //       break;
-    //     case 8:
-    //     case 9:
-    //       actionElement.innerText = "Until the beginning of the Raid monster’s next turn, opponents cannot draw more than 1 card or play more than one spell each turn.";
-    //       break;
-    //     case 10:
-    //       actionElement.innerText = "Each opponent sacrifices all tokens.";
-    //       break;
-    //     case 11:
-    //       actionElement.innerText = "For each opponent, destroy target enchantment with the highest converted mana cost.";
-    //       break;
-    //     case 12:
-    //     case 13:
-    //       actionElement.innerText = `The Raid Monster creates (${1 + diceRolledThisRound}) ${diceRolledThisRound + 1}/${diceRolledThisRound + 1} flying, deathtouch, defender enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monster’s next turn.`;
-    //       var imgElement = document.createElement("img");
-
-    //       // Set the image source
-
-
-    //       addMinions(imgElement.src, diceRolledThisRound + 1);
-    //       break;
-    //     case 14:
-    //       actionElement.innerText = "Each opponent sacrifices all enchantments.";
-    //       break;
-    //     case 15:
-    //       actionElement.innerText = "For each opponent, destroy target artifact with the highest converted mana cost.";
-    //       break;
-    //     case 16:
-    //       actionElement.innerText = "Each opponent sacrifices all artifacts.";
-    //       break;
-    //     case 17:
-    //       actionElement.innerText = "For each opponent, destroy target creature with the highest converted mana cost.";
-    //       break;
-    //     case 18:
-    //     case 19:
-    //       actionElement.innerText = `Each opponent exiles their graveyard and drains (${1 + diceRolledThisRound}) life.`;
-    //       break;
-    //     case 20:
-    //       actionElement.innerText = "Each opponent may immediately draw a card OR place a land from their hand into play OR gain 5 life.";
-    //       break;
-    //     default:
-    //       actionElement.innerText = "Action: None";
-    //   }
-    //   // Create a new log entry
-    //   const logEntry = document.createElement("div");
-    //   logEntry.className = "logEntry";
-    //   logEntry.textContent = `${totalDiceRolls}. Action result: ${actionElement.innerText}`;
-
-    //   // Get the dice log container
-    //   const diceLog = document.getElementById("diceLog");
-
-    //   // Append the new log entry to the top of the log
-    //   diceLog.insertAdjacentElement("beforeend", logEntry);
-    //   diceLog.scrollTop = diceLog.scrollHeight;
-    //   diceLog.style.display = "block";
-    // }
-
     function addMinions(imageUrl, numberOfImages) {
       const container = document.getElementById('imageContainer');
 
@@ -466,7 +391,7 @@
         imageContainer.className = 'image-container';
 
         const img = document.createElement('img');
-        img.src = imageUrl;
+        img.src = `Minions/${numberOfImages}.jpeg`;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
 
         img.style.width = '300px';
@@ -494,10 +419,10 @@
     }
 
 
-    function displayColorRectangle() {
+    function displayColorRectangleAndStartGame() {
       startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
-      const pickedNumber = pickNumber();
+      const pickedNumber = pickMonster();
 
       // Color mapping based on the chosen number
       const colorMap = {
@@ -549,7 +474,7 @@
       }
       colorRectangle.style.display = "block";
 
-      readJson();
+      readActionJsonFiles();
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
       logEntry.textContent = `ROUND ${currentRound}`;
