@@ -125,7 +125,7 @@
 <body>
 
   <div class="display-container">
-    <label class="display-box" for="myTextbox">Enter number of players:</label>
+    <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
     <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame()">Click to Start</div>
     <div id="colorRectangle" style="display: none;"></div>
@@ -424,11 +424,15 @@
 
     function displayColorRectangleAndStartGame() {
       var textBox = document.getElementById("myTextbox");
+      var playerLabel = document.getElementById("playerLabel");
 
       // Get the number of players
       var value = textBox.value;
       monsterHealth = value * 25;
       updateMonsterHealth();
+
+      textBox.style.display = "none";
+      playerLabel.style.display = "none";
 
       startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
