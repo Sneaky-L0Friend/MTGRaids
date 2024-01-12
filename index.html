@@ -185,55 +185,46 @@
     let bossMonsterImageUrl = "";
     let modifiersToUse;
     let listRolledFrom;
-    let baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
-    let additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
     let finalProbability;
 
     // // Difficulty modifiers for easy mode 
-    // const EASY_MODE_MODIFIERS = {
-    //   modifier1: 10,
-    //   modifier2: 1,
-    //   modifier3: 0.8, //Must be between 0-1
-    //   easyProbability: 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.modifier1 / (currentRound * 1.5))),
-    //   mediumProbability: ((1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.modifier2))))) * EASY_MODE_MODIFIERS.modifier3
-    // }
-    // // Difficulty modifiers for medium mode 
-    // const MEDIUM_MODE_MODIFIERS = {
-    //   modifier1: 5,
-    //   modifier2: 2,
-    //   modifier3: 0.6, //Must be between 0-1
-    //   easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-MEDIUM_MODE_MODIFIERS.modifier2))))) * MEDIUM_MODE_MODIFIERS.modifier3,
-    //   mediumProbability: 1 / (1 + Math.exp(-MEDIUM_MODE_MODIFIERS.modifier3 / (currentRound * 1.5)))
+    const EASY_MODE_MODIFIERS = {
+      modifier1: 10,
+      modifier2: 1,
+      modifier3: 0.8, //Must be between 0-1
+    }
+    // Difficulty modifiers for medium mode 
+    const MEDIUM_MODE_MODIFIERS = {
+      modifier1: 5,
+      modifier2: 2,
+      modifier3: 0.6, //Must be between 0-1
 
-    // }
-    // // Difficulty modifiers for hard mode 
-    // const HARD_MODE_MODIFIERS = {
-    //   modifier1: .1,
-    //   modifier2: 2,
-    //   modifier3: 0.1, //Must be between 0-1
-    //   easyProbability: ((1 - mediumProbability) * (1 / (1 + (Math.exp(-HARD_MODE_MODIFIERS.modifier2))))) * HARD_MODE_MODIFIERS.modifier3,
-    //   mediumProbability: 1 / (1 + Math.exp(-HARD_MODE_MODIFIERS.modifier1 / (currentRound * 1.5)))
-    // }
-
-    const difficultyModifiers = {
-      easy: [10,1,0.8], //Easy Modifier
-      medium: [5,2,0.6], //Medium Modifier
-      hard: [.1,2,.1] //Hard Modifier
+    }
+    // Difficulty modifiers for hard mode 
+    const HARD_MODE_MODIFIERS = {
+      modifier1: .1,
+      modifier2: 2,
+      modifier3: 0.1, //Must be between 0-1
     }
 
-    const difficultyProbabilities = {
-      easy: [baseProbability,additionalProbability],
-      mediumAndHard:[additionalProbability,baseProbability]
-    }
     function takeMonsterAction() {
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
+
+      if (modifiersToUse == EASY_MODE_MODIFIERS) {
+        let baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
+        let additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+      } else {
+        let baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
+        let additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+      }
+
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
       let randomlyRolledList;
-      if (randomValue < finalProbability[1]) {
+      if (randomValue < baseProbability) {
         randomlyRolledList = easyActionsJson;
         listRolledFrom = "E";
-      } else if (randomValue < (finalProbability[1] + finalProbability[2])) {
+      } else if (randomValue < (baseProbability + additionalProbability)) {
         randomlyRolledList = mediumActionsJson;
         listRolledFrom = "M";
       } else {
@@ -241,6 +232,11 @@
         listRolledFrom = "H";
       }
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
+      
+      console.log(result);
+      console.log("baseProbability: " + baseProbability);
+      console.log("additionalProbability: " + additionalProbability);
+
       ++totalDiceRolls;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
@@ -255,7 +251,6 @@
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
       logEntry.textContent = `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`;
-      console.log(randomValue,modifiersToUse,finalProbability[1],finalProbability[2])
 
       // Get the dice log container
       const diceLog = document.getElementById("diceLog");
