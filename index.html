@@ -127,7 +127,9 @@
   <div class="display-container">
     <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;">
-    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame()">Click to Start</div>
+    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</div>
+    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</div>
+    <div id="start" class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</div>
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
@@ -168,7 +170,7 @@
     let startedGame = false;
     let log = [];
     let bossMonsterImageUrl = "";
-
+    let modifiersToUse;
     // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
       easy: 10,
@@ -188,8 +190,8 @@
       mWeight: 0.3
     }
     function takeMonsterAction() {
-      const easyProbability = 1 / (1 + Math.exp(-EASY_MODE_MODIFIERS.easy / (currentRound * 1.5))); //Need to change EASY_MODE_MODIFIERS to difficulty variable when implemented
-      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-EASY_MODE_MODIFIERS.medium) * EASY_MODE_MODIFIERS.mWeight)));//Need to change EASY_MODE_MODIFIERS to difficulty variable when implemented
+      const easyProbability = 1 / (1 + Math.exp(-modifiersToUse.easy / (currentRound * 1.5)));
+      const mediumProbability = (1 - easyProbability) * (1 / (1 + (Math.exp(-modifiersToUse.medium) * modifiersToUse.mWeight)));
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
@@ -431,8 +433,22 @@
       container.removeChild(img);
     }
 
+    function setDifficultyAtStart(difficulty) {
+      switch(difficulty) {
+        case 'easy':
+          modifiersToUse = EASY_MODE_MODIFIERS;
+          break;
+        case 'medium':
+          modifiersToUse = MEDIUM_MODE_MODIFIERS;
+          break;
+        case 'hard':
+          modifiersToUse = HARD_MODE_MODIFIERS;
+          break;
+      }
+    }
 
-    function displayColorRectangleAndStartGame() {
+    function displayColorRectangleAndStartGame(difficulty) {
+      setDifficultyAtStart(difficulty);
       var textBox = document.getElementById("myTextbox");
       var playerLabel = document.getElementById("playerLabel");
 
