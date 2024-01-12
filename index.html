@@ -130,15 +130,19 @@
 <body>
 
   <div class="display-container">
-    <label id="playerLabel" style="cursor: default;" class="display-box" for="myTextbox">Enter number of players:</label>
+    <label id="playerLabel" style="cursor: default;" class="display-box" for="myTextbox">Enter number of
+      players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()">
-    
+
     <div class="button-container">
-      <button id="startEasy" style="background-color: green;" disabled class="display-box" onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</button>
-      <button id="startMedium" style="background-color: orange;" disabled class="display-box" onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</button>
-      <button id="startHard" style="background-color: crimson;" disabled class="display-box" onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</button>
+      <button id="startEasy" style="background-color: green;" disabled class="display-box"
+        onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</button>
+      <button id="startMedium" style="background-color: orange;" disabled class="display-box"
+        onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</button>
+      <button id="startHard" style="background-color: crimson;" disabled class="display-box"
+        onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</button>
     </div>
-    
+
     <div id="colorRectangle" style="display: none;"></div>
   </div>
   <div id="diceLog" style="display: none;"></div>
@@ -209,13 +213,13 @@
       let randomlyRolledList;
       if (randomValue < easyProbability) {
         randomlyRolledList = easyActionsJson;
-        listRolledFrom = "E"
-      } if else (randomValue < (easyProbability+mediumProbability)) {
-          randomlyRolledList = mediumActionsJson;
-          listRolledFrom = "M"
+        listRolledFrom = "E";
+      } else if (randomValue < (easyProbability + mediumProbability)) {
+        randomlyRolledList = mediumActionsJson;
+        listRolledFrom = "M";
       } else {
-          randomlyRolledList = hardActionsJson;
-          listRolledFrom = "H"
+        randomlyRolledList = hardActionsJson;
+        listRolledFrom = "H";
       }
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
       ++totalDiceRolls;
