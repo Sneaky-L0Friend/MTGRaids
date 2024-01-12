@@ -139,6 +139,7 @@
     <button onclick="decreaseNumber()">-</button>
     <button onclick="increaseNumber()">+</button>
     <button onclick="increaseNumberBy10()">+10</button>
+    <button onclick="addMinions(1)">+Minion</button>
   </div>
   <div class="display-container">
     <div id="number" class="display-box">Monster Health: 0</div>
@@ -200,7 +201,7 @@
         //make minions
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
-        addMinions(bossMonsterImageUrl, howManyToMake);
+        addMinions(howManyToMake);
       }
 
       const logEntry = document.createElement("div");
@@ -383,7 +384,7 @@
       return pickedNumber;
     }
 
-    function addMinions(imageUrl, numberOfImages) {
+    function addMinions(numberOfImages) {
       const container = document.getElementById('imageContainer');
 
       for (let i = 0; i < numberOfImages; i++) {
