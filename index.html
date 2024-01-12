@@ -130,7 +130,7 @@
 <body>
 
   <div class="display-container">
-    <label id="playerLabel" class="display-box" for="myTextbox">Enter number of players:</label>
+    <label id="playerLabel" style="cursor: default;" class="display-box" for="myTextbox">Enter number of players:</label>
     <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()">
     
     <div class="button-container">
@@ -145,17 +145,17 @@
   <div id="imageContainer"></div>
   <div class="display-container">
     <div id="dices" class="display-box" onclick="takeMonsterAction()">Click to Roll Dice</div>
-    <div id="action" class="display-box">Action: None</div>
+    <div id="action" class="display-box" style="cursor: default;">Action: None</div>
   </div>
   <div class="controls">
-    <button onclick="decreaseNumberBy10()">-10</button>
-    <button onclick="decreaseNumber()">-</button>
-    <button onclick="increaseNumber()">+</button>
-    <button onclick="increaseNumberBy10()">+10</button>
-    <button onclick="addMinions(1)">+Minion</button>
+    <button style="cursor: pointer;" onclick="decreaseNumberBy10()">-10</button>
+    <button style="cursor: pointer;" onclick="decreaseNumber()">-</button>
+    <button style="cursor: pointer;" onclick="increaseNumber()">+</button>
+    <button style="cursor: pointer;" onclick="increaseNumberBy10()">+10</button>
+    <button style="cursor: pointer;" onclick="addMinions(1)">+Minion</button>
   </div>
   <div class="display-container">
-    <div id="number" class="display-box">Monster Health: 0</div>
+    <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
   </div>
   <div class="controls">
     <button onclick="decreaseRound()">-</button>
@@ -163,8 +163,8 @@
   </div>
 
   <div class="display-container">
-    <div id="round" class="display-box">Round: 1</div>
-    <div id="rounds" class="display-box">Roll this many times: 0</div>
+    <div id="round" class="display-box" style="cursor: default;">Round: 1</div>
+    <div id="rounds" class="display-box" style="cursor: default;">Roll this many times: 0</div>
   </div>
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
