@@ -162,8 +162,8 @@
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
   </div>
   <div class="controls">
-    <button onclick="decreaseRound()">-</button>
-    <button onclick="increaseRound()">+</button>
+    <button id="increaseRoundButton" disabled onclick="decreaseRound()">-</button>
+    <button id="decreaseRoundButton" disabled onclick="increaseRound()">+</button>
   </div>
 
   <div class="display-container">
@@ -489,12 +489,16 @@
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
+      var increaseButton = document.getElementById("increaseRoundButton");
+      var decreaseButton = document.getElementById("decreaseRoundButton");
 
       // Get the number of players
       var value = textBox.value;
       monsterHealth = value * 25;
       updateMonsterHealth();
 
+      increaseButton.disabled = false;
+      decreaseButton.disabled = false;
       textBox.style.display = "none";
       playerLabel.style.display = "none";
       startEasy.style.display = "none";
