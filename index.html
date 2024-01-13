@@ -168,7 +168,7 @@
 
   <div class="display-container">
     <div id="round" class="display-box" style="cursor: default;">Round: 1</div>
-    <div id="rounds" class="display-box" style="cursor: default;">Roll this many times: 0</div>
+    <div id="rounds" class="display-box" style="cursor: default;">Rolls this turn: 0</div>
   </div>
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
@@ -177,6 +177,7 @@
     let monsterHealth = 0;
     let currentRound = 1;
     let totalDiceRolls = 0;
+    let numberOfDiceRolled = 0;
     let easyActionsJson;
     let mediumActionsJson;
     let hardActionsJson;
@@ -240,6 +241,7 @@
       console.log("additionalProbability: " + additionalProbability);
 
       ++totalDiceRolls;
+      numberOfDiceRolled++;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
       actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1);
@@ -348,11 +350,12 @@
       const round2Element = document.getElementById("rounds");
       roundElement.innerText = `Round: ${currentRound}`;
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
-      round2Element.innerText = `Roll this many times: ` + drValue;
+      round2Element.innerText = `Rolls this turn:  ${numberOfDiceRolled} / ${drValue}`;
     }
 
     function increaseRound() {
       currentRound++;
+      numberOfDiceRolled = 0;
       // Create a new log entry
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
