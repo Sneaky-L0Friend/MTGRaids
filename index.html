@@ -213,11 +213,12 @@
       let baseProbability;
       let additionalProbability;
       if (modifiersToUse == EASY_MODE_MODIFIERS) {
-        baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
-        additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+        console.log("easy mode selected");
+        baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
+        additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
       } else {
-        baseProbability = 1 / (1 + Math.exp(-modifiersToUse[1] / (currentRound * 1.5)))
-        additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse[2]))))) * modifiersToUse[3]
+        baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
+        additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
       }
 
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
@@ -234,7 +235,7 @@
       }
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
 
-      console.log(result);
+      console.log(randomValue);
       console.log("baseProbability: " + baseProbability);
       console.log("additionalProbability: " + additionalProbability);
 
