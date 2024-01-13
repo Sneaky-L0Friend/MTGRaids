@@ -186,7 +186,6 @@
     let bossMonsterImageUrl = "";
     let modifiersToUse;
     let listRolledFrom;
-    let finalProbability;
 
     // // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
@@ -213,18 +212,21 @@
       const diceElement = document.getElementById("dice");
       let baseProbability;
       let additionalProbability;
+      let easyProbability;
       if (modifiersToUse == EASY_MODE_MODIFIERS) {
         console.log("easy mode selected");
         baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
         additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
+        easyProbability = baseProbability
       } else {
         baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
         additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
+        easyProbability = additionalProbability
       }
 
       // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
       let randomlyRolledList;
-      if (randomValue < baseProbability) {
+      if (randomValue < easyProbability) {
         randomlyRolledList = easyActionsJson;
         listRolledFrom = "E";
       } else if (randomValue < (baseProbability + additionalProbability)) {
@@ -239,7 +241,7 @@
       console.log(randomValue);
       console.log("baseProbability: " + baseProbability);
       console.log("additionalProbability: " + additionalProbability);
-      console.log('numberOfDiceRolled: ' + numberOfDiceRolled);
+      console.log('easyProbability: ' + easyProbability);
 
       ++totalDiceRolls;
       ++numberOfDiceRolled;
