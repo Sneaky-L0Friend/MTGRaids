@@ -143,6 +143,7 @@
       from {
         opacity: 1;
       }
+
       to {
         opacity: 0;
       }
@@ -208,6 +209,7 @@
     let currentRound = 1;
     let totalDiceRolls = 0;
     let numberOfDiceRolled = 0;
+    let lifeMultiplier;
     let easyActionsJson;
     let mediumActionsJson;
     let hardActionsJson;
@@ -216,6 +218,7 @@
     let bossMonsterImageUrl = "";
     let modifiersToUse;
     let listRolledFrom;
+    let totalRoundLifeChange = 0;
 
     // // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
@@ -371,7 +374,7 @@
       if (startedGame) {
         const logEntry = document.createElement("div");
         logEntry.className = "logEntry";
-        logEntry.textContent = `MONSTER HP CHANGED: ${monsterHealth}`;
+        logEntry.textContent = `TOTAL MONSTER HP CHANGE THIS ROUND: ${totalRoundLifeChange}`;
 
         // Get the dice log container
         const diceLog = document.getElementById("diceLog");
@@ -385,11 +388,13 @@
 
     function increaseNumber() {
       monsterHealth++;
+      totalRoundLifeChange++;
       updateMonsterHealth();
     }
 
     function decreaseNumber() {
       monsterHealth = Math.max(0, monsterHealth - 1);
+      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 1);
       updateMonsterHealth();
     }
 
@@ -400,21 +405,25 @@
 
     function increaseNumberBy10() {
       monsterHealth = monsterHealth + 10;
+      totalRoundLifeChange = totalRoundLifeChange + 10;
       updateMonsterHealth();
     }
-
+    
     function decreaseNumberBy10() {
       monsterHealth = Math.max(0, monsterHealth - 10);
+      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 10);
       updateMonsterHealth();
     }
 
     function increaseNumberBy5() {
       monsterHealth = monsterHealth + 5;
+      totalRoundLifeChange = totalRoundLifeChange + 5;
       updateMonsterHealth();
     }
 
     function decreaseNumberBy5() {
       monsterHealth = Math.max(0, monsterHealth - 5);
+      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 5);
       updateMonsterHealth();
     }
 
@@ -430,6 +439,7 @@
       } else {
         actionButton.disabled = false;
       }
+      totalRoundLifeChange = 0;
     }
 
     function increaseRound() {
@@ -570,12 +580,15 @@
       switch (difficulty) {
         case 'easy':
           modifiersToUse = EASY_MODE_MODIFIERS;
+          lifeMultiplier = 20;
           break;
         case 'medium':
           modifiersToUse = MEDIUM_MODE_MODIFIERS;
+          lifeMultiplier = 25;
           break;
         case 'hard':
           modifiersToUse = HARD_MODE_MODIFIERS;
+          lifeMultiplier = 30;
           break;
       }
     }
@@ -605,6 +618,7 @@
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
       if (startEasy.disabled || startMedium.disabled || startHard.disabled) {
+        console.log("Start disabled");
         showErrorMessage("Please enter number of players to start");
         return;
       }
@@ -618,7 +632,8 @@
 
       // Get the number of players
       var value = textBox.value;
-      monsterHealth = value * 25;
+
+      monsterHealth = value * lifeMultiplier;
       updateMonsterHealth();
 
       increaseButton.disabled = false;
