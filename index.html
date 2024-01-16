@@ -142,6 +142,7 @@
       from {
         opacity: 1;
       }
+
       to {
         opacity: 0;
       }
@@ -238,7 +239,12 @@
 
     function takeMonsterAction() {
       if (currentRound == 1) {
-        showErrorMessage("Monster cannot take actions on Round 1")
+        showErrorMessage("Monster cannot take actions on Round 1");
+        return;
+      }
+      const actionButton = document.getElementById("dices");
+      if (actionButton.disabled == true) {
+        showErrorMessage("Monster cannot take further actions this round");
         return;
       }
       const randomValue = Math.random(); // Random value between 0 and 1
@@ -590,12 +596,16 @@
     }
 
     function displayColorRectangleAndStartGame(difficulty) {
-      setDifficultyAtStart(difficulty);
-      var textBox = document.getElementById("myTextbox");
-      var playerLabel = document.getElementById("playerLabel");
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
+      if(startEasy.disabled == true || startMedium.disabled == true || startHard.disabled == true){
+        showErrorMessage("Please enter number of players to start");
+        return;
+      }
+      setDifficultyAtStart(difficulty);
+      var textBox = document.getElementById("myTextbox");
+      var playerLabel = document.getElementById("playerLabel");
       var increaseButton = document.getElementById("increaseRoundButton");
       var decreaseButton = document.getElementById("decreaseRoundButton");
       var minionButton = document.getElementById("minionButton");
