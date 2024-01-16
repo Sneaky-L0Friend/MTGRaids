@@ -246,7 +246,7 @@
         return;
       }
       const actionButton = document.getElementById("dices");
-      if (actionButton.disabled == true) {
+      if (actionButton.disabled) {
         showErrorMessage("Monster cannot take further actions this round");
         return;
       }
@@ -617,11 +617,7 @@
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
-      if (startEasy.disabled || startMedium.disabled || startHard.disabled) {
-        console.log("Start disabled");
-        showErrorMessage("Please enter number of players to start");
-        return;
-      }
+      
       setDifficultyAtStart(difficulty);
       var textBox = document.getElementById("myTextbox");
       var playerLabel = document.getElementById("playerLabel");
