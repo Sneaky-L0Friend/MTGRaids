@@ -581,10 +581,13 @@
     }
 
     function showErrorMessage(message) {
-      const errorMessageElement = document.getElementById("errorMessage");
-
-      // Set the error message text
+      // Create a new error message element
+      const errorMessageElement = document.createElement("div");
+      errorMessageElement.className = "errorMessage";
       errorMessageElement.textContent = message;
+
+      // Append the error message element to the body
+      document.body.appendChild(errorMessageElement);
 
       // Display the error message
       errorMessageElement.style.display = "block";
@@ -592,6 +595,8 @@
       // Hide the error message after 5 seconds
       setTimeout(function () {
         errorMessageElement.style.display = "none";
+        // Remove the error message element from the DOM after fading out
+        errorMessageElement.remove();
       }, 5000);
     }
 
@@ -599,7 +604,7 @@
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
-      if(startEasy.disabled == true || startMedium.disabled == true || startHard.disabled == true){
+      if (startEasy.disabled == true || startMedium.disabled == true || startHard.disabled == true) {
         showErrorMessage("Please enter number of players to start");
         return;
       }
