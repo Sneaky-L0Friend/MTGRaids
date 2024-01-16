@@ -148,13 +148,17 @@
   <div id="diceLog" style="display: none;"></div>
   <div id="imageContainer"></div>
   <div class="display-container">
-    <button id="dices" class="display-box" onclick="takeMonsterAction()">Click to Roll Dice</button>
+    <button id="dices" class="display-box" onclick="takeMonsterAction()">Click for Monster Action</button>
     <div id="action" class="display-box" style="cursor: default;">Action: None</div>
   </div>
   <div class="controls">
+    <button disabled="true" id="counterButton" style="cursor: pointer;"
+      onclick="strikeOutMonsterAction()">Counter</button>
     <button style="cursor: pointer;" onclick="decreaseNumberBy10()">-10</button>
+    <button style="cursor: pointer;" onclick="decreaseNumberBy5()">-5</button>
     <button style="cursor: pointer;" onclick="decreaseNumber()">-</button>
     <button style="cursor: pointer;" onclick="increaseNumber()">+</button>
+    <button style="cursor: pointer;" onclick="increaseNumberBy5()">+5</button>
     <button style="cursor: pointer;" onclick="increaseNumberBy10()">+10</button>
     <button disabled="true" id="minionButton" style="cursor: pointer;" onclick="addMinions(1)">+Minion</button>
   </div>
@@ -168,7 +172,7 @@
 
   <div class="display-container">
     <div id="round" class="display-box" style="cursor: default;">Round: 1</div>
-    <div id="rounds" class="display-box" style="cursor: default;">Rolls this turn: 0</div>
+    <div id="rounds" class="display-box" style="cursor: default;">Actions this turn: 0</div>
   </div>
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
@@ -249,15 +253,14 @@
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
       actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound)
-      .replaceAll("${currentRound}", currentRound)
-      .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
-      .replaceAll("${currentRound+1}", currentRound + 1);
+        .replaceAll("${currentRound}", currentRound)
+        .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
+        .replaceAll("${currentRound+1}", currentRound + 1);
 
       //TODO: SMH Just do it based on the index used...no need to string compare
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
-        //TODO: SMH Just do it based on the index used...no need to string compare
-        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
+        //TODO: SMH Just do it based on the index used...no need to string compare     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
         addMinions(howManyToMake);
       }
@@ -275,6 +278,20 @@
       diceLog.style.display = "block";
       updateRound();
 
+    }
+
+    function strikeOutMonsterAction() {
+      const diceLog = document.getElementById("diceLog");
+      const logEntries = diceLog.getElementsByClassName("logEntry");
+
+      // Check if there are log entries
+      if (logEntries.length > 0) {
+        // Strike out the most recent log entry
+        const mostRecentLog = logEntries[logEntries.length - 1];
+        if (!mostRecentLog.includes("ROUND") || !mostRecentLog.includes("HP")) {
+          mostRecentLog.style.textDecoration = "line-through";
+        }
+      }
     }
 
     function readActionJsonFiles() {
@@ -356,6 +373,16 @@
       updateMonsterHealth();
     }
 
+    function increaseNumberBy5() {
+      monsterHealth = monsterHealth + 5;
+      updateMonsterHealth();
+    }
+
+    function decreaseNumberBy5() {
+      monsterHealth = Math.max(0, monsterHealth - 5);
+      updateMonsterHealth();
+    }
+
     function updateRound() {
       const roundElement = document.getElementById("round");
       const round2Element = document.getElementById("rounds");
@@ -363,7 +390,7 @@
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
       round2Element.innerText = `Rolls this turn:  ${numberOfDiceRolled} / ${drValue}`;
       const actionButton = document.getElementById("dices");
-      if(numberOfDiceRolled == drValue) {
+      if (numberOfDiceRolled == drValue) {
         actionButton.disabled = true;
       } else {
         actionButton.disabled = false;
@@ -528,6 +555,7 @@
       var increaseButton = document.getElementById("increaseRoundButton");
       var decreaseButton = document.getElementById("decreaseRoundButton");
       var minionButton = document.getElementById("minionButton");
+      var counterButton = document.getElementById("counterButton");
 
       // Get the number of players
       var value = textBox.value;
@@ -537,6 +565,7 @@
       increaseButton.disabled = false;
       decreaseButton.disabled = false;
       minionButton.disabled = false;
+      counterButton.disabled = false;
       textBox.style.display = "none";
       playerLabel.style.display = "none";
       startEasy.style.display = "none";
