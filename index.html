@@ -252,8 +252,11 @@
       .replaceAll("${currentRound}", currentRound)
       .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
       .replaceAll("${currentRound+1}", currentRound + 1);
+
+      //TODO: SMH Just do it based on the index used...no need to string compare
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
+        //TODO: SMH Just do it based on the index used...no need to string compare
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
         addMinions(howManyToMake);
