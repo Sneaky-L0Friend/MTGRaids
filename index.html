@@ -297,7 +297,8 @@
       //TODO: SMH Just do it based on the index used...no need to string compare
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
-        //TODO: SMH Just do it based on the index used...no need to string compare     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
+        //TODO: SMH Just do it based on the index used...no need to string compare     
+        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
         addMinions(howManyToMake);
       }
@@ -407,7 +408,7 @@
       totalRoundLifeChange = totalRoundLifeChange + 10;
       updateMonsterHealth();
     }
-    
+
     function decreaseNumberBy10() {
       monsterHealth = Math.max(0, monsterHealth - 10);
       totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 10);
@@ -616,7 +617,7 @@
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
-      
+
       setDifficultyAtStart(difficulty);
       var textBox = document.getElementById("myTextbox");
       var playerLabel = document.getElementById("playerLabel");
