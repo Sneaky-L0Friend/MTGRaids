@@ -288,7 +288,7 @@
       if (logEntries.length > 0) {
         // Strike out the most recent log entry
         const mostRecentLog = logEntries[logEntries.length - 1];
-        if (!mostRecentLog.includes("ROUND") || !mostRecentLog.includes("HP")) {
+        if (!mostRecentLog.innerText.includes("ROUND") || !mostRecentLog.innerText.includes("HP")) {
           mostRecentLog.style.textDecoration = "line-through";
         }
       }
