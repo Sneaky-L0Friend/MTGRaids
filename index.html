@@ -124,6 +124,29 @@
       text-shadow: -2px -2px 2px black, 2px -2px 2px black, -2px 2px 2px black, 2px 2px 2px black;
       cursor: text;
     }
+
+    /* Popup Error Message Styles */
+    .errorMessage {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #f44336;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      animation: fadeOut 5s ease-in-out forwards;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
@@ -132,7 +155,8 @@
   <div class="display-container">
     <label id="playerLabel" style="cursor: default;" class="display-box" for="myTextbox">Enter number of
       players:</label>
-    <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()" placeholder="Enter number here...">
+    <input class="display-box" type="text" id="myTextbox" style="text-align: center;" oninput="checkInput()"
+      placeholder="Enter number here...">
 
     <div class="button-container">
       <button id="startEasy" style="background-color: green;" disabled class="display-box"
@@ -176,6 +200,8 @@
   </div>
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
+  <div id="errorMessage"></div>
+
   <script>
 
     let monsterHealth = 0;
@@ -212,7 +238,13 @@
     }
 
     function takeMonsterAction() {
-      if(currentRound == 1){
+      if (currentRound == 1) {
+        showErrorMessage("Monster cannot take actions on Round 1");
+        return;
+      }
+      const actionButton = document.getElementById("dices");
+      if (actionButton.disabled == true) {
+        showErrorMessage("Monster cannot take further actions this round");
         return;
       }
       const randomValue = Math.random(); // Random value between 0 and 1
@@ -548,13 +580,37 @@
       }
     }
 
+    function showErrorMessage(message) {
+      // Create a new error message element
+      const errorMessageElement = document.createElement("div");
+      errorMessageElement.className = "errorMessage";
+      errorMessageElement.textContent = message;
+
+      // Append the error message element to the body
+      document.body.appendChild(errorMessageElement);
+
+      // Display the error message
+      errorMessageElement.style.display = "block";
+
+      // Hide the error message after 5 seconds
+      setTimeout(function () {
+        errorMessageElement.style.display = "none";
+        // Remove the error message element from the DOM after fading out
+        errorMessageElement.remove();
+      }, 5000);
+    }
+
     function displayColorRectangleAndStartGame(difficulty) {
-      setDifficultyAtStart(difficulty);
-      var textBox = document.getElementById("myTextbox");
-      var playerLabel = document.getElementById("playerLabel");
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
+      if (startEasy.disabled || startMedium.disabled || startHard.disabled) {
+        showErrorMessage("Please enter number of players to start");
+        return;
+      }
+      setDifficultyAtStart(difficulty);
+      var textBox = document.getElementById("myTextbox");
+      var playerLabel = document.getElementById("playerLabel");
       var increaseButton = document.getElementById("increaseRoundButton");
       var decreaseButton = document.getElementById("decreaseRoundButton");
       var minionButton = document.getElementById("minionButton");
