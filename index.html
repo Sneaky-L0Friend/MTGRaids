@@ -248,7 +248,10 @@
       ++numberOfDiceRolled;
       const actionElement = document.getElementById("action");
       const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
-      actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound).replaceAll("${currentRound}", currentRound).replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1);
+      actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound)
+      .replaceAll("${currentRound}", currentRound)
+      .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
+      .replaceAll("${currentRound+1}", currentRound + 1);
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;

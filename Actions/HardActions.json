@@ -34,7 +34,7 @@
     "Each opponent sacrifices ${currentRound} permanents and creates ${diceRolledThisRound} treasure tokens.",
     "The Raid Monster copies each player's highest converted mana cost creature; it must attack the respective player this turn.",
     "Players do not get an untap phase until the Raid Monster's next turn.",
-    "The Raid Monster gets to take one more turn after this one.",
+    "The Raid Monster gets to take one more action after this one.",
     "Until the Raid Monster's next turn, whenever a player draws a card, they must discard a card."
   ]
 }
