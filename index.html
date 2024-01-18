@@ -490,16 +490,13 @@
     }
 
     function checkInput() {
-      console.log('here1')
       var numberInput = document.getElementById("myTextbox").value;
       
       // Check if the input is a number
       if (!isNaN(numberInput) && numberInput !== "") {
-        gameCanStart = false;
-        console.log('here2')
-      } else {
         gameCanStart = true;
-        console.log('here3')
+      } else {
+        gameCanStart = false;
       }
     }
 
