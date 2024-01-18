@@ -250,6 +250,11 @@
         showErrorMessage("Monster cannot take actions on Round 1");
         return;
       }
+      const drValue = Math.floor(currentRound / 2); // Calculate DR value
+      if (numberOfDiceRolled == drValue){
+        showErrorMessage("Monster cannot take further actions, increase round");
+        return;
+      }
       const randomValue = Math.random(); // Random value between 0 and 1
       const diceElement = document.getElementById("dice");
       let baseProbability;
@@ -321,7 +326,7 @@
 
     function strikeOutMonsterAction() {
       if(!gameCanStart){
-        showErrorMessage("Enter Number of Players to Start");
+        showErrorMessage("Please Start the Game First");
         return;
       }
       const diceLog = document.getElementById("diceLog");
@@ -438,12 +443,12 @@
       roundElement.innerText = `Round: ${currentRound}`;
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
       round2Element.innerText = `Rolls this turn:  ${numberOfDiceRolled} / ${drValue}`;
-      const actionButton = document.getElementById("dices");
-      if (numberOfDiceRolled == drValue) {
-        actionButton.disabled = true;
-      } else {
-        actionButton.disabled = false;
-      }
+      // const actionButton = document.getElementById("dices");
+      // if (numberOfDiceRolled == drValue) {
+      //   actionButton.disabled = true;
+      // } else {
+      //   actionButton.disabled = false;
+      // }
       totalRoundLifeChange = 0;
     }
 
