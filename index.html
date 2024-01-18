@@ -160,11 +160,11 @@
       placeholder="Enter number here...">
 
     <div class="button-container">
-      <button id="startEasy" style="background-color: green;" disabled class="display-box"
+      <button id="startEasy" style="background-color: green;" class="display-box"
         onclick="displayColorRectangleAndStartGame('easy')">Click to Start Easy Challenge</button>
-      <button id="startMedium" style="background-color: orange;" disabled class="display-box"
+      <button id="startMedium" style="background-color: orange;" class="display-box"
         onclick="displayColorRectangleAndStartGame('medium')">Click to Start Medium Challenge</button>
-      <button id="startHard" style="background-color: crimson;" disabled class="display-box"
+      <button id="startHard" style="background-color: crimson;" class="display-box"
         onclick="displayColorRectangleAndStartGame('hard')">Click to Start Hard Challenge</button>
     </div>
 
@@ -214,6 +214,7 @@
     let mediumActionsJson;
     let hardActionsJson;
     let startedGame = false;
+    let gameCanStart = false;
     let log = [];
     let bossMonsterImageUrl = "";
     let modifiersToUse;
@@ -394,7 +395,7 @@
 
     function decreaseNumber() {
       monsterHealth = Math.max(0, monsterHealth - 1);
-      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 1);
+      totalRoundLifeChange = totalRoundLifeChange - 1;
       updateMonsterHealth();
     }
 
@@ -411,7 +412,7 @@
 
     function decreaseNumberBy10() {
       monsterHealth = Math.max(0, monsterHealth - 10);
-      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 10);
+      totalRoundLifeChange = totalRoundLifeChange - 10;
       updateMonsterHealth();
     }
 
@@ -423,7 +424,7 @@
 
     function decreaseNumberBy5() {
       monsterHealth = Math.max(0, monsterHealth - 5);
-      totalRoundLifeChange = Math.max(0, totalRoundLifeChange - 5);
+      totalRoundLifeChange = totalRoundLifeChange - 5;
       updateMonsterHealth();
     }
 
@@ -484,14 +485,9 @@
 
       // Check if the input is a number
       if (!isNaN(numberInput) && numberInput !== "") {
-        console.log('here');
-        submitButton1.disabled = false;
-        submitButton2.disabled = false;
-        submitButton3.disabled = false;
+        gameCanStart = false;
       } else {
-        submitButton1.disabled = true;
-        submitButton2.disabled = true;
-        submitButton3.disabled = true;
+        gameCanStart = true;
       }
     }
 
@@ -614,6 +610,10 @@
     }
 
     function displayColorRectangleAndStartGame(difficulty) {
+      if(!gameCanStart){
+        showErrorMessage("Enter Number of Players to Start");
+        return;
+      }
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
