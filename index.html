@@ -379,7 +379,7 @@
       if (startedGame) {
         const logEntry = document.createElement("div");
         logEntry.className = "logEntry";
-        logEntry.textContent = `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange} TO ${monsterHealth}`;
+        logEntry.textContent = `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+': ''}${totalRoundLifeChange} TO ${monsterHealth}`;
 
         // Get the dice log container
         const diceLog = document.getElementById("diceLog");
