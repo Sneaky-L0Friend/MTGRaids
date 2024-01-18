@@ -320,6 +320,10 @@
     }
 
     function strikeOutMonsterAction() {
+      if(!gameCanStart){
+        showErrorMessage("Enter Number of Players to Start");
+        return;
+      }
       const diceLog = document.getElementById("diceLog");
       const logEntries = diceLog.getElementsByClassName("logEntry");
 
@@ -626,7 +630,7 @@
         showErrorMessage("Enter Number of Players to Start");
         return;
       }
-      
+
       setDifficultyAtStart(difficulty);
       
       startedGame = true;
