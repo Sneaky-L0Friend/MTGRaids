@@ -177,7 +177,7 @@
     <div id="action" class="display-box" style="cursor: default;">Action: None</div>
   </div>
   <div class="controls">
-    <button disabled="true" id="counterButton" style="cursor: pointer;"
+    <button id="counterButton" style="cursor: pointer;"
       onclick="strikeOutMonsterAction()">Counter</button>
     <button style="cursor: pointer;" onclick="decreaseNumberBy10()">-10</button>
     <button style="cursor: pointer;" onclick="decreaseNumberBy5()">-5</button>
@@ -185,14 +185,14 @@
     <button style="cursor: pointer;" onclick="increaseNumber()">+</button>
     <button style="cursor: pointer;" onclick="increaseNumberBy5()">+5</button>
     <button style="cursor: pointer;" onclick="increaseNumberBy10()">+10</button>
-    <button disabled="true" id="minionButton" style="cursor: pointer;" onclick="addMinions(1)">+Minion</button>
+    <button id="minionButton" style="cursor: pointer;" onclick="addMinions(1)">+Minion</button>
   </div>
   <div class="display-container">
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
   </div>
   <div class="controls">
-    <button id="increaseRoundButton" disabled onclick="decreaseRound()">-</button>
-    <button id="decreaseRoundButton" disabled onclick="increaseRound()">+</button>
+    <button id="increaseRoundButton" onclick="decreaseRound()">-</button>
+    <button id="decreaseRoundButton" onclick="increaseRound()">+</button>
   </div>
 
   <div class="display-container">
@@ -444,6 +444,10 @@
     }
 
     function increaseRound() {
+      if (!startedGame) {
+        showErrorMessage("Please Start the Game First");
+        return;
+      }
       currentRound++;
       numberOfDiceRolled = 0;
       // Create a new log entry
@@ -462,6 +466,10 @@
     }
 
     function decreaseRound() {
+      if (!startedGame) {
+        showErrorMessage("Please Start the Game First");
+        return;
+      }
       currentRound = Math.max(1, currentRound - 1);
       const logEntry = document.createElement("div");
       logEntry.className = "logEntry";
@@ -538,6 +546,10 @@
     }
 
     function addMinions(numberOfImages) {
+      if (!startedGame) {
+        showErrorMessage("Please Start the Game First");
+        return;
+      }
       const container = document.getElementById('imageContainer');
 
       for (let i = 0; i < numberOfImages; i++) {
@@ -614,17 +626,20 @@
         showErrorMessage("Enter Number of Players to Start");
         return;
       }
+      
+      setDifficultyAtStart(difficulty);
+      
+      startedGame = true;
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
       var startHard = document.getElementById("startHard");
-
-      setDifficultyAtStart(difficulty);
       var textBox = document.getElementById("myTextbox");
       var playerLabel = document.getElementById("playerLabel");
-      var increaseButton = document.getElementById("increaseRoundButton");
-      var decreaseButton = document.getElementById("decreaseRoundButton");
-      var minionButton = document.getElementById("minionButton");
-      var counterButton = document.getElementById("counterButton");
+      textBox.style.display = "none";
+      playerLabel.style.display = "none";
+      startEasy.style.display = "none";
+      startMedium.style.display = "none";
+      startHard.style.display = "none";
 
       // Get the number of players
       var value = textBox.value;
@@ -632,17 +647,7 @@
       monsterHealth = value * lifeMultiplier;
       updateMonsterHealth();
 
-      increaseButton.disabled = false;
-      decreaseButton.disabled = false;
-      minionButton.disabled = false;
-      counterButton.disabled = false;
-      textBox.style.display = "none";
-      playerLabel.style.display = "none";
-      startEasy.style.display = "none";
-      startMedium.style.display = "none";
-      startHard.style.display = "none";
 
-      startedGame = true;
       const colorRectangle = document.getElementById('colorRectangle');
       const pickedNumber = pickMonster();
 
