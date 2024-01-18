@@ -185,7 +185,7 @@
     <button style="cursor: pointer;" onclick="increaseNumber()">+</button>
     <button style="cursor: pointer;" onclick="increaseNumberBy5()">+5</button>
     <button style="cursor: pointer;" onclick="increaseNumberBy10()">+10</button>
-    <button id="minionButton" style="cursor: pointer;" onclick="addMinions(1)">+Minion</button>
+    <button id="minionButton" style="cursor: pointer;" onclick="addMinions(1, 3)">+Minion</button>
   </div>
   <div class="display-container">
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
@@ -301,7 +301,7 @@
         //TODO: SMH Just do it based on the index used...no need to string compare     
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
         // Set the image source
-        addMinions(howManyToMake);
+        addMinions(howManyToMake, howManyToMake);
       }
 
       const logEntry = document.createElement("div");
@@ -546,7 +546,7 @@
       return pickedNumber;
     }
 
-    function addMinions(numberOfImages) {
+    function addMinions(numberOfImages, imageNumber) {
       if (!startedGame) {
         showErrorMessage("Please Start the Game First");
         return;
@@ -558,7 +558,7 @@
         imageContainer.className = 'image-container';
 
         const img = document.createElement('img');
-        img.src = `Minions/${numberOfImages}.jpeg`;
+        img.src = `Minions/${imageNumber}.jpeg`;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
 
         img.style.width = '300px';
@@ -579,7 +579,6 @@
       }
     }
 
-    // Function to remove a clicked image
     function removeImage(img) {
       const container = img.parentNode;
       container.removeChild(img);
