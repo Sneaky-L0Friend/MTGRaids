@@ -321,6 +321,7 @@
       diceLog.scrollTop = diceLog.scrollHeight;
       diceLog.style.display = "block";
       if (randomlyRolledList.Actions[result].includes("one more action")) {
+        numberOfDiceRolled--;
         return;
       }
       updateRound();
