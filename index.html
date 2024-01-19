@@ -320,6 +320,9 @@
       diceLog.insertAdjacentElement("beforeend", logEntry);
       diceLog.scrollTop = diceLog.scrollHeight;
       diceLog.style.display = "block";
+      if (randomlyRolledList.Actions[result].includes("more actions")) {
+        return;
+      }
       updateRound();
 
     }
@@ -443,12 +446,6 @@
       roundElement.innerText = `Round: ${currentRound}`;
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
       round2Element.innerText = `Rolls this turn:  ${numberOfDiceRolled} / ${drValue}`;
-      // const actionButton = document.getElementById("dices");
-      // if (numberOfDiceRolled == drValue) {
-      //   actionButton.disabled = true;
-      // } else {
-      //   actionButton.disabled = false;
-      // }
       totalRoundLifeChange = 0;
     }
 

@@ -34,7 +34,7 @@
     "Each opponent sacrifices ${currentRound} permanents and creates ${diceRolledThisRound} treasure tokens.[Instant/Sorcery]",
     "The Raid Monster copies each player's highest converted mana cost creature; it must attack the respective player this turn.[Creature]",
     "Players do not get an untap phase until the Raid Monster's next turn.[Sorcery/Enchantment]",
-    "The Raid Monster gets to take one more action after this one.[Sorcery]",
+    "Each player sacrafices a land, then the Raid Monster takes one more action.[Sorcery]",
     "Until the Raid Monster's next turn, whenever a player draws a card, they must discard a card.[Sorcery/Enchantment]"
   ]
 }
