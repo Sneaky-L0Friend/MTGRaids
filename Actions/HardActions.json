@@ -2,7 +2,7 @@
   "Actions": [
     "Each opponent discards 2 card, mills 2 card, and sacrifices 2 creatures, enchantments and artifacts.[Instant/Sorcery/Enchantment]",
     "Each opponent sacrifices ${currentRound+1} creatures.[Instant/Sorcery]",
-    "For each opponent, destroy 2 permanents of the player's choice.[Instant/Sorcery/Enchantment][Instant/Sorcery/Enchantment]",
+    "For each opponent, destroy 2 permanents of the player's choice.[Instant/Sorcery/Enchantment]",
     "The Raid Monster deals 12 damage to every player and 5 to every planeswalker.[Instant/Sorcery]",
     "The Raid Monster deals 18 damage to every player.[Instant/Sorcery]",
     "The Raid Monster deals 12 damage to every player and 5 to every planeswalker.[Instant/Sorcery]",
