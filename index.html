@@ -190,6 +190,11 @@
   <div class="display-container">
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
   </div>
+  <div class="display-container">
+    <button style="cursor: pointer;" onclick="decreaseNumberPlayer()">-</button>
+    <button style="cursor: pointer;" onclick="increaseNumberPlayer()">+</button>
+    <div id="player1number" class="display-box" style="cursor: default;">Player Health: 0</div>
+  </div>
   <div class="controls">
     <button id="increaseRoundButton" onclick="decreaseRound()">-</button>
     <button id="decreaseRoundButton" onclick="increaseRound()">+</button>
@@ -206,6 +211,7 @@
   <script>
 
     let monsterHealth = 0;
+    let playerHealth = 0;
     let currentRound = 1;
     let totalDiceRolls = 0;
     let numberOfDiceRolled = 0;
@@ -305,7 +311,7 @@
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
         //TODO: SMH Just do it based on the index used...no need to string compare     
-        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : 2;
+        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 :  randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
         // Set the image source
         addMinions(howManyToMake, howManyToMake);
       }
@@ -401,6 +407,11 @@
       }
     }
 
+    function updatePlayerHealth() {
+      const monsterHealthElement = document.getElementById("player1number");
+      monsterHealthElement.innerText = `Player Health: ${playerHealth}`;
+    }
+
     function increaseNumber() {
       monsterHealth++;
       totalRoundLifeChange++;
@@ -411,6 +422,16 @@
       monsterHealth = Math.max(0, monsterHealth - 1);
       totalRoundLifeChange = totalRoundLifeChange - 1;
       updateMonsterHealth();
+    }
+
+    function increaseNumberPlayer() {
+      playerHealth++;
+      updateplayerHealth();
+    }
+
+    function decreaseNumberPlayer() {
+      playerHealth = Math.max(0, playerHealth - 1);
+      updatePlayerHealth();
     }
 
     function refreshPage() {
