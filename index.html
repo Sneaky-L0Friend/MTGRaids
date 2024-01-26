@@ -583,7 +583,7 @@
         imageContainer.className = 'image-container';
 
         const img = document.createElement('img');
-        img.src = `Minions/${imageNumber}.jpeg`;
+        img.src = randomlyRolledList.Actions[result].includes("artifact creature") ? `Minions/${1}.jpeg` : `Minions/${imageNumber}.jpeg`;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
 
         img.style.width = '300px';
