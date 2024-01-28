@@ -139,6 +139,19 @@
       animation: fadeOut 5s ease-in-out forwards;
     }
 
+    .player-health-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .player-health-box {
+      margin-bottom: 10px;
+    }
+
     @keyframes fadeOut {
       from {
         opacity: 1;
@@ -190,11 +203,6 @@
   <div class="display-container">
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
   </div>
-  <div class="display-container">
-    <button style="cursor: pointer;" onclick="decreaseNumberPlayer()">-</button>
-    <button style="cursor: pointer;" onclick="increaseNumberPlayer()">+</button>
-    <div id="player1number" class="display-box" style="cursor: default;">Player Health: 0</div>
-  </div>
   <div class="controls">
     <button id="increaseRoundButton" onclick="decreaseRound()">-</button>
     <button id="decreaseRoundButton" onclick="increaseRound()">+</button>
@@ -204,6 +212,11 @@
     <div id="round" class="display-box" style="cursor: default;">Round: 1</div>
     <div id="rounds" class="display-box" style="cursor: default;">Actions this turn: 0</div>
   </div>
+
+  <div class="player-health-container" id="playerHealthContainer">
+    <!-- Player health boxes will be dynamically added here -->
+  </div>
+
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <div id="errorMessage"></div>
@@ -211,7 +224,7 @@
   <script>
 
     let monsterHealth = 0;
-    let playerHealth = 0;
+    let playerHealth = {};    
     let currentRound = 1;
     let totalDiceRolls = 0;
     let numberOfDiceRolled = 0;
@@ -407,11 +420,6 @@
       }
     }
 
-    function updatePlayerHealth() {
-      const monsterHealthElement = document.getElementById("player1number");
-      monsterHealthElement.innerText = `Player Health: ${playerHealth}`;
-    }
-
     function increaseNumber() {
       monsterHealth++;
       totalRoundLifeChange++;
@@ -422,16 +430,6 @@
       monsterHealth = Math.max(0, monsterHealth - 1);
       totalRoundLifeChange = totalRoundLifeChange - 1;
       updateMonsterHealth();
-    }
-
-    function increaseNumberPlayer() {
-      playerHealth++;
-      updatePlayerHealth();
-    }
-
-    function decreaseNumberPlayer() {
-      playerHealth = Math.max(0, playerHealth - 1);
-      updatePlayerHealth();
     }
 
     function refreshPage() {
@@ -671,7 +669,7 @@
 
       monsterHealth = value * lifeMultiplier;
       updateMonsterHealth();
-
+      createPlayerHealthBoxes(value);
 
       const colorRectangle = document.getElementById('colorRectangle');
       const pickedNumber = pickMonster();
@@ -743,6 +741,49 @@
 
     }
 
+    function increasePlayerHealth(player) {
+      playerHealth[player]++;
+      updatePlayerHealth(player);
+    }
+
+    function decreasePlayerHealth(player) {
+      playerHealth[player] = Math.max(0, playerHealth[player] - 1);
+      updatePlayerHealth(player);
+    }
+
+    function updatePlayerHealth(player) {
+      const playerHealthElement = document.getElementById(`player${player}Health`);
+      playerHealthElement.innerHTML = `<div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
+                                       <div class="controls">
+                                         <button onclick="increasePlayerHealth(${player})">+</button>
+                                         <button onclick="decreasePlayerHealth(${player})">-</button>
+                                       </div>`;
+    }
+
+    function createPlayerHealthBoxes(numberOfPlayers) {
+      const playerHealthContainer = document.getElementById("playerHealthContainer");
+
+      // Clear existing player health boxes
+      playerHealthContainer.innerHTML = "";
+
+      // Dynamically create player health boxes
+      for (let i = 1; i <= numberOfPlayers; i++) {
+        const playerHealthBox = document.createElement("div");
+        playerHealthBox.className = "player-health-box";
+        playerHealthBox.id = `player${i}Health`;
+
+        playerHealthBox.innerHTML = `<div class="display-box">Player ${i} Health: 0</div>
+                                     <div class="controls">
+                                       <button onclick="increasePlayerHealth(${i})">+</button>
+                                       <button onclick="decreasePlayerHealth(${i})">-</button>
+                                     </div>`;
+
+        playerHealthContainer.appendChild(playerHealthBox);
+
+        // Initialize player health object
+        playerHealth[i] = 0;
+      }
+    }
   </script>
 </body>
 
