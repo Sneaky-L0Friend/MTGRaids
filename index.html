@@ -152,6 +152,17 @@
       margin-bottom: 10px;
     }
 
+    .editable-label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .editable-label input {
+      margin-left: 5px;
+      padding: 2px;
+    }
+
     @keyframes fadeOut {
       from {
         opacity: 1;
@@ -753,14 +764,17 @@
 
     function updatePlayerHealth(player) {
       const playerHealthElement = document.getElementById(`player${player}Health`);
-      playerHealthElement.innerHTML = `<div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
+      const playerLabelElement = document.getElementById(`player${player}Label`);
+
+      playerHealthElement.innerHTML = `<div class="display-box">${playerLabelElement.value} Health: ${playerHealth[player]}</div>
                                        <div class="controls">
                                          <button onclick="increasePlayerHealth(${player})">+</button>
                                          <button onclick="decreasePlayerHealth(${player})">-</button>
                                        </div>`;
     }
 
-    function createPlayerHealthBoxes(numberOfPlayers) {
+    function createPlayerHealthBoxes() {
+      const numberOfPlayers = document.getElementById("numberOfPlayers").value;
       const playerHealthContainer = document.getElementById("playerHealthContainer");
 
       // Clear existing player health boxes
@@ -772,16 +786,23 @@
         playerHealthBox.className = "player-health-box";
         playerHealthBox.id = `player${i}Health`;
 
-        playerHealthBox.innerHTML = `<div class="display-box">Player ${i} Health: 0</div>
-                                     <div class="controls">
-                                       <button onclick="increasePlayerHealth(${i})">+</button>
-                                       <button onclick="decreasePlayerHealth(${i})">-</button>
-                                     </div>`;
+        const editableLabel = document.createElement("div");
+        editableLabel.className = "editable-label";
+        editableLabel.innerHTML = `<label for="player${i}Label">Player ${i} Label:</label>
+                                  <input type="text" id="player${i}Label" value="Player ${i}" oninput="updatePlayerHealth(${i})">`;
+
+        playerHealthBox.appendChild(editableLabel);
+
+        playerHealthBox.innerHTML += `<div class="display-box">Player ${i} Health: 0</div>
+                                      <div class="controls">
+                                        <button onclick="increasePlayerHealth(${i})">+</button>
+                                        <button onclick="decreasePlayerHealth(${i})">-</button>
+                                      </div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
         // Initialize player health object
-        playerHealth[i] = 0;
+        playerHealth[i] = 40;
       }
     }
   </script>
