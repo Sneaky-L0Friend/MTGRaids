@@ -793,11 +793,11 @@
 
         playerHealthBox.appendChild(editableLabel);
 
-        playerHealthBox.innerHTML += `<div class="display-box">Player ${i} Health: 0</div>
-                                      <div class="controls">
+        playerHealthBox.innerHTML += `<div class="controls">
                                         <button onclick="increasePlayerHealth(${i})">+</button>
                                         <button onclick="decreasePlayerHealth(${i})">-</button>
-                                      </div>`;
+                                      </div>
+                                      <div class="display-box">Player ${i} Health: 0</div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
