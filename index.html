@@ -607,7 +607,7 @@
 
         const imageText = document.createElement('div');
         imageText.className = 'image-text';
-        imageText.textContent = numberOfImages == 1 ? `${currentRound}/${currentRound}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+        imageText.textContent = numberOfImages == 1 ? `${currentRound + 1}/${currentRound + 1}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
         imageText.contentEditable = true;
 
         img.addEventListener('click', function () {
