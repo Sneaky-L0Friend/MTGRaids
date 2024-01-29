@@ -152,17 +152,6 @@
       margin-bottom: 10px;
     }
 
-    .editable-label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .editable-label input {
-      margin-left: 5px;
-      padding: 2px;
-    }
-
     @keyframes fadeOut {
       from {
         opacity: 1;
@@ -764,17 +753,14 @@
 
     function updatePlayerHealth(player) {
       const playerHealthElement = document.getElementById(`player${player}Health`);
-      const playerLabelElement = document.getElementById(`player${player}Label`);
-
-      playerHealthElement.innerHTML = `<div class="display-box">${playerLabelElement.value} Health: ${playerHealth[player]}</div>
+      playerHealthElement.innerHTML = `<div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
                                        <div class="controls">
                                          <button onclick="increasePlayerHealth(${player})">+</button>
                                          <button onclick="decreasePlayerHealth(${player})">-</button>
                                        </div>`;
     }
 
-    function createPlayerHealthBoxes() {
-      const numberOfPlayers = document.getElementById("numberOfPlayers").value;
+    function createPlayerHealthBoxes(numberOfPlayers) {
       const playerHealthContainer = document.getElementById("playerHealthContainer");
 
       // Clear existing player health boxes
@@ -786,23 +772,16 @@
         playerHealthBox.className = "player-health-box";
         playerHealthBox.id = `player${i}Health`;
 
-        const editableLabel = document.createElement("div");
-        editableLabel.className = "editable-label";
-        editableLabel.innerHTML = `<label for="player${i}Label">Player ${i} Label:</label>
-                                  <input type="text" id="player${i}Label" value="Player ${i}" oninput="updatePlayerHealth(${i})">`;
-
-        playerHealthBox.appendChild(editableLabel);
-
-        playerHealthBox.innerHTML += `<div class="controls">
-                                        <button onclick="increasePlayerHealth(${i})">+</button>
-                                        <button onclick="decreasePlayerHealth(${i})">-</button>
-                                      </div>
-                                      <div class="display-box">Player ${i} Health: 0</div>`;
+        playerHealthBox.innerHTML = `<div class="controls">
+                                       <button onclick="increasePlayerHealth(${i})">+</button>
+                                       <button onclick="decreasePlayerHealth(${i})">-</button>
+                                     </div>
+                                     <div class="display-box">Player ${i} Health: 0</div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
         // Initialize player health object
-        playerHealth[i] = 40;
+        playerHealth[i] = 0;
       }
     }
   </script>
