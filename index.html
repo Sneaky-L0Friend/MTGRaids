@@ -344,7 +344,15 @@
         //TODO: SMH Just do it based on the index used...no need to string compare     
         let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
         // Set the image source
-        addMinions(howManyToMake, howManyToMake);
+        if(howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)){
+          addMinions(howManyToMake, 1);
+        }
+        else if(howManyToMake == 2 && randomlyRolledList == hardActionsJson){
+          addMinions(howManyToMake, 1);
+        }
+        else if((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)){
+          addMinions(howManyToMake, 2);
+        }
       }
 
       const logEntry = document.createElement("div");
