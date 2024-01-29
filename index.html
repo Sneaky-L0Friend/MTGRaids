@@ -780,14 +780,14 @@
         healthSpan.textContent = ` Health: 40`;
 
         // Append input and span to the wrapper
-        playerWrapper.appendChild(playerNameInput);
-        playerWrapper.appendChild(healthSpan);
+        playerHealthBox.appendChild(playerNameInput);
+        playerHealthBox.appendChild(healthSpan);
 
         playerHealthBox.innerHTML = `<div class="controls">
                                       <button onclick="decreasePlayerHealth(${i})">-</button>
                                        <button onclick="increasePlayerHealth(${i})">+</button>
                                      </div>
-                                     <div class="display-box">${playerWrapper}</div>`;
+                                     <div class="display-box">${playerHealthBox}</div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
