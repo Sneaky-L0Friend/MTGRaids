@@ -257,6 +257,7 @@
     let modifiersToUse;
     let listRolledFrom;
     let totalRoundLifeChange = 0;
+    let randomlyRolledListGlobal;
 
     // // Difficulty modifiers for easy mode 
     const EASY_MODE_MODIFIERS = {
@@ -320,6 +321,7 @@
         randomlyRolledList = hardActionsJson;
         listRolledFrom = "H";
       }
+      randomlyRolledListGlobal = randomlyRolledList;
       const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
 
       console.log(randomValue);
@@ -599,7 +601,7 @@
         imageContainer.className = 'image-container';
 
         const img = document.createElement('img');
-        img.src = randomlyRolledList.Actions[result].includes("artifact creature") ? `Minions/${1}.jpeg` : `Minions/${imageNumber}.jpeg`;
+        img.src = randomlyRolledListGlobal.Actions[result].includes("artifact creature") ? `Minions/${1}.jpeg` : `Minions/${imageNumber}.jpeg`;
         img.alt = 'Image ' + (i + 1); // Alt text for accessibility
 
         img.style.width = '300px';
