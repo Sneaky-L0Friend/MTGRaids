@@ -100,9 +100,21 @@
       /* Darker border color */
     }
 
-    .controls button:hover {
-      background-color: #777;
-      /* Slightly lighter background on hover */
+    .controls2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Center buttons vertically */
+    }
+
+    .button-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .button-wrapper button {
+      margin-bottom: 5px;
+      /* Add margin between buttons */
     }
 
     .image-container {
@@ -772,11 +784,13 @@
         playerHealthBox.className = "player-health-box";
         playerHealthBox.id = `player${i}Health`;
 
-        playerHealthBox.innerHTML = `<div class="controls">
-                                       <button onclick="decreasePlayerHealth(${i})">-</button>
-                                       <button onclick="increasePlayerHealth(${i})">+</button>
-                                     </div>
-                                     <div class="display-box">Player ${i} Health: 40</div>`;
+        playerHealthBox.innerHTML = `<div class="controls2">
+                                      <div class="button-wrapper">
+                                        <button onclick="decreasePlayerHealth(${i})">-</button>
+                                        <button onclick="increasePlayerHealth(${i})">+</button>
+                                      </div>
+                                    </div>
+                                    <div class="display-box">Player ${i} Health: 40</div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
