@@ -190,8 +190,7 @@
     <div id="action" class="display-box" style="cursor: default;">Action: None</div>
   </div>
   <div class="controls">
-    <button id="counterButton" style="cursor: pointer;"
-      onclick="strikeOutMonsterAction()">Counter</button>
+    <button id="counterButton" style="cursor: pointer;" onclick="strikeOutMonsterAction()">Counter</button>
     <button style="cursor: pointer;" onclick="decreaseNumberBy10()">-10</button>
     <button style="cursor: pointer;" onclick="decreaseNumberBy5()">-5</button>
     <button style="cursor: pointer;" onclick="decreaseNumber()">-</button>
@@ -224,7 +223,7 @@
   <script>
 
     let monsterHealth = 0;
-    let playerHealth = {};    
+    let playerHealth = {};
     let currentRound = 1;
     let totalDiceRolls = 0;
     let numberOfDiceRolled = 0;
@@ -270,7 +269,7 @@
         return;
       }
       const drValue = Math.floor(currentRound / 2); // Calculate DR value
-      if (numberOfDiceRolled == drValue){
+      if (numberOfDiceRolled == drValue) {
         showErrorMessage("Monster cannot take further actions, increase round");
         return;
       }
@@ -324,7 +323,7 @@
       if (randomlyRolledList.Actions[result].includes("Monster creates")) {
         //make minions
         //TODO: SMH Just do it based on the index used...no need to string compare     
-        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 :  randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
+        let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
         // Set the image source
         addMinions(howManyToMake, howManyToMake);
       }
@@ -349,7 +348,7 @@
     }
 
     function strikeOutMonsterAction() {
-      if(!gameCanStart){
+      if (!gameCanStart) {
         showErrorMessage("Please Start the Game First");
         return;
       }
@@ -408,7 +407,7 @@
       if (startedGame) {
         const logEntry = document.createElement("div");
         logEntry.className = "logEntry";
-        logEntry.textContent = `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+': ''}${totalRoundLifeChange} TO ${monsterHealth}`;
+        logEntry.textContent = `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+' : ''}${totalRoundLifeChange} TO ${monsterHealth}`;
 
         // Get the dice log container
         const diceLog = document.getElementById("diceLog");
@@ -514,7 +513,7 @@
 
     function checkInput() {
       var numberInput = document.getElementById("myTextbox").value;
-      
+
       // Check if the input is a number
       if (!isNaN(numberInput) && numberInput !== "") {
         gameCanStart = true;
@@ -645,13 +644,13 @@
     }
 
     function displayColorRectangleAndStartGame(difficulty) {
-      if(!gameCanStart){
+      if (!gameCanStart) {
         showErrorMessage("Enter Number of Players to Start");
         return;
       }
 
       setDifficultyAtStart(difficulty);
-      
+
       startedGame = true;
       var startEasy = document.getElementById("startEasy");
       var startMedium = document.getElementById("startMedium");
@@ -754,8 +753,8 @@
     function updatePlayerHealth(player) {
       const playerHealthElement = document.getElementById(`player${player}Health`);
       playerHealthElement.innerHTML = `<div class="controls">
+                                        <button onclick="decreasePlayerHealth(${player})">-</button>
                                          <button onclick="increasePlayerHealth(${player})">+</button>
-                                         <button onclick="decreasePlayerHealth(${player})">-</button>
                                        </div>
                                        <div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>`;
     }
@@ -771,12 +770,23 @@
         const playerHealthBox = document.createElement("div");
         playerHealthBox.className = "player-health-box";
         playerHealthBox.id = `player${i}Health`;
+        const playerNameInput = document.createElement('input');
+        playerNameInput.type = 'text';
+        playerNameInput.value = `Player ${playerNumber}`;
+
+        // Create a span for displaying health (not editable)
+        const healthSpan = document.createElement('span');
+        healthSpan.textContent = ` Health: ${health}`;
+
+        // Append input and span to the wrapper
+        playerWrapper.appendChild(playerNameInput);
+        playerWrapper.appendChild(healthSpan);
 
         playerHealthBox.innerHTML = `<div class="controls">
+                                      <button onclick="decreasePlayerHealth(${i})">-</button>
                                        <button onclick="increasePlayerHealth(${i})">+</button>
-                                       <button onclick="decreasePlayerHealth(${i})">-</button>
                                      </div>
-                                     <div class="display-box">Player ${i} Health: 40</div>`;
+                                     <div class="display-box">${playerWrapper}</div>`;
 
         playerHealthContainer.appendChild(playerHealthBox);
 
