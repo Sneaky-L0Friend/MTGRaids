@@ -32,6 +32,6 @@
     "Destroy all permanents with a converted mana cost of ${diceRolledThisRound+1} or less.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifact/Enchantment]",
     "Each opponent sacrifices ${diceRolledThisRound} permanents and creates ${diceRolledThisRound+1} treasure tokens.[Instant]",
-    "Return all player's nonland permanents to their hand.[Creature]"
+    "Return all player's nonland permanents to their hand.[Sorcery]"
   ]
 }
