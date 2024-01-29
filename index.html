@@ -109,11 +109,11 @@
     .button-wrapper {
       display: flex;
       flex-direction: column;
+      margin-bottom: 10px;
     }
 
     .button-wrapper button {
       font-size: 18px;
-      margin-top: 5px;
       background-color: #555;
       /* Dark button background color */
       color: #fff;
@@ -771,11 +771,13 @@
 
     function updatePlayerHealth(player) {
       const playerHealthElement = document.getElementById(`player${player}Health`);
-      playerHealthElement.innerHTML = `<div class="controls">
+      playerHealthElement.innerHTML = `<div class="controls2">
+                                      <div class="button-wrapper">
+                                        <button onclick="increasePlayerHealth(${player})">+</button>
                                         <button onclick="decreasePlayerHealth(${player})">-</button>
-                                         <button onclick="increasePlayerHealth(${player})">+</button>
-                                       </div>
-                                       <div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>`;
+                                      </div>
+                                      <div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
+                                    </div>`;
     }
 
     function createPlayerHealthBoxes(numberOfPlayers) {
