@@ -753,11 +753,11 @@
 
     function updatePlayerHealth(player) {
       const playerHealthElement = document.getElementById(`player${player}Health`);
-      playerHealthElement.innerHTML = `<div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
-                                       <div class="controls">
+      playerHealthElement.innerHTML = `<div class="controls">
                                          <button onclick="increasePlayerHealth(${player})">+</button>
                                          <button onclick="decreasePlayerHealth(${player})">-</button>
-                                       </div>`;
+                                       </div>
+                                       <div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>`;
     }
 
     function createPlayerHealthBoxes(numberOfPlayers) {
