@@ -95,17 +95,8 @@ function takeMonsterAction() {
     }
   }
 
-  const logEntry = document.createElement("div");
-  logEntry.className = "logEntry";
-  logEntry.textContent = `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`;
+  addLog(`${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`);
 
-  // Get the dice log container
-  const diceLog = document.getElementById("diceLog");
-
-  // Append the new log entry to the top of the log
-  diceLog.insertAdjacentElement("beforeend", logEntry);
-  diceLog.scrollTop = diceLog.scrollHeight;
-  diceLog.style.display = "block";
   if (randomlyRolledList.Actions[result].includes("one more action")) {
     numberOfDiceRolled--;
     return;
@@ -172,18 +163,22 @@ function updateMonsterHealth() {
   const monsterHealthElement = document.getElementById("number");
   monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
   if (startedGame) {
-    const logEntry = document.createElement("div");
-    logEntry.className = "logEntry";
-    logEntry.textContent = `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+' : ''}${totalRoundLifeChange} TO ${monsterHealth}`;
-
-    // Get the dice log container
-    const diceLog = document.getElementById("diceLog");
-
-    // Append the new log entry to the top of the log
-    diceLog.insertAdjacentElement("beforeend", logEntry);
-    diceLog.scrollTop = diceLog.scrollHeight;
-    diceLog.style.display = "block";
+    addLog(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+' : ''}${totalRoundLifeChange} TO ${monsterHealth}`);
   }
+}
+
+function addLog(logText) {
+  const logEntry = document.createElement("div");
+  logEntry.className = "logEntry";
+  logEntry.textContent = logText;
+
+  // Get the dice log container
+  const diceLog = document.getElementById("diceLog");
+
+  // Append the new log entry to the top of the log
+  diceLog.insertAdjacentElement("beforeend", logEntry);
+  diceLog.scrollTop = diceLog.scrollHeight;
+  diceLog.style.display = "block";
 }
 
 function increaseNumber(numberToIncreaseBy) {
@@ -215,17 +210,7 @@ function increaseRound() {
   currentRound++;
   numberOfDiceRolled = 0;
   // Create a new log entry
-  const logEntry = document.createElement("div");
-  logEntry.className = "logEntry";
-  logEntry.textContent = `ROUND ${currentRound}`;
-
-  // Get the dice log container
-  const diceLog = document.getElementById("diceLog");
-
-  // Append the new log entry to the top of the log
-  diceLog.insertAdjacentElement("beforeend", logEntry);
-  diceLog.scrollTop = diceLog.scrollHeight;
-  diceLog.style.display = "block";
+  addLog(`ROUND ${currentRound}`);
   updateRound();
 }
 
@@ -235,17 +220,7 @@ function decreaseRound() {
     return;
   }
   currentRound = Math.max(1, currentRound - 1);
-  const logEntry = document.createElement("div");
-  logEntry.className = "logEntry";
-  logEntry.textContent = `ROUND ${currentRound}`;
-
-  // Get the dice log container
-  const diceLog = document.getElementById("diceLog");
-
-  // Append the new log entry to the top of the log
-  diceLog.insertAdjacentElement("beforeend", logEntry);
-  diceLog.scrollTop = diceLog.scrollHeight;
-  diceLog.style.display = "block";
+  addLog(`ROUND ${currentRound}`);
   updateRound();
 }
 
@@ -462,17 +437,6 @@ function displayColorRectangleAndStartGame(difficulty) {
   colorRectangle.style.display = "block";
 
   readActionJsonFiles();
-  const logEntry = document.createElement("div");
-  logEntry.className = "logEntry";
-  logEntry.textContent = `ROUND ${currentRound}`;
-
-  // Get the dice log container
-  const diceLog = document.getElementById("diceLog");
-
-  // Append the new log entry to the top of the log
-  diceLog.insertAdjacentElement("beforeend", logEntry);
-  diceLog.scrollTop = diceLog.scrollHeight;
-  diceLog.style.display = "block";
-  console.log(easyActionsJson);
+  addLog(`ROUND ${currentRound}`);
 
 }
