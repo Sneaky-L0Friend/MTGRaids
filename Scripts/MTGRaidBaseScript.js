@@ -265,7 +265,7 @@ function displayColorRectangle() {
 
 function startGame(difficulty) {
   if (!gameCanStart) {
-    showErrorMessage("Enter Number of Players to Start");
+    showErrorMessage("Enter Number of Players to Start ");
     return;
   }
 
