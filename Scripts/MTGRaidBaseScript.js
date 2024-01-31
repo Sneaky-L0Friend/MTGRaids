@@ -76,13 +76,13 @@ function takeMonsterAction() {
     //TODO: SMH Just do it based on the index used...no need to string compare     
     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
     // Set the image source
-    if(howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)){
+    if (howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)) {
       addMinions(howManyToMake, 1);
     }
-    else if(howManyToMake == 2 && randomlyRolledList == hardActionsJson){
+    else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
       addMinions(howManyToMake, 1);
     }
-    else if((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)){
+    else if ((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)) {
       addMinions(howManyToMake, 2);
     }
   }
@@ -244,7 +244,7 @@ function setDifficultyAtStart(difficulty) {
   }
 }
 
-function displayColorRectangleAndStartGame(difficulty) {
+function startGame(difficulty) {
   if (!gameCanStart) {
     showErrorMessage("Enter Number of Players to Start");
     return;
@@ -271,6 +271,14 @@ function displayColorRectangleAndStartGame(difficulty) {
   updateMonsterHealth();
   createPlayerHealthBoxes(value);
 
+  displayColorRectangle();
+
+  readActionJsonFiles();
+  addLog(`ROUND ${currentRound}`);
+
+}
+
+function displayColorRectangle() {
   const colorRectangle = document.getElementById('colorRectangle');
   const pickedNumber = pickMonster();
 
@@ -287,8 +295,4 @@ function displayColorRectangleAndStartGame(difficulty) {
     colorRectangle.style.background = colorName.toLowerCase();
   }
   colorRectangle.style.display = "block";
-
-  readActionJsonFiles();
-  addLog(`ROUND ${currentRound}`);
-
 }
