@@ -1,3 +1,5 @@
+import {EASY_MODE_MODIFIERS, MEDIUM_MODE_MODIFIERS, HARD_MODE_MODIFIERS} from 'Constants';
+
 let monsterHealth = 0;
 let currentRound = 1;
 let totalDiceRolls = 0;
@@ -14,25 +16,7 @@ let modifiersToUse;
 let listRolledFrom;
 let totalRoundLifeChange = 0;
 
-// // Difficulty modifiers for easy mode 
-const EASY_MODE_MODIFIERS = {
-  modifier1: 10,
-  modifier2: 1,
-  modifier3: 0.8, //Must be between 0-1
-}
-// Difficulty modifiers for medium mode 
-const MEDIUM_MODE_MODIFIERS = {
-  modifier1: 5,
-  modifier2: 2,
-  modifier3: 0.6, //Must be between 0-1
 
-}
-// Difficulty modifiers for hard mode 
-const HARD_MODE_MODIFIERS = {
-  modifier1: 0,
-  modifier2: 10,
-  modifier3: 0, //Must be between 0-1
-}
 
 function takeMonsterAction() {
   if (!startedGame) {
@@ -202,44 +186,15 @@ function updateMonsterHealth() {
   }
 }
 
-function increaseNumber() {
-  monsterHealth++;
-  totalRoundLifeChange++;
+function increaseNumber(numberToIncreaseBy) {
+  monsterHealth = monsterHealth + numberToIncreaseBy;
+  totalRoundLifeChange = totalRoundLifeChange + numberToIncreaseBy;
   updateMonsterHealth();
 }
 
-function decreaseNumber() {
-  monsterHealth = Math.max(0, monsterHealth - 1);
-  totalRoundLifeChange = totalRoundLifeChange - 1;
-  updateMonsterHealth();
-}
-
-function refreshPage() {
-  // Refresh the webpage
-  location.reload();
-}
-
-function increaseNumberBy10() {
-  monsterHealth = monsterHealth + 10;
-  totalRoundLifeChange = totalRoundLifeChange + 10;
-  updateMonsterHealth();
-}
-
-function decreaseNumberBy10() {
-  monsterHealth = Math.max(0, monsterHealth - 10);
-  totalRoundLifeChange = totalRoundLifeChange - 10;
-  updateMonsterHealth();
-}
-
-function increaseNumberBy5() {
-  monsterHealth = monsterHealth + 5;
-  totalRoundLifeChange = totalRoundLifeChange + 5;
-  updateMonsterHealth();
-}
-
-function decreaseNumberBy5() {
-  monsterHealth = Math.max(0, monsterHealth - 5);
-  totalRoundLifeChange = totalRoundLifeChange - 5;
+function decreaseNumber(numberToDecreaseBy) {
+  monsterHealth = Math.max(0, monsterHealth - numberToDecreaseBy);
+  totalRoundLifeChange = totalRoundLifeChange - numberToDecreaseBy;
   updateMonsterHealth();
 }
 
