@@ -1,4 +1,3 @@
-let monsterHealth = 0;
 let currentRound = 1;
 let totalDiceRolls = 0;
 let numberOfDiceRolled = 0;
@@ -8,7 +7,6 @@ let log = [];
 let bossMonsterImageUrl = "";
 let modifiersToUse;
 let listRolledFrom;
-let totalRoundLifeChange = 0;
 
 function takeMonsterAction() {
   if (!window.startedGame) {
@@ -95,26 +93,6 @@ function takeMonsterAction() {
   }
   updateRound();
 
-}
-
-function updateMonsterHealth() {
-  const monsterHealthElement = document.getElementById("number");
-  monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
-  if (window.startedGame) {
-    addLog(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+' : ''}${totalRoundLifeChange} TO ${monsterHealth}`);
-  }
-}
-
-function increaseNumber(numberToIncreaseBy) {
-  monsterHealth = monsterHealth + numberToIncreaseBy;
-  totalRoundLifeChange = totalRoundLifeChange + numberToIncreaseBy;
-  updateMonsterHealth();
-}
-
-function decreaseNumber(numberToDecreaseBy) {
-  monsterHealth = Math.max(0, monsterHealth - numberToDecreaseBy);
-  totalRoundLifeChange = totalRoundLifeChange - numberToDecreaseBy;
-  updateMonsterHealth();
 }
 
 function updateRound() {
