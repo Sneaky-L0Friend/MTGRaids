@@ -1,4 +1,4 @@
-import {EASY_MODE_MODIFIERS, MEDIUM_MODE_MODIFIERS, HARD_MODE_MODIFIERS} from 'Constants.js';
+import {EASY_MODE_MODIFIERS, MEDIUM_MODE_MODIFIERS, HARD_MODE_MODIFIERS} from './Constants.js';
 
 let monsterHealth = 0;
 let currentRound = 1;
