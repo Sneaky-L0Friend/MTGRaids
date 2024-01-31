@@ -1,4 +1,4 @@
-let currentRound = 1;
+let currentRound = 1; 
 let totalDiceRolls = 0;
 let numberOfDiceRolled = 0;
 let lifeMultiplier;
