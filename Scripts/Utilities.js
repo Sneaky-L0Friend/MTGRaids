@@ -1,3 +1,5 @@
+window.startedGame = false;
+
 function refreshPage() {
     location.reload();
   }
@@ -44,7 +46,7 @@ function refreshPage() {
       errorMessageElement.remove();
     }, 5000);
   }
-  
+
   function addLog(logText) {
     const logEntry = document.createElement("div");
     logEntry.className = "logEntry";

@@ -1,4 +1,3 @@
-window.startedGame = false;
 let monsterHealth = 0;
 let currentRound = 1;
 let totalDiceRolls = 0;
