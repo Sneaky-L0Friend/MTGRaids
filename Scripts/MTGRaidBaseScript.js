@@ -3,9 +3,6 @@ let currentRound = 1;
 let totalDiceRolls = 0;
 let numberOfDiceRolled = 0;
 let lifeMultiplier;
-let easyActionsJson;
-let mediumActionsJson;
-let hardActionsJson;
 let gameCanStart = false;
 let log = [];
 let bossMonsterImageUrl = "";
@@ -117,42 +114,6 @@ function takeMonsterAction() {
   }
   updateRound();
 
-}
-
-function readActionJsonFiles() {
-  const filePath = 'Actions/EasyActions.json';
-  const filePathM = 'Actions/MediumActions.json';
-  const filePathH = 'Actions/HardActions.json';
-  const options = {
-    method: 'GET',
-    mode: 'no-cors'
-  };
-
-  // Fetch the JSON file
-  fetch(filePath, options)
-    .then(
-      response => response.json())
-    .then(jsonData => {
-      console.log('JSON data:', jsonData);
-      easyActionsJson = jsonData;
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
-  fetch(filePathM, options)
-    .then(response => response.json())
-    .then(jsonData => {
-      console.log('JSON data:', jsonData);
-      mediumActionsJson = jsonData;
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
-  fetch(filePathH, options)
-    .then(response => response.json())
-    .then(jsonData => {
-      console.log('JSON data:', jsonData);
-      hardActionsJson = jsonData;
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
 }
 
 function updateMonsterHealth() {
