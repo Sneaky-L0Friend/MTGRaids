@@ -9,13 +9,13 @@ function updateMonsterHealth() {
     }
 }
 
-function increaseNumber(numberToIncreaseBy) {
+function increaseMonsterHealth(numberToIncreaseBy) {
     monsterHealth = monsterHealth + numberToIncreaseBy;
     totalRoundLifeChange = totalRoundLifeChange + numberToIncreaseBy;
     updateMonsterHealth();
 }
 
-function decreaseNumber(numberToDecreaseBy) {
+function decreaseMonsterHealth(numberToDecreaseBy) {
     monsterHealth = Math.max(0, monsterHealth - numberToDecreaseBy);
     totalRoundLifeChange = totalRoundLifeChange - numberToDecreaseBy;
     updateMonsterHealth();
