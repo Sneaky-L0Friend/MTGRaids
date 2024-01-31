@@ -261,8 +261,6 @@ function pickMonster() {
   const pickedNumber = Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) + selectedRange[0];
 
   const startElement = document.getElementById("startEasy");
-  // startElement.innerText = `${pickedNumber}`;
-  // startElement.style.display = "none";
   var imgElement = document.createElement("img");
 
   // Set the image source
@@ -326,26 +324,6 @@ function setDifficultyAtStart(difficulty) {
       lifeMultiplier = 30;
       break;
   }
-}
-
-function showErrorMessage(message) {
-  // Create a new error message element
-  const errorMessageElement = document.createElement("div");
-  errorMessageElement.className = "errorMessage";
-  errorMessageElement.textContent = message;
-
-  // Append the error message element to the body
-  document.body.appendChild(errorMessageElement);
-
-  // Display the error message
-  errorMessageElement.style.display = "block";
-
-  // Hide the error message after 5 seconds
-  setTimeout(function () {
-    errorMessageElement.style.display = "none";
-    // Remove the error message element from the DOM after fading out
-    errorMessageElement.remove();
-  }, 5000);
 }
 
 function displayColorRectangleAndStartGame(difficulty) {
