@@ -1,3 +1,6 @@
+
+window.startedGame = false;
+
 // // Difficulty modifiers for easy mode 
 export const EASY_MODE_MODIFIERS = {
     modifier1: 10,

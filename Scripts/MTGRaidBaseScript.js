@@ -8,7 +8,6 @@ let lifeMultiplier;
 let easyActionsJson;
 let mediumActionsJson;
 let hardActionsJson;
-let startedGame = false;
 let gameCanStart = false;
 let log = [];
 let bossMonsterImageUrl = "";
@@ -19,7 +18,7 @@ let totalRoundLifeChange = 0;
 
 
 function takeMonsterAction() {
-  if (!startedGame) {
+  if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
     return;
   }
@@ -162,7 +161,7 @@ function readActionJsonFiles() {
 function updateMonsterHealth() {
   const monsterHealthElement = document.getElementById("number");
   monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
-  if (startedGame) {
+  if (window.startedGame) {
     addLog(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? '+' : ''}${totalRoundLifeChange} TO ${monsterHealth}`);
   }
 }
@@ -203,7 +202,7 @@ function updateRound() {
 }
 
 function increaseRound() {
-  if (!startedGame) {
+  if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
     return;
   }
@@ -215,7 +214,7 @@ function increaseRound() {
 }
 
 function decreaseRound() {
-  if (!startedGame) {
+  if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
     return;
   }
@@ -282,7 +281,7 @@ function pickMonster() {
 }
 
 function addMinions(numberOfImages, imageNumber) {
-  if (!startedGame) {
+  if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
     return;
   }
@@ -364,7 +363,7 @@ function displayColorRectangleAndStartGame(difficulty) {
 
   setDifficultyAtStart(difficulty);
 
-  startedGame = true;
+  window.startedGame = true;
   var startEasy = document.getElementById("startEasy");
   var startMedium = document.getElementById("startMedium");
   var startHard = document.getElementById("startHard");
