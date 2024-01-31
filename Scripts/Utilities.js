@@ -44,3 +44,17 @@ function refreshPage() {
       errorMessageElement.remove();
     }, 5000);
   }
+  
+  function addLog(logText) {
+    const logEntry = document.createElement("div");
+    logEntry.className = "logEntry";
+    logEntry.textContent = logText;
+  
+    // Get the dice log container
+    const diceLog = document.getElementById("diceLog");
+  
+    // Append the new log entry to the top of the log
+    diceLog.insertAdjacentElement("beforeend", logEntry);
+    diceLog.scrollTop = diceLog.scrollHeight;
+    diceLog.style.display = "block";
+  }
