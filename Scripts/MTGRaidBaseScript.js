@@ -244,6 +244,25 @@ function setDifficultyAtStart(difficulty) {
   }
 }
 
+function displayColorRectangle() {
+  const colorRectangle = document.getElementById('colorRectangle');
+  const pickedNumber = pickMonster();
+
+  // Set the background color of the rectangle based on the chosen number
+  const colorName = colorMap[pickedNumber];
+
+  if (colorName.includes('-')) {
+    const colors = colorName.split('-');
+    const widthPercentage = 100 / colors.length;
+    const gradientColors = colors.map((color, index) => `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`);
+    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
+  } else {
+    // Handle single-color scenarios
+    colorRectangle.style.background = colorName.toLowerCase();
+  }
+  colorRectangle.style.display = "block";
+}
+
 function startGame(difficulty) {
   if (!gameCanStart) {
     showErrorMessage("Enter Number of Players to Start");
@@ -276,23 +295,4 @@ function startGame(difficulty) {
   readActionJsonFiles();
   addLog(`ROUND ${currentRound}`);
 
-}
-
-function displayColorRectangle() {
-  const colorRectangle = document.getElementById('colorRectangle');
-  const pickedNumber = pickMonster();
-
-  // Set the background color of the rectangle based on the chosen number
-  const colorName = colorMap[pickedNumber];
-
-  if (colorName.includes('-')) {
-    const colors = colorName.split('-');
-    const widthPercentage = 100 / colors.length;
-    const gradientColors = colors.map((color, index) => `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`);
-    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
-  } else {
-    // Handle single-color scenarios
-    colorRectangle.style.background = colorName.toLowerCase();
-  }
-  colorRectangle.style.display = "block";
 }
