@@ -1,8 +1,3 @@
-window.startedGame = false;
-window.easyActionsJson;
-window.mediumActionsJson;
-window.hardActionsJson;
-
 function refreshPage() {
     location.reload();
   }
