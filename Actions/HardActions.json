@@ -26,7 +26,7 @@
     "For each opponent counter the first card played on their next turn.[Instant]",
     "For each opponent, destroy the lowest converted mana cost permanent, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
     "Each opponent shuffles ${diceRolledThisRound+1} permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
-    "Each opponent exiles one creature of their choice.[Instant/Sorcery]",
+    "Each opponent exiles one non-token creature of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, their life total cannot change.[Artifact/Enchantment]",
     "Deal ${currentRound} damage to every creature.[Sorcery]",
     "Destroy all permanents with a converted mana cost of ${currentRound} or less.[Sorcery]",
