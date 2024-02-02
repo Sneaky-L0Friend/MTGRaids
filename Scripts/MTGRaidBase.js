@@ -77,6 +77,9 @@ function takeMonsterAction() {
     if (howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)) {
       addMinions(howManyToMake, 1);
     }
+    if (howManyToMake == 3 && (randomlyRolledList == easyActionsJson)) {
+      addMinions(howManyToMake, 2);
+    }
     else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
       addMinions(howManyToMake, 1);
     }
@@ -193,6 +196,7 @@ function addMinions(numberOfImages, imageNumber) {
     const imageText = document.createElement('div');
     imageText.className = 'image-text';
     imageText.textContent = numberOfImages == 1 ? `${currentRound + 1}/${currentRound + 1}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+    imageText.textContent = numberOfImages == 3 ? `1/1` : imageText.textContent;
     imageText.contentEditable = true;
 
     img.addEventListener('click', function () {
