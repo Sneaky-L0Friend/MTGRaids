@@ -24,7 +24,6 @@ function takeMonsterAction() {
     return;
   }
   const randomValue = Math.random(); // Random value between 0 and 1
-  const diceElement = document.getElementById("dice");
   let baseProbability;
   let additionalProbability;
   let easyProbability;
