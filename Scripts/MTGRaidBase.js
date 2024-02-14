@@ -118,6 +118,7 @@ function increaseRound() {
   addLog(`ROUND ${currentRound}`);
   updateRound();
   updateMonsterHandSize();
+  updateMonsterLandCount();
 }
 
 function decreaseRound() {
@@ -128,6 +129,8 @@ function decreaseRound() {
   currentRound = Math.max(1, currentRound - 1);
   addLog(`ROUND ${currentRound}`);
   updateRound();
+  updateMonsterHandSize();
+  updateMonsterLandCount();
 }
 
 function checkInput() {
@@ -253,7 +256,7 @@ function updateMonsterHandSize() {
   monsterHandDiv.style.display = "flex";
 }
 
-function updateMonsterHandSize() {
+function updateMonsterLandCount() {
   const monsterLandDiv = document.getElementById('monsterLand');
   monsterLandDiv.innerText = `Monster Land Count: ${currentRound}`;
 
@@ -288,7 +291,8 @@ function startGame(difficulty) {
   createPlayerHealthBoxes(value);
 
   displayColorRectangle();
-
+  updateMonsterHandSize();
+  updateMonsterLandCount();
   readActionJsonFiles();
   addLog(`ROUND ${currentRound}`);
 
