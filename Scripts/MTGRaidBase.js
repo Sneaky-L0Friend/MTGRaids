@@ -251,7 +251,7 @@ function displayColorRectangle() {
 
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
-  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize-Math.floor(currentRound / 2)} `;
+  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize-Math.floor(currentRound / 2)}`;
 
   monsterHandDiv.style.display = "flex";
 }
