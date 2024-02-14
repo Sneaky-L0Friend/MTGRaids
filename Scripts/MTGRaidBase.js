@@ -249,7 +249,7 @@ function displayColorRectangle() {
 function displayMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
 
-  playerHealthBox.innerHTML = `<div class="controls2">
+  monsterHandDiv.innerHTML = `<div class="controls2">
                                   <div class="display-box">Monster Hand ${monsterHandSize}</div>
                                </div>
                               `;
@@ -260,7 +260,7 @@ function displayMonsterHandSize() {
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
 
-  playerHealthBox.innerHTML = `<div class="controls2">
+  monsterHandDiv.innerHTML = `<div class="controls2">
                                   <div class="display-box">Monster Hand ${monsterHandSize-diceRolledThisRound}</div>
                                </div>
                               `;
