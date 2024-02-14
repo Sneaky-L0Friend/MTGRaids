@@ -243,7 +243,7 @@ function displayColorRectangle() {
     // Handle single-color scenarios
     colorRectangle.style.background = colorName.toLowerCase();
   }
-  colorRectangle.style.display = "block";
+  colorRectangle.style.display = "block"; 
 }
 
 function updateMonsterHandSize() {
