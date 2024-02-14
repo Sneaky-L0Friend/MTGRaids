@@ -248,9 +248,16 @@ function displayColorRectangle() {
 
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
-  roundElement.innerText = `Monster Hand Size: ${monsterHandSize-diceRolledThisRound}`;
+  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize-diceRolledThisRound}`;
 
-  monsterHandDiv.style.display = "block";
+  monsterHandDiv.style.display = "flex";
+}
+
+function updateMonsterHandSize() {
+  const monsterLandDiv = document.getElementById('monsterLand');
+  monsterLandDiv.innerText = `Monster Land Count: ${currentRound}`;
+
+  monsterLandDiv.style.display = "flex";
 }
 
 function startGame(difficulty) {
