@@ -118,7 +118,7 @@ body {
   .image-container {
     position: relative;
     display: inline-block;
-    margin: 10px;
+    margin-right: 10px;
     max-height: 170px;
     max-width: 300px;
   }
