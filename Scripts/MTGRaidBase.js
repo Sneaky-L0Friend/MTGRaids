@@ -246,24 +246,9 @@ function displayColorRectangle() {
   colorRectangle.style.display = "block";
 }
 
-function displayMonsterHandSize() {
-  const monsterHandDiv = document.getElementById('monsterHand');
-
-  monsterHandDiv.innerHTML = `<div class="controls2">
-                                  <div class="display-box">Monster Hand ${monsterHandSize}</div>
-                               </div>
-                              `;
-
-  monsterHandDiv.style.display = "block";
-}
-
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
-
-  monsterHandDiv.innerHTML = `<div class="controls2">
-                                  <div class="display-box">Monster Hand ${monsterHandSize-diceRolledThisRound}</div>
-                               </div>
-                              `;
+  roundElement.innerText = `Monster Hand Size: ${monsterHandSize-diceRolledThisRound}`;
 
   monsterHandDiv.style.display = "block";
 }
