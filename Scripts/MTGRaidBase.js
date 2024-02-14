@@ -1,10 +1,11 @@
-let currentRound = 1; 
+let currentRound = 1;
 let totalDiceRolls = 0;
 let numberOfDiceRolled = 0;
 let lifeMultiplier;
 let gameCanStart = false;
 let log = [];
 let bossMonsterImageUrl = "";
+let monsterHandSize = 8;
 let modifiersToUse;
 let listRolledFrom;
 
@@ -117,6 +118,7 @@ function increaseRound() {
   // Create a new log entry
   addLog(`ROUND ${currentRound}`);
   updateRound();
+  updateMonsterHandSize();
 }
 
 function decreaseRound() {
@@ -243,6 +245,28 @@ function displayColorRectangle() {
     colorRectangle.style.background = colorName.toLowerCase();
   }
   colorRectangle.style.display = "block";
+}
+
+function displayMonsterHandSize() {
+  const monsterHandDiv = document.getElementById('monsterHand');
+
+  playerHealthBox.innerHTML = `<div class="controls2">
+                                  <div class="display-box">Monster Hand ${monsterHandSize}</div>
+                               </div>
+                              `;
+
+  monsterHandDiv.style.display = "block";
+}
+
+function updateMonsterHandSize() {
+  const monsterHandDiv = document.getElementById('monsterHand');
+
+  playerHealthBox.innerHTML = `<div class="controls2">
+                                  <div class="display-box">Monster Hand ${monsterHandSize-diceRolledThisRound}</div>
+                               </div>
+                              `;
+
+  monsterHandDiv.style.display = "block";
 }
 
 function startGame(difficulty) {
