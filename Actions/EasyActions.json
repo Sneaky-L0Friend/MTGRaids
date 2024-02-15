@@ -28,7 +28,7 @@
     "For each opponent, destroy a nonland permament with the lowest converted mana cost, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
     "Each opponent shuffles ${diceRolledThisRound+1} permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target card of their choice.[Instant/Sorcery]",
-    "Until the Raid Monster’s next turn, their life total cannot change.[Artifact/Enchantment]",
+    "Until the Raid Monster’s next turn, they cannot lose the game.[Artifact/Enchantment]",
     "Deal 2 damage to every creature.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifacts/Enchantment]",
     "Each opponent sacrifices ${diceRolledThisRound} permanents and creates ${diceRolledThisRound+1} treasure tokens.[Instant]",
