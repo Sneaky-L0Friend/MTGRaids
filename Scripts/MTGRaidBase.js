@@ -9,7 +9,7 @@ let monsterHandSize = 8;
 let modifiersToUse;
 let listRolledFrom;
 let playerNumberSpecific = false;
-
+let numberOfPlayersGlobal;
 
 function takeMonsterAction() {
   if (!window.startedGame) {
@@ -73,14 +73,14 @@ function takeMonsterAction() {
     .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
     .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
     .replaceAll("${currentRound+1}", currentRound + 1)
-    .replaceAll("${numberOfPlayers}", playerHealth.length);
+    .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
 
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
     //TODO: SMH Just do it based on the index used...no need to string compare     
     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
-    howManyToMake = playerNumberSpecific ? playerHealth.length : howManyToMake;
+    howManyToMake = playerNumberSpecific ? numberOfPlayersGlobal : howManyToMake;
     // Set the image source
     if (playerNumberSpecific) {
       addMinions(howManyToMake, 1);
@@ -341,7 +341,7 @@ function startGame(difficulty) {
 
   // Get the number of players
   var value = textBox.value;
-
+  numberOfPlayersGlobal = value;
   monsterHealth = value * lifeMultiplier;
   updateMonsterHealth();
   createPlayerHealthBoxes(value);
