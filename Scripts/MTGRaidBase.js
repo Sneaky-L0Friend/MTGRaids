@@ -54,11 +54,11 @@ function takeMonsterAction() {
   }
   const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
 
-  console.log(randomValue);
-  console.log(modifiersToUse);
-  console.log("baseProbability: " + baseProbability);
-  console.log("additionalProbability: " + additionalProbability);
-  console.log('easyProbability: ' + easyProbability);
+  // console.log(randomValue);
+  // console.log(modifiersToUse);
+  // console.log("baseProbability: " + baseProbability);
+  // console.log("additionalProbability: " + additionalProbability);
+  // console.log('easyProbability: ' + easyProbability);
 
   ++totalDiceRolls;
   ++numberOfDiceRolled;
@@ -76,13 +76,17 @@ function takeMonsterAction() {
     .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
 
   //TODO: SMH Just do it based on the index used...no need to string compare
+  console.log('Add minions 0');
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
     //TODO: SMH Just do it based on the index used...no need to string compare     
+    console.log('Add minions 0.25');
     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
     howManyToMake = playerNumberSpecific ? numberOfPlayersGlobal : howManyToMake;
+    console.log('Add minions 0.5');
     // Set the image source
     if (playerNumberSpecific) {
+      console.log('Add minions 0.75');
       addMinions(howManyToMake, 1);
     } else {
       if (howManyToMake == 1 && (listRolledFrom == 'E' || listRolledFrom == 'M')) {
