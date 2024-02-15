@@ -211,49 +211,49 @@ function addMinions(numberOfImages, imageNumber) {
 
     const imageText = document.createElement('div');
     imageText.className = 'image-text';
-    if(playerNumberSpecific) {
+    if (playerNumberSpecific) {
       imageText.textContent = listRolledFrom == 'M' ? `${currentRound + 1}/${currentRound + 1}` : '2/2';
     } else {
-      if(listRolledFrom == 'E') {
+      if (listRolledFrom == 'E') {
         switch (numberOfImages) {
-          case 1: 
+          case 1:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 2:
             imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
             break;
-          case 3: 
+          case 3:
             imageText.textContent = '1/1';
             break;
-          default :
+          default:
             imageText.textContent = '1/1';
-            break;  
+            break;
         }
       }
-      else if(listRolledFrom == 'M') {
+      else if (listRolledFrom == 'M') {
         switch (numberOfImages) {
-          case 1: 
+          case 1:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 4:
             imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
             break;
-          default :
+          default:
             imageText.textContent = '1/1';
-            break;  
+            break;
         }
       }
-      else if(listRolledFrom == 'H') {
+      else if (listRolledFrom == 'H') {
         switch (numberOfImages) {
-          case 2: 
+          case 2:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 4:
             imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
             break;
-          default :
+          default:
             imageText.textContent = '1/1';
-            break;  
+            break;
         }
       }
     }
