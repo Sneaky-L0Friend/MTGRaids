@@ -85,16 +85,20 @@ function takeMonsterAction() {
     if (playerNumberSpecific) {
       addMinions(howManyToMake, 1);
     } else {
-      if (howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)) {
+      if (howManyToMake == 1 && (listRolledFrom == 'E' || listRolledFrom == 'M')) {
+        console.log('Add minions 1');
         addMinions(howManyToMake, 1);
       }
-      if (howManyToMake == 3 && (randomlyRolledList == easyActionsJson)) {
+      if (howManyToMake == 3 && (listRolledFrom == 'E')) {
+        console.log('Add minions 2');
         addMinions(howManyToMake, 2);
       }
       else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
+        console.log('Add minions 3');
         addMinions(howManyToMake, 1);
       }
-      else if ((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)) {
+      else if ((howManyToMake == 2 && listRolledFrom == 'E') || (howManyToMake == 3 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'H')) {
+        console.log('Add minions 4');
         addMinions(howManyToMake, 2);
       }
     }
@@ -197,7 +201,7 @@ function addMinions(numberOfImages, imageNumber) {
     return;
   }
   const container = document.getElementById('imageContainer');
-
+  console.log('Add ' + numberOfImages + 'Image number ' + imageNumber);
   for (let i = 0; i < numberOfImages; i++) {
     const imageContainer = document.createElement('div');
     imageContainer.className = 'image-container';
