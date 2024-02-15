@@ -76,14 +76,11 @@ function takeMonsterAction() {
     .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
 
   //TODO: SMH Just do it based on the index used...no need to string compare
-  console.log('Add minions 0');
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
     //TODO: SMH Just do it based on the index used...no need to string compare     
-    console.log('Add minions 0.25');
     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
     howManyToMake = playerNumberSpecific ? numberOfPlayersGlobal : howManyToMake;
-    console.log('Add minions 0.5');
     // Set the image source
     if (playerNumberSpecific) {
       console.log('Add minions 0.75');
@@ -101,7 +98,7 @@ function takeMonsterAction() {
         console.log('Add minions 3');
         addMinions(howManyToMake, 1);
       }
-      else if ((howManyToMake == 2 && listRolledFrom == 'E') || (howManyToMake == 3 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'H')) {
+      else if ((howManyToMake == 2 && listRolledFrom == 'E') || (howManyToMake == 3 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'H')) {
         console.log('Add minions 4');
         addMinions(howManyToMake, 2);
       }
@@ -205,7 +202,7 @@ function addMinions(numberOfImages, imageNumber) {
     return;
   }
   const container = document.getElementById('imageContainer');
-  console.log('Add ' + numberOfImages + 'Image number ' + imageNumber);
+  console.log('Add ' + numberOfImages + ', Image number ' + imageNumber);
   for (let i = 0; i < numberOfImages; i++) {
     const imageContainer = document.createElement('div');
     imageContainer.className = 'image-container';
@@ -263,6 +260,8 @@ function addMinions(numberOfImages, imageNumber) {
             imageText.textContent = '1/1';
             break;
         }
+      } else {
+        imageText.textContent = '1/1';
       }
     }
     imageText.contentEditable = true;
