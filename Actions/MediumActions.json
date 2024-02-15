@@ -1,7 +1,7 @@
  {
   "Actions": [
     "Each opponent discards 1 card, mills 1 card, and destroys a creature, enchantment and artifact.[Instant/Sorcery/Enchantment]",
-    "The Raid Monster creates ${numberOfPlayers} ${currentRound+1}/${currentRound+1} artifact creature in its colors, and each attack a player this turn.[Creature]",
+    "The Raid Monster creates ${numberOfPlayers} ${currentRound+1}/${currentRound+1} artifact creature in its colors, each attack a player this turn.[Creature]",
     "For each opponent, destroy target permanent of the player's choice.[Instant/Sorcery/Enchantment]",
     "The Raid Monster deals 6 damage to every player and 3 to every planeswalker.[Instant/Sorcery]",
     "The Raid Monster deals 8 damage to every player.[Instant/Sorcery]",
