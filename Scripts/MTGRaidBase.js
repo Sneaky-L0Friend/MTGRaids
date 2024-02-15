@@ -8,6 +8,8 @@ let bossMonsterImageUrl = "";
 let monsterHandSize = 8;
 let modifiersToUse;
 let listRolledFrom;
+let playerNumberSpecific = false;
+
 
 function takeMonsterAction() {
   if (!window.startedGame) {
@@ -62,29 +64,39 @@ function takeMonsterAction() {
   ++numberOfDiceRolled;
   const actionElement = document.getElementById("action");
   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
+  let playerNumberSpecific = false;
+  if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
+    playerNumberSpecific = true;
+  }
   actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound)
     .replaceAll("${currentRound}", currentRound)
     .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
     .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
-    .replaceAll("${currentRound+1}", currentRound + 1);
+    .replaceAll("${currentRound+1}", currentRound + 1)
+    .replaceAll("${numberOfPlayers}", playerHealth.length);
 
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
     //TODO: SMH Just do it based on the index used...no need to string compare     
     let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
+    howManyToMake = playerNumberSpecific ? playerHealth.length : howManyToMake;
     // Set the image source
-    if (howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)) {
+    if (playerNumberSpecific) {
       addMinions(howManyToMake, 1);
-    }
-    if (howManyToMake == 3 && (randomlyRolledList == easyActionsJson)) {
-      addMinions(howManyToMake, 2);
-    }
-    else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
-      addMinions(howManyToMake, 1);
-    }
-    else if ((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)) {
-      addMinions(howManyToMake, 2);
+    } else {
+      if (howManyToMake == 1 && (randomlyRolledList == easyActionsJson || randomlyRolledList == mediumActionsJson)) {
+        addMinions(howManyToMake, 1);
+      }
+      if (howManyToMake == 3 && (randomlyRolledList == easyActionsJson)) {
+        addMinions(howManyToMake, 2);
+      }
+      else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
+        addMinions(howManyToMake, 1);
+      }
+      else if ((howManyToMake == 2 && randomlyRolledList == easyActionsJson) || (howManyToMake == 3 && randomlyRolledList == mediumActionsJson) || (howManyToMake == 4 && randomlyRolledList == hardActionsJson)) {
+        addMinions(howManyToMake, 2);
+      }
     }
   }
 
@@ -199,8 +211,12 @@ function addMinions(numberOfImages, imageNumber) {
 
     const imageText = document.createElement('div');
     imageText.className = 'image-text';
-    imageText.textContent = numberOfImages == 1 ? `${currentRound + 1}/${currentRound + 1}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
-    imageText.textContent = numberOfImages == 3 ? `1/1` : imageText.textContent;
+    if(playerNumberSpecific) {
+      imageText.textContent = listRolledFrom == 'M' ? `${currentRound + 1}/${currentRound + 1}` : '2/2';
+    } else {
+      imageText.textContent = numberOfImages == 1 ? `${currentRound + 1}/${currentRound + 1}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+      imageText.textContent = numberOfImages == 3 ? `1/1` : imageText.textContent;
+    }
     imageText.contentEditable = true;
 
     img.addEventListener('click', function () {
@@ -246,12 +262,12 @@ function displayColorRectangle() {
     // Handle single-color scenarios
     colorRectangle.style.background = colorName.toLowerCase();
   }
-  colorRectangle.style.display = "block"; 
+  colorRectangle.style.display = "block";
 }
 
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
-  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize-Math.floor(currentRound / 2)}`;
+  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize - Math.floor(currentRound / 2)}`;
 
   monsterHandDiv.style.display = "flex";
 }

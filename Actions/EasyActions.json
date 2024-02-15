@@ -1,7 +1,7 @@
  {
   "Actions": [
     "Each opponent either discards 1 card, mills 1 card, or destroy a nonland permanent.[Instant/Sorcery/Enchantment]",
-    "Each opponent destroy 1 creatures.[Instant/Sorcery]",
+    "The Raid Monster creates ${numberOfPlayers} 2/2 artifact creature in its colors, and each attack a player this turn.[Creature]",
     "Each players destroys target legendary nonland permanent of the player's choice.[Instant/Sorcery/Enchantment]",
     "The Raid Monster deals 3 damage to every player and 2 to every planeswalker.[Instant/Sorcery]",
     "The Raid Monster deals 4 damage to every player.[Instant/Sorcery]",
