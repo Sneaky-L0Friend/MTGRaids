@@ -85,6 +85,9 @@ function takeMonsterAction() {
     if (playerNumberSpecific) {
       console.log('Add minions 0.75');
       addMinions(howManyToMake, 1);
+      if(randomlyRolledList.Actions[result].includes("5/1")) {
+        addMinions(howManyToMake, 4);
+      }
     } else {
       if (howManyToMake == 1 && (listRolledFrom == 'E' || listRolledFrom == 'M')) {
         console.log('Add minions 1');
@@ -218,6 +221,7 @@ function addMinions(numberOfImages, imageNumber) {
     imageText.className = 'image-text';
     if (playerNumberSpecific) {
       imageText.textContent = listRolledFrom == 'M' ? `${currentRound + 1}/${currentRound + 1}` : '2/2';
+      imageText.textContent = imageNumber == 4 ? `5/1` : imageText.textContent;
     } else {
       if (listRolledFrom == 'E') {
         switch (numberOfImages) {
