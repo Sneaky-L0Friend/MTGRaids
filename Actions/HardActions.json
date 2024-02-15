@@ -29,7 +29,7 @@
     "Each opponent exiles one non-token creature of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, their life total cannot change.[Artifact/Enchantment]",
     "Deal ${currentRound} damage to every creature.[Sorcery]",
-    "Destroy all permanents with a CMC of ${diceRolledThisRound} or less.[Sorcery]",
+    "Destroy all nonland permanents with a CMC of ${diceRolledThisRound} or less.[Sorcery]",
     "Each player destroys all non-basic lands they control.[Artifacts/Enchantment]",
     "Each opponent sacrifices ${currentRound} permanents and creates ${diceRolledThisRound} treasure tokens.[Instant/Sorcery]",
     "The Raid Monster copies each player's highest CMC creature; it must attack the respective player this turn.[Creature]",
