@@ -214,8 +214,48 @@ function addMinions(numberOfImages, imageNumber) {
     if(playerNumberSpecific) {
       imageText.textContent = listRolledFrom == 'M' ? `${currentRound + 1}/${currentRound + 1}` : '2/2';
     } else {
-      imageText.textContent = numberOfImages == 1 ? `${currentRound + 1}/${currentRound + 1}` : `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
-      imageText.textContent = numberOfImages == 3 ? `1/1` : imageText.textContent;
+      if(listRolledFrom == 'E') {
+        switch (numberOfImages) {
+          case 1: 
+            imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
+            break;
+          case 2:
+            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            break;
+          case 3: 
+            imageText.textContent = '1/1';
+            break;
+          default :
+            imageText.textContent = '1/1';
+            break;  
+        }
+      }
+      else if(listRolledFrom == 'M') {
+        switch (numberOfImages) {
+          case 1: 
+            imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
+            break;
+          case 4:
+            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            break;
+          default :
+            imageText.textContent = '1/1';
+            break;  
+        }
+      }
+      else if(listRolledFrom == 'H') {
+        switch (numberOfImages) {
+          case 2: 
+            imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
+            break;
+          case 4:
+            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            break;
+          default :
+            imageText.textContent = '1/1';
+            break;  
+        }
+      }
     }
     imageText.contentEditable = true;
 
