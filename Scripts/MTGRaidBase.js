@@ -47,7 +47,7 @@ function takeMonsterAction() {
     listRolledFrom = "E";
   } else if (randomValue < (baseProbability + additionalProbability)) {
     randomlyRolledList = mediumActionsJson;
-    listRolledFrom = "M";
+    listRolledFrom = "M"; 
   } else {
     randomlyRolledList = hardActionsJson;
     listRolledFrom = "H";
