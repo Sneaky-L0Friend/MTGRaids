@@ -64,7 +64,7 @@ function takeMonsterAction() {
   ++numberOfDiceRolled;
   const actionElement = document.getElementById("action");
   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
-  let playerNumberSpecific = false;
+  playerNumberSpecific = false;
   if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
     playerNumberSpecific = true;
   }
