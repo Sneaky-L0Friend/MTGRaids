@@ -206,8 +206,8 @@ function addMinions(numberOfImages, imageNumber) {
     img.src = `Minions/${imageNumber}.jpeg`;
     img.alt = 'Image ' + (i + 1); // Alt text for accessibility
 
-    img.style.width = '300px';
-    img.style.height = '170px';
+    img.style.width = '290px';
+    img.style.height = '160px';
 
     const imageText = document.createElement('div');
     imageText.className = 'image-text';
