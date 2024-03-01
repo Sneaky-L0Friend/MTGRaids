@@ -1,6 +1,6 @@
  {
   "Actions": [
-    "Each opponent discards 1 card, mills 1 card, and destroys a creature, enchantment and artifact.[Instant/Sorcery/Enchantment]",
+    "Each opponent discards 1 card, mills 1 card, and destroys a creature, enchantment or artifact.[Instant/Sorcery/Enchantment]",
     "The Raid Monster creates ${numberOfPlayers} ${currentRound+1}/${currentRound+1} artifact creature in its colors, each one attacks a seperate player this turn.[Creature]",
     "The Raid Monster creates ${numberOfPlayers} 5/1 deathtouch enchantment artifact creature in its colors, each one attacks a seperate player this turn.[Creature]",
     "For each opponent, destroy target permanent of the player's choice.[Instant/Sorcery/Enchantment]",
@@ -16,22 +16,22 @@
     "For each opponent, destroy target enchantment of the player's choice.[Instant/Sorcery/Enchantment]",
     "The Raid Monster creates 1 ${currentRound+1}/${currentRound+1} artifact creature in its colors, and it attacks the player with the highest life total this turn.[Creature]",
     "The Raid Monster creates 4 ${diceRolledThisRound}/${diceRolledThisRound} flying, deathtouch, enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monsters next turn.[Creature]",
-    "Each opponent sacrifices half of the enchantments they control rounded down.[Sorcery/Enchantment]",
+    "Each opponent sacrifices half of the enchantments they control rounded down, or take damage equal to the CMC of the cards that would be sacraficed.[Sorcery/Enchantment]",
     "For each opponent, destroy target artifact of the player's choice.[Artifact/Enchantment]",
-    "Each opponent sacrifices half the number of artifacts they control rounded down.[Sorcery/Enchantment]",
+    "Each opponent sacrifices half the number of artifacts they control rounded down, or take damage equal to the CMC of the cards that would be sacraficed.[Sorcery/Enchantment]",
     "Each player exiles 2 creatures from their graveyards and drains 6 life.[Instant/Sorcery/Enchantment]",
-    "Each player exiles 2 artifacts and 2 enchantments from their graveyards and drains 6 life.[Instant/Sorcery/Enchantment]",
+    "Each player exiles 2 artifacts/enchantments from their graveyards and drains 6 life.[Instant/Sorcery/Enchantment]",
     "Each player exiles 1 card from their hand of their choice.[Instant/Sorcery/Enchantment]",
-    "For each opponent, destroy 2 nonland permanents with the highest CMC or take damage equal to the CMC of those permanents.[Sorcery/Enchantment]",
+    "For each opponent, destroy 2 nonland permanents with the highest CMC, or take damage equal to the CMC of those permanents.[Sorcery/Enchantment]",
     "For each opponent counter the first card played on their next turn.[Instant]",
     "For each opponent, destroy a nonland permanent with the lowest CMC, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
-    "Each opponent shuffles ${diceRolledThisRound+1} nonland permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
-    "Each opponent exiles one target creature of their choice.[Instant/Sorcery]",
+    "Each opponent shuffles ${diceRolledThisRound+1} nonland permanents of their choice into their decks, or take damage equal to the CMC of the cards that would be shuffled.[Instant/Sorcery/Enchantment]",
+    "Each opponent exiles one target non-commander creature of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, their life total cannot change by more than half.[Artifact/Enchantment]",
     "Deal 3 damage to every creature.[Sorcery]",
-    "Destroy all nonland permanents with a CMC of 3 or less.[Sorcery]",
+    "Destroy half of each player's nonland permanents with a CMC of 3 or less rounded down.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifact/Enchantment]",
     "Each opponent sacrifices ${diceRolledThisRound} nonland permanents and creates ${diceRolledThisRound+2} treasure tokens.[Instant]",
-    "Return all player's nonland permanents to their hand.[Sorcery]"
+    "Return 3 nonland permanents to their hand, or take damage equal to the CMC of the cards that would be returned.[Sorcery]"
   ]
 }
