@@ -25,7 +25,7 @@
     "For each opponent, destroy 2 nonland permanents with the highest CMC or take damage equal to the CMC of those permanents.[Sorcery/Enchantment]",
     "For each opponent counter the first card played on their next turn.[Instant]",
     "For each opponent, destroy a nonland permanent with the lowest CMC, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
-    "Each opponent shuffles ${diceRolledThisRound+1} permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
+    "Each opponent shuffles ${diceRolledThisRound+1} nonland permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target creature of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, their life total cannot change by more than half.[Artifact/Enchantment]",
     "Deal 3 damage to every creature.[Sorcery]",
