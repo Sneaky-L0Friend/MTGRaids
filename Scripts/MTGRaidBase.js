@@ -6,10 +6,13 @@ let gameCanStart = false;
 let log = [];
 let bossMonsterImageUrl = "";
 let monsterHandSize = 8;
+let modifiedMonsterHandSize = 0;
+let monsterStartingHandSize = 8;
 let modifiersToUse;
 let listRolledFrom;
 let playerNumberSpecific = false;
 let numberOfPlayersGlobal;
+let currentMonsterLands = 1;
 
 function takeMonsterAction() {
   if (!window.startedGame) {
@@ -139,7 +142,7 @@ function increaseRound() {
   addLog(`ROUND ${currentRound}`);
   updateRound();
   updateMonsterHandSize();
-  updateMonsterLandCount();
+  updateMonsterLandCountByAmount(1);
 }
 
 function decreaseRound() {
@@ -151,7 +154,7 @@ function decreaseRound() {
   addLog(`ROUND ${currentRound}`);
   updateRound();
   updateMonsterHandSize();
-  updateMonsterLandCount();
+  updateMonsterLandCountByAmount(-1);
 }
 
 function checkInput() {
@@ -320,14 +323,25 @@ function displayColorRectangle() {
 
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById('monsterHand');
-  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize - Math.floor(currentRound / 2)}`;
+  monsterHandSize = monsterStartingHandSize - Math.floor(currentRound / 2) + modifiedMonsterHandSize;
+  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
 
   monsterHandDiv.style.display = "flex";
 }
 
-function updateMonsterLandCount() {
+function updateMonsterHandSizeByAmount(amount) {
+  const monsterHandDiv = document.getElementById('monsterHand');
+  modifiedMonsterHandSize = modifiedMonsterHandSize + amount;
+  monsterHandSize = monsterStartingHandSize - Math.floor(currentRound / 2) + modifiedMonsterHandSize;
+  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
+
+  monsterHandDiv.style.display = "flex";
+}
+
+function updateMonsterLandCountByAmount(amount) {
   const monsterLandDiv = document.getElementById('monsterLand');
-  monsterLandDiv.innerText = `Monster Land Count: ${currentRound}`;
+  currentMonsterLands = currentMonsterLands + amount;
+  monsterLandDiv.innerText = `Monster Land Count: ${currentMonsterLands}`;
 
   monsterLandDiv.style.display = "flex";
 }
@@ -345,12 +359,15 @@ function startGame(difficulty) {
   var startMedium = document.getElementById("startMedium");
   var startHard = document.getElementById("startHard");
   var textBox = document.getElementById("myTextbox");
-  var playerLabel = document.getElementById("playerLabel");
+  var monsterHandButton = document.getElementById("monsterHandButtons");
+  var monsterLandButton = document.getElementById("monsterLandButtons");
   textBox.style.display = "none";
   playerLabel.style.display = "none";
   startEasy.style.display = "none";
   startMedium.style.display = "none";
   startHard.style.display = "none";
+  monsterLandButton.style.display = "grid";
+  monsterHandButton.style.display = "grid";
 
   // Get the number of players
   var value = textBox.value;
@@ -361,7 +378,7 @@ function startGame(difficulty) {
 
   displayColorRectangle();
   updateMonsterHandSize();
-  updateMonsterLandCount();
+  updateMonsterLandCountByAmount(0);
   readActionJsonFiles();
   addLog(`ROUND ${currentRound}`);
 

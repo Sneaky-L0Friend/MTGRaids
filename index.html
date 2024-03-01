@@ -32,9 +32,17 @@
         Start Hard Challenge</button>
     </div>
 <div style="display: flex;">
+  <div id="monsterHandButtons" class="button-wrapper" style="display: none;">
+    <button style="cursor: pointer;" onclick="updateMonsterHandSizeByAmount(1)">+</button>
+    <button style="cursor: pointer;" onclick="updateMonsterHandSizeByAmount(-1)">-</button>
+  </div>
   <div id="monsterHand" class="display-box" style="cursor: default; display: none; width: fit-content;">Monster Hand Size: 8</div>
   <div id="colorRectangle" style="display: none; align-self: center;"></div>
   <div id="monsterLand" class="display-box" style="cursor: default; display: none; width: fit-content;">Monster Land Count: 0</div>
+  <div id="monsterLandButtons" class="button-wrapper" style="display: none;">
+    <button style="cursor: pointer;" onclick="updateMonsterLandCountByAmount(1)">+</button>
+    <button style="cursor: pointer;" onclick="updateMonsterLandCountByAmount(-1)">-</button>
+  </div>  
 </div>
 
   </div>
