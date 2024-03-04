@@ -11,6 +11,26 @@ body {
     /* Light text color */
   }
 
+.controls button:hover {
+    background-color:#676767;
+  }
+.controls button:active {
+    background-color:#323232;
+  }
+button:hover {
+    background-color:#676767;
+  }
+button:active {
+    background-color: #323232;
+}
+
+.button-wrapper button:hover {
+    background-color:#676767;
+  }
+.button-wrapper button:active {
+    background-color:#323232;
+  }
+
   #diceLog {
     position: fixed;
     /* Fixed positioning */

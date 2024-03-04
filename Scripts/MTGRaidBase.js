@@ -369,6 +369,7 @@ function startGame(difficulty) {
   monsterLandButton.style.display = "grid";
   monsterHandButton.style.display = "grid";
 
+
   // Get the number of players
   var value = textBox.value;
   numberOfPlayersGlobal = value;

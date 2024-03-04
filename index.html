@@ -50,12 +50,11 @@
   <div id="diceLog" style="display: none;"></div>
 
   <div id="imageContainer"></div>
-
   <div class="display-container">
     <button id="dices" class="display-box" onclick="takeMonsterAction()">Click for Monster Action</button>
     <div id="action" class="display-box" style="cursor: default;">Action: None</div>
   </div>
-
+  
   <div class="controls" style="margin-bottom: 2px;">
     <button id="counterButton" style="cursor: pointer;" onclick="strikeOutMonsterAction()">Counter</button>
     <button style="cursor: pointer;" onclick="decreaseMonsterHealth(10)">-10</button>
@@ -70,30 +69,30 @@
   <div class="display-container" style="flex-direction: row; gap: 3px; align-items: flex-start;">
     <div id="number" class="display-box" style="cursor: default;">Monster Health: 0</div>
     <div id="numberInfect" class="display-box" style="cursor: default;">Infect: 0</div>
-    <div class="controls" style="display: flex; flex-direction: column;">
+    <div class="controls" style="display: flex; flex-direction: column; margin-top: -2px;">
       <button style="cursor: pointer;" onclick="changeMonsterInfect(1)">+</button>
       <button style="cursor: pointer;" onclick="changeMonsterInfect(-1)">-</button>
     </div>
   </div>
-
+  
   <div class="controls">
-    <button id="increaseRoundButton" onclick="decreaseRound()">-</button>
-    <button id="decreaseRoundButton" onclick="increaseRound()">+</button>
+    <button style="cursor: pointer;" id="increaseRoundButton" onclick="decreaseRound()">-</button>
+    <button style="cursor: pointer;" id="decreaseRoundButton" onclick="increaseRound()">+</button>
   </div>
-
+  
   <div class="display-container">
     <div id="round" class="display-box" style="cursor: default;">Round: 1</div>
     <div id="rounds" class="display-box" style="cursor: default;">Actions this turn: 0</div>
   </div>
-
+  
   <div class="player-health-container" id="playerHealthContainer">
     <!-- Player health boxes will be dynamically added here -->
   </div>
-
+  
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <div id="errorMessage"></div> 
-
+  
 </body>
 
 </html>

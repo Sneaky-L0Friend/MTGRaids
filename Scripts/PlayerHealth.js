@@ -14,10 +14,10 @@ function updatePlayerHealth(player) {
   const playerHealthElement = document.getElementById(`player${player}Health`);
   playerHealthElement.innerHTML = `<div class="controls2">
                                   <div class="button-wrapper">
-                                    <button onclick="increasePlayerHealth(${player}, 10)">+10</button>
-                                    <button onclick="increasePlayerHealth(${player}, 1)">+</button>
-                                    <button onclick="decreasePlayerHealth(${player}, 1)">-</button>
-                                    <button onclick="decreasePlayerHealth(${player}, 10)">-10</button>
+                                    <button style="cursor: pointer;" onclick="increasePlayerHealth(${player}, 10)">+10</button>
+                                    <button style="cursor: pointer;" onclick="increasePlayerHealth(${player}, 1)">+</button>
+                                    <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 1)">-</button>
+                                    <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 10)">-10</button>
                                   </div>
                                   <div class="display-box">Player ${player} Health: ${playerHealth[player]}</div>
                                 </div>`;
@@ -37,10 +37,10 @@ function createPlayerHealthBoxes(numberOfPlayers) {
 
     playerHealthBox.innerHTML = `<div class="controls2">
                                   <div class="button-wrapper">
-                                  <button onclick="increasePlayerHealth(${i}, 10)">+10</button>
-                                    <button onclick="increasePlayerHealth(${i}, 1)">+</button>
-                                    <button onclick="decreasePlayerHealth(${i}, 1)">-</button>
-                                    <button onclick="decreasePlayerHealth(${i}, 10)">-10</button>
+                                    <button style="cursor: pointer;"onclick="increasePlayerHealth(${i}, 10)">+10</button>
+                                    <button style="cursor: pointer;"onclick="increasePlayerHealth(${i}, 1)">+</button>
+                                    <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 1)">-</button>
+                                    <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 10)">-10</button>
                                   </div>
                                   <div class="display-box">Player ${i} Health: 40</div>
                                 </div>
