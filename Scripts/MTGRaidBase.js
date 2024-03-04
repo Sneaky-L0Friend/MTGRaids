@@ -373,7 +373,9 @@ function startGame(difficulty) {
   var value = textBox.value;
   numberOfPlayersGlobal = value;
   monsterHealth = value * lifeMultiplier;
+  monsterInfect = value * 7;
   updateMonsterHealth();
+  updateMonsterInfect();
   createPlayerHealthBoxes(value);
 
   displayColorRectangle();
