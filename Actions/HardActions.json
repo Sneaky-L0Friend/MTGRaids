@@ -1,4 +1,4 @@
- {
+{
   "Actions": [
     "Each opponent discards 2 card, mills 2 card, and sacrifices 2 creatures, enchantments and artifacts.[Instant/Sorcery/Enchantment]",
     "Each opponent sacrifices ${currentRound+1} creatures.[Instant/Sorcery]",

@@ -24,7 +24,9 @@ function updatePlayerHealth(player) {
 }
 
 function createPlayerHealthBoxes(numberOfPlayers) {
-  const playerHealthContainer = document.getElementById("playerHealthContainer");
+  const playerHealthContainer = document.getElementById(
+    "playerHealthContainer",
+  );
 
   // Clear existing player health boxes
   playerHealthContainer.innerHTML = "";

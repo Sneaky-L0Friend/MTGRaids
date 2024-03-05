@@ -34,13 +34,21 @@ function takeMonsterAction() {
   let easyProbability;
   if (modifiersToUse == EASY_MODE_MODIFIERS) {
     console.log("easy mode selected");
-    baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
-    additionalProbability = (1 * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
-    easyProbability = baseProbability
+    baseProbability =
+      1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)));
+    additionalProbability =
+      1 *
+      (1 / (1 + Math.exp(-modifiersToUse.modifier2))) *
+      modifiersToUse.modifier3;
+    easyProbability = baseProbability;
   } else {
-    baseProbability = 1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)))
-    additionalProbability = ((1 - baseProbability) * (1 / (1 + (Math.exp(-modifiersToUse.modifier2))))) * modifiersToUse.modifier3
-    easyProbability = additionalProbability
+    baseProbability =
+      1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)));
+    additionalProbability =
+      (1 - baseProbability) *
+      (1 / (1 + Math.exp(-modifiersToUse.modifier2))) *
+      modifiersToUse.modifier3;
+    easyProbability = additionalProbability;
   }
 
   // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
@@ -48,9 +56,9 @@ function takeMonsterAction() {
   if (randomValue < easyProbability) {
     randomlyRolledList = easyActionsJson;
     listRolledFrom = "E";
-  } else if (randomValue < (baseProbability + additionalProbability)) {
+  } else if (randomValue < baseProbability + additionalProbability) {
     randomlyRolledList = mediumActionsJson;
-    listRolledFrom = "M"; 
+    listRolledFrom = "M";
   } else {
     randomlyRolledList = hardActionsJson;
     listRolledFrom = "H";
@@ -71,7 +79,8 @@ function takeMonsterAction() {
   if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
     playerNumberSpecific = true;
   }
-  actionElement.innerText = randomlyRolledList.Actions[result].replaceAll("${diceRolledThisRound}", diceRolledThisRound)
+  actionElement.innerText = randomlyRolledList.Actions[result]
+    .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
     .replaceAll("${currentRound}", currentRound)
     .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
     .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
@@ -81,45 +90,62 @@ function takeMonsterAction() {
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
-    //TODO: SMH Just do it based on the index used...no need to string compare     
-    let howManyToMake = randomlyRolledList.Actions[result].includes("Monster creates 1") ? 1 : randomlyRolledList.Actions[result].includes("Monster creates 2") ? 2 : randomlyRolledList.Actions[result].includes("Monster creates 3") ? 3 : 4;
-    howManyToMake = playerNumberSpecific ? numberOfPlayersGlobal : howManyToMake;
+    //TODO: SMH Just do it based on the index used...no need to string compare
+    let howManyToMake = randomlyRolledList.Actions[result].includes(
+      "Monster creates 1",
+    )
+      ? 1
+      : randomlyRolledList.Actions[result].includes("Monster creates 2")
+        ? 2
+        : randomlyRolledList.Actions[result].includes("Monster creates 3")
+          ? 3
+          : 4;
+    howManyToMake = playerNumberSpecific
+      ? numberOfPlayersGlobal
+      : howManyToMake;
     // Set the image source
     if (playerNumberSpecific) {
-      console.log('Add minions 0.75');
-      if(randomlyRolledList.Actions[result].includes("5/1")) {
+      console.log("Add minions 0.75");
+      if (randomlyRolledList.Actions[result].includes("5/1")) {
         addMinions(howManyToMake, 4);
       } else {
         addMinions(howManyToMake, 1);
       }
     } else {
-      if (howManyToMake == 1 && (listRolledFrom == 'E' || listRolledFrom == 'M')) {
-        console.log('Add minions 1');
+      if (
+        howManyToMake == 1 &&
+        (listRolledFrom == "E" || listRolledFrom == "M")
+      ) {
+        console.log("Add minions 1");
         addMinions(howManyToMake, 1);
       }
-      if (howManyToMake == 3 && (listRolledFrom == 'E')) {
-        console.log('Add minions 2');
+      if (howManyToMake == 3 && listRolledFrom == "E") {
+        console.log("Add minions 2");
         addMinions(howManyToMake, 2);
-      }
-      else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
-        console.log('Add minions 3');
+      } else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
+        console.log("Add minions 3");
         addMinions(howManyToMake, 1);
-      }
-      else if ((howManyToMake == 2 && listRolledFrom == 'E') || (howManyToMake == 3 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'M') || (howManyToMake == 4 && listRolledFrom == 'H')) {
-        console.log('Add minions 4');
+      } else if (
+        (howManyToMake == 2 && listRolledFrom == "E") ||
+        (howManyToMake == 3 && listRolledFrom == "M") ||
+        (howManyToMake == 4 && listRolledFrom == "M") ||
+        (howManyToMake == 4 && listRolledFrom == "H")
+      ) {
+        console.log("Add minions 4");
         addMinions(howManyToMake, 2);
       }
     }
   }
 
-  addLog(`${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`);
+  addLog(
+    `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
+  );
 
   if (randomlyRolledList.Actions[result].includes("one more action")) {
     numberOfDiceRolled--;
     return;
   }
   updateRound();
-
 }
 
 function updateRound() {
@@ -185,7 +211,9 @@ function pickMonster() {
   }
 
   // Pick a random number within the selected range
-  const pickedNumber = Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) + selectedRange[0];
+  const pickedNumber =
+    Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) +
+    selectedRange[0];
 
   const startElement = document.getElementById("startEasy");
   var imgElement = document.createElement("img");
@@ -208,74 +236,81 @@ function addMinions(numberOfImages, imageNumber) {
     showErrorMessage("Please Start the Game First");
     return;
   }
-  const container = document.getElementById('imageContainer');
-  console.log('Add ' + numberOfImages + ', Image number ' + imageNumber);
+  const container = document.getElementById("imageContainer");
+  console.log("Add " + numberOfImages + ", Image number " + imageNumber);
   for (let i = 0; i < numberOfImages; i++) {
-    const imageContainer = document.createElement('div');
-    imageContainer.className = 'image-container';
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
 
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = `Minions/${imageNumber}.jpeg`;
-    img.alt = 'Image ' + (i + 1); // Alt text for accessibility
+    img.alt = "Image " + (i + 1); // Alt text for accessibility
 
-    img.style.width = '290px';
-    img.style.height = '160px';
+    img.style.width = "290px";
+    img.style.height = "160px";
 
-    const imageText = document.createElement('div');
-    imageText.className = 'image-text';
+    const imageText = document.createElement("div");
+    imageText.className = "image-text";
     if (playerNumberSpecific) {
-      console.log("player number specific add minion")
-      imageText.textContent = listRolledFrom == 'M' ? `${currentRound + 1}/${currentRound + 1}` : '2/2';
+      console.log("player number specific add minion");
+      imageText.textContent =
+        listRolledFrom == "M"
+          ? `${currentRound + 1}/${currentRound + 1}`
+          : "2/2";
       imageText.textContent = imageNumber == 4 ? `5/1` : imageText.textContent;
     } else {
-      if (listRolledFrom == 'E') {
+      if (listRolledFrom == "E") {
         switch (numberOfImages) {
           case 1:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 2:
-            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            imageText.textContent = `${Math.floor(
+              currentRound / 2,
+            )}/${Math.floor(currentRound / 2)}`;
             break;
           case 3:
-            imageText.textContent = '1/1';
+            imageText.textContent = "1/1";
             break;
           default:
-            imageText.textContent = '1/1';
+            imageText.textContent = "1/1";
             break;
         }
-      }
-      else if (listRolledFrom == 'M') {
+      } else if (listRolledFrom == "M") {
         switch (numberOfImages) {
           case 1:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 4:
-            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            imageText.textContent = `${Math.floor(
+              currentRound / 2,
+            )}/${Math.floor(currentRound / 2)}`;
             break;
           default:
-            imageText.textContent = '1/1';
+            imageText.textContent = "1/1";
             break;
         }
-      }
-      else if (listRolledFrom == 'H') {
+      } else if (listRolledFrom == "H") {
         switch (numberOfImages) {
           case 2:
             imageText.textContent = `${currentRound + 1}/${currentRound + 1}`;
             break;
           case 4:
-            imageText.textContent = `${Math.floor(currentRound / 2)}/${Math.floor(currentRound / 2)}`;
+            imageText.textContent = `${Math.floor(
+              currentRound / 2,
+            )}/${Math.floor(currentRound / 2)}`;
             break;
           default:
-            imageText.textContent = '1/1';
+            imageText.textContent = "1/1";
             break;
         }
       } else {
-        imageText.textContent = '1/1';
+        imageText.textContent = "1/1";
       }
     }
     imageText.contentEditable = true;
 
-    img.addEventListener('click', function () {
+    img.addEventListener("click", function () {
       removeImage(imageContainer);
     });
 
@@ -287,15 +322,15 @@ function addMinions(numberOfImages, imageNumber) {
 
 function setDifficultyAtStart(difficulty) {
   switch (difficulty) {
-    case 'easy':
+    case "easy":
       modifiersToUse = EASY_MODE_MODIFIERS;
       lifeMultiplier = 20;
       break;
-    case 'medium':
+    case "medium":
       modifiersToUse = MEDIUM_MODE_MODIFIERS;
       lifeMultiplier = 25;
       break;
-    case 'hard':
+    case "hard":
       modifiersToUse = HARD_MODE_MODIFIERS;
       lifeMultiplier = 30;
       break;
@@ -303,17 +338,24 @@ function setDifficultyAtStart(difficulty) {
 }
 
 function displayColorRectangle() {
-  const colorRectangle = document.getElementById('colorRectangle');
+  const colorRectangle = document.getElementById("colorRectangle");
   const pickedNumber = pickMonster();
 
   // Set the background color of the rectangle based on the chosen number
   const colorName = colorMap[pickedNumber];
 
-  if (colorName.includes('-')) {
-    const colors = colorName.split('-');
+  if (colorName.includes("-")) {
+    const colors = colorName.split("-");
     const widthPercentage = 100 / colors.length;
-    const gradientColors = colors.map((color, index) => `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`);
-    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
+    const gradientColors = colors.map(
+      (color, index) =>
+        `${color.toLowerCase()} ${widthPercentage * index}% ${
+          widthPercentage * (index + 1)
+        }%`,
+    );
+    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(
+      ", ",
+    )})`;
   } else {
     // Handle single-color scenarios
     colorRectangle.style.background = colorName.toLowerCase();
@@ -322,24 +364,30 @@ function displayColorRectangle() {
 }
 
 function updateMonsterHandSize() {
-  const monsterHandDiv = document.getElementById('monsterHand');
-  monsterHandSize = monsterStartingHandSize - Math.floor(currentRound / 2) + modifiedMonsterHandSize;
+  const monsterHandDiv = document.getElementById("monsterHand");
+  monsterHandSize =
+    monsterStartingHandSize -
+    Math.floor(currentRound / 2) +
+    modifiedMonsterHandSize;
   monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
 
   monsterHandDiv.style.display = "flex";
 }
 
 function updateMonsterHandSizeByAmount(amount) {
-  const monsterHandDiv = document.getElementById('monsterHand');
+  const monsterHandDiv = document.getElementById("monsterHand");
   modifiedMonsterHandSize = modifiedMonsterHandSize + amount;
-  monsterHandSize = monsterStartingHandSize - Math.floor(currentRound / 2) + modifiedMonsterHandSize;
+  monsterHandSize =
+    monsterStartingHandSize -
+    Math.floor(currentRound / 2) +
+    modifiedMonsterHandSize;
   monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
 
   monsterHandDiv.style.display = "flex";
 }
 
 function updateMonsterLandCountByAmount(amount) {
-  const monsterLandDiv = document.getElementById('monsterLand');
+  const monsterLandDiv = document.getElementById("monsterLand");
   currentMonsterLands = currentMonsterLands + amount;
   monsterLandDiv.innerText = `Monster Land Count: ${currentMonsterLands}`;
 
@@ -369,7 +417,6 @@ function startGame(difficulty) {
   monsterLandButton.style.display = "grid";
   monsterHandButton.style.display = "grid";
 
-
   // Get the number of players
   var value = textBox.value;
   numberOfPlayersGlobal = value;
@@ -384,5 +431,4 @@ function startGame(difficulty) {
   updateMonsterLandCountByAmount(0);
   readActionJsonFiles();
   addLog(`ROUND ${currentRound}`);
-
 }

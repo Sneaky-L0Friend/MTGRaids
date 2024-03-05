@@ -1,4 +1,4 @@
- {
+{
   "Actions": [
     "Each opponent either discards 1 card, mills 1 card, or destroy a nonland permanent.[Instant/Sorcery/Enchantment]",
     "The Raid Monster creates ${numberOfPlayers} 2/2 artifact creature in its colors, each one attacks a seperate player this turn.[Creature]",

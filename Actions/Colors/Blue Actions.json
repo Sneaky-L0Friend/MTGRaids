@@ -1,4 +1,4 @@
- {
+{
   "Actions": [
     "Each opponent either discards 1 card, mills 1 card, or sacrifices a permanent.[Instant/Sorcery/Enchantment]",
     "Each opponent sacrifices ${diceRolledThisRound} creatures.[Instant/Sorcery]",
@@ -33,6 +33,5 @@
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifacts/Enchantment]",
     "Each opponent sacrifices ${diceRolledThisRound} permanents and creates ${diceRolledThisRound+1} treasure tokens.[Instant]",
     "The Raid Monster copies each player's lowest converted mana cost creature; it must attack the respective player this turn.[Creature]"
-
   ]
 }
