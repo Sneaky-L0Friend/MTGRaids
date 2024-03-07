@@ -88,8 +88,10 @@
   <div class="player-health-container" id="playerHealthContainer">
     <!-- Player health boxes will be dynamically added here -->
   </div>
-  <div class="popup" onclick="myFunction()">FAQ 
-    <span class="popuptext" id="myPopup">Welcome to the MTG Raids App!
+  
+  <button onclick="displayText()">FAQ</button>
+  <div id="textField" styles="display-container">     
+      Welcome to the MTG Raids App!
 
       Below are some clarifying rules:
       1) When blocking with it's creatures it tries to hurt the player the most by targeting biggest threats it can kill first, then highets attack, etc.
@@ -103,9 +105,9 @@
       9) The raid monster uses the stack like any other player.
       10) Don't build a deck to screw the monster, make your deck like you would play in a standard PvP situation
       11) Monster infect starts at the correct amount, make it hit zero to win via infect! (7 per player)
-      12) Have fun!</span>
+      12) Have fun!
   </div>
-  
+
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <div id="errorMessage"></div> 
