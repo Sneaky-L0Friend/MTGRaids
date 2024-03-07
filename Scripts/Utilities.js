@@ -94,6 +94,6 @@ function readActionJsonFiles() {
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
-funtion displayText() {
+function displayText() {
     var text=document.getElementById("textField"); text.style.display="block"
 }
