@@ -9,7 +9,7 @@
     "The Raid Monster deals 6 damage to every player and 3 to every planeswalker.[Instant/Sorcery]",
     "The Raid Monster deals 8 damage to every player.[Instant/Sorcery]",
     "The Raid Monster gains 9 life and removes 5 infect counters.[Instant/Sorcery]",
-    "The Raid Monster gains 5 life and deals to ${diceRolledThisRound} damage to every creature.[Sorcery/Enchantment]",
+    "The Raid Monster gains 5 life and deals to ${diceRolledThisRound} damage to every creature it doesn't control.[Sorcery/Enchantment]",
     "Until the beginning of the Monster’s next turn, players cannot draw more than 2 cards.[Instant/Sorcery/Enchantment]",
     "Until the beginning of the Monster’s next turn, players cannot play more than 2 spells each turn.[Instant/Sorcery/Enchantment]",
     "Each opponent sacrifices half the number of tokens they control rounded down.[Instant/Sorcery/Enchantment]",
