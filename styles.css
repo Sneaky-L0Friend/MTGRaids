@@ -176,7 +176,7 @@ button:active {
 .player-health-container {
   position: fixed;
   top: 150px;
-  right: 450px;
+  right: 320px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -185,7 +185,7 @@ button:active {
 .player-health-names-container {
   position: fixed;
   top: 170px;
-  right: 300px;
+  right: 500px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
