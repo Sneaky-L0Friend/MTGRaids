@@ -182,6 +182,16 @@ button:active {
   align-items: flex-end;
 }
 
+.player-health-names-container {
+  position: fixed;
+  top: 170px;
+  right: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  grid-row-gap: 53px;
+}
+
 .player-health-box {
   margin-bottom: 10px;
 }
