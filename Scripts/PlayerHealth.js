@@ -46,8 +46,8 @@ function createPlayerHealthBoxes(numberOfPlayers) {
                                               <input
                                                   class="display-box"
                                                   type="text"
-                                                  style="text-align: center; width: 100px; font-size: 20px;"
-                                                  placeholder="Player name "
+                                                  style="text-align: center; width: 115px; font-size: 20px;"
+                                                  placeholder="Player ${i}"
                                                 />
                                             </div>
                                             `;
