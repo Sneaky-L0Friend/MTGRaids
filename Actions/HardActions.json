@@ -28,7 +28,7 @@
     "Each opponent shuffles ${diceRolledThisRound+1} permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one non-token creature of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, their life total cannot change.[Artifact/Enchantment]",
-    "Deal ${currentRound} damage to every creature.[Sorcery]",
+    "Deal ${currentRound} damage to every creature and planeswalker.[Sorcery]",
     "Destroy all nonland permanents with a CMC of ${diceRolledThisRound} or less.[Sorcery]",
     "Each player destroys all non-basic lands they control.[Artifacts/Enchantment]",
     "Each opponent sacrifices ${currentRound} permanents and creates ${diceRolledThisRound} treasure tokens.[Instant/Sorcery]",

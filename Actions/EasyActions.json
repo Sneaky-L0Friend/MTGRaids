@@ -29,7 +29,7 @@
     "Each opponent shuffles 2 nonland permanents of their choice into their decks, or take damage equal to the CMC of the cards that would be shuffled.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target non-commander card of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, they cannot lose the game.[Artifact/Enchantment]",
-    "Deal 2 damage to every creature.[Sorcery]",
+    "Deal 2 damage to every creature and planeswalker.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifacts/Enchantment]",
     "Each opponent sacrifices 3 permanents and creates ${diceRolledThisRound+1} treasure tokens.[Instant]",
     "The Raid Monster copies each player's lowest converted mana cost creature; it must attack the respective player this turn.[Creature]"
