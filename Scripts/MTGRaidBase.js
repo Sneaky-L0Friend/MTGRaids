@@ -63,6 +63,15 @@ function takeMonsterAction() {
     randomlyRolledList = hardActionsJson;
     listRolledFrom = "H";
   }
+  if(listRolledFrom == "H" && currentRound < 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
+    actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
+    addLog(
+      `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
+    );
+    setTimeout(() => {
+      takeMonsterAction();
+    }, 1500);
+  }
   const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
 
   // console.log(randomValue);
@@ -79,8 +88,7 @@ function takeMonsterAction() {
   if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
     playerNumberSpecific = true;
   }
-  var stringToAppend = (listRolledFrom == "H" && currentRound < 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) 
-  ? "DOES NOTHING IF BEFORE ROUND 5." : "";
+
   actionElement.innerText = randomlyRolledList.Actions[result]
   .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
   .replaceAll("${currentRound}", currentRound)
