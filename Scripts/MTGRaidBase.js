@@ -72,6 +72,7 @@ function takeMonsterAction() {
     setTimeout(() => {
       takeMonsterAction();
     }, 1500);
+    return;
   }
   const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
 
