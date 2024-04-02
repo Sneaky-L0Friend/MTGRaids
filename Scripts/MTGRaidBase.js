@@ -64,7 +64,7 @@ function takeMonsterAction() {
     listRolledFrom = "H";
   }
   const actionElement = document.getElementById("action");
-  if(listRolledFrom == "H" && currentRound < 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
+  if(listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
     actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
     addLog(
       `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
