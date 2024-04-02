@@ -63,6 +63,7 @@ function takeMonsterAction() {
     randomlyRolledList = hardActionsJson;
     listRolledFrom = "H";
   }
+  const actionElement = document.getElementById("action");
   if(listRolledFrom == "H" && currentRound < 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
     actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
     addLog(
@@ -82,7 +83,6 @@ function takeMonsterAction() {
 
   ++totalDiceRolls;
   ++numberOfDiceRolled;
-  const actionElement = document.getElementById("action");
   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
   playerNumberSpecific = false;
   if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
