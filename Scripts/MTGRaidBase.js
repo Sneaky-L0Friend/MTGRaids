@@ -95,7 +95,7 @@ function takeMonsterAction() {
   .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
   .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
   .replaceAll("${currentRound+1}", currentRound + 1)
-  .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal).concat(stringToAppend);
+  .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
   
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
