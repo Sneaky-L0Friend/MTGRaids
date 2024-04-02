@@ -80,13 +80,15 @@ function takeMonsterAction() {
     playerNumberSpecific = true;
   }
   actionElement.innerText = randomlyRolledList.Actions[result]
-    .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
-    .replaceAll("${currentRound}", currentRound)
-    .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
-    .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
-    .replaceAll("${currentRound+1}", currentRound + 1)
-    .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
-
+  .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
+  .replaceAll("${currentRound}", currentRound)
+  .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
+  .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
+  .replaceAll("${currentRound+1}", currentRound + 1)
+  .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal)
+  + (listRolledFrom == "H" && currentRound < 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) 
+      ? "Does nothing if before round 5." : "";
+  
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (randomlyRolledList.Actions[result].includes("Monster creates")) {
     //make minions
