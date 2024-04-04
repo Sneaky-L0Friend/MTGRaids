@@ -98,56 +98,8 @@ function takeMonsterAction() {
   .replaceAll("${currentRound+1}", currentRound + 1)
   .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
   
-  //TODO: SMH Just do it based on the index used...no need to string compare
-  if (randomlyRolledList.Actions[result].includes("Monster creates")) {
-    //make minions
-    //TODO: SMH Just do it based on the index used...no need to string compare
-    let howManyToMake = randomlyRolledList.Actions[result].includes(
-      "Monster creates 1",
-    )
-      ? 1
-      : randomlyRolledList.Actions[result].includes("Monster creates 2")
-        ? 2
-        : randomlyRolledList.Actions[result].includes("Monster creates 3")
-          ? 3
-          : 4;
-    howManyToMake = playerNumberSpecific
-      ? numberOfPlayersGlobal
-      : howManyToMake;
-    // Set the image source
-    if (playerNumberSpecific) {
-      console.log("Add minions 0.75");
-      if (randomlyRolledList.Actions[result].includes("5/1")) {
-        addMinions(howManyToMake, 4);
-      } else {
-        addMinions(howManyToMake, 1);
-      }
-    } else {
-      if (
-        howManyToMake == 1 &&
-        (listRolledFrom == "E" || listRolledFrom == "M")
-      ) {
-        console.log("Add minions 1");
-        addMinions(howManyToMake, 1);
-      }
-      if (howManyToMake == 3 && listRolledFrom == "E") {
-        console.log("Add minions 2");
-        addMinions(howManyToMake, 2);
-      } else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
-        console.log("Add minions 3");
-        addMinions(howManyToMake, 1);
-      } else if (
-        (howManyToMake == 2 && listRolledFrom == "E") ||
-        (howManyToMake == 3 && listRolledFrom == "M") ||
-        (howManyToMake == 4 && listRolledFrom == "M") ||
-        (howManyToMake == 4 && listRolledFrom == "H")
-      ) {
-        console.log("Add minions 4");
-        addMinions(howManyToMake, 2);
-      }
-    }
-  }
-
+  checkForMinions(randomlyRolledList.Actions[result]);
+  checkIfHealthNeedsModification(randomlyRolledList.Actions[result]);
   addLog(
     `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
   );
@@ -442,4 +394,67 @@ function startGame(difficulty) {
   updateMonsterLandCountByAmount(0);
   readActionJsonFiles();
   addLog(`ROUND ${currentRound}`);
+}
+
+function checkForMinions(action) {
+  //TODO: SMH Just do it based on the index used...no need to string compare
+  if (action.includes("Monster creates")) {
+    //make minions
+    //TODO: SMH Just do it based on the index used...no need to string compare
+    let howManyToMake = action.includes(
+      "Monster creates 1",
+    )
+      ? 1
+      : action.includes("Monster creates 2")
+        ? 2
+        : action.includes("Monster creates 3")
+          ? 3
+          : 4;
+    howManyToMake = playerNumberSpecific
+      ? numberOfPlayersGlobal
+      : howManyToMake;
+    // Set the image source
+    if (playerNumberSpecific) {
+      if (action.includes("5/1")) {
+        addMinions(howManyToMake, 4);
+      } else {
+        addMinions(howManyToMake, 1);
+      }
+    } else {
+      if (
+        howManyToMake == 1 &&
+        (listRolledFrom == "E" || listRolledFrom == "M")
+      ) {
+        addMinions(howManyToMake, 1);
+      }
+      if (howManyToMake == 3 && listRolledFrom == "E") {
+        addMinions(howManyToMake, 2);
+      } else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
+        addMinions(howManyToMake, 1);
+      } else if (
+        (howManyToMake == 2 && listRolledFrom == "E") ||
+        (howManyToMake == 3 && listRolledFrom == "M") ||
+        (howManyToMake == 4 && listRolledFrom == "M") ||
+        (howManyToMake == 4 && listRolledFrom == "H")
+      ) {
+        addMinions(howManyToMake, 2);
+      }
+    }
+  }
+}
+
+function checkIfHealthNeedsModification(action) {
+  var regex = /\d+/;
+  var number = str.match(regex);
+  // Converting the extracted number from string to integer
+  var amountToChangeHealth = parseInt(number);
+  if(action.includes("The Raid Monster deals")) {
+    modifyPlayerHealthFromMonster(amountToChangeHealth);
+  } else if(action.includes("drains")) {
+    // Extracting the number from the string
+    modifyPlayerHealthFromMonster(amountToChangeHealth);
+    increaseMonsterHealth(amountToChangeHealth*numberOfPlayersGlobal);
+  } else if(action.includes("gains")) {
+    increaseMonsterHealth(amountToChangeHealth);
+  }
 }

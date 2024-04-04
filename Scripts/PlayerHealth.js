@@ -68,4 +68,10 @@ function createPlayerHealthBoxes(numberOfPlayers) {
     // Initialize player health object
     playerHealth[i] = 40;
   }
+
+  function modifyPlayerHealthFromMonster(monsterDamage){
+    for (let i = 1; i <= numberOfPlayersGlobal; i++) {
+      decreasePlayerHealth(i, monsterDamage);
+    }
+  }
 }
