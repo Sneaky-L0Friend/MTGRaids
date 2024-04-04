@@ -445,7 +445,7 @@ function checkForMinions(action) {
 
 function checkIfHealthNeedsModification(action) {
   var regex = /\d+/;
-  var number = str.match(regex);
+  var number = action.match(regex);
   // Converting the extracted number from string to integer
   var amountToChangeHealth = parseInt(number);
   if(action.includes("The Raid Monster deals")) {
