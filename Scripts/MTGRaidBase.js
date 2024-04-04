@@ -98,11 +98,11 @@ function takeMonsterAction() {
   .replaceAll("${currentRound+1}", currentRound + 1)
   .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
   
-  checkForMinions(randomlyRolledList.Actions[result]);
-  checkIfHealthNeedsModification(randomlyRolledList.Actions[result]);
   addLog(
     `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
-  );
+    );
+    checkForMinions(randomlyRolledList.Actions[result]);
+    checkIfHealthNeedsModification(randomlyRolledList.Actions[result]);
 
   if (randomlyRolledList.Actions[result].includes("one more action")) {
     numberOfDiceRolled--;
@@ -429,7 +429,7 @@ function checkForMinions(action) {
       }
       if (howManyToMake == 3 && listRolledFrom == "E") {
         addMinions(howManyToMake, 2);
-      } else if (howManyToMake == 2 && randomlyRolledList == hardActionsJson) {
+      } else if (howManyToMake == 2 && listRolledFrom == "H") {
         addMinions(howManyToMake, 1);
       } else if (
         (howManyToMake == 2 && listRolledFrom == "E") ||
