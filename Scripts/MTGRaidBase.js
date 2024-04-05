@@ -148,7 +148,7 @@ function checkInput() {
   var numberInput = document.getElementById("myTextbox").value;
 
   // Check if the input is a number
-  if (!isNaN(numberInput) && numberInput !== "") {
+  if (!isNaN(numberInput) && numberInput !== "" && numberInput > 0 && numberInput <=12) {
     gameCanStart = true;
   } else {
     gameCanStart = false;
