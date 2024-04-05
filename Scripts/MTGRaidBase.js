@@ -148,13 +148,8 @@ function checkInput() {
   var numberInput = document.getElementById("myTextbox").value;
 
   // Check if the input is a number
-  if (!isNaN(numberInput) && numberInput !== "") {
-    if((numberInput > 0 && numberInput <= 12)){
+  if (!isNaN(numberInput) && numberInput !== "" && (numberInput > 0 && numberInput <= 12)) {
       gameCanStart = true;
-    } else {
-      showErrorMessage("Please Enter a Valid Number(1-12)");
-      gameCanStart = false;
-    }
   } else {
     gameCanStart = false;
   }
@@ -362,7 +357,7 @@ function updateMonsterLandCountByAmount(amount) {
 
 function startGame(difficulty) {
   if (!gameCanStart) {
-    showErrorMessage("Enter Number of Players to Start ");
+    showErrorMessage("Enter Valid Number of Players to Start(1-12) ");
     return;
   }
 
