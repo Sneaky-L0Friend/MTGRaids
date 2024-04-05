@@ -148,8 +148,12 @@ function checkInput() {
   var numberInput = document.getElementById("myTextbox").value;
 
   // Check if the input is a number
-  if (!isNaN(numberInput) && numberInput !== "" && numberInput > 0 && numberInput <=12) {
-    gameCanStart = true;
+  if (!isNaN(numberInput) && numberInput !== "") {
+    if((numberInput > 0 && numberInput <= 12)){
+      gameCanStart = true;
+    } else {
+      showErrorMessage("Please Enter a Valid Number(1-12)")
+    }
   } else {
     gameCanStart = false;
   }
