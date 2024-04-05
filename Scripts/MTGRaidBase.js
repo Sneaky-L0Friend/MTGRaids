@@ -142,7 +142,7 @@ function decreaseRound() {
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(-1);
-}
+} 
 
 function checkInput() {
   var numberInput = document.getElementById("myTextbox").value;
