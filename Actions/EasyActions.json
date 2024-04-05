@@ -1,6 +1,6 @@
 {
   "Actions": [
-    "Each opponent either discards 1 card, mills 1 card, or destroy a nonland permanent.[Instant/Sorcery/Enchantment]",
+    "Each opponent either discards 1 card, mills 1 card, or destroy a target nonland permanent.[Instant/Sorcery/Enchantment]",
     "The Raid Monster creates ${numberOfPlayers} 2/2 artifact creature in its colors, each one attacks a seperate player this turn.[Creature]",
     "The Raid Monster creates ${numberOfPlayers} 5/1 deathtouch enchantment artifact creature in its colors, each one attacks a seperate player this turn.[Creature]",
     "Each players destroys target nonlegendary nonland permanent of the player's choice.[Instant/Sorcery/Enchantment]",
@@ -21,12 +21,12 @@
     "Each opponent sacrifices 1 enchantment they control, or lose life equal to the CMC of the cards that would be sacraficed. Effects that prevent or redirect damage may not be used to counter this loss of life.[Sorcery/Enchantment]",
     "For each opponent, destroy target artifact of the player's choice.[Artifact/Enchantment]",
     "For each opponent, return target creature of the player's choice to their hand, or lose life equal to the CMC of the cards that would be returned. Effects that prevent or redirect damage may not be used to counter this loss of life.[Instant/Sorcery/Enchantment]",
-    "Each player exiles one enchantment from their graveyard and drains 3 life.[Instant/Sorcery/Enchantment]",
-    "Each player exiles one artifact from their graveyard and drains 3 life.[Instant/Sorcery/Enchantment]",
+    "Each player exiles one target enchantment from their graveyard and drains 3 life.[Instant/Sorcery/Enchantment]",
+    "Each player exiles one target artifact from their graveyard and drains 3 life.[Instant/Sorcery/Enchantment]",
     "The player after the Raid Monster's turn exiles 1 permanent they control of their choice.[Instant/Sorcery/Enchantment]",
     "Until the Raid Monster's next turn creatures cannot attack the Raid Monster unless their controller pays (1) for each creature they control that's attacking the Raid Monster.[Sorcery/Enchantment]",
     "During each opponents next turn, counter the first card played.[Instant]",
-    "For each opponent, destroy a nonland permament with the lowest converted mana cost, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
+    "For each opponent, destroy a target nonland permament with the lowest converted mana cost, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
     "Each opponent shuffles 2 nonland permanents of their choice into their decks, or lose life equal to the CMC of the cards that would be shuffled. Effects that prevent or redirect damage may not be used to counter this loss of life.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target non-commander card of their choice.[Instant/Sorcery]",
     "Until the Raid Monster’s next turn, they cannot lose the game.[Artifact/Enchantment]",
