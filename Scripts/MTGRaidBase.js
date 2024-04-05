@@ -152,7 +152,8 @@ function checkInput() {
     if((numberInput > 0 && numberInput <= 12)){
       gameCanStart = true;
     } else {
-      showErrorMessage("Please Enter a Valid Number(1-12)")
+      showErrorMessage("Please Enter a Valid Number(1-12)");
+      gameCanStart = false;
     }
   } else {
     gameCanStart = false;
