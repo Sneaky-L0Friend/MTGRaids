@@ -69,9 +69,7 @@ function takeMonsterAction() {
     addLog(
       `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
     );
-    setTimeout(() => {
-      takeMonsterAction();
-    }, 1500);
+    takeMonsterAction();
     return;
   }
   const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
