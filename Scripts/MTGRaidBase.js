@@ -187,8 +187,17 @@ function pickMonster() {
   imgElement.style.height = "50vh";
   imgElement.style.margin = "20px";
 
-  // Replace the div with the image
-  startElement.replaceWith(imgElement);
+  var anchorElement = document.createElement("a");
+  anchorElement.href = colorMapForLinkImage[pickedNumber]; // Set the hyperlink destination here
+  anchorElement.target = "_blank";
+  // Append the image to the anchor element
+  anchorElement.appendChild(imgElement); 
+
+  // Append the anchor element to the parent element where you want to replace
+  startElement.replaceWith(anchorElement);
+
+  // // Replace the div with the image
+  // startElement.replaceWith(imgElement);
   return pickedNumber;
 }
 
