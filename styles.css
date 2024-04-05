@@ -3,7 +3,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 99vh;
   margin: 0;
   background-color: #1e1e1e;
   /* Dark background color */
@@ -40,7 +40,7 @@ button:active {
   /* Align to the top of the screen */
   max-height: 40vh;
   /* 100% of the viewport height */
-  max-width: 50vh;
+  max-width: 18vw;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 10px;
@@ -175,8 +175,8 @@ button:active {
 
 .player-health-container {
   position: fixed;
-  top: 150px;
-  right: 320px;
+  margin-left: 80vw;
+  margin-bottom: 60vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -184,8 +184,8 @@ button:active {
 
 .player-health-names-container {
   position: fixed;
-  top: 170px;
-  right: 500px;
+  margin-left: 65vw;
+  margin-bottom: 60vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

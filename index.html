@@ -185,24 +185,25 @@
       </div>
     </div>
 
-    <div class="controls">
-      <button
-        style="cursor: pointer"
-        id="increaseRoundButton"
-        onclick="decreaseRound()"
-      >
-        -
-      </button>
-      <button
+
+
+    <div class="display-container" style="flex-direction: row; gap: 5px;" >
+      <div class="controls" style="display:flex; flex-direction: column; margin-top: -1vh;">
+        <button
         style="cursor: pointer"
         id="decreaseRoundButton"
         onclick="increaseRound()"
       >
         +
       </button>
-    </div>
-
-    <div class="display-container">
+        <button
+          style="cursor: pointer"
+          id="increaseRoundButton"
+          onclick="decreaseRound()"
+        >
+          -
+        </button>
+      </div>
       <div id="round" class="display-box" style="cursor: default">Round: 1</div>
       <div id="rounds" class="display-box" style="cursor: default">
         Actions this turn: 0

@@ -114,7 +114,7 @@ function updateRound() {
   const round2Element = document.getElementById("rounds");
   roundElement.innerText = `Round: ${currentRound}`;
   const drValue = Math.floor(currentRound / 2); // Calculate DR value
-  round2Element.innerText = `Rolls this turn:  ${numberOfDiceRolled} / ${drValue}`;
+  round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
   totalRoundLifeChange = 0;
 }
 
@@ -183,8 +183,8 @@ function pickMonster() {
   imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
   bossMonsterImageUrl = imgElement.src;
   // Set styling for the image
-  imgElement.style.width = "1100px";
-  imgElement.style.height = "550px";
+  imgElement.style.width = "50vw";
+  imgElement.style.height = "50vh";
   imgElement.style.margin = "20px";
 
   // Replace the div with the image
@@ -207,8 +207,8 @@ function addMinions(numberOfImages, imageNumber) {
     img.src = `Minions/${imageNumber}.jpeg`;
     img.alt = "Image " + (i + 1); // Alt text for accessibility
 
-    img.style.width = "290px";
-    img.style.height = "160px";
+    img.style.width = "12vw";
+    img.style.height = "12vh";
 
     const imageText = document.createElement("div");
     imageText.className = "image-text";
