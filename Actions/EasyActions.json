@@ -32,7 +32,7 @@
     "Until the Raid Monster’s next turn, they cannot lose the game.[Artifact/Enchantment]",
     "Deal 2 damage to each creature and planeswalker.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifacts/Enchantment]",
-    "Each opponent sacrifices 3 permanents and creates ${diceRolledThisRound+1} treasure tokens.[Instant]",
+    "Each opponent destroy's 1 nonland permanent and creates a 2/2 changeling creature token in the monster's colors.[Instant]",
     "The Raid Monster copies each player's lowest converted mana cost creature; it must attack the respective player this turn.[Creature]"
   ]
 }

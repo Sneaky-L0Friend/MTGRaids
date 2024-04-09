@@ -32,7 +32,7 @@
     "Deal ${currentRound} damage to each creature and planeswalker.[Sorcery]",
     "Destroy all nonland permanents with a CMC of ${diceRolledThisRound} or less.[Sorcery]",
     "Each player destroys all non-basic lands they control.[Sorcery/Enchantment]",
-    "Each opponent sacrifices ${diceRolledThisRound+1} nonland permanents and creates ${diceRolledThisRound} treasure tokens.[Instant/Sorcery]",
+    "Each player sacrifices ${diceRolledThisRound+1} nonland permanents and creates a X/X changeling creature token in the monster's colors, where X is equal to the number of permanents sacraficed this way.[Instant]",
     "The Raid Monster copies each player's highest CMC creature; it must attack the respective player this turn.[Creature]",
     "Players do not get an untap phase until the Raid Monster's next turn.[Sorcery/Enchantment]",
     "Each player sacrafices a land, then the Raid Monster takes one more action.[Sorcery]",

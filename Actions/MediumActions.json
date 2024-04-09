@@ -32,7 +32,7 @@
     "Deal 3 damage to each creature and planeswalker.[Sorcery]",
     "Destroy half of each player's nonland permanents with a CMC of 4 or more rounded down.[Sorcery]",
     "Tap all creatures that enter the battlefield until the Raid Monster’s next turn.[Artifact/Enchantment]",
-    "Each opponent sacrifices ${diceRolledThisRound} nonland permanents and creates ${diceRolledThisRound+2} treasure tokens.[Instant]",
+    "Each opponent sacrifices ${diceRolledThisRound} nonland permanents and creates a X/X changeling creature token in the monster's colors, where X is equal to the number of permanents sacraficed this way.[Instant]",
     "Return 3 nonland permanents to their hand, or lose life equal to the CMC of the cards that would be returned. Effects that prevent or redirect damage may not be used to counter this loss of life.[Sorcery]"
   ]
 }
