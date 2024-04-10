@@ -11,7 +11,7 @@ function decreasePlayerHealth(player, amount) {
 }
 
 function updatePlayerHealth(player) {
-  addLog("Player" + {player} + ", Health Changed to: " + playerHealth[player]);
+  addLog("Player " + player + ", Health Changed to: " + playerHealth[player]);
   const playerHealthElement = document.getElementById(`player${player}Health`);
   playerHealthElement.innerHTML = `<div class="controls2">
                                   <div class="button-wrapper">
