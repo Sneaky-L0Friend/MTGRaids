@@ -509,6 +509,10 @@ function pickRandomCardType(creaturePercent, instantPercent, sorceryPercent, enc
 }
 
 function millMonster() {
+  if (!window.startedGame) {
+    showErrorMessage("Please Start the Game First");
+    return;
+  }
   var cardMilled = pickRandomCardType(creaturePercent, instantPercent, sorceryPercent, enchantmentPercent, landPercent, artifactPercent, planeswalkerPercent);
   addLog("MONSTER MILLED: " + cardMilled);
 }
