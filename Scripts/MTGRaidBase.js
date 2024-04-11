@@ -33,6 +33,13 @@ function takeMonsterAction() {
     showErrorMessage("Monster cannot take actions on Round 1");
     return;
   }
+  if(cardsInMonsterDeck == 0) {
+    addLog("YOU WON VIA MILLING! CONGRATS");
+    monsterHealth = 0;
+    updateMonsterHealth();
+    return;
+  }
+
   const drValue = Math.floor(currentRound / 2); // Calculate DR value
   if (numberOfDiceRolled == drValue) {
     showErrorMessage("Monster cannot take further actions, increase round");
