@@ -13,6 +13,7 @@ let listRolledFrom;
 let playerNumberSpecific = false;
 let numberOfPlayersGlobal;
 let currentMonsterLands = 1;
+let cardsInMonsterDeck = 99;
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -514,5 +515,6 @@ function millMonster() {
     return;
   }
   var cardMilled = pickRandomCardType(creaturePercent, instantPercent, sorceryPercent, enchantmentPercent, landPercent, artifactPercent, planeswalkerPercent);
-  addLog("MONSTER MILLED: " + cardMilled);
+  cardsInMonsterDeck -= 1;
+  addLog("MONSTER MILLED: " + cardMilled + ". Number of Cards Left: " + cardsInMonsterDeck);
 }
