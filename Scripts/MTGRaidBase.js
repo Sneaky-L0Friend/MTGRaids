@@ -14,6 +14,15 @@ let playerNumberSpecific = false;
 let numberOfPlayersGlobal;
 let currentMonsterLands = 1;
 
+// Percentage for millings:
+let creaturePercent = 30;
+let instantPercent = 10;
+let sorceryPercent = 7;
+let enchantmentPercent = 5;
+let landPercent = 37;
+let artifactPercent = 9;
+let planeswalkerPercent = 1;
+
 function takeMonsterAction() {
   if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
@@ -464,4 +473,42 @@ function checkIfHealthNeedsModification(action) {
   } else if(action.includes("gains")) {
     increaseMonsterHealth(amountToChangeHealth);
   }
+}
+function pickRandomCardType(creaturePercent, instantPercent, sorceryPercent, enchantmentPercent, landPercent, artifactPercent, planeswalkerPercent) {
+  // Calculate total percentage
+  const totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
+
+  // Generate a random number between 0 and 1
+  const randomNumber = Math.random();
+
+  // Determine which type of card was chosen based on the random number
+  let chosenType;
+  if (randomNumber < creaturePercent / totalPercent) {
+      chosenType = "Creature";
+      creaturePercent -= 1;
+  } else if (randomNumber < (creaturePercent + instantPercent) / totalPercent) {
+      chosenType = "Instant";
+      instantPercent -= 1;
+  } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent) / totalPercent) {
+      chosenType = "Sorcery";
+      sorceryPercent -= 1;
+  } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent) / totalPercent) {
+      chosenType = "Enchantment";
+      enchantmentPercent -= 1;
+  } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent) / totalPercent) {
+      chosenType = "Land";
+      landPercent -= 1;
+  } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent) / totalPercent) {
+      chosenType = "Artifact";
+      artifactPercent -= 1;
+  } else {
+      chosenType = "Planeswalker";
+      planeswalkerPercent -= 1;
+  }
+  return chosenType;
+}
+
+function millMonster() {
+  var cardMilled = pickRandomCardType(creaturePercent, instantPercent, sorceryPercent, enchantmentPercent, landPercent, artifactPercent, planeswalkerPercent);
+  addLog("MONSTER MILLED: " + cardMilled);
 }

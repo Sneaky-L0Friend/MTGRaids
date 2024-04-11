@@ -119,9 +119,14 @@
 
     <div id="imageContainer"></div>
     <div class="display-container">
-      <button id="dices" class="display-box" onclick="takeMonsterAction()">
-        Click for Monster Action
-      </button>
+      <div style="display: flex; flex-direction: row; gap: 10px;">
+        <button id="dices" class="display-box" onclick="takeMonsterAction()">
+          Click for Monster Action
+        </button>
+        <button id="dices" class="display-box" onclick="millMonster()">
+          Mill
+        </button>
+      </div>
       <div id="action" class="display-box" style="cursor: default">
         Action: None
       </div>
