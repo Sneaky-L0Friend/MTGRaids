@@ -609,7 +609,10 @@ async function getRandomCardImageUrl(url) {
 }
 
 function revealTopCard() {
-  // Example usage:
+  if (!window.startedGame) {
+    showErrorMessage("Please Start the Game First");
+    return;
+  }
   var cardTypeRevealed = pickRandomCardType(false);
   let randomCardUrl;
   if(cardTypeRevealed == "Land"){
