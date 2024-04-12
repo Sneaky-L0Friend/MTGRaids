@@ -27,13 +27,13 @@ let landPercent = 37;
 let artifactPercent = 9;
 let planeswalkerPercent = 1;
 let graveyard = {
-  "Creature":0,
-  "Artifact":0,
-  "Enchantment":0,
-  "Instant":0,
-  "Sorcery":0,
-  "Planeswalker":0,
-  "Land":0
+  "Creature": 0,
+  "Artifact": 0,
+  "Enchantment": 0,
+  "Instant": 0,
+  "Sorcery": 0,
+  "Planeswalker": 0,
+  "Land": 0
 };
 
 function takeMonsterAction() {
@@ -45,7 +45,7 @@ function takeMonsterAction() {
     showErrorMessage("Monster cannot take actions on Round 1");
     return;
   }
-  if(cardsInMonsterDeck == 0) {
+  if (cardsInMonsterDeck == 0) {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
@@ -93,7 +93,7 @@ function takeMonsterAction() {
     listRolledFrom = "H";
   }
   const actionElement = document.getElementById("action");
-  if(listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
+  if (listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
     actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
     addLog(
       `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
@@ -118,18 +118,18 @@ function takeMonsterAction() {
   }
 
   actionElement.innerText = randomlyRolledList.Actions[result]
-  .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
-  .replaceAll("${currentRound}", currentRound)
-  .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
-  .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
-  .replaceAll("${currentRound+1}", currentRound + 1)
-  .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
-  
+    .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
+    .replaceAll("${currentRound}", currentRound)
+    .replaceAll("${diceRolledThisRound+1}", diceRolledThisRound + 1)
+    .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
+    .replaceAll("${currentRound+1}", currentRound + 1)
+    .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
+
   addLog(
     `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
-    );
-    checkForMinions(randomlyRolledList.Actions[result]);
-    checkIfHealthNeedsModification(randomlyRolledList.Actions[result]);
+  );
+  checkForMinions(randomlyRolledList.Actions[result]);
+  checkIfHealthNeedsModification(randomlyRolledList.Actions[result]);
 
   if (randomlyRolledList.Actions[result].includes("one more action")) {
     numberOfDiceRolled--;
@@ -171,14 +171,14 @@ function decreaseRound() {
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(-1);
-} 
+}
 
 function checkInput() {
   var numberInput = document.getElementById("myTextbox").value;
 
   // Check if the input is a number
   if (!isNaN(numberInput) && numberInput !== "" && (numberInput > 0 && numberInput <= 12)) {
-      gameCanStart = true;
+    gameCanStart = true;
   } else {
     gameCanStart = false;
   }
@@ -220,7 +220,7 @@ function pickMonster() {
   anchorElement.href = colorMapForLinkImage[pickedNumber]; // Set the hyperlink destination here
   anchorElement.target = "_blank";
   // Append the image to the anchor element
-  anchorElement.appendChild(imgElement); 
+  anchorElement.appendChild(imgElement);
 
   // Append the anchor element to the parent element where you want to replace
   startElement.replaceWith(anchorElement);
@@ -350,8 +350,7 @@ function displayColorRectangle() {
     const widthPercentage = 100 / colors.length;
     const gradientColors = colors.map(
       (color, index) =>
-        `${color.toLowerCase()} ${widthPercentage * index}% ${
-          widthPercentage * (index + 1)
+        `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)
         }%`,
     );
     colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(
@@ -487,13 +486,13 @@ function checkIfHealthNeedsModification(action) {
   var number = action.match(regex);
   // Converting the extracted number from string to integer
   var amountToChangeHealth = parseInt(number);
-  if(action.includes("The Raid Monster deals")) {
+  if (action.includes("The Raid Monster deals")) {
     modifyPlayerHealthFromMonster(amountToChangeHealth);
-  } else if(action.includes("drains")) {
+  } else if (action.includes("drains")) {
     // Extracting the number from the string
     modifyPlayerHealthFromMonster(amountToChangeHealth);
-    increaseMonsterHealth(amountToChangeHealth*numberOfPlayersGlobal);
-  } else if(action.includes("gains")) {
+    increaseMonsterHealth(amountToChangeHealth * numberOfPlayersGlobal);
+  } else if (action.includes("gains")) {
     increaseMonsterHealth(amountToChangeHealth);
   }
 }
@@ -507,26 +506,26 @@ function pickRandomCardType(isMill) {
   // Determine which type of card was chosen based on the random number
   let chosenType;
   if (randomNumber < creaturePercent / totalPercent) {
-      chosenType = "Creature";
-      creaturePercent = isMill ? creaturePercent - 1 : creaturePercent;
+    chosenType = "Creature";
+    creaturePercent = isMill ? creaturePercent - 1 : creaturePercent;
   } else if (randomNumber < (creaturePercent + instantPercent) / totalPercent) {
-      chosenType = "Instant";
-      instantPercent = isMill ? instantPercent - 1 : instantPercent;
+    chosenType = "Instant";
+    instantPercent = isMill ? instantPercent - 1 : instantPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent) / totalPercent) {
-      chosenType = "Sorcery";
-      sorceryPercent = isMill ? sorceryPercent - 1: sorceryPercent;
+    chosenType = "Sorcery";
+    sorceryPercent = isMill ? sorceryPercent - 1 : sorceryPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent) / totalPercent) {
-      chosenType = "Enchantment";
-      enchantmentPercent = isMill ? enchantmentPercent - 1 : enchantmentPercent;
+    chosenType = "Enchantment";
+    enchantmentPercent = isMill ? enchantmentPercent - 1 : enchantmentPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent) / totalPercent) {
-      chosenType = "Land";
-      landPercent = isMill ? landPercent - 1 : landPercent;
+    chosenType = "Land";
+    landPercent = isMill ? landPercent - 1 : landPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent) / totalPercent) {
-      chosenType = "Artifact";
-      artifactPercent = isMill ? artifactPercent - 1 : artifactPercent;
+    chosenType = "Artifact";
+    artifactPercent = isMill ? artifactPercent - 1 : artifactPercent;
   } else {
-      chosenType = "Planeswalker";
-      planeswalkerPercent = isMill ? planeswalkerPercent - 1 : planeswalkerPercent;
+    chosenType = "Planeswalker";
+    planeswalkerPercent = isMill ? planeswalkerPercent - 1 : planeswalkerPercent;
   }
   return chosenType;
 }
@@ -536,7 +535,7 @@ function millMonster() {
     showErrorMessage("Please Start the Game First");
     return;
   }
-  if(cardsInMonsterDeck == 0) {
+  if (cardsInMonsterDeck == 0) {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
@@ -546,7 +545,7 @@ function millMonster() {
   var cardMilled = pickRandomCardType(true);
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
-  addLog("MONSTER MILLED: " + cardMilled + ". Number of Cards Left: " + cardsInMonsterDeck);
+  addLog("MONSTER MILLED: " + cardMilled + ". NUMBER OF CARDS LEFT: " + cardsInMonsterDeck);
   updateGraveyardTable();
 }
 
@@ -596,15 +595,15 @@ function updateGraveyardTable() {
 
 async function getRandomCardImageUrl(url) {
   try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      const cardData = await response.json();
-      return cardData.image_uris.normal; // Extracting the image URL from the JSON response
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const cardData = await response.json();
+    return cardData.image_uris.normal; // Extracting the image URL from the JSON response
   } catch (error) {
-      console.error('Error:', error);
-      return null;
+    console.error('Error:', error);
+    return null;
   }
 }
 
@@ -614,24 +613,22 @@ function revealTopCard() {
     return;
   }
   var randomTopCardId = document.getElementById('randomTopCardId');
-randomTopCardId.disabled = true;
+  randomTopCardId.disabled = true;
   var cardTypeRevealed = pickRandomCardType(false);
   let randomCardUrl;
-  if(cardTypeRevealed == "Land"){
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A"+scryfallMonsterColors+"+t%3Aland+-layout%3A%22modal_dfc%22+legalities%3Acommander";
+  if (cardTypeRevealed == "Land") {
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
   } else {
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A"+ cardTypeRevealed + "+commander%3A"+scryfallMonsterColors+"+legalities%3Acommander";
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardTypeRevealed + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
   }
-  console.log("randomCardUrl:" + randomCardUrl);
   getRandomCardImageUrl(randomCardUrl)
-      .then(imageUrl => {
-randomTopCardId.disabled = false;
-          if (imageUrl) {
-              console.log('Image URL:', imageUrl);
-              addLog("MONSTER REVEALED A "+cardTypeRevealed+": " + imageUrl);
-              // You can use imageUrl here to display the image on your webpage or do further processing
-              currentRandomCardUrl = imageUrl;
-              openPopup(currentRandomCardUrl);
-          }
-      });
+    .then(imageUrl => {
+      randomTopCardId.disabled = false;
+      if (imageUrl) {
+        addLog("MONSTER REVEALED A " + cardTypeRevealed + ": " + imageUrl);
+        // You can use imageUrl here to display the image on your webpage or do further processing
+        currentRandomCardUrl = imageUrl;
+        openPopup(currentRandomCardUrl);
+      }
+    });
 }
