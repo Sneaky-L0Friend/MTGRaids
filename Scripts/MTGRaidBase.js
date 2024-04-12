@@ -47,6 +47,7 @@ function takeMonsterAction() {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
+    openPopup();
     return;
   }
 
@@ -493,6 +494,7 @@ function checkIfHealthNeedsModification(action) {
     increaseMonsterHealth(amountToChangeHealth);
   }
 }
+
 function pickRandomCardType() {
   // Calculate total percentage
   var totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
