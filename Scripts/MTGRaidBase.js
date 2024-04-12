@@ -14,6 +14,7 @@ let playerNumberSpecific = false;
 let numberOfPlayersGlobal;
 let currentMonsterLands = 1;
 let cardsInMonsterDeck = 99;
+let cardsInMonsterGraveyard = -1;
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -426,6 +427,7 @@ function startGame(difficulty) {
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(0);
   readActionJsonFiles();
+  updateGraveyardTable();
   addLog(`ROUND ${currentRound}`);
 }
 
@@ -542,6 +544,7 @@ function millMonster() {
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
   addLog("MONSTER MILLED: " + cardMilled + ". Number of Cards Left: " + cardsInMonsterDeck);
+  updateGraveyardTable();
 }
 
 function openPopup() {
@@ -566,5 +569,23 @@ function closePopup() {
     popup.style.display = 'none';
     document.removeEventListener('click', closePopup);
   }
+}
 
+function updateGraveyardTable() {
+  const table = document.getElementById('graveyardTable');
+  table.style.display = "block";
+  cardsInMonsterGraveyard++;
+  table.innerHTML = `
+  <caption>Monster's Graveyard: ${cardsInMonsterGraveyard}</caption>
+    <tr>
+      <th>Card Type</th>
+      <th>Count</th>
+    </tr>
+    ${Object.entries(graveyard).map(([type, count]) => `
+      <tr>
+        <td>${type}</td>
+        <td>${count}</td>
+      </tr>
+    `).join('')}
+  `;
 }

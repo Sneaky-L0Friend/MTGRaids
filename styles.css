@@ -233,3 +233,19 @@ button:active {
   max-width: 100%;
   height: auto;
 }
+
+table {
+  border-collapse: collapse;
+  width: 5vw;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 10vw;
+  margin-bottom: 5vh;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
