@@ -613,6 +613,8 @@ function revealTopCard() {
     showErrorMessage("Please Start the Game First");
     return;
   }
+  var randomTopCardId = document.getElementById('randomTopCardId');
+randomTopCardId.disabled = true;
   var cardTypeRevealed = pickRandomCardType(false);
   let randomCardUrl;
   if(cardTypeRevealed == "Land"){
@@ -623,6 +625,7 @@ function revealTopCard() {
   console.log("randomCardUrl:" + randomCardUrl);
   getRandomCardImageUrl(randomCardUrl)
       .then(imageUrl => {
+randomTopCardId.disabled = false;
           if (imageUrl) {
               console.log('Image URL:', imageUrl);
               addLog("MONSTER REVEALED A "+cardTypeRevealed+": " + imageUrl);
