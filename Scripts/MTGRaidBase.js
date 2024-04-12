@@ -618,7 +618,7 @@ function revealTopCard() {
   if(cardTypeRevealed == "Land"){
     randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A"+scryfallMonsterColors+"+t%3Aland+-layout%3A%22modal_dfc%22+legalities%3Acommander";
   } else {
-    randomCardUrl = "http://api.scryfall.com/cards/random?q=t%3A"+ cardTypeRevealed + "+commander%3A"+scryfallMonsterColors+"+legalities%3Acommander";
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A"+ cardTypeRevealed + "+commander%3A"+scryfallMonsterColors+"+legalities%3Acommander";
   }
   console.log("randomCardUrl:" + randomCardUrl);
   getRandomCardImageUrl(randomCardUrl)
