@@ -15,6 +15,7 @@ let numberOfPlayersGlobal;
 let currentMonsterLands = 1;
 let cardsInMonsterDeck = 99;
 let cardsInMonsterGraveyard = -1;
+let scryfallMonsterColors;
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -61,7 +62,6 @@ function takeMonsterAction() {
   let additionalProbability;
   let easyProbability;
   if (modifiersToUse == EASY_MODE_MODIFIERS) {
-    console.log("easy mode selected");
     baseProbability =
       1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)));
     additionalProbability =
@@ -223,6 +223,8 @@ function pickMonster() {
 
   // Append the anchor element to the parent element where you want to replace
   startElement.replaceWith(anchorElement);
+  scryfallMonsterColors = scryfallColorMap[pickedNumber];
+  console.log("scryfall colrors: " + scryfallMonsterColors);
 
   // // Replace the div with the image
   // startElement.replaceWith(imgElement);
@@ -498,7 +500,6 @@ function checkIfHealthNeedsModification(action) {
 function pickRandomCardType() {
   // Calculate total percentage
   var totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
-  console.log("Total Percent " + totalPercent);
   // Generate a random number between 0 and 1
   const randomNumber = Math.random();
 
@@ -541,7 +542,6 @@ function millMonster() {
     openPopup();
     return;
   }
-  console.log(graveyard);
   var cardMilled = pickRandomCardType();
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
