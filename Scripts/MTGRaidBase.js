@@ -16,6 +16,7 @@ let currentMonsterLands = 1;
 let cardsInMonsterDeck = 99;
 let cardsInMonsterGraveyard = -1;
 let scryfallMonsterColors;
+let currentRandomCardUrl;
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -48,7 +49,7 @@ function takeMonsterAction() {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
-    openPopup();
+    openPopup("./FunStuff/yRMCDs.gif");
     return;
   }
 
@@ -497,7 +498,7 @@ function checkIfHealthNeedsModification(action) {
   }
 }
 
-function pickRandomCardType() {
+function pickRandomCardType(isMill) {
   // Calculate total percentage
   var totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
   // Generate a random number between 0 and 1
@@ -507,25 +508,25 @@ function pickRandomCardType() {
   let chosenType;
   if (randomNumber < creaturePercent / totalPercent) {
       chosenType = "Creature";
-      creaturePercent = creaturePercent - 1;
+      creaturePercent = isMill ? creaturePercent - 1 : creaturePercent;
   } else if (randomNumber < (creaturePercent + instantPercent) / totalPercent) {
       chosenType = "Instant";
-      instantPercent = instantPercent - 1;
+      instantPercent = isMill ? instantPercent - 1 : instantPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent) / totalPercent) {
       chosenType = "Sorcery";
-      sorceryPercent = sorceryPercent - 1;
+      sorceryPercent = isMill ? sorceryPercent - 1: sorceryPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent) / totalPercent) {
       chosenType = "Enchantment";
-      enchantmentPercent = enchantmentPercent - 1;
+      enchantmentPercent = isMill ? enchantmentPercent - 1 : enchantmentPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent) / totalPercent) {
       chosenType = "Land";
-      landPercent = landPercent - 1;
+      landPercent = isMill ? landPercent - 1 : landPercent;
   } else if (randomNumber < (creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent) / totalPercent) {
       chosenType = "Artifact";
-      artifactPercent = artifactPercent - 1;
+      artifactPercent = isMill ? artifactPercent - 1 : artifactPercent;
   } else {
       chosenType = "Planeswalker";
-      planeswalkerPercent = planeswalkerPercent - 1;
+      planeswalkerPercent = isMill ? planeswalkerPercent - 1 : planeswalkerPercent;
   }
   return chosenType;
 }
@@ -539,20 +540,21 @@ function millMonster() {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
-    openPopup();
+    openPopup("./FunStuff/yRMCDs.gif");
     return;
   }
-  var cardMilled = pickRandomCardType();
+  var cardMilled = pickRandomCardType(true);
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
   addLog("MONSTER MILLED: " + cardMilled + ". Number of Cards Left: " + cardsInMonsterDeck);
   updateGraveyardTable();
 }
 
-function openPopup() {
+function openPopup(imageSrc) {
   var overlay = document.getElementById('overlay');
   var popup = document.getElementById('popup');
-  
+  var popupImage = document.getElementById('popupImage');
+  popupImage.src = imageSrc;
   overlay.style.display = 'block';
   popup.style.display = 'block';
   // Prevent closing the popup when clicking inside it
@@ -590,4 +592,40 @@ function updateGraveyardTable() {
       </tr>
     `).join('')}
   `;
+}
+
+async function getRandomCardImageUrl(url) {
+  try {
+      const response = await fetch(url);
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      const cardData = await response.json();
+      return cardData.image_uris.normal; // Extracting the image URL from the JSON response
+  } catch (error) {
+      console.error('Error:', error);
+      return null;
+  }
+}
+
+function revealTopCard() {
+  // Example usage:
+  var cardTypeRevealed = pickRandomCardType(false);
+  let randomCardUrl;
+  if(cardTypeRevealed == "Land"){
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A"+scryfallMonsterColors+"+t%3Aland+-layout%3A%22modal_dfc%22+legalities%3Acommander";
+  } else {
+    randomCardUrl = "http://api.scryfall.com/cards/random?q=t%3A"+ cardTypeRevealed + "+commander%3A"+scryfallMonsterColors+"+legalities%3Acommander";
+  }
+  console.log("randomCardUrl:" + randomCardUrl);
+  getRandomCardImageUrl(randomCardUrl)
+      .then(imageUrl => {
+          if (imageUrl) {
+              console.log('Image URL:', imageUrl);
+              addLog("MONSTER REVEALED A "+cardTypeRevealed+": " + imageUrl);
+              // You can use imageUrl here to display the image on your webpage or do further processing
+              currentRandomCardUrl = imageUrl;
+              openPopup(currentRandomCardUrl);
+          }
+      });
 }
