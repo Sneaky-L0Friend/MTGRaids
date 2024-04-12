@@ -24,12 +24,13 @@ let landPercent = 37;
 let artifactPercent = 9;
 let planeswalkerPercent = 1;
 let graveyard = {
-  "Creatures":0,
-  "Artifacts":0,
-  "Enchantments":0,
-  "Instants":0,
-  "Sorceries":0,
-  "Planeswalkers":0
+  "Creature":0,
+  "Artifact":0,
+  "Enchantment":0,
+  "Instant":0,
+  "Sorcery":0,
+  "Planeswalker":0,
+  "Land":0
 };
 
 function takeMonsterAction() {
@@ -533,10 +534,37 @@ function millMonster() {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
     updateMonsterHealth();
+    openPopup();
     return;
   }
+  console.log(graveyard);
   var cardMilled = pickRandomCardType();
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
   addLog("MONSTER MILLED: " + cardMilled + ". Number of Cards Left: " + cardsInMonsterDeck);
+}
+
+function openPopup() {
+  var overlay = document.getElementById('overlay');
+  var popup = document.getElementById('popup');
+  
+  overlay.style.display = 'block';
+  popup.style.display = 'block';
+  // Prevent closing the popup when clicking inside it
+
+  document.addEventListener('click', closePopup);
+}
+
+function closePopup() {
+  var overlay = document.getElementById('overlay');
+  var popup = document.getElementById('popup');
+  var isClickInsidePopup = event.target === popup || popup.contains(event.target);
+
+  // Close the popup only if the click is not inside the popup
+  if (isClickInsidePopup) {
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+    document.removeEventListener('click', closePopup);
+  }
+
 }
