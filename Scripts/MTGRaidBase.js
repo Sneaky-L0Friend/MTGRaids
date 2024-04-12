@@ -214,7 +214,6 @@ function pickMonster() {
   // Set styling for the image
   imgElement.style.width = "50vw";
   imgElement.style.height = "50vh";
-  imgElement.style.margin = "20px";
 
   var anchorElement = document.createElement("a");
   anchorElement.href = colorMapForLinkImage[pickedNumber]; // Set the hyperlink destination here
