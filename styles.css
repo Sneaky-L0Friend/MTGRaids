@@ -66,8 +66,8 @@ button:active {
 
 #refreshButton {
   position: fixed;
-  bottom: 100px;
-  right: 100px;
+  bottom: 5px;
+  right: 5px;
   padding: 10px;
   background-color: #4caf50;
   color: white;
@@ -241,7 +241,7 @@ table {
   bottom: 0;
   right: 0;
   margin-right: 13vw;
-  margin-bottom: 7vh;
+  margin-bottom: 6vh;
 }
 
 th, td {
