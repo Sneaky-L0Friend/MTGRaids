@@ -51,7 +51,9 @@ function showErrorMessage(message) {
 function addLog(logText) {
   const logEntry = document.createElement("div");
   logEntry.className = "logEntry";
-  logEntry.textContent = logText.replace(/(https?:\/\/\S+)/g, '<a href="$1">$1</a>');
+  logEntry.innerHTML = logEntry.innerHTML.replace(/(https?:\/\/\S+)/g, function(match) {
+    return '<a href="' + match + '">' + match + '</a>';
+  });
 
   // Get the dice log container
   const diceLog = document.getElementById("diceLog");
