@@ -17,6 +17,8 @@ let cardsInMonsterDeck = 99;
 let cardsInMonsterGraveyard = -1;
 let scryfallMonsterColors;
 let currentRandomCardUrl;
+let hasCardBeenMilled = false;
+let hasCardBeenDrawn = false;
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -145,6 +147,7 @@ function updateRound() {
   const drValue = Math.floor(currentRound / 2); // Calculate DR value
   round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
   totalRoundLifeChange = 0;
+  hasCardBeenDrawn = true;
 }
 
 function increaseRound() {
@@ -544,6 +547,7 @@ function millMonster() {
   var cardMilled = pickRandomCardType(true);
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
+  hasCardBeenMilled = true;
   addLog("MONSTER MILLED: " + cardMilled + ". NUMBER OF CARDS LEFT: " + cardsInMonsterDeck);
   updateGraveyardTable();
 }
@@ -611,23 +615,30 @@ function revealTopCard() {
     showErrorMessage("Please Start the Game First");
     return;
   }
-  var randomTopCardId = document.getElementById('randomTopCardId');
-  randomTopCardId.disabled = true;
-  var cardTypeRevealed = pickRandomCardType(false);
-  let randomCardUrl;
-  if (cardTypeRevealed == "Land") {
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+  if(hasCardBeenMilled || hasCardBeenDrawn) {
+    var randomTopCardId = document.getElementById('randomTopCardId');
+    randomTopCardId.disabled = true;
+    var cardTypeRevealed = pickRandomCardType(false);
+    let randomCardUrl;
+    if (cardTypeRevealed == "Land") {
+      randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+    } else {
+      randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardTypeRevealed + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+    }
+    getRandomCardImageUrl(randomCardUrl)
+      .then(imageUrl => {
+        randomTopCardId.disabled = false;
+        if (imageUrl) {
+          addLog("MONSTER REVEALED A " + cardTypeRevealed + ": " + imageUrl);
+          // You can use imageUrl here to display the image on your webpage or do further processing
+          currentRandomCardUrl = imageUrl;
+          openPopup(currentRandomCardUrl);
+        }
+      });
+      hasCardBeenMilled = false;
+      hasCardBeenDrawn = false;
   } else {
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardTypeRevealed + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+    openPopup(currentRandomCardUrl);
+    return;
   }
-  getRandomCardImageUrl(randomCardUrl)
-    .then(imageUrl => {
-      randomTopCardId.disabled = false;
-      if (imageUrl) {
-        addLog("MONSTER REVEALED A " + cardTypeRevealed + ": " + imageUrl);
-        // You can use imageUrl here to display the image on your webpage or do further processing
-        currentRandomCardUrl = imageUrl;
-        openPopup(currentRandomCardUrl);
-      }
-    });
 }

@@ -24,7 +24,7 @@
     "Each player exiles half their graveyard and drains 12 life.[Instant/Sorcery/Enchantment]",
     "Each player exiles 1 target permanent they control randomly and discards 1 card from their hand randomly.[Instant/Sorcery/Enchantment]",
     "For each opponent, target and destroy 3 nonland permanents with the highest CMC or lose life equal to the CMC of those permanents. Effects that prevent or redirect damage may not be used to counter this loss of life.[Sorcery/Enchantment]",
-    "For each opponent counter the first card played on their next turn.[Instant]",
+    "For each opponent counter the first 2 spells cast on their next turn.[Instant]",
     "For each opponent, target and destroy the highest CMC permanent, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
     "Each opponent shuffles ${diceRolledThisRound+1} nonland permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target non-token creature of their choice.[Instant/Sorcery]",
