@@ -17,8 +17,8 @@ let cardsInMonsterDeck = 99;
 let cardsInMonsterGraveyard = -1;
 let scryfallMonsterColors;
 let currentRandomCardUrl;
-let hasCardBeenMilled = false;
-let hasCardBeenDrawn = false;
+let hasCardBeenMilled = true;
+let hasCardBeenDrawn = true;
 
 // Percentage for millings:
 let creaturePercent = 30;
