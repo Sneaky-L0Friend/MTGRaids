@@ -397,7 +397,7 @@ function updateMonsterLandCountByAmount(amount) {
 }
 
 function startGame(difficulty, numberOfPlayersFromButton) {
-  if (!gameCanStart) {
+  if (!gameCanStart && numberOfPlayersFromButton == 0) {
     showErrorMessage("Enter Valid Number of Players to Start(1-12) ");
     return;
   }
