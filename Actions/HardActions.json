@@ -1,6 +1,6 @@
 {
   "Actions": [
-    "Each opponent discards 2 card, mills 2 card, and sacrifices 2 creatures, enchantments and artifacts.[Instant/Sorcery/Enchantment]",
+    "Each opponent discards 2 card, mills 2 card, and sacrifices 1 creature, enchantment and artifact.[Instant/Sorcery/Enchantment]",
     "Each opponent sacrifices ${currentRound+1} creatures.[Instant/Sorcery]",
     "For each opponent, sacrifice 2 nonland permanents of the player's choice.[Instant/Sorcery/Enchantment]",
     "The Raid Monster deals 12 damage to each player and 5 to each planeswalker.[Instant/Sorcery]",
@@ -29,7 +29,6 @@
     "For each opponent, target and destroy the highest CMC permanent, its controller creates a 1/1 artifact creature.[Instant/Sorcery/Enchantment/Creature]",
     "Each opponent shuffles ${diceRolledThisRound+1} nonland permanents of their choice into their decks.[Instant/Sorcery/Enchantment]",
     "Each opponent exiles one target non-token creature of their choice.[Instant/Sorcery]",
-    "Until the Raid Monster’s next turn, their life total cannot change.[Artifact/Enchantment]",
     "Deal ${currentRound} damage to each creature and planeswalker.[Sorcery]",
     "Destroy all nonland permanents with a CMC of ${diceRolledThisRound} or less.[Sorcery]",
     "Each player destroys all non-basic lands they control.[Sorcery/Enchantment]",
