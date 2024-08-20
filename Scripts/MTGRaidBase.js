@@ -407,6 +407,10 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   window.startedGame = true;
   var startEasy = document.getElementById("startEasy");
   var startMedium = document.getElementById("startMedium");
+  var startMediumButton1 = document.getElementById("startMediumButton1");
+  var startMediumButton2 = document.getElementById("startMediumButton2");
+  var startMediumButton3 = document.getElementById("startMediumButton3");
+  var startMediumButton4 = document.getElementById("startMediumButton4");
   var startHard = document.getElementById("startHard");
   var textBox = document.getElementById("myTextbox");
   var monsterHandButton = document.getElementById("monsterHandButtons");
@@ -415,6 +419,10 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   playerLabel.style.display = "none";
   startEasy.style.display = "none";
   startMedium.style.display = "none";
+  startMediumButton1.style.display = "none";
+  startMediumButton2.style.display = "none";
+  startMediumButton3.style.display = "none";
+  startMediumButton4.style.display = "none";
   startHard.style.display = "none";
   monsterLandButton.style.display = "grid";
   monsterHandButton.style.display = "grid";
