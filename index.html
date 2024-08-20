@@ -23,8 +23,22 @@
 
   <div class="display-container">
     <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter number of players:</label>
-    <input class="display-box" type="text" id="myTextbox" style="text-align: center" oninput="checkInput()"
-      placeholder="Enter number here... " />
+    <div>
+      <button id="startMedium" class="display-box" onclick="startGame('medium', 1)">
+        Start Medium 1 Player
+      </button>
+      <button id="startMedium" class="display-box" onclick="startGame('medium', 2)">
+        Start Medium 2 Player
+      </button>
+      <input class="display-box" type="text" id="myTextbox" style="text-align: center" oninput="checkInput()"
+        placeholder="Enter number here... " />
+        <button id="startMedium" class="display-box" onclick="startGame('medium', 3)">
+          Start Medium 3 Player
+        </button>
+        <button id="startMedium" class="display-box" onclick="startGame('medium', 4)">
+          Start Medium 4 Player
+        </button>
+    </div>
 
     <div class="button-container">
       <button id="startEasy" style="background-color: green" class="display-box" onclick="startGame('easy')">

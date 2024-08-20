@@ -396,7 +396,7 @@ function updateMonsterLandCountByAmount(amount) {
   monsterLandDiv.style.display = "flex";
 }
 
-function startGame(difficulty) {
+function startGame(difficulty, numberOfPlayersFromButton) {
   if (!gameCanStart) {
     showErrorMessage("Enter Valid Number of Players to Start(1-12) ");
     return;
@@ -420,7 +420,7 @@ function startGame(difficulty) {
   monsterHandButton.style.display = "grid";
 
   // Get the number of players
-  var value = textBox.value;
+  var value = numberOfPlayersFromButton == 0 ? textBox.value : numberOfPlayersFromButton;
   numberOfPlayersGlobal = value;
   monsterHealth = value * lifeMultiplier;
   monsterInfect = value * 7;
@@ -473,6 +473,7 @@ function checkForMinions(action) {
         addMinions(howManyToMake, 1);
       } else if (
         (howManyToMake == 2 && listRolledFrom == "E") ||
+        (howManyToMake == 2 && listRolledFrom == "M") ||
         (howManyToMake == 3 && listRolledFrom == "M") ||
         (howManyToMake == 4 && listRolledFrom == "M") ||
         (howManyToMake == 4 && listRolledFrom == "H")
