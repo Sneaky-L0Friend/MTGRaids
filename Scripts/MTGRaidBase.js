@@ -557,14 +557,10 @@ function millMonster() {
   }
   let cardMilled;
   if(cardTypeRevealed != "") {
-    console.log("revealed" + cardTypeRevealed);
     cardMilled = cardTypeRevealed;
     cardTypeRevealed = "";
-    console.log("got here");
-    console.log(cardMilled);
   } else {
     cardMilled = pickRandomCardType(true);
-    console.log("got here2");
   }
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
