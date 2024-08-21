@@ -556,7 +556,7 @@ function millMonster() {
     return;
   }
   let cardMilled;
-  if(cardTypeRevealed == "") {
+  if(cardTypeRevealed != "") {
     addLog("revealed" + cardTypeRevealed);
     cardMilled = cardTypeRevealed;
     cardTypeRevealed = "";
