@@ -557,10 +557,14 @@ function millMonster() {
   }
   let cardMilled;
   if(cardTypeRevealed == "") {
+    addLog("revealed" + cardTypeRevealed);
     cardMilled = cardTypeRevealed;
     cardTypeRevealed = "";
+    addLog("got here");
+    addLog(cardMilled);
   } else {
     cardMilled = pickRandomCardType(true);
+    addLog("got here2");
   }
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
