@@ -19,6 +19,8 @@ let scryfallMonsterColors;
 let currentRandomCardUrl;
 let hasCardBeenMilled = true;
 let hasCardBeenDrawn = true;
+let hasRevealedTopCard = false;
+let cardTypeRevealed = "";
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -177,7 +179,7 @@ function decreaseRound() {
 }
 
 function checkInput() {
-  var numberInput = document.getElementById("myTextbox").value;
+  let numberInput = document.getElementById("myTextbox").value;
 
   // Check if the input is a number
   if (!isNaN(numberInput) && numberInput !== "" && (numberInput > 0 && numberInput <= 12)) {
@@ -209,7 +211,7 @@ function pickMonster() {
     selectedRange[0];
 
   const startElement = document.getElementById("startEasy");
-  var imgElement = document.createElement("img");
+  let imgElement = document.createElement("img");
 
   // Set the image source
   imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
@@ -218,7 +220,7 @@ function pickMonster() {
   imgElement.style.width = "50vw";
   imgElement.style.height = "50vh";
 
-  var anchorElement = document.createElement("a");
+  let anchorElement = document.createElement("a");
   anchorElement.href = colorMapForLinkImage[pickedNumber]; // Set the hyperlink destination here
   anchorElement.target = "_blank";
   // Append the image to the anchor element
@@ -405,16 +407,16 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   setDifficultyAtStart(difficulty);
 
   window.startedGame = true;
-  var startEasy = document.getElementById("startEasy");
-  var startMedium = document.getElementById("startMedium");
-  var startMediumButton1 = document.getElementById("startMediumButton1");
-  var startMediumButton2 = document.getElementById("startMediumButton2");
-  var startMediumButton3 = document.getElementById("startMediumButton3");
-  var startMediumButton4 = document.getElementById("startMediumButton4");
-  var startHard = document.getElementById("startHard");
-  var textBox = document.getElementById("myTextbox");
-  var monsterHandButton = document.getElementById("monsterHandButtons");
-  var monsterLandButton = document.getElementById("monsterLandButtons");
+  let startEasy = document.getElementById("startEasy");
+  let startMedium = document.getElementById("startMedium");
+  let startMediumButton1 = document.getElementById("startMediumButton1");
+  let startMediumButton2 = document.getElementById("startMediumButton2");
+  let startMediumButton3 = document.getElementById("startMediumButton3");
+  let startMediumButton4 = document.getElementById("startMediumButton4");
+  let startHard = document.getElementById("startHard");
+  let textBox = document.getElementById("myTextbox");
+  let monsterHandButton = document.getElementById("monsterHandButtons");
+  let monsterLandButton = document.getElementById("monsterLandButtons");
   textBox.style.display = "none";
   playerLabel.style.display = "none";
   startEasy.style.display = "none";
@@ -428,7 +430,7 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   monsterHandButton.style.display = "grid";
 
   // Get the number of players
-  var value = numberOfPlayersFromButton == 0 ? textBox.value : numberOfPlayersFromButton;
+  let value = numberOfPlayersFromButton == 0 ? textBox.value : numberOfPlayersFromButton;
   numberOfPlayersGlobal = value;
   monsterHealth = value * lifeMultiplier;
   monsterInfect = value * 7;
@@ -493,10 +495,10 @@ function checkForMinions(action) {
 }
 
 function checkIfHealthNeedsModification(action) {
-  var regex = /\d+/;
-  var number = action.match(regex);
+  let regex = /\d+/;
+  let number = action.match(regex);
   // Converting the extracted number from string to integer
-  var amountToChangeHealth = parseInt(number);
+  let amountToChangeHealth = parseInt(number);
   if (action.includes("The Raid Monster deals")) {
     modifyPlayerHealthFromMonster(amountToChangeHealth);
   } else if (action.includes("drains")) {
@@ -510,7 +512,7 @@ function checkIfHealthNeedsModification(action) {
 
 function pickRandomCardType(isMill) {
   // Calculate total percentage
-  var totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
+  let totalPercent = creaturePercent + instantPercent + sorceryPercent + enchantmentPercent + landPercent + artifactPercent + planeswalkerPercent;
   // Generate a random number between 0 and 1
   const randomNumber = Math.random();
 
@@ -553,7 +555,13 @@ function millMonster() {
     openPopup("./FunStuff/yRMCDs.gif");
     return;
   }
-  var cardMilled = pickRandomCardType(true);
+  let cardMilled;
+  if(cardTypeRevealed == "") {
+    cardMilled = cardTypeRevealed;
+    cardTypeRevealed = "";
+  } else {
+    cardMilled = pickRandomCardType(true);
+  }
   cardsInMonsterDeck -= 1;
   graveyard[cardMilled]++;
   hasCardBeenMilled = true;
@@ -562,9 +570,9 @@ function millMonster() {
 }
 
 function openPopup(imageSrc) {
-  var overlay = document.getElementById('overlay');
-  var popup = document.getElementById('popup');
-  var popupImage = document.getElementById('popupImage');
+  let overlay = document.getElementById('overlay');
+  let popup = document.getElementById('popup');
+  let popupImage = document.getElementById('popupImage');
   popupImage.src = imageSrc;
   overlay.style.display = 'block';
   popup.style.display = 'block';
@@ -574,9 +582,9 @@ function openPopup(imageSrc) {
 }
 
 function closePopup() {
-  var overlay = document.getElementById('overlay');
-  var popup = document.getElementById('popup');
-  var isClickInsidePopup = event.target === popup || popup.contains(event.target);
+  let overlay = document.getElementById('overlay');
+  let popup = document.getElementById('popup');
+  let isClickInsidePopup = event.target === popup || popup.contains(event.target);
 
   // Close the popup only if the click is not inside the popup
   if (isClickInsidePopup) {
@@ -625,9 +633,9 @@ function revealTopCard() {
     return;
   }
   if(hasCardBeenMilled || hasCardBeenDrawn) {
-    var randomTopCardId = document.getElementById('randomTopCardId');
+    let randomTopCardId = document.getElementById('randomTopCardId');
     randomTopCardId.disabled = true;
-    var cardTypeRevealed = pickRandomCardType(false);
+    cardTypeRevealed = pickRandomCardType(false);
     let randomCardUrl;
     if (cardTypeRevealed == "Land") {
       randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
