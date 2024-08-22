@@ -57,7 +57,7 @@ function addLog(logText, imageUrl) {
   if(imageUrl){
     let aTag = document.createElement("a");
     aTag.target = "_blank";
-    aTag.href(imageUrl);
+    aTag.href = imageUrl;
     aTag.textContent = imageUrl;
     logEntry.appendChild(aTag);
   }
