@@ -48,11 +48,19 @@ function showErrorMessage(message) {
   }, 5000);
 }
 
-function addLog(logText) {
+function addLog(logText, imageUrl) {
   const logEntry = document.createElement("div");
+  let pTag = document.createElement("p");
   logEntry.className = "logEntry";
-  logEntry.textContent = logText;
-
+  pTag.textContent = logText;
+  logEntry.appendChild(pTag);
+  if(imageUrl){
+    let aTag = document.createElement("a");
+    aTag.target = "_blank";
+    aTag.href(imageUrl);
+    aTag.textContent = imageUrl;
+    logEntry.appendChild(aTag);
+  }
   // Get the dice log container
   const diceLog = document.getElementById("diceLog");
 
