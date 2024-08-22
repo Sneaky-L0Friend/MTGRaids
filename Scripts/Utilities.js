@@ -53,12 +53,15 @@ function addLog(logText, imageUrl) {
   let pTag = document.createElement("p");
   logEntry.className = "logEntry";
   pTag.textContent = logText;
+  pTag.style.display = "inline";
   logEntry.appendChild(pTag);
   if(imageUrl){
     let aTag = document.createElement("a");
     aTag.target = "_blank";
     aTag.href = imageUrl;
     aTag.textContent = imageUrl;
+    aTag.style.display = "inline";
+    aTag.style.color = "white";
     logEntry.appendChild(aTag);
   }
   // Get the dice log container
