@@ -646,7 +646,7 @@ function revealTopCard() {
       .then(imageUrl => {
         randomTopCardId.disabled = false;
         if (imageUrl) {
-          addLog("MONSTER REVEALED A " + cardTypeRevealed + ": ", imageUrl);
+          addLog("MONSTER REVEALED A(N) " + cardTypeRevealed + ": ", imageUrl);
           // You can use imageUrl here to display the image on your webpage or do further processing
           currentRandomCardUrl = imageUrl;
           openPopup(currentRandomCardUrl);
