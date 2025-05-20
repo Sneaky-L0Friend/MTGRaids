@@ -145,7 +145,7 @@ function takeMonsterAction() {
 function updateRound() {
   const roundElement = document.getElementById("round");
   const round2Element = document.getElementById("rounds");
-  roundElement.innerText = `Round: ${currentRound}`;
+  roundElement.innerText = `Turn: ${currentRound}`;
   const drValue = Math.floor(currentRound / 2); // Calculate DR value
   round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
   totalRoundLifeChange = 0;
