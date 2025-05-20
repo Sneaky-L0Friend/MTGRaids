@@ -180,7 +180,7 @@ function decreaseRound() {
 
 function checkInput() {
   let numberInput = document.getElementById("myTextbox").value;
-
+  console.log("hi nick: " + numberInput);
   // Check if the input is a number
   if (!isNaN(numberInput) && numberInput !== "" && (numberInput > 0 && numberInput <= 12)) {
     gameCanStart = true;
