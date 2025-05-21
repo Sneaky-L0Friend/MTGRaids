@@ -224,12 +224,15 @@ function decreaseRound() {
 
 function checkInput() {
   let numberInput = document.getElementById("myTextbox").value;
-  console.log("hi nick: " + numberInput);
-  // Check if the input is a number
+  const textbox = document.getElementById("myTextbox");
+  
+  // Check if the input is a valid number
   if (!isNaN(numberInput) && numberInput !== "" && (numberInput > 0 && numberInput <= 12)) {
     gameCanStart = true;
+    textbox.style.borderColor = "#4CAF50"; // Green border for valid input
   } else {
     gameCanStart = false;
+    textbox.style.borderColor = "#F44336"; // Red border for invalid input
   }
 }
 
@@ -498,6 +501,15 @@ function updateMonsterLandCountByAmount(amount) {
 }
 
 function startGame(difficultyLevel, playerCount) {
+  // Validate input if using custom player count
+  if (playerCount === 0) {
+    const inputValue = document.getElementById("myTextbox").value;
+    if (!inputValue || isNaN(inputValue) || inputValue <= 0 || inputValue > 12) {
+      showErrorMessage("Please enter a valid number of players (1-12)");
+      return;
+    }
+  }
+  
   // Set difficulty at start
   setDifficultyAtStart(difficultyLevel);
   
@@ -864,6 +876,13 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+// Make necessary functions globally available
+window.startGame = startGame;
+window.checkInput = checkInput;
+
+
+
 
 
 
