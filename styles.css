@@ -437,3 +437,63 @@ th, td {
     padding: 12px;
   }
 }
+
+/* Improved styling for turn and infect controls */
+.turn-controls,
+.infect-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 5px;
+}
+
+.turn-controls button,
+.infect-controls button {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.turn-controls button:hover,
+.infect-controls button:hover {
+  background-color: #676767;
+}
+
+.turn-controls button:active,
+.infect-controls button:active {
+  background-color: #323232;
+}
+
+/* Container for turn display and controls */
+.turn-container,
+.infect-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 576px) {
+  .turn-controls,
+  .infect-controls {
+    flex-direction: row;
+  }
+  
+  .turn-controls button,
+  .infect-controls button {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
