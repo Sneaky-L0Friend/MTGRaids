@@ -252,16 +252,17 @@ function pickMonster() {
     selectedRange[0];
 
   // Find the element to replace
-  const startElement = document.getElementById("startEasy");
-  const startMedium = document.getElementById("startMedium");
-  const startHard = document.getElementById("startHard");
+  const monsterImageContainer = document.getElementById("monsterImageContainer");
+  
+  // Clear any existing content
+  monsterImageContainer.innerHTML = "";
   
   // Create image element
   let imgElement = document.createElement("img");
   imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
   bossMonsterImageUrl = imgElement.src;
-  imgElement.style.width = "50vw";
-  imgElement.style.height = "50vh";
+  imgElement.style.maxWidth = "100%";
+  imgElement.style.height = "auto";
   imgElement.alt = "Boss Monster";
   
   // Create anchor element with proper link
@@ -278,14 +279,8 @@ function pickMonster() {
   anchorElement.target = "_blank";
   anchorElement.appendChild(imgElement);
   
-  // Replace the appropriate element
-  if (startElement) {
-    startElement.replaceWith(anchorElement);
-  } else if (startMedium) {
-    startMedium.replaceWith(anchorElement);
-  } else if (startHard) {
-    startHard.replaceWith(anchorElement);
-  }
+  // Add the anchor element to the container
+  monsterImageContainer.appendChild(anchorElement);
   
   // Set the scryfall monster colors
   scryfallMonsterColors = scryfallColorMap[pickedNumber];
@@ -477,11 +472,8 @@ function startGame(difficultyLevel, playerCount) {
   // Set difficulty at start
   setDifficultyAtStart(difficultyLevel);
   
-  // Hide all start buttons
-  const startButtons = document.querySelectorAll(".start-button");
-  startButtons.forEach(button => {
-    button.style.display = "none";
-  });
+  // Show dice log
+  document.getElementById("diceLog").style.display = "block";
   
   // Show game action buttons
   document.getElementById("gameActionButtons").style.display = "block";
@@ -828,6 +820,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
 
 
 

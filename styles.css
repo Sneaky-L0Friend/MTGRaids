@@ -1025,3 +1025,135 @@ th, td {
     max-width: 100%;
   }
 }
+
+/* Top section container */
+.top-section-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Monster image container */
+.monster-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 60%;
+}
+
+.monster-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dice log styling */
+#diceLog {
+  position: static;
+  max-height: 40vh;
+  width: 20%;
+  min-width: 200px;
+  overflow-y: auto;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: left;
+  background-color: rgba(51, 51, 51, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  align-self: flex-start;
+}
+
+/* Player health container styling */
+.player-health-container {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 80vh;
+  width: 20%;
+  min-width: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.5);
+  align-self: flex-start;
+}
+
+/* Monster controls styling */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  width: auto;
+  max-width: 800px;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 6px;
+  padding: 8px;
+  margin: 0 auto;
+}
+
+/* Minions container styling */
+.minions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Image container styling */
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  max-height: 150px;
+  max-width: 250px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .top-section-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #diceLog, .player-health-container, .monster-image-container {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .monster-image-container {
+    order: -1;
+  }
+  
+  #diceLog {
+    order: 1;
+  }
+  
+  .player-health-container {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .player-entry {
+    width: 280px;
+    margin: 5px;
+  }
+}
