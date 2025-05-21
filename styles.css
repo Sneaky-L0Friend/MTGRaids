@@ -220,6 +220,64 @@ button:active,
   margin-bottom: 10px;
 }
 
+/* Improved responsive layout for player health */
+@media (max-width: 992px) {
+  .player-health-names-container {
+    right: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .player-health-container {
+    max-width: 45%;
+  }
+  
+  .player-health-names-container {
+    right: 120px;
+    max-width: 40%;
+  }
+  
+  .player-health-names-container input.display-box {
+    width: 100px !important;
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .player-health-container, 
+  .player-health-names-container {
+    position: static;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .player-health-box {
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+  
+  .player-health-names-container input.display-box {
+    width: 90px !important;
+    font-size: 14px !important;
+    padding: 8px !important;
+  }
+  
+  .controls2 {
+    flex-direction: column;
+  }
+  
+  .button-wrapper {
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
+}
+
 @keyframes fadeOut {
   from {
     opacity: 1;

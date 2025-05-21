@@ -134,7 +134,7 @@ const colorRange = [
 ];
 
 // Version information
-const APP_VERSION = "1.0.01";
+const APP_VERSION = "1.0.03";
 
 // Initialize version display when the page loads
 document.addEventListener("DOMContentLoaded", function() {
@@ -144,4 +144,5 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
 

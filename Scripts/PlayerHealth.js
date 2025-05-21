@@ -43,6 +43,7 @@ function createPlayerHealthBoxes(numberOfPlayers) {
     playerHealthBox.className = "player-health-box";
     playerHealthBox.id = `player${i}Health`;
     playerHealthNamesBox.id = `player${i}HealthNames`;
+    playerHealthNamesBox.className = "player-health-names-box";
     playerHealthNamesBox.innerHTML = `<div class="controls2">
                                               <input
                                                   class="display-box"
@@ -76,3 +77,5 @@ function modifyPlayerHealthFromMonster(monsterDamage) {
     decreasePlayerHealth(i, monsterDamage);
   }
 }
+
+
