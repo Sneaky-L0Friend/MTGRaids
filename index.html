@@ -12,7 +12,8 @@
   <script src="Scripts/MonsterHealth.js"></script>
   <script src="Scripts/PlayerHealth.js"></script>
   <script src="Scripts/MTGRaidBase.js"></script>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <!-- Update Content Security Policy to allow Scryfall API -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.scryfall.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cards.scryfall.io https://*.scryfall.com;">
 </head>
 
 <body>
@@ -176,6 +177,9 @@
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <div id="errorMessage"></div>
+
+  <!-- Add dice log container -->
+  <div id="diceLog" style="display: none;"></div>
 </body>
 
 </html>

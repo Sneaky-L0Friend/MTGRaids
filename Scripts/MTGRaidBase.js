@@ -21,6 +21,7 @@ let hasCardBeenMilled = true;
 let hasCardBeenDrawn = true;
 let hasRevealedTopCard = false;
 let cardTypeRevealed = "";
+let difficulty = "medium"; // Default difficulty
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -72,7 +73,6 @@ function takeMonsterAction() {
   const easyProbability = 0.2; // 20% chance for easy actions
 
   // Determine which modifiers to use based on difficulty
-  let modifiersToUse;
   if (difficulty === "easy") {
     modifiersToUse = EASY_MODE_MODIFIERS;
   } else if (difficulty === "medium") {
@@ -271,12 +271,20 @@ function pickMonster() {
   anchorElement.appendChild(imgElement);
 
   // Append the anchor element to the parent element where you want to replace
-  startElement.replaceWith(anchorElement);
+  if (startElement) {
+    startElement.replaceWith(anchorElement);
+  }
+  
+  // Set the scryfall monster colors
   scryfallMonsterColors = scryfallColorMap[pickedNumber];
-  console.log("scryfall colrors: " + scryfallMonsterColors);
+  console.log("scryfall colors: " + scryfallMonsterColors);
+  
+  // Ensure scryfallMonsterColors has a default value if undefined
+  if (!scryfallMonsterColors) {
+    console.warn("scryfallColorMap missing entry for number:", pickedNumber);
+    scryfallMonsterColors = "wubrg"; // Default to all colors if missing
+  }
 
-  // // Replace the div with the image
-  // startElement.replaceWith(imgElement);
   return pickedNumber;
 }
 
@@ -369,8 +377,10 @@ function addMinions(numberOfImages, imageNumber) {
   }
 }
 
-function setDifficultyAtStart(difficulty) {
-  switch (difficulty) {
+function setDifficultyAtStart(difficultyLevel) {
+  difficulty = difficultyLevel; // Set the global difficulty variable
+  
+  switch (difficultyLevel) {
     case "easy":
       modifiersToUse = EASY_MODE_MODIFIERS;
       lifeMultiplier = 20;
@@ -674,12 +684,22 @@ async function getRandomCardImageUrl(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Network response was not ok: ' + response.status);
     }
     const cardData = await response.json();
-    return cardData.image_uris.normal; // Extracting the image URL from the JSON response
+    
+    // Check if the response has the expected structure
+    if (!cardData.image_uris || !cardData.image_uris.normal) {
+      // Try alternative image path for double-faced cards
+      if (cardData.card_faces && cardData.card_faces[0] && cardData.card_faces[0].image_uris) {
+        return cardData.card_faces[0].image_uris.normal;
+      }
+      throw new Error('Invalid card data structure');
+    }
+    
+    return cardData.image_uris.normal;
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching card:', error);
     return null;
   }
 }
@@ -689,16 +709,26 @@ function revealTopCard() {
     showErrorMessage("Please Start the Game First");
     return;
   }
+  
   if(hasCardBeenMilled || hasCardBeenDrawn) {
     let randomTopCardId = document.getElementById('randomTopCardId');
     randomTopCardId.disabled = true;
     cardTypeRevealed = pickRandomCardType(false);
+    
+    // Check if scryfallMonsterColors is defined
+    if (!scryfallMonsterColors) {
+      addLog("ERROR: Monster colors not defined. Please restart the game.");
+      randomTopCardId.disabled = false;
+      return;
+    }
+    
     let randomCardUrl;
     if (cardTypeRevealed == "Land") {
       randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
     } else {
       randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardTypeRevealed + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
     }
+    
     getRandomCardImageUrl(randomCardUrl)
       .then(imageUrl => {
         randomTopCardId.disabled = false;
@@ -708,9 +738,15 @@ function revealTopCard() {
           currentRandomCardUrl = imageUrl;
           openPopup(currentRandomCardUrl);
         }
+      })
+      .catch(error => {
+        console.error("Error fetching card:", error);
+        addLog("ERROR: Failed to fetch card. Please try again.");
+        randomTopCardId.disabled = false;
       });
-      hasCardBeenMilled = false;
-      hasCardBeenDrawn = false;
+      
+    hasCardBeenMilled = false;
+    hasCardBeenDrawn = false;
   } else {
     openPopup(currentRandomCardUrl);
     return;
@@ -784,6 +820,9 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
+
 
 
 

@@ -49,12 +49,22 @@ function showErrorMessage(message) {
 }
 
 function addLog(logText, imageUrl) {
+  const diceLog = document.getElementById("diceLog");
+  
+  // Create diceLog if it doesn't exist
+  if (!diceLog) {
+    const newDiceLog = document.createElement("div");
+    newDiceLog.id = "diceLog";
+    document.body.appendChild(newDiceLog);
+  }
+  
   const logEntry = document.createElement("div");
   let pTag = document.createElement("p");
   logEntry.className = "logEntry";
   pTag.textContent = logText;
   pTag.style.display = "inline";
   logEntry.appendChild(pTag);
+  
   if(imageUrl){
     let aTag = document.createElement("a");
     aTag.target = "_blank";
@@ -64,13 +74,14 @@ function addLog(logText, imageUrl) {
     aTag.style.color = "white";
     logEntry.appendChild(aTag);
   }
-  // Get the dice log container
-  const diceLog = document.getElementById("diceLog");
-
-  // Append the new log entry to the top of the log
-  diceLog.insertAdjacentElement("beforeend", logEntry);
-  diceLog.scrollTop = diceLog.scrollHeight;
-  diceLog.style.display = "block";
+  
+  // Get the dice log container again (in case it was just created)
+  const diceLogElement = document.getElementById("diceLog");
+  
+  // Append the new log entry to the log
+  diceLogElement.insertAdjacentElement("beforeend", logEntry);
+  diceLogElement.scrollTop = diceLogElement.scrollHeight;
+  diceLogElement.style.display = "block";
 }
 
 function readActionJsonFiles() {
@@ -107,3 +118,4 @@ function readActionJsonFiles() {
     })
     .catch((error) => console.error("Error fetching JSON:", error));
 }
+
