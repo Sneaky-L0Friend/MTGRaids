@@ -1,9 +1,12 @@
+// Remove this line since it's already declared in Logging.js
+// let log = []; 
+
 let currentRound = 1;
 let totalDiceRolls = 0;
 let numberOfDiceRolled = 0;
 let lifeMultiplier;
 let gameCanStart = false;
-let log = [];
+// log is now defined in Logging.js
 let bossMonsterImageUrl = "";
 let monsterHandSize = 8;
 let modifiedMonsterHandSize = 0;
@@ -550,6 +553,9 @@ function startGame(difficultyLevel, playerCount) {
   addLog(`ROUND ${currentRound}`);
 }
 
+// Make startGame globally available
+window.startGame = startGame;
+
 function checkForMinions(action) {
   //TODO: SMH Just do it based on the index used...no need to string compare
   if (action.includes("Monster creates")) {
@@ -858,6 +864,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
 
 
 

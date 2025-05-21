@@ -36,24 +36,24 @@
     <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom or pick number of players:</label>
     <input type="text" id="myTextbox" oninput="checkInput()" placeholder="Enter number of players">
     <div class="button-wrapper">
-      <button id="button1" onclick="startGame('medium', 1)">1</button>
-      <button id="button2" onclick="startGame('medium', 2)">2</button>
-      <button id="button3" onclick="startGame('medium', 3)">3</button>
-      <button id="button4" onclick="startGame('medium', 4)">4</button>
-      <button id="button5" onclick="startGame('medium', 5)">5</button>
-      <button id="button6" onclick="startGame('medium', 6)">6</button>
+      <button id="button1" onclick="window.startGame('medium', 1)">1</button>
+      <button id="button2" onclick="window.startGame('medium', 2)">2</button>
+      <button id="button3" onclick="window.startGame('medium', 3)">3</button>
+      <button id="button4" onclick="window.startGame('medium', 4)">4</button>
+      <button id="button5" onclick="window.startGame('medium', 5)">5</button>
+      <button id="button6" onclick="window.startGame('medium', 6)">6</button>
     </div>
   </div>
 
   <!-- Keep only the colored start buttons -->
   <div class="button-container">
-    <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="startGame('easy', 0)">
+    <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="window.startGame('easy', 0)">
       Click to Start Easy Challenge
     </button>
-    <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="startGame('medium', 0)">
+    <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="window.startGame('medium', 0)">
       Click to Start Medium Challenge
     </button>
-    <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="startGame('hard', 0)">
+    <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="window.startGame('hard', 0)">
       Click to Start Hard Challenge
     </button>
   </div>
@@ -172,7 +172,7 @@
     </tr>
   </table>
 
-  <button id="refreshButton" onclick="refreshPage()">Restart</button>
+  <button id="refreshButton" onclick="window.refreshPage()">Restart</button>
 
   <div id="errorMessage"></div>
 
@@ -183,5 +183,16 @@
   <script src="Scripts/MonsterHealth.js"></script>
   <script src="Scripts/PlayerHealth.js"></script>
   <script src="Scripts/MTGRaidBase.js"></script>
+  
+  <!-- Initialize global functions -->
+  <script>
+    // Make sure all necessary functions are globally available
+    if (typeof window.startGame !== 'function') {
+      console.error("startGame function not found! Check script loading order.");
+    }
+    if (typeof window.refreshPage !== 'function') {
+      console.error("refreshPage function not found! Check script loading order.");
+    }
+  </script>
 </body>
 </html>

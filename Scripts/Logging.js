@@ -72,3 +72,8 @@ function showErrorMessage(message) {
     errorElement.style.display = "none";
   }, 3000);
 }
+
+// Make logging functions globally available
+window.addLog = addLog;
+window.clearLog = clearLog;
+window.showErrorMessage = showErrorMessage;
