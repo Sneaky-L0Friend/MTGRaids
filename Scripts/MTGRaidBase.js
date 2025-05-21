@@ -54,6 +54,7 @@ function takeMonsterAction() {
     monsterHealth = 0;
     updateMonsterHealth();
     openPopup("./FunStuff/yRMCDs.gif");
+    disableAllButtonsExceptRestart();
     return;
   }
 
@@ -148,8 +149,35 @@ function updateRound() {
   roundElement.innerText = `Turn: ${currentRound}`;
   const drValue = Math.floor(currentRound / 2); // Calculate DR value
   round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
+  
+  // Add player turn indicator
+  if (numberOfDiceRolled >= drValue && currentRound > 1) {
+    showPlayerTurnIndicator();
+  } else {
+    hidePlayerTurnIndicator();
+  }
+  
   totalRoundLifeChange = 0;
   hasCardBeenDrawn = true;
+}
+
+function showPlayerTurnIndicator() {
+  let indicator = document.getElementById("playerTurnIndicator");
+  if (!indicator) {
+    indicator = document.createElement("div");
+    indicator.id = "playerTurnIndicator";
+    indicator.className = "player-turn-indicator";
+    indicator.innerHTML = "PLAYERS' TURN";
+    document.body.appendChild(indicator);
+  }
+  indicator.style.display = "block";
+}
+
+function hidePlayerTurnIndicator() {
+  const indicator = document.getElementById("playerTurnIndicator");
+  if (indicator) {
+    indicator.style.display = "none";
+  }
 }
 
 function increaseRound() {
@@ -164,6 +192,7 @@ function increaseRound() {
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(1);
+  hidePlayerTurnIndicator();
 }
 
 function decreaseRound() {
@@ -553,6 +582,7 @@ function millMonster() {
     monsterHealth = 0;
     updateMonsterHealth();
     openPopup("./FunStuff/yRMCDs.gif");
+    disableAllButtonsExceptRestart();
     return;
   }
   let cardMilled;
@@ -659,3 +689,20 @@ function revealTopCard() {
     return;
   }
 }
+
+// Add this new function to disable all buttons except restart
+function disableAllButtonsExceptRestart() {
+  // Get all buttons on the page
+  const allButtons = document.querySelectorAll('button');
+  
+  // Disable all buttons except the refresh/restart button
+  allButtons.forEach(button => {
+    if (button.id !== 'refreshButton') {
+      button.disabled = true;
+      button.style.opacity = '0.5';
+      button.style.cursor = 'not-allowed';
+    }
+  });
+}
+
+
