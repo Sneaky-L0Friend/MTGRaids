@@ -45,10 +45,12 @@ function takeMonsterAction() {
     showErrorMessage("Please Start the Game First");
     return;
   }
+  
   if (currentRound == 1) {
     showErrorMessage("Monster cannot take actions on Round 1");
     return;
   }
+  
   if (cardsInMonsterDeck == 0) {
     addLog("YOU WON VIA MILLING! CONGRATS");
     monsterHealth = 0;
@@ -63,27 +65,24 @@ function takeMonsterAction() {
     showErrorMessage("Monster cannot take further actions, increase round");
     return;
   }
-  const randomValue = Math.random(); // Random value between 0 and 1
-  let baseProbability;
-  let additionalProbability;
-  let easyProbability;
-  if (modifiersToUse == EASY_MODE_MODIFIERS) {
-    baseProbability =
-      1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)));
-    additionalProbability =
-      1 *
-      (1 / (1 + Math.exp(-modifiersToUse.modifier2))) *
-      modifiersToUse.modifier3;
-    easyProbability = baseProbability;
+
+  // Calculate probabilities based on modifiers
+  const baseProbability = 0.5; // 50% chance for medium actions
+  const additionalProbability = 0.3; // 30% chance for hard actions
+  const easyProbability = 0.2; // 20% chance for easy actions
+
+  // Determine which modifiers to use based on difficulty
+  let modifiersToUse;
+  if (difficulty === "easy") {
+    modifiersToUse = EASY_MODE_MODIFIERS;
+  } else if (difficulty === "medium") {
+    modifiersToUse = MEDIUM_MODE_MODIFIERS;
   } else {
-    baseProbability =
-      1 / (1 + Math.exp(-modifiersToUse.modifier1 / (currentRound * 1.5)));
-    additionalProbability =
-      (1 - baseProbability) *
-      (1 / (1 + Math.exp(-modifiersToUse.modifier2))) *
-      modifiersToUse.modifier3;
-    easyProbability = additionalProbability;
+    modifiersToUse = HARD_MODE_MODIFIERS;
   }
+
+  // Apply modifiers to probabilities
+  const randomValue = Math.random() * 100;
 
   // Randomly selects the Easy, Medium or Hard Action list based on previous formulas and modifiers
   let randomlyRolledList;
@@ -97,6 +96,7 @@ function takeMonsterAction() {
     randomlyRolledList = hardActionsJson;
     listRolledFrom = "H";
   }
+  
   const actionElement = document.getElementById("action");
   if (listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
     actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
@@ -106,21 +106,30 @@ function takeMonsterAction() {
     takeMonsterAction();
     return;
   }
+  
+  // Make sure randomlyRolledList.Actions exists and has elements
+  if (!randomlyRolledList || !randomlyRolledList.Actions || randomlyRolledList.Actions.length === 0) {
+    console.error("Action list is empty or undefined:", randomlyRolledList);
+    actionElement.innerText = "ERROR: Could not load actions. Please restart the game.";
+    return;
+  }
+  
   const result = Math.floor(Math.random() * randomlyRolledList.Actions.length); // Generate a random number on the rolled List
-
-  // console.log(randomValue);
-  // console.log(modifiersToUse);
-  // console.log("baseProbability: " + baseProbability);
-  // console.log("additionalProbability: " + additionalProbability);
-  // console.log('easyProbability: ' + easyProbability);
 
   ++totalDiceRolls;
   ++numberOfDiceRolled;
   const diceRolledThisRound = Math.floor(currentRound / 2); // Calculate Dice rolled this round value;
   playerNumberSpecific = false;
+  
   if (randomlyRolledList.Actions[result].includes("${numberOfPlayers}")) {
     playerNumberSpecific = true;
   }
+
+  // Debug logging
+  console.log("Action selected:", randomlyRolledList.Actions[result]);
+  console.log("Current round:", currentRound);
+  console.log("Dice rolled this round:", diceRolledThisRound);
+  console.log("Number of players:", numberOfPlayersGlobal);
 
   actionElement.innerText = randomlyRolledList.Actions[result]
     .replaceAll("${diceRolledThisRound}", diceRolledThisRound)
@@ -129,6 +138,12 @@ function takeMonsterAction() {
     .replaceAll("${diceRolledThisRound+2}", diceRolledThisRound + 2)
     .replaceAll("${currentRound+1}", currentRound + 1)
     .replaceAll("${numberOfPlayers}", numberOfPlayersGlobal);
+
+  // Highlight the action to make it more visible
+  actionElement.style.backgroundColor = "#ff9800";
+  setTimeout(() => {
+    actionElement.style.backgroundColor = "#333";
+  }, 1000);
 
   addLog(
     `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
@@ -436,27 +451,30 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   setDifficultyAtStart(difficulty);
 
   window.startedGame = true;
-  let startEasy = document.getElementById("startEasy");
-  let startMedium = document.getElementById("startMedium");
-  let startMediumButton1 = document.getElementById("startMediumButton1");
-  let startMediumButton2 = document.getElementById("startMediumButton2");
-  let startMediumButton3 = document.getElementById("startMediumButton3");
-  let startMediumButton4 = document.getElementById("startMediumButton4");
-  let startHard = document.getElementById("startHard");
+  
+  // Hide start game elements
+  let startButtons = document.querySelectorAll('.start-button');
+  startButtons.forEach(button => {
+    button.style.display = "none";
+  });
+  
   let textBox = document.getElementById("myTextbox");
-  let monsterHandButton = document.getElementById("monsterHandButtons");
-  let monsterLandButton = document.getElementById("monsterLandButtons");
+  let playerLabel = document.getElementById("playerLabel");
   textBox.style.display = "none";
   playerLabel.style.display = "none";
-  startEasy.style.display = "none";
-  startMedium.style.display = "none";
-  startMediumButton1.style.display = "none";
-  startMediumButton2.style.display = "none";
-  startMediumButton3.style.display = "none";
-  startMediumButton4.style.display = "none";
-  startHard.style.display = "none";
+  
+  // Show game elements
+  let monsterHandButton = document.getElementById("monsterHandButtons");
+  let monsterLandButton = document.getElementById("monsterLandButtons");
+  let gameActionButtons = document.getElementById("gameActionButtons");
+  let monsterControls = document.getElementById("monsterControls");
+  let turnInfectControls = document.getElementById("turnInfectControls");
+  
   monsterLandButton.style.display = "grid";
   monsterHandButton.style.display = "grid";
+  gameActionButtons.style.display = "block";
+  monsterControls.style.display = "flex";
+  turnInfectControls.style.display = "flex";
 
   // Get the number of players
   let value = numberOfPlayersFromButton == 0 ? textBox.value : numberOfPlayersFromButton;
@@ -703,6 +721,59 @@ function disableAllButtonsExceptRestart() {
       button.style.cursor = 'not-allowed';
     }
   });
+}
+
+// Make sure action JSON files are loaded properly
+function readActionJsonFiles() {
+  console.log("Reading action JSON files...");
+  
+  // Load Easy Actions
+  fetch("./Actions/EasyActions.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Easy actions loaded:", data);
+      window.easyActionsJson = data;
+    })
+    .catch(error => {
+      console.error("Error loading easy actions:", error);
+    });
+
+  // Load Medium Actions
+  fetch("./Actions/MediumActions.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Medium actions loaded:", data);
+      window.mediumActionsJson = data;
+    })
+    .catch(error => {
+      console.error("Error loading medium actions:", error);
+    });
+
+  // Load Hard Actions
+  fetch("./Actions/HardActions.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("Hard actions loaded:", data);
+      window.hardActionsJson = data;
+    })
+    .catch(error => {
+      console.error("Error loading hard actions:", error);
+    });
 }
 
 

@@ -69,6 +69,17 @@ button:active,
   z-index: 1000;
 }
 
+/* Game over state */
+.game-over .player-health-container,
+.game-over #gameActionButtons,
+.game-over #monsterControls,
+.game-over #turnInfectControls,
+.game-over #monsterHandButtons,
+.game-over #monsterLandButtons {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .display-container {
   display: flex;
   flex-direction: column;
@@ -197,99 +208,107 @@ button:active,
   top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  gap: 15px;
   max-height: 80vh;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   z-index: 100;
+  width: 300px;
 }
 
-.player-health-names-container {
-  position: fixed;
-  right: 220px; /* Increased from 150px to provide more space */
-  top: 20px;
+.player-entry {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.player-name {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.player-name input {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  background-color: #444;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.player-health-controls {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  max-height: 80vh;
-  overflow-y: auto;
-  z-index: 100;
+  width: 100%;
+  flex-wrap: nowrap; /* Prevent wrapping */
 }
 
-.player-health-box {
-  margin-bottom: 10px;
+.health-buttons {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 
-.player-health-names-box {
-  margin-bottom: 10px;
+.health-buttons button {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  padding: 6px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  min-width: 0; /* Allow buttons to shrink if needed */
+  flex-shrink: 0; /* But don't shrink by default */
 }
 
-/* Improved responsive layout for player health */
-@media (max-width: 1200px) {
-  .player-health-names-container {
-    right: 200px;
-  }
+.health-display {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px;
+  background-color: #444;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis for overflow */
+  min-width: 80px; /* Minimum width */
 }
 
-@media (max-width: 992px) {
-  .player-health-names-container {
-    right: 180px;
-  }
-  
-  .player-health-names-container input.display-box {
-    width: 110px !important;
-  }
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .player-health-container {
-    max-width: 45%;
+    width: 250px;
   }
   
-  .player-health-names-container {
-    right: 160px;
-    max-width: 40%;
-  }
-  
-  .player-health-names-container input.display-box {
-    width: 100px !important;
-    font-size: 16px !important;
+  .health-buttons button {
+    padding: 5px 6px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 576px) {
-  .player-health-container, 
-  .player-health-names-container {
+  .player-health-container {
     position: static;
-    margin: 10px 0;
     width: 100%;
     max-width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    align-items: center;
+    margin: 15px 0;
   }
   
-  .player-health-box,
-  .player-health-names-box {
-    margin-bottom: 5px;
-    margin-right: 5px;
-  }
-  
-  .player-health-names-container input.display-box {
-    width: 90px !important;
-    font-size: 14px !important;
-    padding: 8px !important;
-  }
-  
-  .controls2 {
-    flex-direction: column;
-  }
-  
-  .button-wrapper {
-    flex-direction: row;
-    margin-bottom: 5px;
+  .player-entry {
+    width: 280px;
+    margin: 5px;
   }
 }
 
@@ -537,4 +556,106 @@ th, td {
     height: 36px;
     font-size: 18px;
   }
+}
+
+/* Improved start button layout */
+.start-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 1200px; /* Limit maximum width to prevent excessive spreading */
+}
+
+.start-buttons-row button {
+  flex: 0 1 auto;
+  min-width: 180px; /* Reduce minimum width */
+  max-width: 250px; /* Reduce maximum width */
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px; /* Slightly smaller font */
+  padding: 10px 8px; /* Reduce padding */
+}
+
+.start-buttons-row input {
+  flex: 0 1 auto;
+  min-width: 180px; /* Reduce minimum width */
+  max-width: 250px; /* Reduce maximum width */
+  margin: 0;
+  font-size: 14px; /* Slightly smaller font */
+  padding: 10px 8px; /* Reduce padding */
+}
+
+/* Responsive adjustments for start buttons */
+@media (min-width: 1200px) {
+  .start-buttons-row {
+    flex-wrap: nowrap; /* Prevent wrapping on large screens */
+  }
+  
+  .start-buttons-row button,
+  .start-buttons-row input {
+    min-width: 0; /* Allow buttons to shrink more on large screens */
+    flex: 1; /* Equal width distribution */
+  }
+}
+
+@media (max-width: 992px) {
+  .start-buttons-row button,
+  .start-buttons-row input {
+    min-width: 160px;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .start-buttons-row button,
+  .start-buttons-row input {
+    min-width: 140px;
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .start-buttons-row button,
+  .start-buttons-row input {
+    min-width: 120px;
+    font-size: 12px;
+    padding: 8px;
+    flex: 1 1 40%;
+  }
+}
+
+/* Improve action display */
+#action {
+  font-size: clamp(16px, 2vw, 24px);
+  padding: 15px;
+  border: 2px solid #333;
+  cursor: default;
+  user-select: none;
+  margin-bottom: 10px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  width: auto;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+/* Add animation for action highlight */
+@keyframes highlightAction {
+  0% { background-color: #333; }
+  50% { background-color: #ff9800; }
+  100% { background-color: #333; }
+}
+
+.highlight-action {
+  animation: highlightAction 1s ease;
 }

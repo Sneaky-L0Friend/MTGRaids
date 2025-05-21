@@ -26,30 +26,31 @@
 
   <div class="display-container">
     <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom or pick number of players:</label>
-    <div>
-      <button id="startMediumButton1" class="display-box" onclick="startGame('medium', 1)">
-        Start Medium 1 Player
+    
+    <div class="start-buttons-row">
+      <button id="startMediumButton1" class="display-box start-button" onclick="startGame('medium', 1)">
+        Medium 1 Player
       </button>
-      <button id="startMediumButton2" class="display-box" onclick="startGame('medium', 2)">
-        Start Medium 2 Player
+      <button id="startMediumButton2" class="display-box start-button" onclick="startGame('medium', 2)">
+        Medium 2 Player
       </button>
-      <input class="display-box" type="text" id="myTextbox" style="text-align: center" oninput="checkInput()" placeholder="Enter custom number here... " />
-      <button id="startMediumButton3" class="display-box" onclick="startGame('medium', 3)">
-        Start Medium 3 Player
+      <input class="display-box" type="text" id="myTextbox" style="text-align: center" oninput="checkInput()" placeholder="Custom number..." />
+      <button id="startMediumButton3" class="display-box start-button" onclick="startGame('medium', 3)">
+        Medium 3 Player
       </button>
-      <button id="startMediumButton4" class="display-box" onclick="startGame('medium', 4)">
-        Start Medium 4 Player
+      <button id="startMediumButton4" class="display-box start-button" onclick="startGame('medium', 4)">
+        Medium 4 Player
       </button>
     </div>
 
     <div class="button-container">
-      <button id="startEasy" style="background-color: green" class="display-box" onclick="startGame('easy', 0)">
+      <button id="startEasy" style="background-color: green" class="display-box start-button" onclick="startGame('easy', 0)">
         Click to Start Easy Challenge
       </button>
-      <button id="startMedium" style="background-color: orange" class="display-box" onclick="startGame('medium', 0)">
+      <button id="startMedium" style="background-color: orange" class="display-box start-button" onclick="startGame('medium', 0)">
         Click to Start Medium Challenge
       </button>
-      <button id="startHard" style="background-color: crimson" class="display-box" onclick="startGame('hard', 0)">
+      <button id="startHard" style="background-color: crimson" class="display-box start-button" onclick="startGame('hard', 0)">
         Click to Start Hard Challenge
       </button>
     </div>
@@ -84,23 +85,27 @@
 
   <div id="imageContainer"></div>
   <div class="display-container">
-    <div style="display: flex; flex-direction: row; gap: 10px;">
-      <button id="dices" class="display-box" onclick="takeMonsterAction()">
-        Click for Monster Action
-      </button>
-      <button id="dices" class="display-box" onclick="millMonster()">
-        Mill
-      </button>
-      <button id="randomTopCardId" class="display-box" onclick="revealTopCard()">
-        Reveal Monster's Top Card
-      </button>
-    </div>
-    <div id="action" class="display-box" style="cursor: default; max-width: 50vw; text-align: center; margin-bottom: -5px;">
-      Action: None
+    <!-- Game action buttons - initially hidden -->
+    <div id="gameActionButtons" style="display: none;">
+      <div style="display: flex; flex-direction: row; gap: 10px;">
+        <button id="monsterActionButton" class="display-box" onclick="takeMonsterAction()">
+          Click for Monster Action
+        </button>
+        <button id="millButton" class="display-box" onclick="millMonster()">
+          Mill
+        </button>
+        <button id="randomTopCardId" class="display-box" onclick="revealTopCard()">
+          Reveal Monster's Top Card
+        </button>
+      </div>
+      <div id="action" class="display-box" style="cursor: default; max-width: 50vw; text-align: center; margin-bottom: -5px; transition: background-color 0.3s ease;">
+        Action: None
+      </div>
     </div>
   </div>
 
-  <div class="controls" style="margin-bottom: 2px">
+  <!-- Monster controls - initially hidden -->
+  <div id="monsterControls" class="controls" style="display: none; margin-bottom: 2px">
     <button id="counterButton" style="cursor: pointer" onclick="strikeOutMonsterAction()">
       Counter
     </button>
@@ -127,8 +132,8 @@
     </button>
   </div>
 
-  <!-- Combined turn and infect controls on one line -->
-  <div class="display-container controls-row">
+  <!-- Turn and infect controls - initially hidden -->
+  <div id="turnInfectControls" class="display-container controls-row" style="display: none;">
     <div class="turn-container">
       <div class="turn-controls">
         <button id="increaseRoundButton" onclick="increaseRound()">+</button>
@@ -164,11 +169,8 @@
     </tr>
   </table>
 
-  <div class="player-health-names-container" id="playerHealthNamesContainer">
-    <!-- Player health boxes names will be dynamically added here -->
-  </div>
   <div class="player-health-container" id="playerHealthContainer">
-    <!-- Player health boxes will be dynamically added here -->
+    <!-- Player entries will be dynamically added here -->
   </div>
 
   <button id="refreshButton" onclick="refreshPage()">Restart</button>

@@ -1,7 +1,11 @@
+// Version information
+const APP_VERSION = "1.0.12";
+
+// Initialize global variables
+window.easyActionsJson = null;
+window.mediumActionsJson = null;
+window.hardActionsJson = null;
 window.startedGame = false;
-window.easyActionsJson;
-window.mediumActionsJson;
-window.hardActionsJson;
 
 const EASY_MODE_MODIFIERS = {
   modifier1: 10,
@@ -133,9 +137,6 @@ const colorRange = [
   { range: [31, 32], probability: 3 }, // 26-27: 3% probability
 ];
 
-// Version information
-const APP_VERSION = "1.0.06";
-
 // Initialize version display when the page loads
 document.addEventListener("DOMContentLoaded", function() {
   // Set the version number in the UI
@@ -144,6 +145,11 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
+
+
+
+
 
 
 

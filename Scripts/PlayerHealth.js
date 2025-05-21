@@ -12,61 +12,55 @@ function decreasePlayerHealth(player, amount) {
 
 function updatePlayerHealth(player) {
   addLog("Player " + player + ", Health Changed to: " + playerHealth[player]);
-  const playerHealthElement = document.getElementById(`player${player}Health`);
-  playerHealthElement.innerHTML = `<div class="controls2">
-                                  <div class="button-wrapper">
-                                    <button style="cursor: pointer;" onclick="increasePlayerHealth(${player}, 10)">+10</button>
-                                    <button style="cursor: pointer;" onclick="increasePlayerHealth(${player}, 1)">+</button>
-                                    <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 1)">-</button>
-                                    <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 10)">-10</button>
-                                  </div>
-                                  <div class="display-box" style="min-width: 100px;">Health: ${playerHealth[player]}</div>
-                                </div>`;
+  const healthDisplay = document.getElementById(`player${player}HealthDisplay`);
+  if (healthDisplay) {
+    healthDisplay.textContent = `Health: ${playerHealth[player]}`;
+  }
 }
 
 function createPlayerHealthBoxes(numberOfPlayers) {
-  const playerHealthContainer = document.getElementById(
-    "playerHealthContainer",
-  );
-  const playerHealthNamesContainer = document.getElementById(
-    "playerHealthNamesContainer",
-  );
-
+  const playerHealthContainer = document.getElementById("playerHealthContainer");
+  
   // Clear existing player health boxes
   playerHealthContainer.innerHTML = "";
-  playerHealthNamesContainer.innerHTML = "";
 
   // Dynamically create player health boxes
   for (let i = 1; i <= numberOfPlayers; i++) {
-    const playerHealthNamesBox = document.createElement("div");
-    const playerHealthBox = document.createElement("div");
-    playerHealthBox.className = "player-health-box";
-    playerHealthBox.id = `player${i}Health`;
-    playerHealthNamesBox.id = `player${i}HealthNames`;
-    playerHealthNamesBox.className = "player-health-names-box";
-    playerHealthNamesBox.innerHTML = `<div class="controls2">
-                                              <input
-                                                  class="display-box"
-                                                  type="text"
-                                                  style="text-align: center; width: 130px; font-size: 18px;"
-                                                  placeholder="Player ${i}"
-                                                />
-                                            </div>
-                                            `;
-    playerHealthBox.innerHTML = `<div class="controls2">
-                                  <div class="button-wrapper">
-                                    <button style="cursor: pointer;"onclick="increasePlayerHealth(${i}, 10)">+10</button>
-                                    <button style="cursor: pointer;"onclick="increasePlayerHealth(${i}, 1)">+</button>
-                                    <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 1)">-</button>
-                                    <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 10)">-10</button>
-                                  </div>
-                                  <div class="display-box" style="min-width: 100px;">Health: 40</div>
-                                </div>
-                                `;
-
-    playerHealthContainer.appendChild(playerHealthBox);
-    playerHealthNamesContainer.appendChild(playerHealthNamesBox);
-
+    const playerEntry = document.createElement("div");
+    playerEntry.className = "player-entry";
+    
+    // Create player name input
+    const playerName = document.createElement("div");
+    playerName.className = "player-name";
+    playerName.innerHTML = `<input type="text" placeholder="Player ${i}" />`;
+    
+    // Create health controls
+    const healthControls = document.createElement("div");
+    healthControls.className = "player-health-controls";
+    
+    // Create health buttons
+    const healthButtons = document.createElement("div");
+    healthButtons.className = "health-buttons";
+    healthButtons.innerHTML = `
+      <button onclick="increasePlayerHealth(${i}, 10)">+10</button>
+      <button onclick="increasePlayerHealth(${i}, 1)">+</button>
+      <button onclick="decreasePlayerHealth(${i}, 1)">-</button>
+      <button onclick="decreasePlayerHealth(${i}, 10)">-10</button>
+    `;
+    
+    // Create health display
+    const healthDisplay = document.createElement("div");
+    healthDisplay.className = "health-display";
+    healthDisplay.id = `player${i}HealthDisplay`;
+    healthDisplay.textContent = `Health: 40`;
+    
+    // Assemble the components
+    healthControls.appendChild(healthButtons);
+    healthControls.appendChild(healthDisplay);
+    playerEntry.appendChild(playerName);
+    playerEntry.appendChild(healthControls);
+    playerHealthContainer.appendChild(playerEntry);
+    
     // Initialize player health object
     playerHealth[i] = 40;
   }
@@ -77,6 +71,7 @@ function modifyPlayerHealthFromMonster(monsterDamage) {
     decreasePlayerHealth(i, monsterDamage);
   }
 }
+
 
 
 
