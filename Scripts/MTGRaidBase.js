@@ -277,8 +277,8 @@ function pickMonster() {
   bossMonsterImageUrl = imgElement.src;
   
   // Set standard size for all monster images
-  imgElement.style.width = "300px";
-  imgElement.style.height = "300px";
+  imgElement.style.width = "400px";
+  imgElement.style.height = "400px";
   imgElement.style.objectFit = "contain";
   
   imgElement.alt = "Boss Monster";
@@ -912,6 +912,7 @@ function readActionJsonFiles() {
 // Make necessary functions globally available
 window.startGame = startGame;
 window.checkInput = checkInput;
+
 
 
 

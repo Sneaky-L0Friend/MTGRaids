@@ -1039,9 +1039,10 @@ th, td {
   align-items: flex-start;
   width: 100%;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-/* Monster image container */
+/* Monster image container styling */
 .monster-image-container {
   display: flex;
   flex-direction: column;
@@ -1053,8 +1054,8 @@ th, td {
 }
 
 .monster-image-container img {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -1063,24 +1064,31 @@ th, td {
 }
 
 /* Responsive adjustments for monster image */
+@media (max-width: 1200px) {
+  .monster-image-container img {
+    width: 350px;
+    height: 350px;
+  }
+}
+
 @media (max-width: 992px) {
+  .monster-image-container img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
   .monster-image-container img {
     width: 250px;
     height: 250px;
   }
 }
 
-@media (max-width: 768px) {
-  .monster-image-container img {
-    width: 200px;
-    height: 200px;
-  }
-}
-
 @media (max-width: 576px) {
   .monster-image-container img {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
 }
 
