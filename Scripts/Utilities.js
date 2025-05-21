@@ -1,6 +1,7 @@
-function refreshPage() {
+// Make the refreshPage function globally available
+window.refreshPage = function() {
   location.reload();
-}
+};
 
 function strikeOutMonsterAction() {
   if (!gameCanStart) {
@@ -118,4 +119,6 @@ function readActionJsonFiles() {
     })
     .catch((error) => console.error("Error fetching JSON:", error));
 }
+
+
 

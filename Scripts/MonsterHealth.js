@@ -12,10 +12,13 @@ function updateMonsterHealth() {
   
   monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
   
-  if (window.startedGame && typeof addLog === 'function') {
-    addLog(
+  // Check if addLog is defined before calling it
+  if (window.startedGame && typeof window.addLog === 'function') {
+    window.addLog(
       `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`,
     );
+  } else if (window.startedGame) {
+    console.log(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`);
   }
 }
 
@@ -40,10 +43,13 @@ function updateMonsterInfect() {
   
   monsterHealthElement.innerText = `Infect: ${monsterInfect}`;
   
-  if (window.startedGame && typeof addLog === 'function') {
-    addLog(
+  // Check if addLog is defined before calling it
+  if (window.startedGame && typeof window.addLog === 'function') {
+    window.addLog(
       `TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
     );
+  } else if (window.startedGame) {
+    console.log(`TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
   }
 }
 
@@ -52,5 +58,7 @@ function changeMonsterInfect(numberToChangeBy) {
   totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy; // Fixed: was using totalRoundLifeChange
   updateMonsterInfect();
 }
+
+
 
 
