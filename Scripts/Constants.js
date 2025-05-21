@@ -1,5 +1,5 @@
 // Version information
-const APP_VERSION = "1.0.14";
+const APP_VERSION = "1.0.15";
 
 // Initialize global variables
 window.easyActionsJson = null;
@@ -79,13 +79,32 @@ const scryfallColorMap = {
   // Add more mappings as needed
 };
 const colorMapForLinkImage = {
-  1: "https://example.com/white",
-  2: "https://example.com/blue",
-  3: "https://example.com/black",
-  4: "https://example.com/red",
-  5: "https://example.com/green",
-  // Add more mappings as needed
-  26: "https://example.com/five-color",
+  1: "https://scryfall.com/search?q=commander%3Aw",
+  2: "https://scryfall.com/search?q=commander%3Au",
+  3: "https://scryfall.com/search?q=commander%3Ab",
+  4: "https://scryfall.com/search?q=commander%3Ar",
+  5: "https://scryfall.com/search?q=commander%3Ag",
+  6: "https://scryfall.com/search?q=commander%3Awu",
+  7: "https://scryfall.com/search?q=commander%3Aub",
+  8: "https://scryfall.com/search?q=commander%3Abr",
+  9: "https://scryfall.com/search?q=commander%3Arg",
+  10: "https://scryfall.com/search?q=commander%3Agw",
+  11: "https://scryfall.com/search?q=commander%3Awb",
+  12: "https://scryfall.com/search?q=commander%3Aur",
+  13: "https://scryfall.com/search?q=commander%3Abg",
+  14: "https://scryfall.com/search?q=commander%3Arw",
+  15: "https://scryfall.com/search?q=commander%3Agu",
+  16: "https://scryfall.com/search?q=commander%3Awub",
+  17: "https://scryfall.com/search?q=commander%3Aubr",
+  18: "https://scryfall.com/search?q=commander%3Abrg",
+  19: "https://scryfall.com/search?q=commander%3Argw",
+  20: "https://scryfall.com/search?q=commander%3Agwu",
+  21: "https://scryfall.com/search?q=commander%3Awbg",
+  22: "https://scryfall.com/search?q=commander%3Aurw",
+  23: "https://scryfall.com/search?q=commander%3Abgu",
+  24: "https://scryfall.com/search?q=commander%3Arwb",
+  25: "https://scryfall.com/search?q=commander%3Agur",
+  26: "https://scryfall.com/search?q=commander%3Awubrg",
 };
 
 // Define color range for monster selection
@@ -104,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
 
 
 

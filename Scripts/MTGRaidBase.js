@@ -251,25 +251,40 @@ function pickMonster() {
     Math.floor(Math.random() * (selectedRange[1] - selectedRange[0] + 1)) +
     selectedRange[0];
 
+  // Find the element to replace
   const startElement = document.getElementById("startEasy");
+  const startMedium = document.getElementById("startMedium");
+  const startHard = document.getElementById("startHard");
+  
+  // Create image element
   let imgElement = document.createElement("img");
-
-  // Set the image source
   imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
   bossMonsterImageUrl = imgElement.src;
-  // Set styling for the image
   imgElement.style.width = "50vw";
   imgElement.style.height = "50vh";
-
+  imgElement.alt = "Boss Monster";
+  
+  // Create anchor element with proper link
   let anchorElement = document.createElement("a");
-  anchorElement.href = colorMapForLinkImage[pickedNumber]; // Set the hyperlink destination here
+  
+  // Make sure we have a valid link for this monster
+  if (colorMapForLinkImage[pickedNumber]) {
+    anchorElement.href = colorMapForLinkImage[pickedNumber];
+  } else {
+    // Default link if specific one not found
+    anchorElement.href = "https://scryfall.com/search?q=commander%3A" + (scryfallColorMap[pickedNumber] || "wubrg");
+  }
+  
   anchorElement.target = "_blank";
-  // Append the image to the anchor element
   anchorElement.appendChild(imgElement);
-
-  // Append the anchor element to the parent element where you want to replace
+  
+  // Replace the appropriate element
   if (startElement) {
     startElement.replaceWith(anchorElement);
+  } else if (startMedium) {
+    startMedium.replaceWith(anchorElement);
+  } else if (startHard) {
+    startHard.replaceWith(anchorElement);
   }
   
   // Set the scryfall monster colors
@@ -458,42 +473,33 @@ function updateMonsterLandCountByAmount(amount) {
   });
 }
 
-function startGame(difficulty, numberOfPlayersFromButton) {
-  if (!gameCanStart && numberOfPlayersFromButton == 0) {
-    showErrorMessage("Enter Valid Number of Players to Start(1-12) ");
-    return;
-  }
-
-  setDifficultyAtStart(difficulty);
-
-  window.startedGame = true;
+function startGame(difficultyLevel, playerCount) {
+  // Set difficulty at start
+  setDifficultyAtStart(difficultyLevel);
   
-  // Hide start game elements
-  let startButtons = document.querySelectorAll('.start-button');
+  // Hide all start buttons
+  const startButtons = document.querySelectorAll(".start-button");
   startButtons.forEach(button => {
     button.style.display = "none";
   });
   
-  let textBox = document.getElementById("myTextbox");
-  let playerLabel = document.getElementById("playerLabel");
-  textBox.style.display = "none";
-  playerLabel.style.display = "none";
+  // Show game action buttons
+  document.getElementById("gameActionButtons").style.display = "block";
   
-  // Show game elements
-  let monsterHandButton = document.getElementById("monsterHandButtons");
-  let monsterLandButton = document.getElementById("monsterLandButtons");
-  let gameActionButtons = document.getElementById("gameActionButtons");
-  let monsterControls = document.getElementById("monsterControls");
-  let turnInfectControls = document.getElementById("turnInfectControls");
+  // Show monster controls
+  document.getElementById("monsterControls").style.display = "flex";
   
-  monsterLandButton.style.display = "grid";
-  monsterHandButton.style.display = "grid";
-  gameActionButtons.style.display = "block";
-  monsterControls.style.display = "flex";
-  turnInfectControls.style.display = "flex";
-
+  // Show turn and infect controls
+  document.getElementById("turnInfectControls").style.display = "flex";
+  
+  // Show graveyard table
+  document.getElementById("graveyardTable").style.display = "table";
+  
+  // Set game started flag
+  window.startedGame = true;
+  
   // Get the number of players
-  let value = numberOfPlayersFromButton == 0 ? textBox.value : numberOfPlayersFromButton;
+  let value = playerCount == 0 ? document.getElementById("myTextbox").value : playerCount;
   numberOfPlayersGlobal = value;
   monsterHealth = value * lifeMultiplier;
   monsterInfect = value * 7;
@@ -501,9 +507,14 @@ function startGame(difficulty, numberOfPlayersFromButton) {
   updateMonsterInfect();
   createPlayerHealthBoxes(value);
 
+  // Pick a monster and display color rectangle
   displayColorRectangle();
+  
+  // Update monster stats
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(0);
+  
+  // Initialize other game elements
   readActionJsonFiles();
   updateGraveyardTable();
   addLog(`ROUND ${currentRound}`);
@@ -817,6 +828,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
 
 
 
