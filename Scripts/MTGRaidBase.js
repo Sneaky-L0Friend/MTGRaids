@@ -99,10 +99,7 @@ function takeMonsterAction() {
   
   const actionElement = document.getElementById("action");
   if (listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
-    actionElement.innerText = "ROLLED HARD BEFORE ROUND 5, REROLLING.";
-    addLog(
-      `${totalDiceRolls}. Action result: [${listRolledFrom}] ${actionElement.innerText}`,
-    );
+    // Just reroll without logging the message
     takeMonsterAction();
     return;
   }
@@ -820,6 +817,7 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
 
 
 

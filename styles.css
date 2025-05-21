@@ -929,3 +929,55 @@ th, td {
     font-size: 12px;
   }
 }
+
+/* Game action buttons styling */
+#gameActionButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#gameActionButtons > div:first-child {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+#gameActionButtons button {
+  flex: 1;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+#action {
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #gameActionButtons button {
+    min-width: 120px;
+    font-size: 14px;
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  #gameActionButtons > div:first-child {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  #gameActionButtons button {
+    width: 100%;
+    max-width: 100%;
+  }
+}
