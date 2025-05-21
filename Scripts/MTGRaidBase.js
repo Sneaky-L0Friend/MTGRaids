@@ -442,6 +442,11 @@ function displayColorRectangle() {
 
 function updateMonsterHandSize() {
   const monsterHandDiv = document.getElementById("monsterHand");
+  if (!monsterHandDiv) {
+    console.error("Monster hand element not found!");
+    return;
+  }
+  
   monsterHandSize =
     monsterStartingHandSize -
     Math.floor(currentRound / 2) +
@@ -452,7 +457,9 @@ function updateMonsterHandSize() {
   // Show the buttons
   const buttonContainers = document.querySelectorAll("#monsterHandButtons");
   buttonContainers.forEach(container => {
-    container.style.display = "block";
+    if (container) {
+      container.style.display = "block";
+    }
   });
 }
 
@@ -469,6 +476,11 @@ function updateMonsterHandSizeByAmount(amount) {
 
 function updateMonsterLandCountByAmount(amount) {
   const monsterLandDiv = document.getElementById("monsterLand");
+  if (!monsterLandDiv) {
+    console.error("Monster land element not found!");
+    return;
+  }
+  
   currentMonsterLands = currentMonsterLands + amount;
   monsterLandDiv.innerText = `Lands: ${currentMonsterLands}`;
   monsterLandDiv.style.display = "block";
@@ -476,7 +488,9 @@ function updateMonsterLandCountByAmount(amount) {
   // Show the buttons
   const buttonContainers = document.querySelectorAll("#monsterLandButtons");
   buttonContainers.forEach(container => {
-    container.style.display = "block";
+    if (container) {
+      container.style.display = "block";
+    }
   });
 }
 
@@ -844,6 +858,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
 
 
 

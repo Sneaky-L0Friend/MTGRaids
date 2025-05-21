@@ -1,21 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>MTG Raid Adventures</title>
-  <meta charset="UTF-8" />
-  <link rel="shortcut icon" href="#" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="styles.css" rel="stylesheet" type="text/css" />
-  <script src="Scripts/Constants.js"></script>
-  <script src="Scripts/Utilities.js"></script>
-  <script src="Scripts/MonsterHealth.js"></script>
-  <script src="Scripts/PlayerHealth.js"></script>
-  <script src="Scripts/MTGRaidBase.js"></script>
-  <!-- Update Content Security Policy to allow Scryfall API -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.scryfall.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cards.scryfall.io https://*.scryfall.com;">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTG Raid Boss</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <div class="overlay" id="overlay"></div>
 
@@ -33,7 +23,7 @@
     
     <!-- Monster image in the center -->
     <div id="monsterImageContainer" class="monster-image-container">
-      <!-- Start buttons will be added dynamically -->
+      <!-- Monster image will be added here dynamically -->
     </div>
     
     <!-- Player health on the right -->
@@ -44,38 +34,56 @@
 
   <div class="display-container">
     <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom or pick number of players:</label>
-    
-    <div class="start-buttons-row">
-      <button id="startMediumButton1" class="display-box start-button" onclick="startGame('medium', 1)">
-        Medium 1 Player
-      </button>
-      <button id="startMediumButton2" class="display-box start-button" onclick="startGame('medium', 2)">
-        Medium 2 Player
-      </button>
-      <input class="display-box" type="text" id="myTextbox" style="text-align: center" oninput="checkInput()" placeholder="Custom number..." />
-      <button id="startMediumButton3" class="display-box start-button" onclick="startGame('medium', 3)">
-        Medium 3 Player
-      </button>
-      <button id="startMediumButton4" class="display-box start-button" onclick="startGame('medium', 4)">
-        Medium 4 Player
-      </button>
-    </div>
-
-    <!-- Keep only the colored start buttons -->
-    <div class="button-container">
-      <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="startGame('easy', 0)">
-        Click to Start Easy Challenge
-      </button>
-      <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="startGame('medium', 0)">
-        Click to Start Medium Challenge
-      </button>
-      <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="startGame('hard', 0)">
-        Click to Start Hard Challenge
-      </button>
+    <input type="text" id="myTextbox" oninput="checkInput()" placeholder="Enter number of players">
+    <div class="button-wrapper">
+      <button id="button1" onclick="startGame('medium', 1)">1</button>
+      <button id="button2" onclick="startGame('medium', 2)">2</button>
+      <button id="button3" onclick="startGame('medium', 3)">3</button>
+      <button id="button4" onclick="startGame('medium', 4)">4</button>
+      <button id="button5" onclick="startGame('medium', 5)">5</button>
+      <button id="button6" onclick="startGame('medium', 6)">6</button>
     </div>
   </div>
 
-  <!-- Minions container - placed right after monster stats -->
+  <!-- Keep only the colored start buttons -->
+  <div class="button-container">
+    <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="startGame('easy', 0)">
+      Click to Start Easy Challenge
+    </button>
+    <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="startGame('medium', 0)">
+      Click to Start Medium Challenge
+    </button>
+    <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="startGame('hard', 0)">
+      Click to Start Hard Challenge
+    </button>
+  </div>
+  
+  <!-- Monster stats container -->
+  <div class="monster-stats-container">
+    <div class="monster-stat-entry">
+      <div id="monsterHandButtons" style="display: none">
+        <button onclick="updateMonsterHandSizeByAmount(-1)">-</button>
+      </div>
+      <div id="monsterHand" style="display: none">Hand: 8</div>
+      <div id="monsterHandButtons" style="display: none">
+        <button onclick="updateMonsterHandSizeByAmount(1)">+</button>
+      </div>
+    </div>
+    
+    <div id="colorRectangle" style="display: none"></div>
+    
+    <div class="monster-stat-entry">
+      <div id="monsterLandButtons" style="display: none">
+        <button onclick="updateMonsterLandCountByAmount(-1)">-</button>
+      </div>
+      <div id="monsterLand" style="display: none">Lands: 0</div>
+      <div id="monsterLandButtons" style="display: none">
+        <button onclick="updateMonsterLandCountByAmount(1)">+</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Minions container -->
   <div id="imageContainer" class="minions-container"></div>
 
   <!-- Monster controls - initially hidden -->
@@ -92,6 +100,9 @@
     <button style="cursor: pointer" onclick="decreaseMonsterHealth(1)">
       -
     </button>
+    <div id="number" class="display-box" style="cursor: default">
+      Monster Health: 0
+    </div>
     <button style="cursor: pointer" onclick="increaseMonsterHealth(1)">
       +
     </button>
@@ -126,30 +137,30 @@
 
   <!-- Turn and infect controls - initially hidden -->
   <div id="turnInfectControls" class="display-container controls-row" style="display: none;">
-    <div class="turn-container">
-      <div class="turn-controls">
-        <button id="increaseRoundButton" onclick="increaseRound()">+</button>
-        <button id="decreaseRoundButton" onclick="decreaseRound()">-</button>
+    <div class="controls">
+      <button style="cursor: pointer" onclick="decreaseRound()">
+        -
+      </button>
+      <div id="round" class="display-box" style="cursor: default">
+        Turn: 1
       </div>
-      <div id="round" class="display-box" style="cursor: default">Turn: 1</div>
+      <button style="cursor: pointer" onclick="increaseRound()">
+        +
+      </button>
     </div>
-    
     <div id="rounds" class="display-box" style="cursor: default">
-      Actions this turn: 0
+      Actions this turn: 0 / 0
     </div>
-    
-    <div id="number" class="display-box" style="cursor: default">
-      Monster Health: 0
-    </div>
-    
-    <div class="infect-container">
+    <div class="controls">
+      <button style="cursor: pointer" onclick="changeMonsterInfect(-1)">
+        -
+      </button>
       <div id="numberInfect" class="display-box" style="cursor: default">
         Infect: 0
       </div>
-      <div class="infect-controls">
-        <button onclick="changeMonsterInfect(1)">+</button>
-        <button onclick="changeMonsterInfect(-1)">-</button>
-      </div>
+      <button style="cursor: pointer" onclick="changeMonsterInfect(1)">
+        +
+      </button>
     </div>
   </div>
 
@@ -164,6 +175,9 @@
   <button id="refreshButton" onclick="refreshPage()">Restart</button>
 
   <div id="errorMessage"></div>
-</body>
 
+  <script src="Scripts/Constants.js"></script>
+  <script src="Scripts/MonsterHealth.js"></script>
+  <script src="Scripts/MTGRaidBase.js"></script>
+</body>
 </html>
