@@ -46,8 +46,14 @@ const colorMap = {
   23: "black-green-blue",
   24: "red-white-black",
   25: "green-blue-red",
-  26: "white-blue-black-red-green",
-  // Add more mappings as needed
+  // Four-color combinations
+  26: "white-blue-black-red", // Not-Green (Artifice)
+  27: "blue-black-red-green", // Not-White (Chaos)
+  28: "black-red-green-white", // Not-Blue (Aggression)
+  29: "red-green-white-blue", // Not-Black (Altruism)
+  30: "green-white-blue-black", // Not-Red (Growth)
+  // Five-color
+  31: "white-blue-black-red-green",
 };
 const scryfallColorMap = {
   1: "w", // White
@@ -75,44 +81,57 @@ const scryfallColorMap = {
   23: "bgu", // Sultai
   24: "rwb", // Mardu
   25: "gur", // Temur
-  26: "wubrg", // Five-color
-  // Add more mappings as needed
+  // Four-color combinations
+  26: "wubr", // Not-Green (Artifice)
+  27: "ubrg", // Not-White (Chaos)
+  28: "brgw", // Not-Blue (Aggression)
+  29: "rgwu", // Not-Black (Altruism)
+  30: "gwub", // Not-Red (Growth)
+  // Five-color
+  31: "wubrg", // Five-color
 };
 const colorMapForLinkImage = {
-  1: "https://scryfall.com/search?q=commander%3Aw",
-  2: "https://scryfall.com/search?q=commander%3Au",
-  3: "https://scryfall.com/search?q=commander%3Ab",
-  4: "https://scryfall.com/search?q=commander%3Ar",
-  5: "https://scryfall.com/search?q=commander%3Ag",
-  6: "https://scryfall.com/search?q=commander%3Awu",
-  7: "https://scryfall.com/search?q=commander%3Aub",
-  8: "https://scryfall.com/search?q=commander%3Abr",
-  9: "https://scryfall.com/search?q=commander%3Arg",
-  10: "https://scryfall.com/search?q=commander%3Agw",
-  11: "https://scryfall.com/search?q=commander%3Awb",
-  12: "https://scryfall.com/search?q=commander%3Aur",
-  13: "https://scryfall.com/search?q=commander%3Abg",
-  14: "https://scryfall.com/search?q=commander%3Arw",
-  15: "https://scryfall.com/search?q=commander%3Agu",
-  16: "https://scryfall.com/search?q=commander%3Awub",
-  17: "https://scryfall.com/search?q=commander%3Aubr",
-  18: "https://scryfall.com/search?q=commander%3Abrg",
-  19: "https://scryfall.com/search?q=commander%3Argw",
-  20: "https://scryfall.com/search?q=commander%3Agwu",
-  21: "https://scryfall.com/search?q=commander%3Awbg",
-  22: "https://scryfall.com/search?q=commander%3Aurw",
-  23: "https://scryfall.com/search?q=commander%3Abgu",
-  24: "https://scryfall.com/search?q=commander%3Arwb",
-  25: "https://scryfall.com/search?q=commander%3Agur",
-  26: "https://scryfall.com/search?q=commander%3Awubrg",
+  1: "https://scryfall.com/card/one/10/elesh-norn-mother-of-machines",
+  2: "https://scryfall.com/card/ima/62/jin-gitaxias-core-augur",
+  3: "https://scryfall.com/card/jmp/278/sheoldred-whispering-one",
+  4: "https://scryfall.com/card/mom/169/urabrask-the-great-work",
+  5: "https://scryfall.com/card/mom/213/vorinclex-the-grand-evolution",
+  6: "https://scryfall.com/card/bro/238b/urza-planeswalker",
+  7: "https://scryfall.com/card/ltc/60/lord-of-the-nazg%C3%BBl",
+  8: "https://scryfall.com/card/clu/205/rakdos-the-showstopper",
+  9: "https://scryfall.com/card/bng/156/xenagos-god-of-revels",
+  10: "https://scryfall.com/card/clb/275/gluntch-the-bestower",
+  11: "https://scryfall.com/card/woe/202/eriette-of-the-charmed-apple",
+  12: "https://scryfall.com/card/war/208/niv-mizzet-reborn",
+  13: "https://scryfall.com/card/ltr/230/shelob-child-of-ungoliant",
+  14: "https://scryfall.com/card/mat/36/nahiri-forged-in-fury",
+  15: "https://scryfall.com/card/mat/35/kiora-sovereign-of-the-deep",
+  16: "https://scryfall.com/card/cmm/363/yennett-cryptic-sovereign",
+  17: "https://scryfall.com/card/cmm/349/nekusar-the-mindrazer",
+  18: "https://scryfall.com/card/ncc/6/the-beamtown-bullies",
+  19: "https://scryfall.com/card/xln/222/gishath-suns-avatar",
+  20: "https://scryfall.com/card/me1/150/phelddagrif",
+  21: "https://scryfall.com/card/onc/1/ixhel-scion-of-atraxa",
+  22: "https://scryfall.com/card/bot/13/optimus-prime-hero-optimus-prime-autobot-leader",
+  23: "https://scryfall.com/card/cmd/210/the-mimeoplasm",
+  24: "https://scryfall.com/card/c17/36/edgar-markov",
+  25: "https://scryfall.com/card/rex/16/owen-grady-raptor-trainer",
+  26: "https://scryfall.com/card/c16/50/yidris-maelstrom-wielder",
+  27: "https://scryfall.com/card/gpt/110/dune-brood-nephilim",
+  28: "https://scryfall.com/card/otc/236/omnath-locus-of-rage",
+  29: "https://scryfall.com/card/2xm/190/atraxa-praetors-voice",
+  30: "https://scryfall.com/card/2xm/192/breya-etherium-shaper",
+  31: "https://scryfall.com/card/cmm/361/the-ur-dragon",
+  32: "https://scryfall.com/card/emn/6/emrakul-the-promised-end",
 };
 
 // Define color range for monster selection
 const colorRange = [
-  { range: [1, 5], probability: 30 }, // Single colors
-  { range: [6, 15], probability: 30 }, // Two colors
-  { range: [16, 25], probability: 30 }, // Three colors
-  { range: [26, 26], probability: 10 }, // Five colors
+  { range: [1, 5], probability: 25 },   // Single colors
+  { range: [6, 15], probability: 25 },  // Two colors
+  { range: [16, 25], probability: 25 }, // Three colors
+  { range: [26, 30], probability: 15 }, // Four colors
+  { range: [31, 31], probability: 10 }, // Five colors
 ];
 
 // Initialize version display when the page loads
@@ -123,6 +142,8 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
+
 
 
 

@@ -405,27 +405,28 @@ function setDifficultyAtStart(difficultyLevel) {
 
 function displayColorRectangle() {
   const colorRectangle = document.getElementById("colorRectangle");
+  colorRectangle.style.display = "block";
   const pickedNumber = pickMonster();
 
   // Set the background color of the rectangle based on the chosen number
   const colorName = colorMap[pickedNumber];
 
-  if (colorName.includes("-")) {
+  if (colorName && colorName.includes("-")) {
     const colors = colorName.split("-");
     const widthPercentage = 100 / colors.length;
     const gradientColors = colors.map(
       (color, index) =>
-        `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)
-        }%`,
+        `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`,
     );
-    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(
-      ", ",
-    )})`;
-  } else {
+    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+  } else if (colorName) {
     // Handle single-color scenarios
     colorRectangle.style.background = colorName.toLowerCase();
+  } else {
+    // Fallback if colorName is undefined
+    colorRectangle.style.background = "gray";
+    console.warn("Color not found for number:", pickedNumber);
   }
-  colorRectangle.style.display = "block";
 }
 
 function updateMonsterHandSize() {
@@ -820,6 +821,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
 
 
 
