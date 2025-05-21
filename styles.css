@@ -1049,13 +1049,39 @@ th, td {
   justify-content: center;
   flex: 1;
   max-width: 60%;
+  margin: 0 auto;
 }
 
 .monster-image-container img {
-  max-width: 100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+}
+
+/* Responsive adjustments for monster image */
+@media (max-width: 992px) {
+  .monster-image-container img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .monster-image-container img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .monster-image-container img {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 /* Dice log styling */

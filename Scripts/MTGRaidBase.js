@@ -275,8 +275,12 @@ function pickMonster() {
   let imgElement = document.createElement("img");
   imgElement.src = `BossMonsters/${pickedNumber}.jpeg`;
   bossMonsterImageUrl = imgElement.src;
-  imgElement.style.maxWidth = "100%";
-  imgElement.style.height = "auto";
+  
+  // Set standard size for all monster images
+  imgElement.style.width = "300px";
+  imgElement.style.height = "300px";
+  imgElement.style.objectFit = "contain";
+  
   imgElement.alt = "Boss Monster";
   
   // Create anchor element with proper link
@@ -908,6 +912,7 @@ function readActionJsonFiles() {
 // Make necessary functions globally available
 window.startGame = startGame;
 window.checkInput = checkInput;
+
 
 
 
