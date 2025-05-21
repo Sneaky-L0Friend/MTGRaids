@@ -195,6 +195,10 @@ function hidePlayerTurnIndicator() {
   }
 }
 
+// Make these functions globally available
+window.showPlayerTurnIndicator = showPlayerTurnIndicator;
+window.hidePlayerTurnIndicator = hidePlayerTurnIndicator;
+
 function increaseRound() {
   if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
@@ -525,32 +529,53 @@ function startGame(difficultyLevel, playerCount) {
     buttonContainer.style.display = "none";
   }
   
+  // Hide the player entry section
+  const displayContainer = document.querySelector(".display-container");
+  if (displayContainer) {
+    displayContainer.style.display = "none";
+  }
+  
   // Show dice log
-  document.getElementById("diceLog").style.display = "block";
+  const diceLog = document.getElementById("diceLog");
+  if (diceLog) {
+    diceLog.style.display = "block";
+  }
   
   // Show game action buttons
-  document.getElementById("gameActionButtons").style.display = "block";
+  const gameActionButtons = document.getElementById("gameActionButtons");
+  if (gameActionButtons) {
+    gameActionButtons.style.display = "block";
+  }
   
   // Show monster controls
-  document.getElementById("monsterControls").style.display = "flex";
+  const monsterControls = document.getElementById("monsterControls");
+  if (monsterControls) {
+    monsterControls.style.display = "flex";
+  }
   
   // Show turn and infect controls
-  document.getElementById("turnInfectControls").style.display = "flex";
+  const turnInfectControls = document.getElementById("turnInfectControls");
+  if (turnInfectControls) {
+    turnInfectControls.style.display = "flex";
+  }
   
   // Show graveyard table
-  document.getElementById("graveyardTable").style.display = "table";
+  const graveyardTable = document.getElementById("graveyardTable");
+  if (graveyardTable) {
+    graveyardTable.style.display = "table";
+  }
   
   // Set game started flag
   window.startedGame = true;
   
   // Get the number of players
-  let value = playerCount == 0 ? document.getElementById("myTextbox").value : playerCount;
-  numberOfPlayersGlobal = value;
-  monsterHealth = value * lifeMultiplier;
-  monsterInfect = value * 7;
+  let value = playerCount === 0 ? document.getElementById("myTextbox").value : playerCount;
+  numberOfPlayersGlobal = parseInt(value);
+  monsterHealth = numberOfPlayersGlobal * lifeMultiplier;
+  monsterInfect = numberOfPlayersGlobal * 7;
   updateMonsterHealth();
   updateMonsterInfect();
-  createPlayerHealthBoxes(value);
+  createPlayerHealthBoxes(numberOfPlayersGlobal);
 
   // Pick a monster and display color rectangle
   displayColorRectangle();
@@ -563,6 +588,9 @@ function startGame(difficultyLevel, playerCount) {
   readActionJsonFiles();
   updateGraveyardTable();
   addLog(`ROUND ${currentRound}`);
+  
+  // Show player turn indicator
+  showPlayerTurnIndicator();
 }
 
 // Make startGame globally available
@@ -880,6 +908,9 @@ function readActionJsonFiles() {
 // Make necessary functions globally available
 window.startGame = startGame;
 window.checkInput = checkInput;
+
+
+
 
 
 

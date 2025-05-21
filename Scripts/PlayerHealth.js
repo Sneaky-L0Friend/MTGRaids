@@ -20,6 +20,10 @@ function updatePlayerHealth(player) {
 
 function createPlayerHealthBoxes(numberOfPlayers) {
   const playerHealthContainer = document.getElementById("playerHealthContainer");
+  if (!playerHealthContainer) {
+    console.error("Player health container not found!");
+    return;
+  }
   
   // Clear existing player health boxes
   playerHealthContainer.innerHTML = "";
@@ -42,10 +46,10 @@ function createPlayerHealthBoxes(numberOfPlayers) {
     const healthButtons = document.createElement("div");
     healthButtons.className = "health-buttons";
     healthButtons.innerHTML = `
-      <button onclick="increasePlayerHealth(${i}, 10)">+10</button>
-      <button onclick="increasePlayerHealth(${i}, 1)">+</button>
-      <button onclick="decreasePlayerHealth(${i}, 1)">-</button>
-      <button onclick="decreasePlayerHealth(${i}, 10)">-10</button>
+      <button onclick="window.increasePlayerHealth(${i}, 10)">+10</button>
+      <button onclick="window.increasePlayerHealth(${i}, 1)">+</button>
+      <button onclick="window.decreasePlayerHealth(${i}, 1)">-</button>
+      <button onclick="window.decreasePlayerHealth(${i}, 10)">-10</button>
     `;
     
     // Create health display
@@ -64,6 +68,9 @@ function createPlayerHealthBoxes(numberOfPlayers) {
     // Initialize player health object
     playerHealth[i] = 40;
   }
+  
+  // Make sure the player health container is visible
+  playerHealthContainer.style.display = "flex";
 }
 
 function modifyPlayerHealthFromMonster(monsterDamage) {
@@ -71,6 +78,8 @@ function modifyPlayerHealthFromMonster(monsterDamage) {
     decreasePlayerHealth(i, monsterDamage);
   }
 }
+
+
 
 
 
