@@ -253,6 +253,10 @@ function pickMonster() {
 
   // Find the element to replace
   const monsterImageContainer = document.getElementById("monsterImageContainer");
+  if (!monsterImageContainer) {
+    console.error("Monster image container not found!");
+    return pickedNumber;
+  }
   
   // Clear any existing content
   monsterImageContainer.innerHTML = "";
@@ -405,6 +409,11 @@ function setDifficultyAtStart(difficultyLevel) {
 
 function displayColorRectangle() {
   const colorRectangle = document.getElementById("colorRectangle");
+  if (!colorRectangle) {
+    console.error("Color rectangle element not found!");
+    return null;
+  }
+  
   colorRectangle.style.display = "block";
   const pickedNumber = pickMonster();
 
@@ -427,6 +436,8 @@ function displayColorRectangle() {
     colorRectangle.style.background = "gray";
     console.warn("Color not found for number:", pickedNumber);
   }
+  
+  return pickedNumber;
 }
 
 function updateMonsterHandSize() {
@@ -472,6 +483,18 @@ function updateMonsterLandCountByAmount(amount) {
 function startGame(difficultyLevel, playerCount) {
   // Set difficulty at start
   setDifficultyAtStart(difficultyLevel);
+  
+  // Hide all start buttons
+  const startButtons = document.querySelectorAll(".start-button");
+  startButtons.forEach(button => {
+    button.style.display = "none";
+  });
+  
+  // Hide the button container
+  const buttonContainer = document.querySelector(".button-container");
+  if (buttonContainer) {
+    buttonContainer.style.display = "none";
+  }
   
   // Show dice log
   document.getElementById("diceLog").style.display = "block";
@@ -821,6 +844,10 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
+
+
 
 
 
