@@ -134,31 +134,19 @@
   </div>
 
   <!-- Turn and infect controls - initially hidden -->
-  <div id="turnInfectControls" class="display-container controls-row" style="display: none;">
-    <div class="controls">
-      <button style="cursor: pointer" onclick="decreaseRound()">
-        -
-      </button>
-      <div id="round" class="display-box" style="cursor: default">
-        Turn: 1
-      </div>
-      <button style="cursor: pointer" onclick="increaseRound()">
-        +
-      </button>
+  <div id="turnInfectControls" class="controls-row" style="display: none;">
+    <div class="turn-container">
+      <button style="cursor: pointer" onclick="decreaseRound()">-</button>
+      <div id="round" class="display-box" style="cursor: default">Turn: 1</div>
+      <button style="cursor: pointer" onclick="increaseRound()">+</button>
     </div>
-    <div id="rounds" class="display-box" style="cursor: default">
-      Actions this turn: 0 / 0
-    </div>
-    <div class="controls">
-      <button style="cursor: pointer" onclick="changeMonsterInfect(-1)">
-        -
-      </button>
-      <div id="numberInfect" class="display-box" style="cursor: default">
-        Infect: 0
-      </div>
-      <button style="cursor: pointer" onclick="changeMonsterInfect(1)">
-        +
-      </button>
+    
+    <div id="rounds" class="display-box" style="cursor: default">Actions this turn: 0 / 0</div>
+    
+    <div class="infect-container">
+      <button style="cursor: pointer" onclick="changeMonsterInfect(-1)">-</button>
+      <div id="numberInfect" class="display-box" style="cursor: default">Infect: 0</div>
+      <button style="cursor: pointer" onclick="changeMonsterInfect(1)">+</button>
     </div>
   </div>
 

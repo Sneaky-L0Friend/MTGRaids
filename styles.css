@@ -685,8 +685,8 @@ th, td {
 .turn-controls,
 .infect-controls {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  gap: 5px;
   margin: 0 5px;
 }
 
@@ -703,9 +703,10 @@ th, td {
   border-radius: 4px;
   background-color: #555;
   color: white;
-  border: 1px solid #777;
+  border: none;
   cursor: pointer;
   transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .turn-controls button:hover,
