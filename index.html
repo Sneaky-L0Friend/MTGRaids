@@ -12,6 +12,7 @@
   <script src="Scripts/MonsterHealth.js"></script>
   <script src="Scripts/PlayerHealth.js"></script>
   <script src="Scripts/MTGRaidBase.js"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
   </div>
   
   <!-- Add version number display -->
-  <div id="versionInfo" class="version-info">v1.0.0</div>
+  <div id="versionInfo" class="version-info">v1.0.13</div>
 
   <div class="display-container">
     <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom or pick number of players:</label>
@@ -44,47 +45,46 @@
     </div>
 
     <div class="button-container">
-      <button id="startEasy" style="background-color: green" class="display-box start-button" onclick="startGame('easy', 0)">
+      <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="startGame('easy', 0)">
         Click to Start Easy Challenge
       </button>
-      <button id="startMedium" style="background-color: orange" class="display-box start-button" onclick="startGame('medium', 0)">
+      <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="startGame('medium', 0)">
         Click to Start Medium Challenge
       </button>
-      <button id="startHard" style="background-color: crimson" class="display-box start-button" onclick="startGame('hard', 0)">
+      <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="startGame('hard', 0)">
         Click to Start Hard Challenge
       </button>
     </div>
-    <div style="display: flex">
-      <div id="monsterHandButtons" class="button-wrapper" style="display: none">
-        <button style="cursor: pointer" onclick="updateMonsterHandSizeByAmount(1)">
-          +
-        </button>
-        <button style="cursor: pointer" onclick="updateMonsterHandSizeByAmount(-1)">
-          -
-        </button>
-      </div>
-      <div id="monsterHand" class="display-box" style="cursor: default; display: none; width: fit-content">
-        Monster Hand Size: 8
-      </div>
-      <div id="colorRectangle" style="display: none; align-self: center"></div>
-      <div id="monsterLand" class="display-box" style="cursor: default; display: none; width: fit-content">
-        Monster Land Count: 0
-      </div>
-      <div id="monsterLandButtons" class="button-wrapper" style="display: none">
-        <button style="cursor: pointer" onclick="updateMonsterLandCountByAmount(1)">
-          +
-        </button>
-        <button style="cursor: pointer" onclick="updateMonsterLandCountByAmount(-1)">
-          -
-        </button>
-      </div>
-    </div>
   </div>
 
-  <div id="diceLog" style="display: none"></div>
-
   <div id="imageContainer"></div>
+  
   <div class="display-container">
+    <!-- Monster stats container -->
+    <div class="monster-stats-container">
+      <div class="monster-stat-entry">
+        <div id="monsterHandButtons" style="display: none">
+          <button onclick="updateMonsterHandSizeByAmount(-1)">-</button>
+        </div>
+        <div id="monsterHand" style="display: none">Hand: 8</div>
+        <div id="monsterHandButtons" style="display: none">
+          <button onclick="updateMonsterHandSizeByAmount(1)">+</button>
+        </div>
+      </div>
+      
+      <div id="colorRectangle" style="display: none"></div>
+      
+      <div class="monster-stat-entry">
+        <div id="monsterLandButtons" style="display: none">
+          <button onclick="updateMonsterLandCountByAmount(-1)">-</button>
+        </div>
+        <div id="monsterLand" style="display: none">Lands: 0</div>
+        <div id="monsterLandButtons" style="display: none">
+          <button onclick="updateMonsterLandCountByAmount(1)">+</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Game action buttons - initially hidden -->
     <div id="gameActionButtons" style="display: none;">
       <div style="display: flex; flex-direction: row; gap: 10px;">
@@ -98,7 +98,7 @@
           Reveal Monster's Top Card
         </button>
       </div>
-      <div id="action" class="display-box" style="cursor: default; max-width: 50vw; text-align: center; margin-bottom: -5px; transition: background-color 0.3s ease;">
+      <div id="action" class="display-box" style="cursor: default; max-width: 50vw; text-align: center; transition: background-color 0.3s ease;">
         Action: None
       </div>
     </div>

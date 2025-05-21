@@ -10,20 +10,236 @@ body {
   color: #fff;
   box-sizing: border-box;
   overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Consistent container styling */
+.display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 1200px;
+  gap: 5px;
+}
+
+/* Consistent box styling */
+.display-box {
+  font-size: clamp(16px, 2vw, 20px);
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  width: auto;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Button styling */
+button, 
+.button-wrapper button,
+.controls button {
+  font-size: clamp(14px, 1.5vw, 16px);
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .controls button:hover,
 button:hover,
 .button-wrapper button:hover {
-  background-color: #676767;
+  background-color: #555;
+  transform: translateY(-1px);
 }
 
 .controls button:active,
 button:active,
 .button-wrapper button:active {
-  background-color: #323232;
+  background-color: #333;
+  transform: translateY(1px);
 }
 
+/* Monster stats container styling */
+.monster-stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#colorRectangle {
+  height: 20px;
+  flex-grow: 1;
+  min-width: 100px;
+  max-width: 200px;
+  margin: 0;
+  border-radius: 3px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.monster-stat-entry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#monsterHand, #monsterLand {
+  background-color: #444;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: center;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#monsterHandButtons button, #monsterLandButtons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Player health container styling */
+.player-health-container {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
+  width: 300px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.5);
+}
+
+.player-entry {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.player-name input {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.health-buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  min-width: 0;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.health-display {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px;
+  background-color: #444;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 80px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Controls styling */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* Turn and infect controls */
+#turnInfectControls {
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.turn-controls button,
+.infect-controls button {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Dice log styling */
 #diceLog {
   position: fixed;
   left: 0;
@@ -32,141 +248,160 @@ button:active,
   max-width: 18vw;
   width: auto;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: none;
+  border-radius: 6px;
   padding: 10px;
   margin: 10px;
   margin-top: 20px;
   text-align: left;
   z-index: 100;
-  background-color: rgba(30, 30, 30, 0.9);
+  background-color: rgba(51, 51, 51, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logEntry {
   margin-bottom: 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #444;
   padding-bottom: 8px;
   word-wrap: break-word;
 }
 
-#colorRectangle {
-  width: 100%;
-  max-width: 600px;
-  height: 20px;
-  border: 1px solid #000;
-  margin: 10px 0;
+/* Graveyard table styling */
+table {
+  border-collapse: collapse;
+  width: auto;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: rgba(51, 51, 51, 0.8);
+  z-index: 100;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+th, td {
+  border: 1px solid #444;
+  text-align: left;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #333;
+}
+
+/* Player turn indicator */
+.player-turn-indicator {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: clamp(16px, 2vw, 18px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: pulse 2s infinite;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Refresh button */
 #refreshButton {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px;
+  padding: 10px 15px;
   background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   z-index: 1000;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Game over state */
-.game-over .player-health-container,
-.game-over #gameActionButtons,
-.game-over #monsterControls,
-.game-over #turnInfectControls,
-.game-over #monsterHandButtons,
-.game-over #monsterLandButtons {
-  opacity: 0.5;
-  pointer-events: none;
+#refreshButton:hover {
+  background-color: #45a049;
 }
 
-.display-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+/* Popup styling */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 1200px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: none;
 }
 
-.display-box {
-  font-size: clamp(16px, 2vw, 24px);
-  padding: 15px;
-  border: 2px solid #333;
-  cursor: pointer;
-  user-select: none;
-  margin-bottom: 10px;
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #333;
-  color: #fff;
-  text-align: center;
-  width: auto;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+  z-index: 10000;
+  display: none;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.popup img {
   max-width: 100%;
-  overflow-wrap: break-word;
+  height: auto;
+  border-radius: 4px;
 }
 
-.button-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
+/* Error message styling */
+.errorMessage {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  display: none;
+  animation: fadeOut 5s ease-in-out forwards;
+  z-index: 2000;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.controls button {
-  font-size: clamp(14px, 1.5vw, 18px);
-  margin-top: 5px;
-  background-color: #555;
-  color: #fff;
-  border: 1px solid #777;
-  padding: 8px 12px;
-  white-space: nowrap;
-}
-
-.controls2 {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.button-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  margin: 0 5px;
-}
-
-.button-wrapper button {
-  font-size: clamp(14px, 1.5vw, 18px);
-  background-color: #555;
-  color: #fff;
-  border: 1px solid #777;
-  padding: 8px 12px;
-}
-
+/* Image container styling */
 .image-container {
   position: relative;
   display: inline-block;
   margin: 10px;
   max-height: 170px;
   max-width: 300px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
 }
 
-#imageContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  margin: 20px 0;
+.image-container:hover {
+  transform: scale(1.05);
+}
+
+.image-container img {
+  border-radius: 6px;
 }
 
 .image-text {
@@ -185,102 +420,15 @@ button:active,
   cursor: text;
 }
 
-/* Popup Error Message Styles */
-.errorMessage {
+/* Version info */
+.version-info {
   position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #f44336;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  display: none;
-  animation: fadeOut 5s ease-in-out forwards;
-  z-index: 2000;
-  max-width: 90%;
-  text-align: center;
-}
-
-.player-health-container {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: #888;
   z-index: 100;
-  width: 300px;
-}
-
-.player-entry {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(51, 51, 51, 0.8);
-  border-radius: 6px;
-  padding: 10px;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box; /* Ensure padding is included in width */
-}
-
-.player-name {
-  margin-bottom: 8px;
-  width: 100%;
-}
-
-.player-name input {
-  width: 100%;
-  text-align: center;
-  padding: 8px;
-  background-color: #444;
-  color: white;
-  border: 1px solid #555;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box; /* Ensure padding is included in width */
-}
-
-.player-health-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  flex-wrap: nowrap; /* Prevent wrapping */
-}
-
-.health-buttons {
-  display: flex;
-  gap: 2px;
-  flex-shrink: 0; /* Prevent buttons from shrinking */
-}
-
-.health-buttons button {
-  background-color: #555;
-  color: white;
-  border: 1px solid #777;
-  padding: 6px 8px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 3px;
-  min-width: 0; /* Allow buttons to shrink if needed */
-  flex-shrink: 0; /* But don't shrink by default */
-}
-
-.health-display {
-  flex-grow: 1;
-  text-align: center;
-  padding: 8px;
-  background-color: #444;
-  border-radius: 4px;
-  font-weight: bold;
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Show ellipsis for overflow */
-  min-width: 80px; /* Minimum width */
+  font-family: monospace;
 }
 
 /* Responsive adjustments */
@@ -634,11 +782,11 @@ th, td {
 /* Improve action display */
 #action {
   font-size: clamp(16px, 2vw, 24px);
-  padding: 15px;
+  padding: 10px; /* Reduced padding */
   border: 2px solid #333;
   cursor: default;
   user-select: none;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   background-color: #333;
   color: #fff;
   text-align: center;
@@ -658,4 +806,126 @@ th, td {
 
 .highlight-action {
   animation: highlightAction 1s ease;
+}
+
+/* Monster hand and land count styles */
+#monsterHand, #monsterLand {
+  padding: 8px 12px;
+  font-size: 14px;
+  height: auto;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 5px;
+}
+
+/* Monster hand and land buttons container */
+#monsterHandButtons, #monsterLandButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin: 0 5px;
+  align-items: center;
+}
+
+#monsterHandButtons button, #monsterLandButtons button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container for monster stats */
+.monster-stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 8px; /* Reduced from 15px */
+  background-color: rgba(51, 51, 51, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#colorRectangle {
+  height: 20px;
+  flex-grow: 1;
+  min-width: 100px;
+  max-width: 200px;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.monster-stat-entry {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#monsterHand, #monsterLand {
+  background-color: #444;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: center;
+}
+
+#monsterHandButtons button, #monsterLandButtons button {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#monsterHandButtons button:hover, #monsterLandButtons button:hover {
+  background-color: #676767;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .monster-stats-container {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  #colorRectangle {
+    order: -1;
+    width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  #monsterHand, #monsterLand {
+    font-size: 12px;
+    padding: 5px 8px;
+    min-width: 70px;
+  }
+  
+  #monsterHandButtons button, #monsterLandButtons button {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+  }
 }

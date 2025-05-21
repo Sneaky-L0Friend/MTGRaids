@@ -417,9 +417,14 @@ function updateMonsterHandSize() {
     monsterStartingHandSize -
     Math.floor(currentRound / 2) +
     modifiedMonsterHandSize;
-  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
-
-  monsterHandDiv.style.display = "flex";
+  monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
+  monsterHandDiv.style.display = "block";
+  
+  // Show the buttons
+  const buttonContainers = document.querySelectorAll("#monsterHandButtons");
+  buttonContainers.forEach(container => {
+    container.style.display = "block";
+  });
 }
 
 function updateMonsterHandSizeByAmount(amount) {
@@ -429,17 +434,21 @@ function updateMonsterHandSizeByAmount(amount) {
     monsterStartingHandSize -
     Math.floor(currentRound / 2) +
     modifiedMonsterHandSize;
-  monsterHandDiv.innerText = `Monster Hand Size: ${monsterHandSize}`;
-
-  monsterHandDiv.style.display = "flex";
+  monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
+  monsterHandDiv.style.display = "block";
 }
 
 function updateMonsterLandCountByAmount(amount) {
   const monsterLandDiv = document.getElementById("monsterLand");
   currentMonsterLands = currentMonsterLands + amount;
-  monsterLandDiv.innerText = `Monster Land Count: ${currentMonsterLands}`;
-
-  monsterLandDiv.style.display = "flex";
+  monsterLandDiv.innerText = `Lands: ${currentMonsterLands}`;
+  monsterLandDiv.style.display = "block";
+  
+  // Show the buttons
+  const buttonContainers = document.querySelectorAll("#monsterLandButtons");
+  buttonContainers.forEach(container => {
+    container.style.display = "block";
+  });
 }
 
 function startGame(difficulty, numberOfPlayersFromButton) {
@@ -775,5 +784,8 @@ function readActionJsonFiles() {
       console.error("Error loading hard actions:", error);
     });
 }
+
+
+
 
 
