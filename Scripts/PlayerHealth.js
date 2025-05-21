@@ -20,7 +20,7 @@ function updatePlayerHealth(player) {
                                     <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 1)">-</button>
                                     <button style="cursor: pointer;" onclick="decreasePlayerHealth(${player}, 10)">-10</button>
                                   </div>
-                                  <div class="display-box">Health: ${playerHealth[player]}</div>
+                                  <div class="display-box" style="min-width: 100px;">Health: ${playerHealth[player]}</div>
                                 </div>`;
 }
 
@@ -48,7 +48,7 @@ function createPlayerHealthBoxes(numberOfPlayers) {
                                               <input
                                                   class="display-box"
                                                   type="text"
-                                                  style="text-align: center; width: 115px; font-size: 20px;"
+                                                  style="text-align: center; width: 130px; font-size: 18px;"
                                                   placeholder="Player ${i}"
                                                 />
                                             </div>
@@ -60,7 +60,7 @@ function createPlayerHealthBoxes(numberOfPlayers) {
                                     <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 1)">-</button>
                                     <button style="cursor: pointer;"onclick="decreasePlayerHealth(${i}, 10)">-10</button>
                                   </div>
-                                  <div class="display-box">Health: 40</div>
+                                  <div class="display-box" style="min-width: 100px;">Health: 40</div>
                                 </div>
                                 `;
 
@@ -77,5 +77,6 @@ function modifyPlayerHealthFromMonster(monsterDamage) {
     decreasePlayerHealth(i, monsterDamage);
   }
 }
+
 
 

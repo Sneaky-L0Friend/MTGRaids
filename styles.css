@@ -205,7 +205,7 @@ button:active,
 
 .player-health-names-container {
   position: fixed;
-  right: 150px;
+  right: 220px; /* Increased from 150px to provide more space */
   top: 20px;
   display: flex;
   flex-direction: column;
@@ -220,10 +220,24 @@ button:active,
   margin-bottom: 10px;
 }
 
+.player-health-names-box {
+  margin-bottom: 10px;
+}
+
 /* Improved responsive layout for player health */
+@media (max-width: 1200px) {
+  .player-health-names-container {
+    right: 200px;
+  }
+}
+
 @media (max-width: 992px) {
   .player-health-names-container {
-    right: 130px;
+    right: 180px;
+  }
+  
+  .player-health-names-container input.display-box {
+    width: 110px !important;
   }
 }
 
@@ -233,7 +247,7 @@ button:active,
   }
   
   .player-health-names-container {
-    right: 120px;
+    right: 160px;
     max-width: 40%;
   }
   
@@ -257,7 +271,8 @@ button:active,
     align-items: center;
   }
   
-  .player-health-box {
+  .player-health-box,
+  .player-health-names-box {
     margin-bottom: 5px;
     margin-right: 5px;
   }
@@ -438,7 +453,18 @@ th, td {
   }
 }
 
-/* Improved styling for turn and infect controls */
+/* Controls row for turn and infect on same line */
+.controls-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
 .turn-controls,
 .infect-controls {
   display: flex;
@@ -475,16 +501,31 @@ th, td {
   background-color: #323232;
 }
 
-/* Container for turn display and controls */
 .turn-container,
 .infect-container {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .controls-row {
+    gap: 5px;
+  }
+  
+  .controls-row .display-box {
+    font-size: 16px;
+    padding: 10px;
+  }
 }
 
 @media (max-width: 576px) {
+  .controls-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
   .turn-controls,
   .infect-controls {
     flex-direction: row;

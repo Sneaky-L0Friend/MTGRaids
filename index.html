@@ -127,10 +127,24 @@
     </button>
   </div>
 
-  <div class="display-container" style="flex-direction: row; gap: 3px; align-items: flex-start; margin-bottom: -3px;">
+  <!-- Combined turn and infect controls on one line -->
+  <div class="display-container controls-row">
+    <div class="turn-container">
+      <div class="turn-controls">
+        <button id="increaseRoundButton" onclick="increaseRound()">+</button>
+        <button id="decreaseRoundButton" onclick="decreaseRound()">-</button>
+      </div>
+      <div id="round" class="display-box" style="cursor: default">Turn: 1</div>
+    </div>
+    
+    <div id="rounds" class="display-box" style="cursor: default">
+      Actions this turn: 0
+    </div>
+    
     <div id="number" class="display-box" style="cursor: default">
       Monster Health: 0
     </div>
+    
     <div class="infect-container">
       <div id="numberInfect" class="display-box" style="cursor: default">
         Infect: 0
@@ -140,29 +154,15 @@
         <button onclick="changeMonsterInfect(-1)">-</button>
       </div>
     </div>
-    <table id="graveyardTable" style="display: none;">
-      <caption>Monster's Graveyard</caption>
-      <tr>
-        <th>Card Type</th>
-        <th>Count</th>
-      </tr>
-    </table>
   </div>
 
-
-
-  <div class="display-container" style="flex-direction: row; gap: 5px;">
-    <div class="turn-container">
-      <div class="turn-controls">
-        <button id="increaseRoundButton" onclick="increaseRound()">+</button>
-        <button id="decreaseRoundButton" onclick="decreaseRound()">-</button>
-      </div>
-      <div id="round" class="display-box" style="cursor: default">Turn: 1</div>
-    </div>
-    <div id="rounds" class="display-box" style="cursor: default">
-      Actions this turn: 0
-    </div>
-  </div>
+  <table id="graveyardTable" style="display: none;">
+    <caption>Monster's Graveyard</caption>
+    <tr>
+      <th>Card Type</th>
+      <th>Count</th>
+    </tr>
+  </table>
 
   <div class="player-health-names-container" id="playerHealthNamesContainer">
     <!-- Player health boxes names will be dynamically added here -->
