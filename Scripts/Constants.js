@@ -132,3 +132,16 @@ const colorRange = [
   { range: [26, 30], probability: 7 }, // 26-27: 7% probability
   { range: [31, 32], probability: 3 }, // 26-27: 3% probability
 ];
+
+// Version information
+const APP_VERSION = "1.0.0";
+
+// Initialize version display when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+  // Set the version number in the UI
+  const versionElement = document.getElementById("versionInfo");
+  if (versionElement) {
+    versionElement.textContent = `v${APP_VERSION}`;
+  }
+});
+

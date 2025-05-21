@@ -272,3 +272,22 @@ th, td {
   50% { opacity: 1; }
   100% { opacity: 0.7; }
 }
+
+.version-info {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: #888;
+  z-index: 100;
+  font-family: monospace;
+}
+
+@media (max-width: 576px) {
+  .version-info {
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+}
