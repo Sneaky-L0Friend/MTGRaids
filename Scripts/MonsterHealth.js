@@ -5,8 +5,14 @@ let totalRoundInfectChange = 0;
 
 function updateMonsterHealth() {
   const monsterHealthElement = document.getElementById("number");
+  if (!monsterHealthElement) {
+    console.error("Monster health element not found!");
+    return;
+  }
+  
   monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
-  if (window.startedGame) {
+  
+  if (window.startedGame && typeof addLog === 'function') {
     addLog(
       `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`,
     );
@@ -27,8 +33,14 @@ function decreaseMonsterHealth(numberToDecreaseBy) {
 
 function updateMonsterInfect() {
   const monsterHealthElement = document.getElementById("numberInfect");
+  if (!monsterHealthElement) {
+    console.error("Monster infect element not found!");
+    return;
+  }
+  
   monsterHealthElement.innerText = `Infect: ${monsterInfect}`;
-  if (window.startedGame) {
+  
+  if (window.startedGame && typeof addLog === 'function') {
     addLog(
       `TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
     );
@@ -37,6 +49,8 @@ function updateMonsterInfect() {
 
 function changeMonsterInfect(numberToChangeBy) {
   monsterInfect = monsterInfect + numberToChangeBy;
-  totalRoundInfectChange = totalRoundLifeChange + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy; // Fixed: was using totalRoundLifeChange
   updateMonsterInfect();
 }
+
+
