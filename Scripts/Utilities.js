@@ -8,18 +8,31 @@ function strikeOutMonsterAction() {
     showErrorMessage("Please Start the Game First");
     return;
   }
+  
+  // Strike out the action display
+  const actionElement = document.getElementById("action");
+  if (actionElement) {
+    actionElement.style.textDecoration = "line-through";
+  }
+  
+  // Strike out the most recent log entry that matches the current action
   const diceLog = document.getElementById("diceLog");
   const logEntries = diceLog.getElementsByClassName("logEntry");
+  const currentAction = actionElement ? actionElement.innerText : "";
 
   // Check if there are log entries
   if (logEntries.length > 0) {
-    // Strike out the most recent log entry
-    const mostRecentLog = logEntries[logEntries.length - 1];
-    if (
-      !mostRecentLog.innerText.includes("ROUND") &&
-      !mostRecentLog.innerText.includes("HP")
-    ) {
-      mostRecentLog.style.textDecoration = "line-through";
+    // Find and strike out the most recent log entry that contains the action
+    for (let i = logEntries.length - 1; i >= 0; i--) {
+      const entry = logEntries[i];
+      if (
+        !entry.innerText.includes("ROUND") &&
+        !entry.innerText.includes("HP") &&
+        entry.innerText.includes(currentAction.substring(0, 30)) // Match first part of action
+      ) {
+        entry.style.textDecoration = "line-through";
+        break; // Stop after striking out the first matching entry
+      }
     }
   }
 }
@@ -89,4 +102,5 @@ function removeImage(img) {
 // Make strikeOutMonsterAction globally available
 window.strikeOutMonsterAction = strikeOutMonsterAction;
 window.removeImage = removeImage;
+
 
