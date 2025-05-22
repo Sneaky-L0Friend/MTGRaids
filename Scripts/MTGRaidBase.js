@@ -1128,12 +1128,104 @@ function viewGraveyard() {
 // Make the viewGraveyard function globally available
 window.viewGraveyard = viewGraveyard;
 
+// Add keyboard shortcuts for common actions
+document.addEventListener('keydown', function(event) {
+  if (!window.startedGame) return;
+  
+  switch(event.key) {
+    case 'm': // 'm' for monster action
+      takeMonsterAction();
+      break;
+    case 'r': // 'r' for reveal top card
+      revealTopCard();
+      break;
+    case 'l': // 'l' for mill
+      millMonster();
+      break;
+    case '+': // '+' for increase round
+    case '=':
+      increaseRound();
+      break;
+    case '-': // '-' for decrease round
+      decreaseRound();
+      break;
+  }
+});
 
+// Add a function to save game state
+function saveGameState() {
+  if (!window.startedGame) return;
+  
+  const gameState = {
+    monsterHealth: monsterHealth,
+    monsterInfect: monsterInfect,
+    currentRound: currentRound,
+    numberOfDiceRolled: numberOfDiceRolled,
+    cardsInMonsterDeck: cardsInMonsterDeck,
+    graveyard: graveyard,
+    playerHealths: [] // Will be populated below
+  };
+  
+  // Get player health values
+  const playerEntries = document.querySelectorAll('.player-entry');
+  playerEntries.forEach(entry => {
+    const healthValue = parseInt(entry.querySelector('.player-health-value').textContent);
+    gameState.playerHealths.push(healthValue);
+  });
+  
+  localStorage.setItem('mtgRaidBossGameState', JSON.stringify(gameState));
+  showMessage("Game state saved!");
+}
 
+// Add a function to load game state
+function loadGameState() {
+  const savedState = localStorage.getItem('mtgRaidBossGameState');
+  if (!savedState) {
+    showMessage("No saved game found!");
+    return;
+  }
+  
+  const gameState = JSON.parse(savedState);
+  monsterHealth = gameState.monsterHealth;
+  monsterInfect = gameState.monsterInfect;
+  currentRound = gameState.currentRound;
+  numberOfDiceRolled = gameState.numberOfDiceRolled;
+  cardsInMonsterDeck = gameState.cardsInMonsterDeck;
+  graveyard = gameState.graveyard;
+  
+  // Update UI
+  updateMonsterHealth();
+  updateMonsterInfect();
+  updateRound();
+  updateGraveyardTable();
+  
+  // Update player health values
+  const playerEntries = document.querySelectorAll('.player-entry');
+  gameState.playerHealths.forEach((health, index) => {
+    if (playerEntries[index]) {
+      playerEntries[index].querySelector('.player-health-value').textContent = health;
+    }
+  });
+  
+  showMessage("Game state loaded!");
+}
 
+// Helper function to show temporary messages
+function showMessage(message) {
+  const messageElement = document.createElement('div');
+  messageElement.className = 'temp-message';
+  messageElement.textContent = message;
+  document.body.appendChild(messageElement);
+  
+  setTimeout(() => {
+    messageElement.classList.add('fade-out');
+    setTimeout(() => document.body.removeChild(messageElement), 500);
+  }, 2000);
+}
 
-
-
+// Make functions globally available
+window.saveGameState = saveGameState;
+window.loadGameState = loadGameState;
 
 
 

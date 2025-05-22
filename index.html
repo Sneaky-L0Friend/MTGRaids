@@ -223,5 +223,74 @@
     // Run on window resize
     window.addEventListener('resize', checkScrollNeeded);
   </script>
+  <!-- Function to ensure scrolling works properly -->
+  <script>
+    // Remove any scroll prevention that might be happening
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+      document.documentElement.style.height = 'auto';
+    });
+    
+    // Also run this when minions are added
+    function ensureScrollingWorks() {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+      document.documentElement.style.height = 'auto';
+    }
+    
+    // Override any existing checkScrollNeeded function
+    function checkScrollNeeded() {
+      document.body.style.overflow = 'auto'; // Always allow scrolling
+    }
+  </script>
+  <!-- Add save/load game buttons -->
+  <div style="display: flex; flex-direction: row; gap: 10px; justify-content: center; margin-top: 10px;">
+    <button class="display-box" onclick="saveGameState()" style="background-color: #2a6e2a;">
+      Save Game
+    </button>
+    <button class="display-box" onclick="loadGameState()" style="background-color: #2a5d8a;">
+      Load Game
+    </button>
+  </div>
+
+  <!-- Add style for temporary messages -->
+  <style>
+    .temp-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      transition: opacity 0.5s;
+    }
+    .fade-out {
+      opacity: 0;
+    }
+    
+    /* Add player turn indicator styling */
+    .player-turn-indicator {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-align: center;
+      margin: 10px auto;
+      max-width: 200px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    }
+  </style>
 </body>
 </html>

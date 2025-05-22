@@ -1,5 +1,5 @@
 // Version information
-const APP_VERSION = "1.0.23";
+const APP_VERSION = "1.0.24";
 
 // Initialize global variables
 window.easyActionsJson = null;
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
 
 
 
