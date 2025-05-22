@@ -4,7 +4,7 @@ window.refreshPage = function() {
 };
 
 function strikeOutMonsterAction() {
-  if (!gameCanStart) {
+  if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
     return;
   }
@@ -102,5 +102,6 @@ function removeImage(img) {
 // Make strikeOutMonsterAction globally available
 window.strikeOutMonsterAction = strikeOutMonsterAction;
 window.removeImage = removeImage;
+
 
 
