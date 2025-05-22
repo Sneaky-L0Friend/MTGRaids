@@ -1073,6 +1073,17 @@ function viewGraveyard() {
     document.body.removeChild(modal);
   };
   
+  // Add instructions text
+  const instructions = document.createElement('div');
+  instructions.className = 'graveyard-instructions';
+  instructions.innerHTML = '<p>Click a card to view it larger. <strong>Right-click a card to remove it from the graveyard.</strong></p>';
+  instructions.style.color = 'white';
+  instructions.style.textAlign = 'center';
+  instructions.style.padding = '10px';
+  instructions.style.marginTop = '50px';
+  instructions.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  instructions.style.borderRadius = '5px';
+  
   // Create a container for the images
   const imageContainer = document.createElement('div');
   imageContainer.className = 'graveyard-images';
@@ -1094,7 +1105,7 @@ function viewGraveyard() {
       cardsByType[card.type].push(card);
     });
     
-    // Create a section for each card type
+    // Create sections for each card type
     Object.keys(cardsByType).forEach(type => {
       const typeSection = document.createElement('div');
       typeSection.className = 'card-type-section';
@@ -1106,7 +1117,7 @@ function viewGraveyard() {
       const typeCards = document.createElement('div');
       typeCards.className = 'type-cards';
       
-      cardsByType[type].forEach(card => {
+      cardsByType[type].forEach((card, index) => {
         const cardElement = document.createElement('div');
         cardElement.className = 'graveyard-card';
         
@@ -1117,6 +1128,46 @@ function viewGraveyard() {
         cardImage.onclick = function() {
           openPopup(card.url);
         };
+        
+        // Add right-click event to remove card from graveyard
+        cardImage.addEventListener('contextmenu', function(e) {
+          e.preventDefault(); // Prevent default context menu
+          
+          // Remove card from milledCardImages array
+          milledCardImages.splice(milledCardImages.findIndex(c => 
+            c.url === card.url && c.name === card.name && c.type === card.type), 1);
+          
+          // Update graveyard count
+          graveyard[card.type]--;
+          cardsInMonsterGraveyard--;
+          
+          // Update graveyard table
+          updateGraveyardTable();
+          
+          // Remove the card element from the display
+          cardElement.remove();
+          
+          // Update the type header count
+          typeHeader.textContent = `${type} (${cardsByType[type].length - 1})`;
+          
+          // If this was the last card of this type, remove the section
+          if (cardsByType[type].length === 1) {
+            typeSection.remove();
+          }
+          
+          // If this was the last card in the graveyard, show "No cards" message
+          if (milledCardImages.length === 0) {
+            const noCardsMessage = document.createElement('p');
+            noCardsMessage.textContent = 'No cards in graveyard yet.';
+            noCardsMessage.style.color = 'white';
+            noCardsMessage.style.textAlign = 'center';
+            imageContainer.innerHTML = '';
+            imageContainer.appendChild(noCardsMessage);
+          }
+          
+          // Show a temporary message
+          showMessage(`Removed ${card.name} from graveyard`);
+        });
         
         cardElement.appendChild(cardImage);
         typeCards.appendChild(cardElement);
@@ -1129,6 +1180,7 @@ function viewGraveyard() {
   
   // Add elements to the modal
   modal.appendChild(closeButton);
+  modal.appendChild(instructions);
   modal.appendChild(imageContainer);
   
   // Add the modal to the body
