@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Each opponent sacrifices all enchantments they control.[Sorcery/Enchantment][CMC:4]",
+    "Exile all tapped creatures opponents control.[Sorcery][CMC:5]",
+    "Until end of turn, players can't cast spells or activate abilities unless they pay (2) for each.[Enchantment][CMC:4]",
+    "Each opponent sacrifices two nonland permanents. They can't be regenerated.[Instant/Sorcery][CMC:4]",
+    "Create X 2/2 white Knight tokens with vigilance, where X is the number of creatures opponents control.[Creature][CMC:5]",
+    "Until the end of the Raid Monster’s next turn, players cannot attack or block with more than one creature.[Enchantment][CMC:4]",
+    "Tap all creatures. They don’t untap during their controller’s next untap phase.[Sorcery][CMC:4]",
+    "Each opponent exiles the top five cards of their library. You gain 1 life for each creature or enchantment exiled this way.[Instant/Sorcery][CMC:4]",
+    "Destroy all non-token creatures. Each opponent creates a 1/1 white Soldier token for each creature they controlled this way.[Sorcery][CMC:5]",
+    "Until the Raid Monster’s next turn, damage dealt to it is prevented and redirected to the source’s controller.[Enchantment][CMC:4]"
+  ]
+}

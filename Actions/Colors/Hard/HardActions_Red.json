@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Deal 6 damage to each creature and planeswalker.[Sorcery][CMC:5]",
+    "Each player sacrifices two lands. Then, the Raid Monster creates a 6/6 red Elemental token with haste.[Creature][CMC:5]",
+    "Until the Raid Monster’s next turn, each spell an opponent casts deals 2 damage to its caster.[Enchantment][CMC:4]",
+    "Destroy all nonbasic lands. Each opponent loses 3 life for each land destroyed this way.[Sorcery][CMC:5]",
+    "The Raid Monster deals damage to each opponent equal to the number of tapped creatures they control.[Instant/Sorcery][CMC:4]",
+    "Create three 3/1 red Elemental tokens with trample and haste. Sacrifice them at end of turn.[Creature][CMC:4]",
+    "Until the Raid Monster’s next turn, whenever an opponent casts a spell, flip a coin. If they lose the flip, counter the spell.[Enchantment][CMC:4]",
+    "Each opponent exiles the top 7 cards of their library. Deal 1 damage to them for each nonland card exiled this way.[Sorcery][CMC:4]",
+    "The Raid Monster copies the next noncreature spell each opponent casts. It may choose new targets for the copies.[Enchantment][CMC:5]",
+    "Destroy each artifact. For each one destroyed, deal 1 damage to each creature and player.[Sorcery][CMC:4]"
+  ]
+}

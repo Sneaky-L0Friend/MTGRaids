@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Tap up to 2 target creatures. They do not untap during their controller's next untap step.[Instant/Enchantment][CMC:2]",
+    "Each opponent chooses one creature. That creature cannot attack until the Raid Monster's next turn.[Instant/Sorcery][CMC:2]",
+    "Prevent the next 3 damage that would be dealt to the Raid Monster this turn.[Instant][CMC:1]",
+    "Until the Raid Monster's next turn, players cannot attack with more than one creature per turn.[Enchantment][CMC:2]",
+    "The Raid Monster gains 4 life for each opponent with more life than it.[Instant/Sorcery][CMC:2]",
+    "Each opponent taps one untapped creature they control. It does not untap during their next untap step.[Enchantment][CMC:1]",
+    "Each opponent creates a 1/1 white Soldier token, then loses 1 life for each token they control.[Instant/Sorcery][CMC:2]",
+    "Each opponent chooses a creature they control. Only that creature may block this turn.[Enchantment][CMC:2]",
+    "Until the beginning of the Monster's next turn, creatures can't attack unless their controller pays (1).[Instant/Sorcery/Enchantment][CMC:1]",
+    "The Raid Monster creates a 1/4 white Wall creature token with defender and lifelink.[Creature][CMC:2]"
+  ]
+}

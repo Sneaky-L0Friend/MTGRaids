@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Each opponent sacrifices two creatures and loses 3 life for each they can’t sacrifice.[Sorcery][CMC:4]",
+    "Exile all creatures from graveyards. Each opponent loses life equal to the number exiled from their graveyard.[Sorcery][CMC:4]",
+    "Each opponent sacrifices half the nonland permanents they control, rounded up.[Sorcery][CMC:5]",
+    "Until end of turn, whenever a creature an opponent controls dies, they lose 2 life.[Enchantment][CMC:4]",
+    "Destroy all creatures. The Raid Monster gains life equal to the number destroyed this way.[Sorcery][CMC:5]",
+    "Each opponent discards their hand and draws two cards. They lose 1 life for each card discarded.[Instant/Sorcery][CMC:4]",
+    "Exile a creature from each opponent’s graveyard. Create a copy of each under the Raid Monster’s control.[Creature][CMC:6]",
+    "Until the end of the Raid Monster’s next turn, whenever a player draws a card, they discard a card and lose 1 life.[Enchantment][CMC:4]",
+    "Create X 2/2 black Zombie creature tokens, where X is the number of creatures that died this turn.[Creature][CMC:5]",
+    "Each player sacrifices a creature. The Raid Monster takes another action after this one resolves.[Instant][CMC:4]"
+  ]
+}

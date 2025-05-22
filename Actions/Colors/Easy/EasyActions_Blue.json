@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Until the Raid Monster's next turn, each opponent's first spell costs (1) more to cast.[Instant/Sorcery/Enchantment][CMC:1]",
+    "Scry 2. Each opponent mills 1 card.[Instant/Sorcery][CMC:1]",
+    "Return target nonland permanent with CMC 2 or less to its owner's hand.[Instant][CMC:2]",
+    "Tap target nonland permanent. It doesn't untap during its controller's next untap step.[Instant][CMC:2]",
+    "Draw a card. Each opponent puts the top card of their library into their graveyard.[Instant/Sorcery][CMC:1]",
+    "Each opponent reveals their hand. Choose one instant or sorcery; they exile it.[Sorcery][CMC:2]",
+    "Counter target spell unless its controller pays (2).[Instant][CMC:2]",
+    "The Raid Monster creates a 1/1 blue Illusion token with flying. It has 'When this dies, draw a card.'[Creature][CMC:2]",
+    "Until the Raid Monster's next turn, creatures entering the battlefield do so tapped.[Enchantment][CMC:1]",
+    "Each opponent shuffles their graveyard into their library, then mills 2 cards.[Sorcery][CMC:2]"
+  ]
+}

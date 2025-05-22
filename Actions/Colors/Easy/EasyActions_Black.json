@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Each opponent loses 2 life and mills 2 cards. If a creature is milled this way, they lose 2 more life.[Instant/Sorcery][CMC:2]",
+    "Target opponent sacrifices a creature unless they discard two cards.[Instant/Sorcery][CMC:2]",
+    "Each opponent loses 3 life unless they sacrifice a token.[Instant/Sorcery][CMC:1]",
+    "Create a 2/1 black Horror token for each opponent that lost life this turn.[Creature][CMC:2]",
+    "Exile target card from each opponent's graveyard. They lose 1 life.[Sorcery][CMC:1]",
+    "Each opponent discards a card at random.[Instant/Sorcery][CMC:2]",
+    "Until the Raid Monsters next turn, players can't gain life.[Enchantment][CMC:1]",
+    "Target opponent reveals their hand. Choose one card. They exile it unless they sacrifice a creature.[Sorcery][CMC:2]",
+    "Create a 1/1 black Bat creature token with lifelink.[Creature][CMC:1]",
+    "Each opponent loses 1 life and you gain 1 life. Repeat this for each enchantment they control.[Instant/Sorcery][CMC:2]"
+  ]
+}

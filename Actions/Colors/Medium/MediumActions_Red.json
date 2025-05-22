@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Each opponent sacrifices a nonbasic land.[Sorcery][CMC:3]",
+    "The Raid Monster deals 4 damage to each creature and 2 to each player.[Instant/Sorcery][CMC:3]",
+    "Until the Raid Monster's next turn, whenever a creature attacks, its controller sacrifices a land.[Enchantment][CMC:3]",
+    "Create two 3/1 red Elemental tokens with trample and haste. Sacrifice them at end of turn.[Creature][CMC:3]",
+    "Each opponent exiles the top two cards of their library. They may play one until their next turn.[Sorcery][CMC:2]",
+    "Each opponent discards a card at random. If a land is discarded this way, deal 3 damage to them.[Instant][CMC:3]",
+    "Deal 5 damage to target creature or planeswalker. Excess damage is dealt to that permanent’s controller.[Instant/Sorcery][CMC:3]",
+    "Each creature gets +1/-1 until end of turn.[Instant/Sorcery][CMC:2]",
+    "Until the end of the Raid Monster's next turn, creatures opponents control must attack if able.[Enchantment][CMC:2]",
+    "Each player sacrifices an artifact or takes 5 damage.[Sorcery][CMC:3]"
+  ]
+}

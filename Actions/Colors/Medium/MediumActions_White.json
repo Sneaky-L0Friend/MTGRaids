@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Until the Raid Monster's next turn, players can't attack with more than one creature or cast more than one spell each turn.[Enchantment][CMC:3]",
+    "Each opponent sacrifices an enchantment or loses 5 life.[Instant/Sorcery][CMC:3]",
+    "The Raid Monster gains 6 life for each tapped creature opponents control.[Instant][CMC:3]",
+    "Tap all creatures controlled by opponents. They do not untap during their next untap step.[Sorcery][CMC:3]",
+    "Create a 4/4 white Angel token with vigilance for each opponent with more life than the Raid Monster.[Creature][CMC:4]",
+    "Until the beginning of the Raid Monster's next turn, damage dealt to the Raid Monster is reduced to 1 per source.[Enchantment][CMC:2]",
+    "Each opponent taps all untapped artifacts they control. They don't untap during their next untap step.[Instant/Sorcery][CMC:3]",
+    "Each opponent sacrifices a creature unless they discard two cards.[Instant/Sorcery][CMC:3]",
+    "Exile all tokens. Each opponent loses life equal to the number of tokens they controlled.[Sorcery][CMC:3]",
+    "Each opponent taps two lands of their choice. They do not untap during their next untap step.[Instant/Sorcery][CMC:3]"
+  ]
+}

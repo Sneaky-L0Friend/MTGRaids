@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Counter each opponent’s next spell. Then they exile a card from their hand at random.[Instant][CMC:4]",
+    "Each opponent returns all nonland permanents they control to their hand.[Sorcery][CMC:5]",
+    "Each opponent shuffles their graveyard into their library and exiles the top seven cards.[Sorcery][CMC:4]",
+    "Tap all creatures and lands opponents control. They do not untap during their next untap step.[Sorcery][CMC:4]",
+    "Each opponent reveals their hand. Choose two cards; they exile them and draw one.[Sorcery][CMC:4]",
+    "Exile all tokens. Each opponent mills cards equal to the number of tokens they controlled.[Instant/Sorcery][CMC:3]",
+    "Until the end of the Raid Monster’s next turn, spells opponents cast cost (3) more and can be countered as though they had no abilities.[Enchantment][CMC:5]",
+    "Gain control of target nonland permanent until end of turn. Untap it. It gains hexproof.[Instant/Sorcery][CMC:4]",
+    "Each opponent reveals the top five cards of their library. You choose one nonland card from each to cast without paying its mana cost.[Sorcery][CMC:6]",
+    "Return all non-land permanents to their owners’ hands.[Sorcery][CMC:5]"
+  ]
+}

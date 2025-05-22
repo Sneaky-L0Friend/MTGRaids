@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Each opponent sacrifices a creature with flying. If they control none, they lose 4 life.[Sorcery][CMC:3]",
+    "Destroy target artifact or enchantment. Its controller creates a 2/2 green Beast.[Sorcery][CMC:2]",
+    "The Raid Monster gains 8 life. Each opponent loses 2 life for each creature they control.[Instant/Sorcery][CMC:3]",
+    "Create a 5/5 green Wurm creature token with trample.[Creature][CMC:4]",
+    "Until end of turn, all creatures lose flying and hexproof. Draw a card.[Instant/Sorcery][CMC:2]",
+    "Return up to two lands from each opponent’s graveyard to the battlefield under your control tapped.[Sorcery][CMC:3]",
+    "Each opponent sacrifices a noncreature, nonland permanent.[Sorcery][CMC:3]",
+    "Each opponent taps all nonbasic lands they control.[Instant][CMC:2]",
+    "Destroy each artifact with CMC 3 or less.[Sorcery][CMC:3]",
+    "The Raid Monster gains 5 life for each tapped land on the battlefield.[Instant/Sorcery][CMC:3]"
+  ]
+}

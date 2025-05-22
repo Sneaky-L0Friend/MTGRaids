@@ -1,0 +1,14 @@
+{
+  "Actions": [
+    "Until end of turn, nonbasic lands opponents control lose all abilities and become basic Forests.[Instant/Enchantment][CMC:2]",
+    "Each opponent sacrifices a creature with flying.[Sorcery][CMC:2]",
+    "Destroy target artifact. Its controller creates a 1/1 green Insect token.[Sorcery][CMC:2]",
+    "The Raid Monster gains 3 life for each opponent who controls more lands than it.[Instant][CMC:2]",
+    "Create a 3/3 green Beast token.[Creature][CMC:3]",
+    "Each opponent taps one untapped creature they control.[Instant/Sorcery][CMC:1]",
+    "Each player mills 1, then puts a land card from their graveyard onto the battlefield tapped.[Instant/Sorcery][CMC:2]",
+    "Until end of turn, creatures opponents control lose trample and cannot block.[Instant/Sorcery][CMC:1]",
+    "Destroy target enchantment.[Instant/Sorcery][CMC:2]",
+    "Until the Raid Monster's next turn, creatures opponents control get -1/-0.[Enchantment][CMC:2]"
+  ]
+}
