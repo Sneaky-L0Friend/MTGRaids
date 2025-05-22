@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MTG Raid Boss</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="overlay" id="overlay"></div>
@@ -16,8 +17,8 @@
   <!-- Add version number display -->
   <div id="versionInfo" class="version-info">v1.0.21</div>
 
-  <!-- Top section container -->
-  <div class="top-section-container">
+  <!-- Top section container - initially hidden -->
+  <div class="top-section-container" style="display: none;">
     <!-- Dice log on the left -->
     <div id="diceLog" style="display: none;"></div>
     
@@ -32,32 +33,53 @@
     </div>
   </div>
 
-  <div class="display-container">
-    <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom or pick number of players:</label>
-    <input type="text" id="myTextbox" oninput="checkInput()" placeholder="Enter number of players">
-    <div class="button-wrapper">
-      <button id="button1" onclick="window.startGame('medium', 1)">Medium, 1 Player</button>
-      <button id="button2" onclick="window.startGame('medium', 2)">Medium, 2 Players</button>
-      <button id="button3" onclick="window.startGame('medium', 3)">Medium, 3 Players</button>
-      <button id="button4" onclick="window.startGame('medium', 4)">Medium, 4 Players</button>
+  <!-- Starting screen container -->
+  <div class="starting-screen">
+    <!-- Decorative cards in the background -->
+    <div class="decorative-card card-top-left"></div>
+    <div class="decorative-card card-top-right"></div>
+    <div class="decorative-card card-bottom-left"></div>
+    <div class="decorative-card card-bottom-right"></div>
+    
+    <h1 class="game-title">MTG Raid Boss</h1>
+    <p class="game-subtitle">A cooperative Magic: The Gathering experience</p>
+    
+    <div class="main-content">
+      <div class="display-container">
+        <label id="playerLabel" style="cursor: default" class="display-box" for="myTextbox">Enter custom number of players:</label>
+        <div class="custom-player-container">
+          <input type="text" id="myTextbox" oninput="checkInput()" placeholder="Enter number of players (1-12)">
+          <div class="button-container">
+            <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="window.startGame('easy', 0)">
+              Easy Custom
+            </button>
+            <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="window.startGame('medium', 0)">
+              Medium Custom
+            </button>
+            <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="window.startGame('hard', 0)">
+              Hard Custom
+            </button>
+          </div>
+        </div>
+        
+        <div class="preset-options-container">
+          <div class="button-wrapper-label">
+            <span class="display-box">Choose a preset option:</span>
+          </div>
+          
+          <div class="button-wrapper">
+            <button id="button1" onclick="window.startGame('medium', 1)">Medium, 1 Player</button>
+            <button id="button2" onclick="window.startGame('medium', 2)">Medium, 2 Players</button>
+            <button id="button3" onclick="window.startGame('medium', 3)">Medium, 3 Players</button>
+            <button id="button4" onclick="window.startGame('medium', 4)">Medium, 4 Players</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <!-- Keep only the colored start buttons -->
-  <div class="button-container">
-    <button id="startEasy" style="background-color: #4CAF50" class="display-box start-button" onclick="window.startGame('easy', 0)">
-      Click to Start Easy Challenge
-    </button>
-    <button id="startMedium" style="background-color: #FF9800" class="display-box start-button" onclick="window.startGame('medium', 0)">
-      Click to Start Medium Challenge
-    </button>
-    <button id="startHard" style="background-color: #F44336" class="display-box start-button" onclick="window.startGame('hard', 0)">
-      Click to Start Hard Challenge
-    </button>
   </div>
   
   <!-- Monster stats container -->
-  <div class="monster-stats-container">
+  <div class="monster-stats-container" style="display: none;">
     <div class="monster-stat-entry">
       <div id="monsterHandButtons" style="display: none">
         <button onclick="updateMonsterHandSizeByAmount(-1)">-</button>
@@ -179,6 +201,22 @@
     if (typeof window.refreshPage !== 'function') {
       console.error("refreshPage function not found! Check script loading order.");
     }
+  </script>
+  <!-- Function to check if scrolling is needed and hide scrollbar if not -->
+  <script>
+    function checkScrollNeeded() {
+      if (document.body.scrollHeight <= window.innerHeight) {
+        document.body.style.overflow = 'hidden'; // Hide scrollbar
+      } else {
+        document.body.style.overflow = 'auto'; // Show scrollbar
+      }
+    }
+    
+    // Run on page load
+    window.addEventListener('load', checkScrollNeeded);
+    
+    // Run on window resize
+    window.addEventListener('resize', checkScrollNeeded);
   </script>
 </body>
 </html>

@@ -515,22 +515,16 @@ function startGame(difficultyLevel, playerCount) {
   // Set difficulty at start
   setDifficultyAtStart(difficultyLevel);
   
-  // Hide all start buttons
-  const startButtons = document.querySelectorAll(".start-button");
-  startButtons.forEach(button => {
-    button.style.display = "none";
-  });
-  
-  // Hide the button container
-  const buttonContainer = document.querySelector(".button-container");
-  if (buttonContainer) {
-    buttonContainer.style.display = "none";
+  // Hide the starting screen
+  const startingScreen = document.querySelector(".starting-screen");
+  if (startingScreen) {
+    startingScreen.style.display = "none";
   }
   
-  // Hide the player entry section
-  const displayContainer = document.querySelector(".display-container");
-  if (displayContainer) {
-    displayContainer.style.display = "none";
+  // Show the top section container
+  const topSectionContainer = document.querySelector(".top-section-container");
+  if (topSectionContainer) {
+    topSectionContainer.style.display = "flex";
   }
   
   // Show dice log
@@ -555,6 +549,12 @@ function startGame(difficultyLevel, playerCount) {
   const turnInfectControls = document.getElementById("turnInfectControls");
   if (turnInfectControls) {
     turnInfectControls.style.display = "flex";
+  }
+  
+  // Show monster stats container
+  const monsterStatsContainer = document.querySelector(".monster-stats-container");
+  if (monsterStatsContainer) {
+    monsterStatsContainer.style.display = "flex";
   }
   
   // Show graveyard table
@@ -906,6 +906,9 @@ function readActionJsonFiles() {
 // Make necessary functions globally available
 window.startGame = startGame;
 window.checkInput = checkInput;
+
+
+
 
 
 

@@ -1,16 +1,21 @@
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 100vh;
+/* Reset all margins and padding */
+* {
   margin: 0;
-  padding: 20px;
-  background-color: #1e1e1e;
-  color: #fff;
+  padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body styling with adaptive overflow */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  font-family: Arial, sans-serif;
+  color: white;
+  position: relative;
+  overflow: auto; /* Allow scrolling only when needed */
 }
 
 /* Consistent container styling */
@@ -18,28 +23,49 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
+  margin: 10px auto;
   width: 100%;
-  max-width: 1200px;
-  gap: 5px;
+  max-width: 800px;
+  gap: 2px;
+  text-align: center;
+}
+
+.display-container label {
+  width: auto;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto 2px; /* Reduced from 5px to 2px */
+}
+
+.display-container input {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.display-container input:focus {
+  outline: none;
+  border-color: #777;
 }
 
 /* Consistent box styling */
 .display-box {
-  font-size: clamp(16px, 2vw, 20px);
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  user-select: none;
   background-color: #333;
-  color: #fff;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
-  width: auto;
-  max-width: 100%;
-  overflow-wrap: break-word;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s, transform 0.1s;
 }
 
 /* Button styling */
@@ -251,17 +277,38 @@ button:active,
   justify-content: center;
   gap: 5px;
   margin-bottom: 10px;
-  width: 100%;
+  width: auto;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: rgba(51, 51, 51, 0.5);
   border-radius: 6px;
-  padding: 8px;
+  padding: 8px 15px;
+}
+
+/* Controls row for turn and infect on same line */
+.controls-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  width: auto;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 15px;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 6px;
 }
 
 /* Turn and infect controls */
 #turnInfectControls {
-  background-color: rgba(51, 51, 51, 0.5);
-  border-radius: 6px;
-  padding: 8px;
+  display: inline-flex;
+  width: auto;
+  margin: 0 auto;
 }
 
 .turn-controls button,
@@ -283,12 +330,23 @@ button:active,
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+.turn-container,
+.infect-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#rounds {
+  margin: 0 15px;
+}
+
 /* Dice log styling */
 #diceLog {
   position: fixed;
   left: 0;
   top: 0;
-  max-height: 40vh;
+  max-height: 50vh; /* Changed from 40vh to 50vh (half the screen height) */
   max-width: 18vw;
   width: auto;
   overflow-y: auto;
@@ -943,8 +1001,6 @@ th, td {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  border-radius: 3px;
 }
 
 #monsterHandButtons button:hover, #monsterLandButtons button:hover {
@@ -989,6 +1045,7 @@ th, td {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 15px; /* Add margin to create gap below action box */
 }
 
 #gameActionButtons > div:first-child {
@@ -1039,8 +1096,8 @@ th, td {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 0;
+  padding: 0;
   position: relative;
 }
 
@@ -1050,39 +1107,60 @@ th, td {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 45%;
+  width: 50%; /* Changed from 45% to 50% of screen width to prevent overflow */
   margin: 0 auto;
   position: relative;
+  z-index: 10;
 }
 
 .monster-image-container img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: contain;
+  width: 100%; /* Takes full width of container */
+  height: 45vh; /* Fixed height for all boss images */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  max-height: 20vh;
+  box-shadow: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.monster-image-container a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
 }
 
 /* Dice log positioning */
 #diceLog {
   position: absolute;
   left: 10px;
-  top: 0;
+  top: 10px;
   width: 25%;
-  max-height: 80vh;
+  max-height: 50vh;
   overflow-y: auto;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: left;
+  z-index: 100;
+  background-color: rgba(51, 51, 51, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Player health container positioning */
 .player-health-container {
   position: absolute;
   right: 10px;
-  top: 0;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 50vh; /* Changed from 80vh to 50vh (half the screen height) */
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
   width: 25%;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.5);
 }
 
 /* Responsive adjustments */
@@ -1092,19 +1170,30 @@ th, td {
     align-items: center;
   }
   
+  #diceLog, .player-health-container, .monster-image-container {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+  
   .monster-image-container {
-    width: 60%;
-    margin-bottom: 20px;
+    order: -1;
   }
   
-  .monster-image-container img {
-    max-height: 30vh;
+  #diceLog {
+    order: 1;
   }
   
-  #diceLog, .player-health-container {
-    position: static;
-    width: 90%;
-    margin: 10px auto;
+  .player-health-container {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .player-entry {
+    width: 280px;
+    margin: 5px;
   }
 }
 
@@ -1207,11 +1296,10 @@ th, td {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  margin-bottom: 10px;
   width: 100%;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1200px;
+  gap: 5px;
 }
 
 .display-box {
@@ -1235,6 +1323,13 @@ th, td {
 }
 
 .button-wrapper button {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  margin: 0;
+}
+
+.button-wrapper button {
   background-color: #555;
   color: white;
   border: none;
@@ -1254,4 +1349,475 @@ th, td {
 .button-wrapper button:active {
   background-color: #444;
   transform: translateY(1px);
+}
+
+/* Button container styling */
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.button-container button {
+  flex: 1;
+  min-width: 180px;
+  max-width: 300px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Button wrapper styling */
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.button-wrapper button {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  margin: 0;
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button-wrapper button:hover {
+  background-color: #666;
+}
+
+.button-wrapper button:active {
+  background-color: #444;
+  transform: translateY(1px);
+}
+
+/* Starting screen container */
+.starting-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling when needed */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure minimum content height for small screens */
+.starting-screen > * {
+  flex-shrink: 0; /* Prevent content from shrinking too much */
+}
+
+/* Game title styling */
+.game-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #e2e2e2;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.game-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 30px;
+  font-style: italic;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Main content container */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 900px;
+  background-color: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  margin: 15px 0;
+  box-sizing: border-box;
+  min-height: min-content; /* Ensure content doesn't get cut off */
+}
+
+/* Display container styling */
+.display-container {
+  width: 100%;
+  max-width: 800px;
+  gap: 25px;
+}
+
+/* Custom player container styling */
+.custom-player-container {
+  background: linear-gradient(to bottom, rgba(51, 51, 51, 0.8), rgba(40, 40, 40, 0.8));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.05);
+  margin-bottom: 20px; /* Increased spacing between containers */
+}
+
+.custom-player-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+/* Preset options container styling */
+.preset-options-container {
+  background: linear-gradient(to bottom, rgba(51, 51, 51, 0.8), rgba(40, 40, 40, 0.8));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.05);
+}
+
+.preset-options-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+/* Label styling */
+#playerLabel {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 215, 0, 0.2), rgba(0, 0, 0, 0));
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e2e2e2;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  width: auto;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto 15px;
+}
+
+/* Input styling */
+.display-container input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: rgba(30, 30, 30, 0.8);
+  color: #e2e2e2;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.display-container input:focus {
+  outline: none;
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.display-container input::placeholder {
+  color: #888;
+}
+
+/* Button container styling */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Start button styling */
+.start-button {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.start-button:hover::before {
+  left: 100%;
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.start-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Button wrapper label styling */
+.button-wrapper-label span {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 215, 0, 0.2), rgba(0, 0, 0, 0));
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e2e2e2;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Button wrapper styling */
+.button-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.button-wrapper button {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #444, #333);
+  color: white;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button-wrapper button:hover {
+  background: linear-gradient(to bottom, #555, #444);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+/* Version info styling */
+.version-info {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Add decorative elements */
+.decorative-card {
+  position: absolute;
+  width: 150px;
+  height: 210px;
+  background-color: rgba(30, 30, 30, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transform: rotate(var(--rotation));
+  z-index: -1;
+  opacity: 0.7;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.card-top-left {
+  top: 5%;
+  left: 5%;
+  --rotation: -15deg;
+}
+
+.card-top-right {
+  top: 5%;
+  right: 5%;
+  --rotation: 15deg;
+}
+
+.card-bottom-left {
+  bottom: 5%;
+  left: 5%;
+  --rotation: 15deg;
+}
+
+.card-bottom-right {
+  bottom: 5%;
+  right: 5%;
+  --rotation: -15deg;
+}
+
+/* Ensure content fits on ultra-wide screens */
+@media (min-width: 1600px) {
+  .main-content {
+    max-width: 1200px; /* Wider content area on ultra-wide screens */
+  }
+  
+  .decorative-card {
+    width: 150px;
+    height: 210px;
+  }
+  
+  .card-top-left {
+    top: 15%;
+    left: 15%;
+  }
+  
+  .card-top-right {
+    top: 15%;
+    right: 15%;
+  }
+  
+  .card-bottom-left {
+    bottom: 15%;
+    left: 15%;
+  }
+  
+  .card-bottom-right {
+    bottom: 15%;
+    right: 15%;
+  }
+}
+
+/* Ensure game elements are properly sized */
+.game-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  margin: 0 0 10px 0;
+}
+
+.game-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  margin: 0 0 20px 0;
+}
+
+/* Ensure containers don't cause overflow */
+.display-container {
+  width: 100%;
+  max-width: 800px;
+  gap: 15px;
+}
+
+/* Ensure buttons don't cause overflow */
+.button-container,
+.button-wrapper {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Custom scrollbar styling */
+.starting-screen::-webkit-scrollbar {
+  width: 8px;
+}
+
+.starting-screen::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.starting-screen::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.3);
+  border-radius: 4px;
+}
+
+.starting-screen::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.5);
+}
+
+/* Media queries for small screens */
+@media (max-height: 700px) {
+  /* Adjust spacing for small screens */
+  .starting-screen {
+    justify-content: flex-start; /* Align to top on small screens */
+    padding-top: 10px;
+  }
+  
+  .game-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 5px;
+  }
+  
+  .game-subtitle {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    margin-bottom: 10px;
+  }
+  
+  .main-content {
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  .custom-player-container, 
+  .preset-options-container {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Hide decorative cards on very small screens */
+  .decorative-card {
+    display: none;
+  }
+}
+
+/* Media queries for medium screens */
+@media (min-height: 701px) and (max-height: 900px) {
+  .decorative-card {
+    width: 100px;
+    height: 140px;
+  }
+}
+
+/* Media queries for large screens */
+@media (min-height: 901px) {
+  .starting-screen {
+    justify-content: center; /* Center content on large screens */
+  }
+  
+  .decorative-card {
+    width: 120px;
+    height: 170px;
+    display: block;
+  }
 }
