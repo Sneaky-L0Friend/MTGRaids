@@ -20,6 +20,7 @@ let cardsInMonsterDeck = 99;
 let cardsInMonsterGraveyard = -1;
 let scryfallMonsterColors;
 let currentRandomCardUrl;
+let currentRandomCardName;
 let hasCardBeenMilled = true;
 let hasCardBeenDrawn = true;
 let hasRevealedTopCard = false;
@@ -704,18 +705,85 @@ function millMonster() {
     disableAllButtonsExceptRestart();
     return;
   }
+  
+  // Disable mill button while processing
+  const millButton = document.getElementById('millButton');
+  if (millButton) millButton.disabled = true;
+  
   let cardMilled;
-  if(cardTypeRevealed != "") {
+  let cardImageUrl = null;
+  let cardName = null;
+  
+  // If a card has been revealed but not yet milled or drawn
+  if (!hasCardBeenMilled && !hasCardBeenDrawn && cardTypeRevealed !== "") {
+    // Use the already revealed card
     cardMilled = cardTypeRevealed;
+    cardImageUrl = currentRandomCardUrl;
+    cardName = currentRandomCardName;
     cardTypeRevealed = "";
-  } else {
-    cardMilled = pickRandomCardType(true);
+    
+    // Process immediately for revealed cards
+    cardsInMonsterDeck -= 1;
+    graveyard[cardMilled]++;
+    hasCardBeenMilled = true;
+    
+    // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
+    addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
+    
+    updateGraveyardTable();
+    if (millButton) millButton.disabled = false;
+    return;
   }
-  cardsInMonsterDeck -= 1;
-  graveyard[cardMilled]++;
-  hasCardBeenMilled = true;
-  addLog("MONSTER MILLED: " + cardMilled + ". NUMBER OF CARDS LEFT: " + cardsInMonsterDeck);
-  updateGraveyardTable();
+  
+  // Pick a new random card type for new cards
+  cardMilled = pickRandomCardType(true);
+  
+  // Check if scryfallMonsterColors is defined
+  if (!scryfallMonsterColors) {
+    addLog("ERROR: Monster colors not defined. Please restart the game.");
+    if (millButton) millButton.disabled = false;
+    return;
+  }
+  
+  // Create URL for Scryfall API based on card type
+  let randomCardUrl;
+  if (cardMilled == "Land") {
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+  } else {
+    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardMilled + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+  }
+  
+  // For new cards, fetch from API
+  getRandomCardImageUrl(randomCardUrl)
+    .then(result => {
+      if (millButton) millButton.disabled = false;
+      
+      cardsInMonsterDeck -= 1;
+      graveyard[cardMilled]++;
+      hasCardBeenMilled = true;
+      
+      if (result && result.imageUrl) {
+        // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
+        addLog("MONSTER MILLED: " + cardMilled + " - " + result.cardName + ". CARDS LEFT: " + cardsInMonsterDeck, result.imageUrl);
+        openPopup(result.imageUrl);
+      } else {
+        // Fallback if image fetch fails
+        addLog("MONSTER MILLED: " + cardMilled + ". CARDS LEFT: " + cardsInMonsterDeck);
+      }
+      
+      updateGraveyardTable();
+    })
+    .catch(error => {
+      console.error("Error fetching milled card:", error);
+      if (millButton) millButton.disabled = false;
+      
+      // Still mill the card even if image fetch fails
+      cardsInMonsterDeck -= 1;
+      graveyard[cardMilled]++;
+      hasCardBeenMilled = true;
+      addLog("MONSTER MILLED: " + cardMilled + ". CARDS LEFT: " + cardsInMonsterDeck);
+      updateGraveyardTable();
+    });
 }
 
 function openPopup(imageSrc) {
@@ -770,16 +838,25 @@ async function getRandomCardImageUrl(url) {
     }
     const cardData = await response.json();
     
+    // Store the card name for later use
+    const cardName = cardData.name || "Unknown Card";
+    
     // Check if the response has the expected structure
     if (!cardData.image_uris || !cardData.image_uris.normal) {
       // Try alternative image path for double-faced cards
       if (cardData.card_faces && cardData.card_faces[0] && cardData.card_faces[0].image_uris) {
-        return cardData.card_faces[0].image_uris.normal;
+        return { 
+          imageUrl: cardData.card_faces[0].image_uris.normal,
+          cardName: cardName
+        };
       }
       throw new Error('Invalid card data structure');
     }
     
-    return cardData.image_uris.normal;
+    return { 
+      imageUrl: cardData.image_uris.normal,
+      cardName: cardName
+    };
   } catch (error) {
     console.error('Error fetching card:', error);
     return null;
@@ -812,12 +889,15 @@ function revealTopCard() {
     }
     
     getRandomCardImageUrl(randomCardUrl)
-      .then(imageUrl => {
+      .then(result => {
         randomTopCardId.disabled = false;
-        if (imageUrl) {
-          addLog("MONSTER REVEALED A(N) " + cardTypeRevealed + ": ", imageUrl);
-          // You can use imageUrl here to display the image on your webpage or do further processing
-          currentRandomCardUrl = imageUrl;
+        if (result && result.imageUrl) {
+          // Format: "MONSTER REVEALED: [Type] - [CardName]"
+          // Remove the "CARDS LEFT" part for revealed cards
+          addLog("MONSTER REVEALED: " + cardTypeRevealed + " - " + result.cardName, result.imageUrl);
+          // Store both the image URL and card name
+          currentRandomCardUrl = result.imageUrl;
+          currentRandomCardName = result.cardName;
           openPopup(currentRandomCardUrl);
         }
       })
@@ -869,7 +949,7 @@ function readActionJsonFiles() {
     .catch(error => {
       console.error("Error loading easy actions:", error);
     });
-
+    
   // Load Medium Actions
   fetch("./Actions/MediumActions.json")
     .then(response => {
@@ -885,7 +965,7 @@ function readActionJsonFiles() {
     .catch(error => {
       console.error("Error loading medium actions:", error);
     });
-
+    
   // Load Hard Actions
   fetch("./Actions/HardActions.json")
     .then(response => {
@@ -903,9 +983,23 @@ function readActionJsonFiles() {
     });
 }
 
-// Make necessary functions globally available
-window.startGame = startGame;
-window.checkInput = checkInput;
+// Make readActionJsonFiles globally available
+window.readActionJsonFiles = readActionJsonFiles;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -169,7 +169,7 @@ button:active,
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 100;
-  width: 300px;
+  width: 280px; /* Reduced from 300px */
   padding: 5px;
   border-radius: 8px;
   background-color: rgba(30, 30, 30, 0.5);
@@ -244,7 +244,7 @@ button:active,
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .player-health-container {
-    width: 250px;
+    width: 230px; /* Reduced from 250px */
   }
   
   .health-buttons button {
@@ -1157,7 +1157,7 @@ th, td {
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 100;
-  width: 25%;
+  width: 20%;
   padding: 5px;
   border-radius: 8px;
   background-color: rgba(30, 30, 30, 0.5);

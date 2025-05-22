@@ -3,49 +3,63 @@ let log = [];
 
 function addLog(message, imageUrl) {
   const diceLog = document.getElementById("diceLog");
-  if (!diceLog) {
-    console.error("Dice log element not found!");
-    return;
-  }
   
+  // Create log entry
   const logEntry = document.createElement("div");
   logEntry.className = "logEntry";
   
   if (imageUrl) {
-    // If an image URL is provided, create a clickable image link
-    const logText = document.createElement("span");
-    logText.innerText = message;
-    logEntry.appendChild(logText);
+    // First try to match the format with "CARDS LEFT"
+    let regex = /(MONSTER (?:MILLED): )([^-]+) - ([^.]+)(. CARDS LEFT: \d+)/;
+    let match = message.match(regex);
     
-    const imageLink = document.createElement("a");
-    imageLink.href = "#";
-    imageLink.onclick = function(e) {
-      e.preventDefault();
-      openPopup(imageUrl);
-    };
+    // If no match, try the format without "CARDS LEFT" (for revealed cards)
+    if (!match) {
+      regex = /(MONSTER (?:REVEALED): )([^-]+) - (.+)/;
+      match = message.match(regex);
+    }
     
-    const imageIcon = document.createElement("img");
-    imageIcon.src = "card-icon.png"; // You'll need to add this icon to your project
-    imageIcon.alt = "Card";
-    imageIcon.className = "card-icon";
-    imageIcon.style.width = "16px";
-    imageIcon.style.height = "16px";
-    imageIcon.style.marginLeft = "5px";
-    
-    imageLink.appendChild(imageIcon);
-    logEntry.appendChild(imageLink);
+    if (match) {
+      // Extract the parts
+      const prefix = match[1];         // "MONSTER MILLED: " or "MONSTER REVEALED: "
+      const cardType = match[2].trim(); // "Type"
+      const cardName = match[3].trim(); // "CardName"
+      const suffix = match[4] || "";   // ". CARDS LEFT: Count" or empty for revealed cards
+      
+      // Create the prefix + type
+      const prefixSpan = document.createElement("span");
+      prefixSpan.innerText = prefix + cardType + " - ";
+      logEntry.appendChild(prefixSpan);
+      
+      // Create the card name as a clickable link
+      const cardLink = document.createElement("a");
+      cardLink.href = "#";
+      cardLink.innerText = cardName;
+      cardLink.style.color = "#4fc3f7";
+      cardLink.style.textDecoration = "underline";
+      cardLink.onclick = function(e) {
+        e.preventDefault();
+        openPopup(imageUrl);
+      };
+      logEntry.appendChild(cardLink);
+      
+      // Create the suffix (CARDS LEFT part) if it exists
+      if (suffix) {
+        const suffixSpan = document.createElement("span");
+        suffixSpan.innerText = suffix;
+        logEntry.appendChild(suffixSpan);
+      }
+    } else {
+      // For other messages with images that don't match either format
+      logEntry.innerText = message;
+    }
   } else {
-    // Just add the text message
+    // Just add the text message for entries without images
     logEntry.innerText = message;
   }
   
   diceLog.appendChild(logEntry);
   diceLog.scrollTop = diceLog.scrollHeight; // Auto-scroll to bottom
-  
-  // Also store in log array
-  log.push(message);
-  
-  console.log(message); // Also log to console for debugging
 }
 
 function clearLog() {
@@ -77,3 +91,20 @@ function showErrorMessage(message) {
 window.addLog = addLog;
 window.clearLog = clearLog;
 window.showErrorMessage = showErrorMessage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
