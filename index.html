@@ -321,5 +321,61 @@
       }
     }
   </style>
+
+  <!-- Add FAQ button -->
+  <div id="faqButtonContainer" style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">
+    <button id="faqButton" class="display-box" style="background-color: #2a5d8a; padding: 8px 15px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+      FAQ
+    </button>
+  </div>
+
+  <!-- Add FAQ popup -->
+  <div id="faqPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); max-width: 80%; max-height: 80%; overflow-y: auto; z-index: 10002;">
+    <h2 style="margin-top: 0; color: #4CAF50;">Frequently Asked Questions</h2>
+    <ol style="text-align: left; padding-left: 20px;">
+      <li>When the monster is blocking with it's creatures, it tries to hurt the player the most by targeting biggest threats it can kill first, then highets attack, etc.</li>
+      <li>The monster will block to preserve its life total as much as possible while also trying to kill the most attacking creatures.</li>
+      <li>If you have a "dead card" play it in a way that makes sense and discuss with the other players!</li>
+      <li>Each of the monster lands are the monsters colors</li>
+      <li>As in any commander game, "rule 0" still applies</li>
+      <li>All standard Commander rules apply unless otherwise stated.</li>
+      <li>Commander damage does not work versus the Raid monster</li>
+      <li>Counter spells work agaisnt the spells it would be against(each action is typed so follow standard mtg rules for counters)</li>
+      <li>The raid monster uses the stack like any other player.</li>
+      <li>Don't build a deck to screw the monster, make your deck like you would play in a standard PvP situation</li>
+      <li>Monster infect starts at the correct amount, make it hit zero to win via infect! (7 per player)</li>
+      <li>Have fun!</li>
+    </ol>
+    <button id="closeFaqButton" style="background-color: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold;">Close</button>
+  </div>
+
+  <!-- Add script for FAQ functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqButton = document.getElementById('faqButton');
+      const faqPopup = document.getElementById('faqPopup');
+      const closeFaqButton = document.getElementById('closeFaqButton');
+      const overlay = document.getElementById('overlay');
+      
+      faqButton.addEventListener('click', function() {
+        faqPopup.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+      
+      closeFaqButton.addEventListener('click', function() {
+        faqPopup.style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      
+      // Close FAQ when clicking outside
+      overlay.addEventListener('click', function(event) {
+        // Only close if clicking directly on the overlay, not on the popup
+        if (event.target === overlay) {
+          faqPopup.style.display = 'none';
+          overlay.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
