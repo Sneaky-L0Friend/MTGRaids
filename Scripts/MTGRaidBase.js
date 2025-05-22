@@ -27,6 +27,9 @@ let hasRevealedTopCard = false;
 let cardTypeRevealed = "";
 let difficulty = "medium"; // Default difficulty
 
+// Add this array to store milled card images
+let milledCardImages = [];
+
 // Percentage for millings:
 let creaturePercent = 30;
 let instantPercent = 10;
@@ -564,6 +567,12 @@ function startGame(difficultyLevel, playerCount) {
     graveyardTable.style.display = "table";
   }
   
+  // Show view graveyard button
+  const viewGraveyardButton = document.getElementById("viewGraveyardButton");
+  if (viewGraveyardButton) {
+    viewGraveyardButton.style.display = "block";
+  }
+  
   // Set game started flag
   window.startedGame = true;
   
@@ -692,6 +701,25 @@ function pickRandomCardType(isMill) {
   return chosenType;
 }
 
+function showLoadingSpinner() {
+  // Create spinner if it doesn't exist
+  let spinner = document.getElementById('loadingSpinner');
+  if (!spinner) {
+    spinner = document.createElement('div');
+    spinner.id = 'loadingSpinner';
+    spinner.className = 'loading-spinner';
+    document.body.appendChild(spinner);
+  }
+  spinner.style.display = 'block';
+}
+
+function hideLoadingSpinner() {
+  const spinner = document.getElementById('loadingSpinner');
+  if (spinner) {
+    spinner.style.display = 'none';
+  }
+}
+
 function millMonster() {
   if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
@@ -710,6 +738,9 @@ function millMonster() {
   const millButton = document.getElementById('millButton');
   if (millButton) millButton.disabled = true;
   
+  // Show loading spinner
+  showLoadingSpinner();
+  
   let cardMilled;
   let cardImageUrl = null;
   let cardName = null;
@@ -727,11 +758,21 @@ function millMonster() {
     graveyard[cardMilled]++;
     hasCardBeenMilled = true;
     
+    // Store the milled card image
+    if (cardImageUrl) {
+      milledCardImages.push({
+        url: cardImageUrl,
+        name: cardName,
+        type: cardMilled
+      });
+    }
+    
     // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
     addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
     
     updateGraveyardTable();
     if (millButton) millButton.disabled = false;
+    hideLoadingSpinner();
     return;
   }
   
@@ -742,6 +783,7 @@ function millMonster() {
   if (!scryfallMonsterColors) {
     addLog("ERROR: Monster colors not defined. Please restart the game.");
     if (millButton) millButton.disabled = false;
+    hideLoadingSpinner();
     return;
   }
   
@@ -757,12 +799,20 @@ function millMonster() {
   getRandomCardImageUrl(randomCardUrl)
     .then(result => {
       if (millButton) millButton.disabled = false;
+      hideLoadingSpinner(); // Hide spinner when done
       
       cardsInMonsterDeck -= 1;
       graveyard[cardMilled]++;
       hasCardBeenMilled = true;
       
       if (result && result.imageUrl) {
+        // Store the milled card image
+        milledCardImages.push({
+          url: result.imageUrl,
+          name: result.cardName,
+          type: cardMilled
+        });
+        
         // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
         addLog("MONSTER MILLED: " + cardMilled + " - " + result.cardName + ". CARDS LEFT: " + cardsInMonsterDeck, result.imageUrl);
         openPopup(result.imageUrl);
@@ -776,6 +826,7 @@ function millMonster() {
     .catch(error => {
       console.error("Error fetching milled card:", error);
       if (millButton) millButton.disabled = false;
+      hideLoadingSpinner(); // Hide spinner on error
       
       // Still mill the card even if image fetch fails
       cardsInMonsterDeck -= 1;
@@ -832,8 +883,10 @@ function updateGraveyardTable() {
 
 async function getRandomCardImageUrl(url) {
   try {
+    showLoadingSpinner(); // Show spinner before fetch
     const response = await fetch(url);
     if (!response.ok) {
+      hideLoadingSpinner(); // Hide spinner on error
       throw new Error('Network response was not ok: ' + response.status);
     }
     const cardData = await response.json();
@@ -845,20 +898,24 @@ async function getRandomCardImageUrl(url) {
     if (!cardData.image_uris || !cardData.image_uris.normal) {
       // Try alternative image path for double-faced cards
       if (cardData.card_faces && cardData.card_faces[0] && cardData.card_faces[0].image_uris) {
+        hideLoadingSpinner(); // Hide spinner before returning
         return { 
           imageUrl: cardData.card_faces[0].image_uris.normal,
           cardName: cardName
         };
       }
+      hideLoadingSpinner(); // Hide spinner on error
       throw new Error('Invalid card data structure');
     }
     
+    hideLoadingSpinner(); // Hide spinner before returning
     return { 
       imageUrl: cardData.image_uris.normal,
       cardName: cardName
     };
   } catch (error) {
     console.error('Error fetching card:', error);
+    hideLoadingSpinner(); // Ensure spinner is hidden on error
     return null;
   }
 }
@@ -872,12 +929,15 @@ function revealTopCard() {
   if(hasCardBeenMilled || hasCardBeenDrawn) {
     let randomTopCardId = document.getElementById('randomTopCardId');
     randomTopCardId.disabled = true;
+    showLoadingSpinner(); // Show loading spinner
+    
     cardTypeRevealed = pickRandomCardType(false);
     
     // Check if scryfallMonsterColors is defined
     if (!scryfallMonsterColors) {
       addLog("ERROR: Monster colors not defined. Please restart the game.");
       randomTopCardId.disabled = false;
+      hideLoadingSpinner(); // Hide spinner on error
       return;
     }
     
@@ -891,6 +951,8 @@ function revealTopCard() {
     getRandomCardImageUrl(randomCardUrl)
       .then(result => {
         randomTopCardId.disabled = false;
+        hideLoadingSpinner(); // Hide spinner when done
+        
         if (result && result.imageUrl) {
           // Format: "MONSTER REVEALED: [Type] - [CardName]"
           // Remove the "CARDS LEFT" part for revealed cards
@@ -905,6 +967,7 @@ function revealTopCard() {
         console.error("Error fetching card:", error);
         addLog("ERROR: Failed to fetch card. Please try again.");
         randomTopCardId.disabled = false;
+        hideLoadingSpinner(); // Hide spinner on error
       });
       
     hasCardBeenMilled = false;
@@ -985,6 +1048,91 @@ function readActionJsonFiles() {
 
 // Make readActionJsonFiles globally available
 window.readActionJsonFiles = readActionJsonFiles;
+
+// Add this function to display all milled card images
+function viewGraveyard() {
+  // Create a modal container
+  const modal = document.createElement('div');
+  modal.className = 'graveyard-modal';
+  
+  // Create a close button
+  const closeButton = document.createElement('button');
+  closeButton.className = 'close-button';
+  closeButton.innerHTML = '&times;';
+  closeButton.onclick = function() {
+    document.body.removeChild(modal);
+  };
+  
+  // Create a container for the images
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'graveyard-images';
+  
+  // Add all milled card images to the container
+  if (milledCardImages.length === 0) {
+    const noCardsMessage = document.createElement('p');
+    noCardsMessage.textContent = 'No cards in graveyard yet.';
+    noCardsMessage.style.color = 'white';
+    noCardsMessage.style.textAlign = 'center';
+    imageContainer.appendChild(noCardsMessage);
+  } else {
+    // Group cards by type
+    const cardsByType = {};
+    milledCardImages.forEach(card => {
+      if (!cardsByType[card.type]) {
+        cardsByType[card.type] = [];
+      }
+      cardsByType[card.type].push(card);
+    });
+    
+    // Create a section for each card type
+    Object.keys(cardsByType).forEach(type => {
+      const typeSection = document.createElement('div');
+      typeSection.className = 'card-type-section';
+      
+      const typeHeader = document.createElement('h3');
+      typeHeader.textContent = `${type} (${cardsByType[type].length})`;
+      typeSection.appendChild(typeHeader);
+      
+      const typeCards = document.createElement('div');
+      typeCards.className = 'type-cards';
+      
+      cardsByType[type].forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'graveyard-card';
+        
+        const cardImage = document.createElement('img');
+        cardImage.src = card.url;
+        cardImage.alt = card.name;
+        cardImage.title = card.name;
+        cardImage.onclick = function() {
+          openPopup(card.url);
+        };
+        
+        cardElement.appendChild(cardImage);
+        typeCards.appendChild(cardElement);
+      });
+      
+      typeSection.appendChild(typeCards);
+      imageContainer.appendChild(typeSection);
+    });
+  }
+  
+  // Add elements to the modal
+  modal.appendChild(closeButton);
+  modal.appendChild(imageContainer);
+  
+  // Add the modal to the body
+  document.body.appendChild(modal);
+}
+
+// Make the viewGraveyard function globally available
+window.viewGraveyard = viewGraveyard;
+
+
+
+
+
+
 
 
 

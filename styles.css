@@ -1821,3 +1821,120 @@ th, td {
     display: block;
   }
 }
+
+/* Graveyard modal styling */
+.graveyard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.close-button {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: none; /* Disable transitions */
+  user-select: none; /* Prevent text selection */
+}
+
+/* Remove any hover effects that might cause movement */
+.close-button:hover {
+  transform: translateX(-50%); /* Keep the same transform on hover */
+  background-color: #d32f2f; /* Just change color on hover */
+}
+
+/* Prevent active state movement */
+.close-button:active {
+  transform: translateX(-50%); /* Keep the same transform when clicked */
+}
+
+.graveyard-images {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  margin-top: 80px; /* Add space below the close button */
+}
+
+.card-type-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-type-section h3 {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.type-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.graveyard-card {
+  width: 200px;
+  height: 280px;
+  transition: transform 0.2s;
+}
+
+.graveyard-card:hover {
+  transform: scale(1.05);
+}
+
+.graveyard-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #fff;
+  animation: spin 1s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
