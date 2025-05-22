@@ -2,13 +2,13 @@
   "Actions": [
     "The Raid Monster deals 2 damage to each player and they mill 2 cards. If a creature is milled this way, they lose 2 more life.[Instant/Sorcery][CMC:2]",
     "Player with the most creatures sacrifices a creature unless they discard two cards.[Instant/Sorcery][CMC:2]",
-    "Each opponent loses 3 life unless they sacrifice a token.[Instant/Sorcery][CMC:1]",
+    "Each player loses 3 life unless they sacrifice a token.[Instant/Sorcery][CMC:1]",
     "The Raid Monster creates 2 ${diceRolledThisRound}/${diceRolledThisRound} flying, deathtouch, enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monsters next turn.[Creature][CMC:5]",
     "Each player exiles a card from their graveyard. They lose 1 life.[Sorcery][CMC:1]",
-    "Each opponent discards a card at random.[Instant/Sorcery][CMC:2]",
+    "Each player discards a card at random.[Instant/Sorcery][CMC:2]",
     "Until the Raid Monsters next turn, players can't gain life.[Enchantment][CMC:1]",
     "Target player with most cards in hand reveals their hand. The players chooses the best card. That card is exiled unless they sacrifice a creature.[Sorcery][CMC:2]",
     "The Raid Monster creates 1 ${currentRound+1}/${currentRound+1} artifact creature in its colors, and it attacks the player with the highest life total this turn.[Creature][CMC:3]",
-    "Each opponent loses 1 life and The Raid Monster gains 1 life. Repeat this for each enchantment on the battlefield.[Instant/Sorcery][CMC:2]"
+    "Each player loses 1 life and The Raid Monster gains 1 life. Repeat this for each enchantment on the battlefield.[Instant/Sorcery][CMC:2]"
   ]
 }

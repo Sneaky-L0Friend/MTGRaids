@@ -1,14 +1,14 @@
 {
   "Actions": [
-    "Each opponent sacrifices a creature and loses 2 life. If they can’t, they discard a card instead.[Sorcery][CMC:3]",
-    "Exile all cards from each opponent's graveyard. They lose 1 life for each card exiled this way.[Instant/Sorcery][CMC:3]",
-    "Each opponent sacrifices a non-token creature. If they can’t, they lose 5 life.[Instant/Sorcery][CMC:3]",
+    "Each player sacrifices a creature and loses 2 life. If they can’t, they discard a card instead.[Sorcery][CMC:3]",
+    "Exile all cards from each player's graveyard. They lose 1 life for each card exiled this way.[Instant/Sorcery][CMC:3]",
+    "Each player sacrifices a non-token creature. If they can’t, they lose 5 life.[Instant/Sorcery][CMC:3]",
     "Return a creature from the Raid Monster’s graveyard to the battlefield with -1/-1 and lifelink.[Creature][CMC:3]",
-    "Each opponent discards 2 cards at random.[Instant/Sorcery][CMC:3]",
-    "Until the end of the Raid Monster's next turn, whenever an opponent sacrifices a permanent, they lose 2 life.[Enchantment][CMC:2]",
+    "Each player discards 2 cards at random.[Instant/Sorcery][CMC:3]",
+    "Until the end of the Raid Monster's next turn, whenever an player sacrifices a permanent, they lose 2 life.[Enchantment][CMC:2]",
     "Each player loses 3 life and discards a card. You gain life equal to the total life lost this way.[Sorcery][CMC:3]",
-    "Create two 2/2 black Zombie tokens. Each opponent loses 2 life for each Zombie token on the battlefield.[Creature][CMC:3]",
-    "Until the beginning of the Raid Monster’s next turn, creatures opponents control get -2/-0.[Enchantment][CMC:2]",
-    "Destroy up to one creature per opponent with CMC 2 or less.[Sorcery][CMC:3]"
+    "Create two 2/2 black Zombie tokens. Each player loses 2 life for each Zombie token on the battlefield.[Creature][CMC:3]",
+    "Until the beginning of the Raid Monster’s next turn, creatures players control get -2/-0.[Enchantment][CMC:2]",
+    "Destroy up to one creature per player with CMC 2 or less.[Sorcery][CMC:3]"
   ]
 }

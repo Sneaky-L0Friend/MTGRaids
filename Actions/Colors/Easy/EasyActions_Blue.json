@@ -1,14 +1,14 @@
 {
   "Actions": [
-    "Until the Raid Monster's next turn, each opponent's first spell costs (1) more to cast.[Instant/Sorcery/Enchantment][CMC:1]",
-    "Each opponent mills 1 card.[Instant/Sorcery][CMC:1]",
+    "Until the Raid Monster's next turn, each player's first spell costs (1) more to cast.[Instant/Sorcery/Enchantment][CMC:1]",
+    "Each player mills 1 card.[Instant/Sorcery][CMC:1]",
     "Each player returns target nonland permanent with CMC 2 or less to its owner's hand.[Instant][CMC:2]",
     "Each player taps target nonland permanent they control. It doesn't untap during its controller's next untap step.[Instant][CMC:2]",
-    "Draw a card. Each opponent puts the top card of their library into their graveyard.[Instant/Sorcery][CMC:1]",
-    "Each opponent reveals their hand. Choose one instant or sorcery; they exile it.[Sorcery][CMC:2]",
+    "Draw a card. Each player puts the top card of their library into their graveyard.[Instant/Sorcery][CMC:1]",
+    "Each player reveals their hand. Choose one instant or sorcery; they exile it.[Sorcery][CMC:2]",
     "Counter the first spell cast next round by each player unless its controller pays (2).[Instant][CMC:2]",
     "The Raid Monster creates 3 1/1 flying, enchantment artifact creature tokens. All creatures attack each combat if able until the Raid Monsters next turn.[Creature][CMC:4]",    
     "Until the Raid Monster's next turn, creatures entering the battlefield enter tapped.[Enchantment][CMC:1]",
-    "Each opponent shuffles their graveyard into their library, then mills 2 cards.[Sorcery][CMC:2]"
+    "Each player shuffles their graveyard into their library, then mills 2 cards.[Sorcery][CMC:2]"
   ]
 }
