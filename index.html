@@ -377,5 +377,15 @@
       });
     });
   </script>
+  <script>
+    // Check if scripts are loaded properly
+    window.addEventListener('load', function() {
+      if (typeof window.startGame !== 'function') {
+        console.error('startGame function not found! Check script loading order.');
+      } else {
+        console.log('Scripts loaded successfully.');
+      }
+    });
+  </script>
 </body>
 </html>

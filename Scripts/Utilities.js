@@ -17,7 +17,13 @@ function strikeOutMonsterAction() {
   
   // Strike out the most recent log entry that matches the current action
   const diceLog = document.getElementById("diceLog");
+  if (!diceLog) {
+    console.error("Dice log element not found");
+    return;
+  }
+  
   const logEntries = diceLog.getElementsByClassName("logEntry");
+  // Use the already declared actionElement variable
   const currentAction = actionElement ? actionElement.innerText : "";
 
   // Check if there are log entries
@@ -26,6 +32,7 @@ function strikeOutMonsterAction() {
     for (let i = logEntries.length - 1; i >= 0; i--) {
       const entry = logEntries[i];
       if (
+        entry && 
         !entry.innerText.includes("ROUND") &&
         !entry.innerText.includes("HP") &&
         entry.innerText.includes(currentAction.substring(0, 30)) // Match first part of action
@@ -102,6 +109,8 @@ function removeImage(img) {
 // Make strikeOutMonsterAction globally available
 window.strikeOutMonsterAction = strikeOutMonsterAction;
 window.removeImage = removeImage;
+
+
 
 
 

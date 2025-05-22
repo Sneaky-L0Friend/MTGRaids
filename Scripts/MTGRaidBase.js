@@ -55,7 +55,7 @@ function takeMonsterAction() {
   }
   
   // Reset any previous strike-through styling
-  const actionElement = document.getElementById("action");
+  let actionElement = document.getElementById("action");
   if (actionElement) {
     actionElement.style.textDecoration = "none";
   }
@@ -110,7 +110,6 @@ function takeMonsterAction() {
     listRolledFrom = "H";
   }
   
-  const actionElement = document.getElementById("action");
   if (listRolledFrom == "H" && currentRound <= 5 && (modifiersToUse != HARD_MODE_MODIFIERS)) {
     // Just reroll without logging the message
     takeMonsterAction();
@@ -1486,7 +1485,12 @@ function clearSavedGameState() {
 // Make function globally available
 window.clearSavedGameState = clearSavedGameState;
 
-// Make functions globally available
+// Make these functions globally available
+window.takeMonsterAction = takeMonsterAction;
+window.increaseRound = increaseRound;
+window.decreaseRound = decreaseRound;
+window.millMonster = millMonster;
+window.revealTopCard = revealTopCard;
 window.saveGameState = saveGameState;
 window.loadGameState = loadGameState;
 
