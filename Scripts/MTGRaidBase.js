@@ -54,6 +54,12 @@ function takeMonsterAction() {
     return;
   }
   
+  // Reset any previous strike-through styling
+  const actionElement = document.getElementById("action");
+  if (actionElement) {
+    actionElement.style.textDecoration = "none";
+  }
+  
   if (currentRound == 1) {
     showErrorMessage("Monster cannot take actions on Round 1");
     return;
