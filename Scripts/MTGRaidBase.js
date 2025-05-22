@@ -1154,60 +1154,160 @@ document.addEventListener('keydown', function(event) {
 
 // Add a function to save game state
 function saveGameState() {
-  if (!window.startedGame) return;
+  if (!window.startedGame) {
+    showMessage("Please start a game first!");
+    return;
+  }
   
-  const gameState = {
-    monsterHealth: monsterHealth,
-    monsterInfect: monsterInfect,
-    currentRound: currentRound,
-    numberOfDiceRolled: numberOfDiceRolled,
-    cardsInMonsterDeck: cardsInMonsterDeck,
-    graveyard: graveyard,
-    playerHealths: [] // Will be populated below
-  };
-  
-  // Get player health values
-  const playerEntries = document.querySelectorAll('.player-entry');
-  playerEntries.forEach(entry => {
-    const healthValue = parseInt(entry.querySelector('.player-health-value').textContent);
-    gameState.playerHealths.push(healthValue);
-  });
-  
-  localStorage.setItem('mtgRaidBossGameState', JSON.stringify(gameState));
-  showMessage("Game state saved!");
+  try {
+    const gameState = {
+      monsterHealth: monsterHealth,
+      monsterInfect: monsterInfect,
+      currentRound: currentRound,
+      numberOfDiceRolled: numberOfDiceRolled,
+      cardsInMonsterDeck: cardsInMonsterDeck,
+      graveyard: graveyard,
+      bossMonsterImageUrl: bossMonsterImageUrl,
+      difficulty: difficulty,
+      playerHealths: [],
+      minions: []
+    };
+    
+    // Get player health values - with error handling
+    const playerEntries = document.querySelectorAll('.player-entry');
+    playerEntries.forEach(entry => {
+      const healthElement = entry.querySelector('.player-health-value');
+      if (healthElement && healthElement.textContent) {
+        const healthValue = parseInt(healthElement.textContent);
+        gameState.playerHealths.push(healthValue);
+      }
+    });
+    
+    // Get minion information - with error handling
+    const minionContainers = document.querySelectorAll('.image-container');
+    minionContainers.forEach(container => {
+      const img = container.querySelector('img');
+      const text = container.querySelector('.image-text');
+      if (img && text && img.src && text.textContent) {
+        try {
+          const srcParts = img.src.split('/');
+          const minionNumber = srcParts[srcParts.length - 1].split('.')[0]; // Extract minion number from URL
+          gameState.minions.push({
+            number: minionNumber,
+            health: text.textContent
+          });
+        } catch (e) {
+          console.log("Error processing minion:", e);
+          // Continue with next minion
+        }
+      }
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('mtgRaidBossGameState', JSON.stringify(gameState));
+    showMessage("Game state saved!");
+  } catch (error) {
+    console.error("Error saving game state:", error);
+    showMessage("Failed to save game state");
+  }
 }
 
 // Add a function to load game state
 function loadGameState() {
-  const savedState = localStorage.getItem('mtgRaidBossGameState');
-  if (!savedState) {
-    showMessage("No saved game found!");
-    return;
-  }
-  
-  const gameState = JSON.parse(savedState);
-  monsterHealth = gameState.monsterHealth;
-  monsterInfect = gameState.monsterInfect;
-  currentRound = gameState.currentRound;
-  numberOfDiceRolled = gameState.numberOfDiceRolled;
-  cardsInMonsterDeck = gameState.cardsInMonsterDeck;
-  graveyard = gameState.graveyard;
-  
-  // Update UI
-  updateMonsterHealth();
-  updateMonsterInfect();
-  updateRound();
-  updateGraveyardTable();
-  
-  // Update player health values
-  const playerEntries = document.querySelectorAll('.player-entry');
-  gameState.playerHealths.forEach((health, index) => {
-    if (playerEntries[index]) {
-      playerEntries[index].querySelector('.player-health-value').textContent = health;
+  try {
+    const savedState = localStorage.getItem('mtgRaidBossGameState');
+    if (!savedState) {
+      showMessage("No saved game found!");
+      return;
     }
-  });
-  
-  showMessage("Game state loaded!");
+    
+    const gameState = JSON.parse(savedState);
+    
+    // Set game as started
+    window.startedGame = true;
+    
+    // Load basic game state
+    monsterHealth = gameState.monsterHealth || 100;
+    monsterInfect = gameState.monsterInfect || 0;
+    currentRound = gameState.currentRound || 1;
+    numberOfDiceRolled = gameState.numberOfDiceRolled || 0;
+    cardsInMonsterDeck = gameState.cardsInMonsterDeck || 99;
+    
+    // Load graveyard if available
+    if (gameState.graveyard) {
+      graveyard = gameState.graveyard;
+    }
+    
+    // Update UI elements
+    updateMonsterHealth();
+    updateMonsterInfect();
+    updateRound();
+    updateGraveyardTable();
+    
+    // Load boss monster image if available
+    if (gameState.bossMonsterImageUrl) {
+      const monsterImageContainer = document.getElementById("monsterImageContainer");
+      if (monsterImageContainer) {
+        monsterImageContainer.innerHTML = "";
+        let imgElement = document.createElement("img");
+        imgElement.src = gameState.bossMonsterImageUrl;
+        imgElement.alt = "Boss Monster";
+        monsterImageContainer.appendChild(imgElement);
+      }
+    }
+    
+    // Update player health values
+    if (gameState.playerHealths && gameState.playerHealths.length > 0) {
+      const playerEntries = document.querySelectorAll('.player-entry');
+      gameState.playerHealths.forEach((health, index) => {
+        if (playerEntries[index]) {
+          const healthElement = playerEntries[index].querySelector('.player-health-value');
+          if (healthElement) {
+            healthElement.textContent = health;
+          }
+        }
+      });
+    }
+    
+    // Restore minions if available
+    if (gameState.minions && gameState.minions.length > 0) {
+      const container = document.getElementById("imageContainer");
+      if (container) {
+        // Clear existing minions
+        container.innerHTML = "";
+        
+        // Add saved minions
+        gameState.minions.forEach(minion => {
+          const imageContainer = document.createElement("div");
+          imageContainer.className = "image-container";
+          
+          const img = document.createElement("img");
+          img.src = `Minions/${minion.number}.jpeg`;
+          img.alt = "Minion";
+          img.style.width = "12vw";
+          img.style.height = "12vh";
+          
+          const imageText = document.createElement("div");
+          imageText.className = "image-text";
+          imageText.textContent = minion.health;
+          imageText.contentEditable = true;
+          
+          img.addEventListener("click", function () {
+            removeImage(imageContainer);
+          });
+          
+          imageContainer.appendChild(img);
+          imageContainer.appendChild(imageText);
+          container.appendChild(imageContainer);
+        });
+      }
+    }
+    
+    showMessage("Game state loaded!");
+  } catch (error) {
+    console.error("Error loading game state:", error);
+    showMessage("Failed to load game state");
+  }
 }
 
 // Helper function to show temporary messages
@@ -1226,6 +1326,7 @@ function showMessage(message) {
 // Make functions globally available
 window.saveGameState = saveGameState;
 window.loadGameState = loadGameState;
+
 
 
 
