@@ -1155,7 +1155,7 @@ document.addEventListener('keydown', function(event) {
 // Add a function to save game state
 function saveGameState() {
   if (!window.startedGame) {
-    showMessage("Please start a game first!");
+    showErrorMessage("Please Start the Game First");
     return;
   }
   
@@ -1168,38 +1168,33 @@ function saveGameState() {
       cardsInMonsterDeck: cardsInMonsterDeck,
       graveyard: graveyard,
       bossMonsterImageUrl: bossMonsterImageUrl,
+      scryfallMonsterColors: scryfallMonsterColors,
       difficulty: difficulty,
       playerHealths: [],
       minions: []
     };
     
     // Get player health values - with error handling
-    const playerEntries = document.querySelectorAll('.player-entry');
-    playerEntries.forEach(entry => {
-      const healthElement = entry.querySelector('.player-health-value');
-      if (healthElement && healthElement.textContent) {
-        const healthValue = parseInt(healthElement.textContent);
-        gameState.playerHealths.push(healthValue);
+    for (let i = 1; i <= numberOfPlayersGlobal; i++) {
+      if (playerHealth[i] !== undefined) {
+        gameState.playerHealths.push(playerHealth[i]);
       }
-    });
+    }
     
-    // Get minion information - with error handling
-    const minionContainers = document.querySelectorAll('.image-container');
+    // Get minion data
+    const minionContainers = document.querySelectorAll('#imageContainer .image-container');
     minionContainers.forEach(container => {
       const img = container.querySelector('img');
-      const text = container.querySelector('.image-text');
-      if (img && text && img.src && text.textContent) {
-        try {
-          const srcParts = img.src.split('/');
-          const minionNumber = srcParts[srcParts.length - 1].split('.')[0]; // Extract minion number from URL
-          gameState.minions.push({
-            number: minionNumber,
-            health: text.textContent
-          });
-        } catch (e) {
-          console.log("Error processing minion:", e);
-          // Continue with next minion
-        }
+      const healthText = container.querySelector('.image-text');
+      
+      if (img && healthText) {
+        const imgSrc = img.src;
+        const minionNumber = imgSrc.split('/').pop().split('.')[0];
+        
+        gameState.minions.push({
+          number: minionNumber,
+          health: healthText.textContent
+        });
       }
     });
     
@@ -1226,17 +1221,81 @@ function loadGameState() {
     // Set game as started
     window.startedGame = true;
     
+    // Hide the starting screen
+    const startingScreen = document.querySelector(".starting-screen");
+    if (startingScreen) {
+      startingScreen.style.display = "none";
+    }
+    
+    // Show all game UI elements
+    // Show the top section container
+    const topSectionContainer = document.querySelector(".top-section-container");
+    if (topSectionContainer) {
+      topSectionContainer.style.display = "flex";
+    }
+    
+    // Show dice log
+    const diceLog = document.getElementById("diceLog");
+    if (diceLog) {
+      diceLog.style.display = "block";
+    }
+    
+    // Show game action buttons
+    const gameActionButtons = document.getElementById("gameActionButtons");
+    if (gameActionButtons) {
+      gameActionButtons.style.display = "block";
+    }
+    
+    // Show monster controls
+    const monsterControls = document.getElementById("monsterControls");
+    if (monsterControls) {
+      monsterControls.style.display = "flex";
+    }
+    
+    // Show turn and infect controls
+    const turnInfectControls = document.getElementById("turnInfectControls");
+    if (turnInfectControls) {
+      turnInfectControls.style.display = "flex";
+    }
+    
+    // Show monster stats container
+    const monsterStatsContainer = document.querySelector(".monster-stats-container");
+    if (monsterStatsContainer) {
+      monsterStatsContainer.style.display = "flex";
+    }
+    
+    // Show graveyard table
+    const graveyardTable = document.getElementById("graveyardTable");
+    if (graveyardTable) {
+      graveyardTable.style.display = "table";
+    }
+    
+    // Show view graveyard button
+    const viewGraveyardButton = document.getElementById("viewGraveyardButton");
+    if (viewGraveyardButton) {
+      viewGraveyardButton.style.display = "block";
+    }
+    
     // Load basic game state
     monsterHealth = gameState.monsterHealth || 100;
     monsterInfect = gameState.monsterInfect || 0;
     currentRound = gameState.currentRound || 1;
     numberOfDiceRolled = gameState.numberOfDiceRolled || 0;
     cardsInMonsterDeck = gameState.cardsInMonsterDeck || 99;
+    difficulty = gameState.difficulty || "medium";
+    numberOfPlayersGlobal = gameState.playerHealths ? gameState.playerHealths.length : 4;
+    
+    // Set difficulty-based variables
+    setDifficultyAtStart(difficulty);
     
     // Load graveyard if available
     if (gameState.graveyard) {
       graveyard = gameState.graveyard;
+      cardsInMonsterGraveyard = Object.values(graveyard).reduce((a, b) => a + b, 0) - 1;
     }
+    
+    // Create player health boxes
+    createPlayerHealthBoxes(numberOfPlayersGlobal);
     
     // Update UI elements
     updateMonsterHealth();
@@ -1249,24 +1308,72 @@ function loadGameState() {
       const monsterImageContainer = document.getElementById("monsterImageContainer");
       if (monsterImageContainer) {
         monsterImageContainer.innerHTML = "";
+        
+        // Create image element
         let imgElement = document.createElement("img");
         imgElement.src = gameState.bossMonsterImageUrl;
+        bossMonsterImageUrl = imgElement.src;
         imgElement.alt = "Boss Monster";
-        monsterImageContainer.appendChild(imgElement);
+        
+        // Create anchor element
+        let anchorElement = document.createElement("a");
+        anchorElement.href = "#"; // Default link
+        anchorElement.target = "_blank";
+        anchorElement.appendChild(imgElement);
+        
+        // Add the anchor element to the container
+        monsterImageContainer.appendChild(anchorElement);
+      }
+    }
+    
+    // Restore monster colors
+    if (gameState.scryfallMonsterColors) {
+      scryfallMonsterColors = gameState.scryfallMonsterColors;
+      
+      // Display color rectangle
+      const colorRectangle = document.getElementById("colorRectangle");
+      if (colorRectangle) {
+        colorRectangle.style.display = "block";
+        
+        // Try to determine the color from the URL
+        const urlParts = gameState.bossMonsterImageUrl.split('/');
+        const pickedNumber = parseInt(urlParts[urlParts.length - 1].split('.')[0]);
+        
+        if (pickedNumber && colorMap[pickedNumber]) {
+          const colorName = colorMap[pickedNumber];
+          if (colorName && colorName.includes("-")) {
+            const colors = colorName.split("-");
+            const widthPercentage = 100 / colors.length;
+            const gradientColors = colors.map(
+              (color, index) =>
+                `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`,
+            );
+            colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+          } else if (colorName) {
+            colorRectangle.style.background = colorName.toLowerCase();
+          }
+        }
       }
     }
     
     // Update player health values
     if (gameState.playerHealths && gameState.playerHealths.length > 0) {
-      const playerEntries = document.querySelectorAll('.player-entry');
       gameState.playerHealths.forEach((health, index) => {
-        if (playerEntries[index]) {
-          const healthElement = playerEntries[index].querySelector('.player-health-value');
-          if (healthElement) {
-            healthElement.textContent = health;
-          }
+        const playerIndex = index + 1; // Player indices are 1-based
+        playerHealth[playerIndex] = health; // Update the playerHealth object
+        
+        // Update the display
+        const healthDisplay = document.getElementById(`player${playerIndex}HealthDisplay`);
+        if (healthDisplay) {
+          healthDisplay.textContent = `Health: ${health}`;
         }
       });
+    }
+    
+    // Make sure the player health container is visible
+    const playerHealthContainer = document.getElementById("playerHealthContainer");
+    if (playerHealthContainer) {
+      playerHealthContainer.style.display = "flex";
     }
     
     // Restore minions if available
@@ -1303,6 +1410,16 @@ function loadGameState() {
       }
     }
     
+    // Update monster hand and land counts
+    updateMonsterHandSize();
+    updateMonsterLandCountByAmount(0);
+    
+    // Initialize other game elements
+    readActionJsonFiles();
+    
+    // Show player turn indicator
+    showPlayerTurnIndicator();
+    
     showMessage("Game state loaded!");
   } catch (error) {
     console.error("Error loading game state:", error);
@@ -1322,6 +1439,28 @@ function showMessage(message) {
     setTimeout(() => document.body.removeChild(messageElement), 500);
   }, 2000);
 }
+
+// Add a function to clear saved game state
+function clearSavedGameState() {
+  try {
+    // Check if there's a saved game
+    const savedState = localStorage.getItem('mtgRaidBossGameState');
+    if (!savedState) {
+      showMessage("No saved game to clear!");
+      return;
+    }
+    
+    // Remove the saved game state
+    localStorage.removeItem('mtgRaidBossGameState');
+    showMessage("Saved game cleared successfully!");
+  } catch (error) {
+    console.error("Error clearing game state:", error);
+    showMessage("Failed to clear saved game");
+  }
+}
+
+// Make function globally available
+window.clearSavedGameState = clearSavedGameState;
 
 // Make functions globally available
 window.saveGameState = saveGameState;

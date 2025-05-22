@@ -1966,3 +1966,17 @@ html, body {
   transform: scale(1.03);
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
 }
+
+/* Add styling for the load game container */
+.load-game-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.load-game-container button {
+  flex: 1;
+  max-width: 200px;
+}
