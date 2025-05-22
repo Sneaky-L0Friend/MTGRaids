@@ -170,10 +170,11 @@ button:active,
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 100;
-  width: 280px; /* Reduced from 300px */
+  width: 280px; /* Fixed width */
   padding: 5px;
   border-radius: 8px;
   background-color: rgba(30, 30, 30, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .player-entry {
@@ -245,7 +246,7 @@ button:active,
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .player-health-container {
-    width: 230px; /* Reduced from 250px */
+    width: 230px; /* Reduced width on medium screens */
   }
   
   .health-buttons button {
@@ -1167,16 +1168,25 @@ th, td {
     margin-bottom: 15px;
   }
   
+  .player-health-container {
+    order: -2; /* Place player health first */
+    position: static;
+  }
+  
   .monster-image-container {
-    order: -1;
+    order: -1; /* Place monster image second */
   }
   
   #diceLog {
-    order: 1;
+    order: 1; /* Place dice log after graveyard */
+    position: static;
+  }
+  
+  #gameControlButtons {
+    order: 0; /* Place graveyard before dice log */
   }
   
   .player-health-container {
-    order: 2;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
