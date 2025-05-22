@@ -2,12 +2,12 @@
   "Actions": [
     "The Raid Monster deals 2 damage to each player and 1 to each creature they control.[Instant/Sorcery][CMC:2]",
     "Each opponent discards a card at random, then draws a card.[Instant/Sorcery][CMC:1]",
-    "Deal 3 damage to target creature or planeswalker.[Instant][CMC:2]",
+    "Deal 3 damage to target creature or planeswalker with the lowest CMC on the field.[Instant][CMC:2]",
     "Until the Raid Monster's next turn, creatures opponents control gain 'When this creature attacks, it deals 1 damage to itself.'[Enchantment][CMC:2]",
     "Each opponent creates a Treasure token, then sacrifices a land.[Sorcery][CMC:2]",
-    "The Raid Monster creates a 3/1 red Elemental with haste. Sacrifice it at end of turn.[Creature][CMC:2]",
+    "The Raid Monster creates ${numberOfPlayers} 5/1 deathtouch enchantment artifact creature in its colors, each one attacks a seperate player this turn.[Creature][CMC:4]",
     "Deal 1 damage to each creature. Any that die this way can't be regenerated.[Sorcery][CMC:2]",
-    "Exile the top card of each opponent's library. You may cast one of them until end of turn.[Instant/Sorcery][CMC:2]",
+    "Exile the top card of each opponent's library. Each player may cast it until end of turn.[Instant/Sorcery][CMC:2]",
     "Each opponent loses 1 life for each tapped creature they control.[Sorcery][CMC:2]",
     "Each player sacrifices a land unless they discard a card.[Instant/Sorcery][CMC:2]"
   ]
