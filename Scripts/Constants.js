@@ -116,13 +116,13 @@ const colorMapForLinkImage = {
   23: "https://scryfall.com/card/cmd/210/the-mimeoplasm",
   24: "https://scryfall.com/card/c17/36/edgar-markov",
   25: "https://scryfall.com/card/rex/16/owen-grady-raptor-trainer",
-  26: "https://scryfall.com/card/2xm/192/breya-etherium-shaper",
-  27: "https://scryfall.com/card/c16/50/yidris-maelstrom-wielder",
-  28: "https://scryfall.com/card/gpt/110/dune-brood-nephilim",
-  29: "https://scryfall.com/card/otc/236/omnath-locus-of-rage",
-  30: "https://scryfall.com/card/2xm/190/atraxa-praetors-voice",
-  31: "https://scryfall.com/card/cmm/361/the-ur-dragon",
-  32: "https://scryfall.com/card/emn/6/emrakul-the-promised-end",
+  26: "https://scryfall.com/card/2xm/192/breya-etherium-shaper", // Not-Green (WUBR)
+  27: "https://scryfall.com/card/c16/50/yidris-maelstrom-wielder", // Not-White (UBRG)
+  28: "https://scryfall.com/card/gpt/110/dune-brood-nephilim", // Not-Blue (BRGW)
+  29: "https://scryfall.com/card/c19/67/kynaios-and-tiro-of-meletis", // Not-Black (RGWU)
+  30: "https://scryfall.com/card/2xm/190/atraxa-praetors-voice", // Not-Red (GWUB)
+  31: "https://scryfall.com/card/cmm/361/the-ur-dragon", // Five-color
+  32: "https://scryfall.com/card/emn/6/emrakul-the-promised-end", // Colorless
 };
 
 // Define color range for monster selection
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
     versionElement.textContent = `v${APP_VERSION}`;
   }
 });
+
 
 
 

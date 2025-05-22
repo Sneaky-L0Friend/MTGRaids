@@ -425,10 +425,10 @@ function displayColorRectangle() {
   
   colorRectangle.style.display = "block";
   const pickedNumber = pickMonster();
-
+  console.log(pickedNumber);
   // Set the background color of the rectangle based on the chosen number
   const colorName = colorMap[pickedNumber];
-
+  console.log(colorName);
   if (colorName && colorName.includes("-")) {
     const colors = colorName.split("-");
     const widthPercentage = 100 / colors.length;
