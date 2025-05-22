@@ -486,6 +486,24 @@ th {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Add this to ensure error message is visible when shown */
+#errorMessage {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  display: none;
+  animation: fadeOut 5s ease-in-out forwards;
+  z-index: 2000;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
 /* Image container styling */
 .image-container {
   position: relative;
