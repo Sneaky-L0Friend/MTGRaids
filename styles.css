@@ -373,9 +373,6 @@ button:active,
 table {
   border-collapse: collapse;
   width: auto;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
   background-color: rgba(51, 51, 51, 0.8);
   z-index: 100;
   border-radius: 6px;
@@ -421,16 +418,12 @@ th {
 
 /* Refresh button */
 #refreshButton {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   padding: 10px 15px;
   background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 1000;
   font-weight: bold;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -613,9 +606,6 @@ th {
 table {
   border-collapse: collapse;
   width: auto;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
   background-color: #333;
   z-index: 100;
 }
@@ -1979,4 +1969,58 @@ html, body {
 .load-game-container button {
   flex: 1;
   max-width: 200px;
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 576px) {
+  #clearSavedGameButton, #refreshButton {
+    position: static;
+    width: 100%;
+    margin: 5px auto;
+    display: block;
+  }
+  
+  .version-info {
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+}
+
+/* Game control buttons container */
+#gameControlButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 100;
+  width: auto;
+  position: fixed; /* Use fixed positioning */
+  bottom: 50px; /* Position near the bottom, with space for version info */
+  right: 20px; /* Position on the right */
+  margin: 0; /* Remove margin */
+  padding: 0 10px;
+  box-sizing: border-box;
+  align-items: flex-end; /* Align items to the right */
+}
+
+/* Responsive adjustments for game control buttons */
+@media (max-width: 768px) {
+  #gameControlButtons {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  #gameControlButtons {
+    position: static; /* Reset position on small screens */
+    width: 100%; /* Full width on small screens */
+    align-items: center; /* Center on small screens */
+    margin: 10px auto; /* Add margin on small screens */
+  }
+  
+  #gameControlButtons button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }

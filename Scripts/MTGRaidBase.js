@@ -525,6 +525,12 @@ function startGame(difficultyLevel, playerCount) {
     startingScreen.style.display = "none";
   }
   
+  // Hide the load game button from the bottom of the screen
+  const loadGameButton = document.querySelector("button[onclick='loadGameState()']");
+  if (loadGameButton && loadGameButton !== document.getElementById("homeLoadGameButton")) {
+    loadGameButton.style.display = "none";
+  }
+  
   // Show the top section container
   const topSectionContainer = document.querySelector(".top-section-container");
   if (topSectionContainer) {
@@ -864,7 +870,6 @@ function closePopup() {
 
 function updateGraveyardTable() {
   const table = document.getElementById('graveyardTable');
-  table.style.display = "block";
   cardsInMonsterGraveyard++;
   table.innerHTML = `
   <caption>Monster's Graveyard: ${cardsInMonsterGraveyard}</caption>
@@ -1167,6 +1172,8 @@ function saveGameState() {
       numberOfDiceRolled: numberOfDiceRolled,
       cardsInMonsterDeck: cardsInMonsterDeck,
       graveyard: graveyard,
+      cardsInMonsterGraveyard: cardsInMonsterGraveyard,
+      milledCardImages: milledCardImages, // Save milled card images
       bossMonsterImageUrl: bossMonsterImageUrl,
       scryfallMonsterColors: scryfallMonsterColors,
       difficulty: difficulty,
@@ -1225,6 +1232,12 @@ function loadGameState() {
     const startingScreen = document.querySelector(".starting-screen");
     if (startingScreen) {
       startingScreen.style.display = "none";
+    }
+    
+    // Hide the load game button from the bottom of the screen
+    const loadGameButton = document.querySelector("button[onclick='loadGameState()']");
+    if (loadGameButton && loadGameButton !== document.getElementById("homeLoadGameButton")) {
+      loadGameButton.style.display = "none";
     }
     
     // Show all game UI elements
@@ -1291,7 +1304,12 @@ function loadGameState() {
     // Load graveyard if available
     if (gameState.graveyard) {
       graveyard = gameState.graveyard;
-      cardsInMonsterGraveyard = Object.values(graveyard).reduce((a, b) => a + b, 0) - 1;
+      cardsInMonsterGraveyard = gameState.cardsInMonsterGraveyard || Object.values(graveyard).reduce((a, b) => a + b, 0) - 1;
+    }
+    
+    // Load milled card images if available
+    if (gameState.milledCardImages) {
+      milledCardImages = gameState.milledCardImages;
     }
     
     // Create player health boxes
