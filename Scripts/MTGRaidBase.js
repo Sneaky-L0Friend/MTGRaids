@@ -1546,6 +1546,251 @@ window.revealTopCard = revealTopCard;
 window.saveGameState = saveGameState;
 window.loadGameState = loadGameState;
 
+// Advanced mill functions
+function showAdvancedMillOptions() {
+  if (!window.startedGame) {
+    showErrorMessage("Please Start the Game First");
+    return;
+  }
+  
+  const popup = document.getElementById('advancedMillPopup');
+  const overlay = document.getElementById('overlay');
+  
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+  
+  // Set up event listeners
+  document.getElementById('millHalfLibraryBtn').onclick = millHalfLibrary;
+  document.getElementById('millUntilTypeBtn').onclick = function() {
+    document.getElementById('cardTypeOptions').style.display = 'block';
+  };
+  document.getElementById('closeAdvancedMillBtn').onclick = function() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    document.getElementById('cardTypeOptions').style.display = 'none';
+  };
+  
+  // Set up mill until type button with selected options
+  const millUntilTypeBtn = document.getElementById('millUntilTypeBtn');
+  millUntilTypeBtn.onclick = function() {
+    const cardTypeOptions = document.getElementById('cardTypeOptions');
+    if (cardTypeOptions.style.display === 'none') {
+      cardTypeOptions.style.display = 'block';
+    } else {
+      // Get selected card type
+      const selectedType = document.querySelector('input[name="cardType"]:checked').value;
+      // Get selected destination for non-matching cards
+      const nonMatchingDest = document.querySelector('input[name="nonMatchingCards"]:checked').value;
+      // Execute mill until type
+      millUntilCardType(selectedType, nonMatchingDest);
+      // Close popup
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+      cardTypeOptions.style.display = 'none';
+    }
+  };
+}
+
+function millHalfLibrary() {
+  if (cardsInMonsterDeck <= 0) {
+    showErrorMessage("No cards left in library");
+    return;
+  }
+  
+  // Calculate half the library
+  const cardsToMill = Math.ceil(cardsInMonsterDeck / 2);
+  showMessage(`Milling ${cardsToMill} cards...`);
+  
+  // Disable buttons while processing
+  document.getElementById('millHalfLibraryBtn').disabled = true;
+  document.getElementById('closeAdvancedMillBtn').disabled = true;
+  
+  // Show loading spinner
+  showLoadingSpinner();
+  
+  // Mill cards one by one without fetching images
+  let milledCount = 0;
+  let tempGraveyard = {...graveyard};
+  let milledTypes = [];
+  
+  for (let i = 0; i < cardsToMill; i++) {
+    if (cardsInMonsterDeck <= 0) break;
+    
+    // Pick a random card type
+    const cardType = pickRandomCardType(true);
+    milledTypes.push(cardType);
+    tempGraveyard[cardType]++;
+    milledCount++;
+    cardsInMonsterDeck--;
+  }
+  
+  // Update the actual graveyard with our temporary one
+  graveyard = tempGraveyard;
+  
+  // Create a summary of milled cards
+  const summary = Object.entries(tempGraveyard)
+    .filter(([_, count]) => count > 0)
+    .map(([type, count]) => `${type}: ${count}`)
+    .join(', ');
+  
+  // Log the mill action
+  addLog(`MONSTER MILLED ${milledCount} CARDS (${summary}). CARDS LEFT: ${cardsInMonsterDeck}`);
+  
+  // Update the graveyard table
+  updateGraveyardTable();
+  
+  // Re-enable buttons
+  document.getElementById('millHalfLibraryBtn').disabled = false;
+  document.getElementById('closeAdvancedMillBtn').disabled = false;
+  
+  // Hide loading spinner
+  hideLoadingSpinner();
+  
+  // Close the popup
+  document.getElementById('advancedMillPopup').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+  
+  // Check if library is empty
+  if (cardsInMonsterDeck <= 0) {
+    addLog("YOU WON VIA MILLING! CONGRATS");
+    monsterHealth = 0;
+    updateMonsterHealth();
+    openPopup("./FunStuff/yRMCDs.gif");
+    disableAllButtonsExceptRestart();
+  }
+}
+
+function millUntilCardType(targetType, nonMatchingDestination) {
+  if (cardsInMonsterDeck <= 0) {
+    showErrorMessage("No cards left in library");
+    return;
+  }
+  
+  showMessage(`Milling until ${targetType} is found...`);
+  
+  // Disable buttons while processing
+  document.getElementById('millUntilTypeBtn').disabled = true;
+  document.getElementById('closeAdvancedMillBtn').disabled = true;
+  
+  // Show loading spinner
+  showLoadingSpinner();
+  
+  let foundTargetType = false;
+  let milledCount = 0;
+  let tempGraveyard = {...graveyard};
+  let nonMatchingCards = [];
+  
+  // Mill until we find the target type or empty the library
+  while (!foundTargetType && cardsInMonsterDeck > 0) {
+    // Pick a random card type
+    const cardType = pickRandomCardType(false); // Don't modify percentages yet
+    milledCount++;
+    
+    if (cardType === targetType) {
+      // Found the target type
+      foundTargetType = true;
+      tempGraveyard[cardType]++;
+      cardsInMonsterDeck--;
+      
+      // Now fetch the actual card image from Scryfall for the found card
+      let randomCardUrl;
+      if (cardType === "Land") {
+        randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+      } else {
+        randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardType + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+      }
+      
+      getRandomCardImageUrl(randomCardUrl)
+        .then(result => {
+          if (result && result.imageUrl) {
+            // Store the milled card image
+            milledCardImages.push({
+              url: result.imageUrl,
+              name: result.cardName,
+              type: cardType
+            });
+            
+            // Show the found card
+            openPopup(result.imageUrl);
+            
+            // Format: "FOUND TARGET CARD: [Type] - [CardName]. MILLED [count] CARDS."
+            addLog(`FOUND TARGET CARD: ${cardType} - ${result.cardName}. MILLED ${milledCount} CARDS.`, result.imageUrl);
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching target card:", error);
+        });
+    } else {
+      // Not the target type
+      nonMatchingCards.push(cardType);
+      cardsInMonsterDeck--;
+      
+      if (nonMatchingDestination === "graveyard") {
+        tempGraveyard[cardType]++;
+      } else {
+        // Put back in library (don't decrease cardsInMonsterDeck)
+        cardsInMonsterDeck++;
+      }
+    }
+  }
+  
+  // If we didn't find the target type
+  if (!foundTargetType) {
+    addLog(`TARGET TYPE ${targetType} NOT FOUND AFTER MILLING ${milledCount} CARDS.`);
+    
+    // If we're putting non-matching cards in graveyard, update it
+    if (nonMatchingDestination === "graveyard") {
+      graveyard = tempGraveyard;
+    }
+    
+    // Check if library is empty
+    if (cardsInMonsterDeck <= 0) {
+      addLog("YOU WON VIA MILLING! CONGRATS");
+      monsterHealth = 0;
+      updateMonsterHealth();
+      openPopup("./FunStuff/yRMCDs.gif");
+      disableAllButtonsExceptRestart();
+    }
+  } else {
+    // Update graveyard with our temporary one
+    graveyard = tempGraveyard;
+    
+    // Create a summary of non-matching cards
+    if (nonMatchingDestination === "graveyard" && nonMatchingCards.length > 0) {
+      const nonMatchingSummary = nonMatchingCards.reduce((acc, type) => {
+        acc[type] = (acc[type] || 0) + 1;
+        return acc;
+      }, {});
+      
+      const summary = Object.entries(nonMatchingSummary)
+        .map(([type, count]) => `${type}: ${count}`)
+        .join(', ');
+      
+      addLog(`NON-MATCHING CARDS SENT TO GRAVEYARD: ${summary}`);
+    } else if (nonMatchingCards.length > 0) {
+      addLog(`${nonMatchingCards.length} NON-MATCHING CARDS RETURNED TO LIBRARY`);
+    }
+  }
+  
+  // Update the graveyard table
+  updateGraveyardTable();
+  
+  // Re-enable buttons
+  document.getElementById('millUntilTypeBtn').disabled = false;
+  document.getElementById('closeAdvancedMillBtn').disabled = false;
+  
+  // Hide loading spinner
+  hideLoadingSpinner();
+  
+  // Close the popup
+  document.getElementById('advancedMillPopup').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('cardTypeOptions').style.display = 'none';
+}
+
+// Make the function globally available
+window.showAdvancedMillOptions = showAdvancedMillOptions;
+
 
 
 

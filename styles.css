@@ -2052,3 +2052,41 @@ html, body {
     margin: 5px 0;
   }
 }
+
+/* Advanced Mill Popup Styles */
+#advancedMillPopup button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+#advancedMillPopup button:hover {
+  opacity: 0.9;
+}
+
+#advancedMillPopup button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#millHalfLibraryBtn, #millUntilTypeBtn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#closeAdvancedMillBtn {
+  background-color: #d32f2f;
+  color: white;
+}
+
+#cardTypeOptions label {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#cardTypeOptions input[type="radio"] {
+  margin-right: 5px;
+}
