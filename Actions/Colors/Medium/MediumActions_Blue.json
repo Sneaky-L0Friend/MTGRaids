@@ -1,14 +1,14 @@
 {
   "Actions": [
-    "Counter the next spell each opponent casts. If it's countered this way, they draw a card.[Instant][CMC:4]",
-    "Tap all creatures controlled by opponents. They don't untap during their next untap step.[Sorcery][CMC:3]",
-    "Each opponent mills 4 cards and puts one of them on top of their library.[Instant/Sorcery][CMC:3]",
+    "Counter the next spell each player casts. If it's countered this way, they draw a card.[Instant][CMC:4]",
+    "Tap all creatures controlled by players. They don't untap during their next untap step.[Sorcery][CMC:3]",
+    "Each player mills 4 cards and puts one of them on top of their library.[Instant/Sorcery][CMC:3]",
     "Return all creatures with CMC 3 or less to their owner's hands.[Sorcery][CMC:3]",
-    "Each opponent's maximum hand size is reduced by 3 until the end of their next turn.[Enchantment][CMC:2]",
-    "Each opponent reveals their hand. Choose one nonland card; they can't cast it until the Raid Monster's next turn.[Sorcery][CMC:3]",
-    "Draw 2 cards. Each opponent puts a card from their hand on top of their library.[Instant/Sorcery][CMC:3]",
-    "Until the Raid Monster's next turn, all spells opponents cast cost (2) more.[Enchantment][CMC:3]",
-    "Each opponent shuffles their hand into their library and draws that many cards minus one.[Sorcery][CMC:4]",
-    "Exile target nonland permanent. Return it to the battlefield tapped under its owner's control at end of turn.[Instant][CMC:3]"
+    "Each player's maximum hand size is reduced by 3 until the end of their next turn.[Enchantment][CMC:2]",
+    "Each player reveals their hand and picks one nonland card; they can't cast it until after the Raid Monster's next turn.[Sorcery][CMC:3]",
+    "Draw 2 cards. Each player puts a card from their hand on top of their library.[Instant/Sorcery][CMC:3]",
+    "Until the Raid Monster's next turn, all spells players cast cost (2) more.[Enchantment][CMC:3]",
+    "Each player shuffles their hand into their library and draws that many cards minus one.[Sorcery][CMC:4]",
+    "Each player exile's a nonland permanent. Return it to the battlefield tapped under its owner's control at end of turn.[Instant][CMC:3]"
   ]
 }

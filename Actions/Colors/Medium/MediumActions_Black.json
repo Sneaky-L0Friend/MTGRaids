@@ -6,8 +6,8 @@
     "Return a creature from the Raid Monster’s graveyard to the battlefield with -1/-1 and lifelink.[Creature][CMC:3]",
     "Each player discards 2 cards at random.[Instant/Sorcery][CMC:3]",
     "Until the end of the Raid Monster's next turn, whenever an player sacrifices a permanent, they lose 2 life.[Enchantment][CMC:2]",
-    "Each player loses 3 life and discards a card. You gain life equal to the total life lost this way.[Sorcery][CMC:3]",
-    "Create two 2/2 black Zombie tokens. Each player loses 2 life for each Zombie token on the battlefield.[Creature][CMC:3]",
+    "The Raid Monster drains 3 life form each player and each player discards a card.[Sorcery][CMC:3]",
+    "The Raid Monster creates ${numberOfPlayers} ${currentRound+1}/${currentRound+1} artifact creature in its colors. Each player loses 2 life for each creature token on the battlefield..[Creature][CMC:3]",
     "Until the beginning of the Raid Monster’s next turn, creatures players control get -2/-0.[Enchantment][CMC:2]",
     "Destroy up to one creature per player with CMC 2 or less.[Sorcery][CMC:3]"
   ]

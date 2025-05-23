@@ -49,64 +49,6 @@ function removeImage(img) {
   container.removeChild(img);
 }
 
-// Remove duplicate showErrorMessage - use the one from Logging.js instead
-// function showErrorMessage(message) {
-//   // Create a new error message element
-//   const errorMessageElement = document.createElement("div");
-//   errorMessageElement.className = "errorMessage";
-//   errorMessageElement.textContent = message;
-//
-//   // Append the error message element to the body
-//   document.body.appendChild(errorMessageElement);
-//
-//   // Display the error message
-//   errorMessageElement.style.display = "block";
-//
-//   // Hide the error message after 5 seconds
-//   setTimeout(function () {
-//     errorMessageElement.style.display = "none";
-//     // Remove the error message element from the DOM after fading out
-//     errorMessageElement.remove();
-//   }, 5000);
-// }
-
-// Remove duplicate readActionJsonFiles - use the one from MTGRaidBase.js instead
-// function readActionJsonFiles() {
-//   const filePath = "Actions/EasyActions.json";
-//   const filePathM = "Actions/MediumActions.json";
-//   const filePathH = "Actions/HardActions.json";
-//   const options = {
-//     method: "GET",
-//     mode: "no-cors",
-//   };
-//
-//   // Fetch the JSON file
-//   fetch(filePath, options)
-//     .then((response) => response.json())
-//     .then((jsonData) => {
-//       console.log("JSON data:", jsonData);
-//       easyActionsJson = jsonData;
-//     })
-//     .catch((error) => console.error("Error fetching JSON:", error));
-//
-//   fetch(filePathM, options)
-//     .then((response) => response.json())
-//     .then((jsonData) => {
-//       console.log("JSON data:", jsonData);
-//       mediumActionsJson = jsonData;
-//     })
-//     .catch((error) => console.error("Error fetching JSON:", error));
-//
-//   fetch(filePathH, options)
-//     .then((response) => response.json())
-//     .then((jsonData) => {
-//       console.log("JSON data:", jsonData);
-//       hardActionsJson = jsonData;
-//     })
-//     .catch((error) => console.error("Error fetching JSON:", error));
-// }
-
-// Make strikeOutMonsterAction globally available
 window.strikeOutMonsterAction = strikeOutMonsterAction;
 window.removeImage = removeImage;
 
