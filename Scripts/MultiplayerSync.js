@@ -161,16 +161,58 @@ function createRoom() {
       if (socket && socket.readyState === WebSocket.OPEN) {
         clearInterval(checkInterval);
         
+        // Make sure the game is started before creating a room
+        if (!window.startedGame) {
+          showMessage("Please start the game before creating a room");
+          return;
+        }
+        
+        // Ensure we have a valid game state
+        if (!window.monsterHealth) {
+          showMessage("Game not fully initialized. Please wait a moment and try again.");
+          return;
+        }
+        
+        // Capture the current game state
+        const initialState = captureGameState();
+        
+        // Verify the game state is valid before sending
+        if (!initialState.playerHealths || initialState.playerHealths.length === 0) {
+          showMessage("Game state not ready. Please wait a moment and try again.");
+          return;
+        }
+        
         socket.send(JSON.stringify({
           type: 'create_room',
-          gameState: captureGameState()
+          gameState: initialState
         }));
       }
     }, 100);
   } else {
+    // Make sure the game is started before creating a room
+    if (!window.startedGame) {
+      showMessage("Please start the game before creating a room");
+      return;
+    }
+    
+    // Ensure we have a valid game state
+    if (!window.monsterHealth) {
+      showMessage("Game not fully initialized. Please wait a moment and try again.");
+      return;
+    }
+    
+    // Capture the current game state
+    const initialState = captureGameState();
+    
+    // Verify the game state is valid before sending
+    if (!initialState.playerHealths || initialState.playerHealths.length === 0) {
+      showMessage("Game state not ready. Please wait a moment and try again.");
+      return;
+    }
+    
     socket.send(JSON.stringify({
       type: 'create_room',
-      gameState: captureGameState()
+      gameState: initialState
     }));
   }
 }
@@ -219,30 +261,103 @@ function syncGameState(actionDescription) {
   }
 }
 
-// Capture current game state
+// Capture current game state for initial room creation
 function captureGameState() {
-  return {
-    monsterHealth: window.monsterHealth,
-    monsterInfect: window.monsterInfect,
-    cardsInMonsterDeck: window.cardsInMonsterDeck,
-    cardsInMonsterGraveyard: window.cardsInMonsterGraveyard,
-    monsterHandSize: window.monsterHandSize,
-    monsterLandCount: window.monsterLandCount,
-    graveyard: window.graveyard,
-    currentRound: window.currentRound,
-    numberOfPlayersGlobal: window.numberOfPlayersGlobal,
-    difficultyLevel: window.difficultyLevel,
-    scryfallMonsterColors: window.scryfallMonsterColors,
-    playerHealths: Array.from(document.querySelectorAll('.player-health-box')).map(box => ({
-      id: box.id,
-      health: parseInt(box.querySelector('.health-value').textContent),
-      poison: parseInt(box.querySelector('.poison-value').textContent)
-    })),
-    logEntries: Array.from(document.querySelectorAll('#logContainer .log-entry')).map(entry => ({
-      text: entry.querySelector('.log-text').textContent,
-      imageUrl: entry.querySelector('.log-image') ? entry.querySelector('.log-image').src : null
-    })).slice(-20) // Only sync last 20 log entries
-  };
+  try {
+    // Create a comprehensive game state object
+    const gameState = {
+      // Game configuration
+      difficulty: window.difficulty || "medium",
+      numberOfPlayers: window.numberOfPlayersGlobal || 4,
+      currentRound: window.currentRound || 1,
+      
+      // Monster stats
+      monsterHealth: window.monsterHealth || 100,
+      monsterInfect: window.monsterInfect || 0,
+      monsterHandSize: window.monsterHandSize || 8,
+      modifiedMonsterHandSize: window.modifiedMonsterHandSize || 8,
+      monsterStartingHandSize: window.monsterStartingHandSize || 8,
+      monsterLandCount: window.currentMonsterLands || 1,
+      cardsInMonsterDeck: window.cardsInMonsterDeck || 99,
+      cardsInMonsterGraveyard: window.cardsInMonsterGraveyard || 0,
+      
+      // Monster appearance
+      monsterColor: window.scryfallMonsterColors || "",
+      bossMonsterImageUrl: window.bossMonsterImageUrl || "",
+      
+      // Game state
+      graveyard: window.graveyard || {},
+      milledCardImages: window.milledCardImages || [],
+      
+      // Player data
+      playerHealths: [],
+      playerPoisons: [],
+      
+      // Flag to indicate this is a valid game state
+      isValidGameState: true
+    };
+    
+    // Capture player health values
+    if (window.playerHealth) {
+      for (let i = 1; i <= (window.numberOfPlayersGlobal || 4); i++) {
+        if (window.playerHealth[i] !== undefined) {
+          gameState.playerHealths.push(window.playerHealth[i]);
+        } else {
+          gameState.playerHealths.push(40); // Default health
+        }
+      }
+    } else {
+      // If playerHealth is not defined, create default values
+      for (let i = 0; i < (window.numberOfPlayersGlobal || 4); i++) {
+        gameState.playerHealths.push(40); // Default health
+      }
+    }
+    
+    // Ensure we have player poison values
+    if (!gameState.playerPoisons.length) {
+      for (let i = 0; i < (window.numberOfPlayersGlobal || 4); i++) {
+        gameState.playerPoisons.push(0); // Default poison
+      }
+    }
+    
+    // Capture log entries if available
+    const logContainer = document.getElementById('logContainer');
+    if (logContainer) {
+      const logEntries = logContainer.querySelectorAll('.log-entry');
+      gameState.logEntries = Array.from(logEntries).map(entry => ({
+        text: entry.textContent,
+        imageUrl: entry.dataset.imageUrl
+      })).slice(-20); // Only capture last 20 entries
+    }
+    
+    // If no log entries were found, add a default one
+    if (!gameState.logEntries.length) {
+      gameState.logEntries.push({
+        text: `Game started with ${gameState.numberOfPlayers} players`,
+        imageUrl: null
+      });
+    }
+    
+    console.log("Captured initial game state:", gameState);
+    return gameState;
+  } catch (error) {
+    console.error("Error capturing initial game state:", error);
+    // Return a minimal valid game state in case of error
+    return { 
+      isValidGameState: true,
+      difficulty: "medium",
+      numberOfPlayers: 4,
+      currentRound: 1,
+      monsterHealth: 100,
+      monsterInfect: 0,
+      playerHealths: [40, 40, 40, 40],
+      playerPoisons: [0, 0, 0, 0],
+      logEntries: [{
+        text: "Game started",
+        imageUrl: null
+      }]
+    };
+  }
 }
 
 // Apply received game state
@@ -257,78 +372,124 @@ function applyGameState(gameState) {
       return false;
     }
     
+    // Set game as started
+    window.startedGame = true;
+    
     // Set difficulty if provided
     if (gameState.difficulty) {
-      difficulty = gameState.difficulty;
-      setDifficultyAtStart(difficulty);
+      window.difficulty = gameState.difficulty;
+      if (typeof window.setDifficultyAtStart === 'function') {
+        window.setDifficultyAtStart(gameState.difficulty);
+      }
     }
     
-    // Set number of players and create player health boxes if needed
+    // Set number of players
     if (gameState.numberOfPlayers) {
-      numberOfPlayersGlobal = gameState.numberOfPlayers;
-      createPlayerHealthBoxes(numberOfPlayersGlobal);
+      window.numberOfPlayersGlobal = gameState.numberOfPlayers;
+      if (typeof window.createPlayerHealthBoxes === 'function') {
+        window.createPlayerHealthBoxes(gameState.numberOfPlayers);
+      }
     }
     
     // Apply monster health
     if (gameState.monsterHealth !== undefined) {
-      monsterHealth = gameState.monsterHealth;
-      updateMonsterHealth();
+      window.monsterHealth = gameState.monsterHealth;
+      if (typeof window.updateMonsterHealth === 'function') {
+        window.updateMonsterHealth();
+      }
     }
     
     // Apply monster infect
     if (gameState.monsterInfect !== undefined) {
-      monsterInfect = gameState.monsterInfect;
-      updateMonsterInfect();
+      window.monsterInfect = gameState.monsterInfect;
+      if (typeof window.updateMonsterInfect === 'function') {
+        window.updateMonsterInfect();
+      }
     }
     
     // Apply monster hand size
     if (gameState.monsterHandSize !== undefined) {
-      monsterHandSize = gameState.monsterHandSize;
-      monsterStartingHandSize = gameState.monsterStartingHandSize || monsterHandSize;
-      modifiedMonsterHandSize = gameState.modifiedMonsterHandSize || monsterHandSize;
-      updateMonsterHandSize();
+      window.monsterHandSize = gameState.monsterHandSize;
+      window.monsterStartingHandSize = gameState.monsterStartingHandSize || gameState.monsterHandSize;
+      window.modifiedMonsterHandSize = gameState.modifiedMonsterHandSize || gameState.monsterHandSize;
+      if (typeof window.updateMonsterHandSize === 'function') {
+        window.updateMonsterHandSize();
+      }
     }
     
     // Apply monster land count
     if (gameState.monsterLandCount !== undefined) {
-      currentMonsterLands = gameState.monsterLandCount;
-      updateMonsterLandCountByAmount(0); // Just update display
+      window.currentMonsterLands = gameState.monsterLandCount;
+      if (typeof window.updateMonsterLandCountByAmount === 'function') {
+        window.updateMonsterLandCountByAmount(0); // Just update display
+      }
     }
     
     // Apply current round
     if (gameState.currentRound !== undefined) {
-      currentRound = gameState.currentRound;
-      updateRound();
+      window.currentRound = gameState.currentRound;
+      if (typeof window.updateRound === 'function') {
+        window.updateRound();
+      }
     }
     
     // Apply cards in monster deck
     if (gameState.cardsInMonsterDeck !== undefined) {
-      cardsInMonsterDeck = gameState.cardsInMonsterDeck;
+      window.cardsInMonsterDeck = gameState.cardsInMonsterDeck;
       const deckSizeElement = document.getElementById('deckSize');
       if (deckSizeElement) {
-        deckSizeElement.textContent = cardsInMonsterDeck;
+        deckSizeElement.textContent = gameState.cardsInMonsterDeck;
       }
     }
     
     // Apply cards in monster graveyard
     if (gameState.cardsInMonsterGraveyard !== undefined) {
-      cardsInMonsterGraveyard = gameState.cardsInMonsterGraveyard;
+      window.cardsInMonsterGraveyard = gameState.cardsInMonsterGraveyard;
     }
     
     // Apply graveyard data
     if (gameState.graveyard) {
-      graveyard = gameState.graveyard;
-      updateGraveyardTable();
+      window.graveyard = gameState.graveyard;
+      if (typeof window.updateGraveyardTable === 'function') {
+        window.updateGraveyardTable();
+      }
     }
     
-    // Apply milled card images
-    if (gameState.milledCardImages) {
-      milledCardImages = gameState.milledCardImages;
+    // Apply player health values
+    if (gameState.playerHealths && Array.isArray(gameState.playerHealths) && gameState.playerHealths.length > 0) {
+      // Initialize playerHealth object if it doesn't exist
+      if (!window.playerHealth) {
+        window.playerHealth = {};
+      }
+      
+      gameState.playerHealths.forEach((health, index) => {
+        const playerNumber = index + 1;
+        window.playerHealth[playerNumber] = health;
+        
+        const healthDisplay = document.getElementById(`player${playerNumber}HealthDisplay`);
+        if (healthDisplay) {
+          healthDisplay.textContent = `Health: ${health}`;
+        }
+      });
+    } else {
+      // Create default player health values if none provided
+      window.playerHealth = {};
+      for (let i = 1; i <= (gameState.numberOfPlayers || 4); i++) {
+        window.playerHealth[i] = 40;
+      }
+    }
+    
+    // Apply monster color if provided
+    if (gameState.monsterColor) {
+      window.scryfallMonsterColors = gameState.monsterColor;
+      if (typeof window.displayColorRectangle === 'function') {
+        window.displayColorRectangle();
+      }
     }
     
     // Apply boss monster image if provided
     if (gameState.bossMonsterImageUrl) {
-      bossMonsterImageUrl = gameState.bossMonsterImageUrl;
+      window.bossMonsterImageUrl = gameState.bossMonsterImageUrl;
       
       // Find the monster image container
       const monsterImageContainer = document.getElementById("monsterImageContainer");
@@ -338,66 +499,12 @@ function applyGameState(gameState) {
         
         // Create image element
         let imgElement = document.createElement("img");
-        imgElement.src = bossMonsterImageUrl;
+        imgElement.src = gameState.bossMonsterImageUrl;
         imgElement.alt = "Boss Monster";
         imgElement.style.maxWidth = "100%";
         imgElement.style.maxHeight = "100%";
         
-        // If there's a Scryfall link, wrap the image in an anchor
-        if (gameState.monsterScryfallLink) {
-          let anchorElement = document.createElement("a");
-          anchorElement.href = gameState.monsterScryfallLink;
-          anchorElement.target = "_blank";
-          anchorElement.appendChild(imgElement);
-          monsterImageContainer.appendChild(anchorElement);
-        } else {
-          monsterImageContainer.appendChild(imgElement);
-        }
-      }
-    }
-    
-    // Apply player health values
-    if (gameState.playerHealth && Array.isArray(gameState.playerHealth)) {
-      gameState.playerHealth.forEach((health, index) => {
-        updatePlayerHealth(index + 1, health);
-      });
-    }
-    
-    // Apply player poison values
-    if (gameState.playerPoison && Array.isArray(gameState.playerPoison)) {
-      gameState.playerPoison.forEach((poison, index) => {
-        updatePlayerPoison(index + 1, poison);
-      });
-    }
-    
-    // Apply minions if available
-    if (gameState.minions && Array.isArray(gameState.minions) && gameState.minions.length > 0) {
-      const container = document.getElementById("imageContainer");
-      if (container) {
-        // Clear existing minions
-        container.innerHTML = "";
-        
-        // Add each minion
-        gameState.minions.forEach(minion => {
-          const imageContainer = document.createElement("div");
-          imageContainer.className = "image-container";
-          
-          const img = document.createElement("img");
-          if (minion.src) {
-            img.src = minion.src;
-          } else {
-            img.src = `./Minions/${minion.number}.jpg`;
-          }
-          img.alt = "Minion";
-          
-          const healthText = document.createElement("div");
-          healthText.className = "image-text";
-          healthText.textContent = minion.health;
-          
-          imageContainer.appendChild(img);
-          imageContainer.appendChild(healthText);
-          container.appendChild(imageContainer);
-        });
+        monsterImageContainer.appendChild(imgElement);
       }
     }
     
@@ -410,25 +517,52 @@ function applyGameState(gameState) {
         
         // Add each log entry
         gameState.logEntries.forEach(entry => {
-          addLogWithoutSync(entry.text, entry.imageUrl);
+          if (typeof window.addLog === 'function') {
+            window.addLog(entry.text, entry.imageUrl);
+          }
         });
       }
     }
     
-    // Display color rectangle if monster color is provided
-    if (gameState.monsterColor) {
-      scryfallMonsterColors = gameState.monsterColor;
-      displayColorRectangle();
+    // Initialize other game elements
+    if (typeof window.readActionJsonFiles === 'function') {
+      window.readActionJsonFiles();
     }
     
-    // Initialize other game elements
-    readActionJsonFiles();
-    
     // Show player turn indicator
-    showPlayerTurnIndicator();
+    if (typeof window.showPlayerTurnIndicator === 'function') {
+      window.showPlayerTurnIndicator();
+    }
     
-    // Set game as started
-    window.startedGame = true;
+    // Hide the starting screen
+    const startingScreen = document.querySelector(".starting-screen");
+    if (startingScreen) {
+      startingScreen.style.display = "none";
+    }
+    
+    // Show the top section container
+    const topSectionContainer = document.querySelector(".top-section-container");
+    if (topSectionContainer) {
+      topSectionContainer.style.display = "flex";
+    }
+    
+    // Show dice log
+    const diceLog = document.getElementById("diceLog");
+    if (diceLog) {
+      diceLog.style.display = "block";
+    }
+    
+    // Show game action buttons
+    const gameActionButtons = document.getElementById("gameActionButtons");
+    if (gameActionButtons) {
+      gameActionButtons.style.display = "block";
+    }
+    
+    // Show monster controls
+    const monsterControls = document.getElementById("monsterControls");
+    if (monsterControls) {
+      monsterControls.style.display = "flex";
+    }
     
     console.log("Game state applied successfully");
     return true;
@@ -647,6 +781,11 @@ window.joinMultiplayerRoom = joinRoom;
 window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
+
+
+
+
+
 
 
 
