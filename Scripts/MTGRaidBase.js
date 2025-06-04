@@ -756,65 +756,89 @@ function millMonster() {
   let cardImageUrl = null;
   let cardName = null;
   
-  // Check if we need to reveal the top card
-  if (hasRevealedTopCard && cardTypeRevealed) {
-    // Use the revealed card type
+  // Check if we have a revealed top card
+  if (hasRevealedTopCard) {
+    // Use the revealed card type and the stored card image/name
     cardMilled = cardTypeRevealed;
+    cardImageUrl = currentRandomCardUrl;
+    cardName = currentRandomCardName;
     hasRevealedTopCard = false;
     cardTypeRevealed = "";
+    
+    // Store the milled card image
+    milledCardImages.push({
+      url: cardImageUrl,
+      name: cardName,
+      type: cardMilled
+    });
+    
+    // Update graveyard count
+    graveyard[cardMilled]++;
+    cardsInMonsterDeck--;
+    cardsInMonsterGraveyard++;
+    
+    // Show the card
+    openPopup(cardImageUrl);
+    
+    // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
+    addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
+    
+    updateGraveyardTable();
+    if (millButton) millButton.disabled = false;
+    hideLoadingSpinner();
   } else {
     // Pick a new random card type
     cardMilled = pickRandomCardType(true);
-  }
-  
-  // Update graveyard count
-  graveyard[cardMilled]++;
-  cardsInMonsterDeck--;
-  cardsInMonsterGraveyard++;
-  
-  // Create URL for Scryfall API based on card type
-  let randomCardUrl;
-  if (cardMilled == "Land") {
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
-  } else {
-    randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardMilled + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
-  }
-  
-  // Use the existing getRandomCardImageUrl function
-  getRandomCardImageUrl(randomCardUrl)
-    .then(result => {
-      if (result && result.imageUrl) {
-        cardImageUrl = result.imageUrl;
-        cardName = result.cardName;
+    
+    // Update graveyard count
+    graveyard[cardMilled]++;
+    cardsInMonsterDeck--;
+    cardsInMonsterGraveyard++;
+    
+    // Create URL for Scryfall API based on card type
+    let randomCardUrl;
+    if (cardMilled == "Land") {
+      randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+    } else {
+      randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardMilled + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+    }
+    
+    // Use the existing getRandomCardImageUrl function
+    getRandomCardImageUrl(randomCardUrl)
+      .then(result => {
+        if (result && result.imageUrl) {
+          cardImageUrl = result.imageUrl;
+          cardName = result.cardName;
+          
+          // Store the milled card image
+          milledCardImages.push({
+            url: cardImageUrl,
+            name: cardName,
+            type: cardMilled
+          });
+          
+          // Show the card
+          openPopup(cardImageUrl);
+        }
         
-        // Store the milled card image
-        milledCardImages.push({
-          url: cardImageUrl,
-          name: cardName,
-          type: cardMilled
-        });
+        // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
+        addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
         
-        // Show the card
-        openPopup(cardImageUrl);
-      }
-      
-      // Format: "MONSTER MILLED: [Type] - [CardName]. CARDS LEFT: [Count]"
-      addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
-      
-      updateGraveyardTable();
-      if (millButton) millButton.disabled = false;
-      hideLoadingSpinner();
-    })
-    .catch(error => {
-      console.error("Error fetching card:", error);
-      
-      // Even if we can't fetch the image, still log the mill
-      addLog("MONSTER MILLED: " + cardMilled + ". CARDS LEFT: " + cardsInMonsterDeck);
-      
-      updateGraveyardTable();
-      if (millButton) millButton.disabled = false;
-      hideLoadingSpinner();
-    });
+        updateGraveyardTable();
+        if (millButton) millButton.disabled = false;
+        hideLoadingSpinner();
+      })
+      .catch(error => {
+        console.error("Error fetching card:", error);
+        
+        // Even if we can't fetch the image, still log the mill
+        addLog("MONSTER MILLED: " + cardMilled + ". CARDS LEFT: " + cardsInMonsterDeck);
+        
+        updateGraveyardTable();
+        if (millButton) millButton.disabled = false;
+        hideLoadingSpinner();
+      });
+  }
 }
 
 function openPopup(imageSrc) {
@@ -947,6 +971,9 @@ function revealTopCard() {
           currentRandomCardUrl = result.imageUrl;
           currentRandomCardName = result.cardName;
           openPopup(currentRandomCardUrl);
+          
+          // Set flag to indicate a card has been revealed
+          hasRevealedTopCard = true;
         }
       })
       .catch(error => {
