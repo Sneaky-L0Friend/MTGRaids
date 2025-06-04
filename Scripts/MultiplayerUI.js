@@ -17,13 +17,30 @@ function closeJoinRoomDialog() {
   document.getElementById('joinRoomDialog').style.display = 'none';
 }
 
+// Add this function to close any multiplayer dialog
+function closeMultiplayerDialog() {
+  // Close create room dialog
+  closeCreateRoomDialog();
+  
+  // Close join room dialog
+  closeJoinRoomDialog();
+  
+  // Close any other modals that might be open
+  const allModals = document.querySelectorAll('.modal');
+  allModals.forEach(modal => {
+    if (modal.style.display === 'block') {
+      modal.style.display = 'none';
+    }
+  });
+}
+
 // Start multiplayer game
 function startMultiplayerGame(difficulty, playerCount) {
   // Close the dialog
   closeMultiplayerDialog();
   
   // Start the game first
-  window.startGame(difficulty, playerCount);
+  window.startGame(difficulty || 'medium', playerCount || 4);
   
   // Wait a moment for game initialization to complete
   setTimeout(() => {
@@ -134,12 +151,15 @@ window.showCreateRoomDialog = showCreateRoomDialog;
 window.closeCreateRoomDialog = closeCreateRoomDialog;
 window.showJoinRoomDialog = showJoinRoomDialog;
 window.closeJoinRoomDialog = closeJoinRoomDialog;
+window.closeMultiplayerDialog = closeMultiplayerDialog;
 window.startMultiplayerGame = startMultiplayerGame;
 window.startMultiplayerGameWithDifficulty = startMultiplayerGameWithDifficulty;
 window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
 window.closePlayerCountDialog = closePlayerCountDialog;
+
+
 
 
 
