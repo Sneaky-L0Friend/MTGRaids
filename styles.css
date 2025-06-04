@@ -2229,3 +2229,121 @@ html, body {
 .button-container button:hover {
   opacity: 0.9;
 }
+
+/* Improved button organization */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 900px;
+  margin: 15px auto;
+}
+
+/* Primary action buttons */
+.primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  background-color: rgba(40, 40, 40, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.primary-actions button {
+  flex: 1;
+  min-width: 120px;
+  max-width: 200px;
+  background-color: #4CAF50;
+}
+
+/* Secondary action buttons */
+.secondary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.secondary-actions button {
+  flex: 1;
+  min-width: 100px;
+  max-width: 180px;
+  background-color: #555;
+}
+
+/* Game controls fixed position */
+.game-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: auto;
+  max-width: 200px;
+  z-index: 100;
+}
+
+/* Utility buttons */
+.utility-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: auto;
+  max-width: 200px;
+  z-index: 100;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .game-controls,
+  .utility-buttons {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: 10px auto;
+    justify-content: center;
+  }
+  
+  .game-controls button,
+  .utility-buttons button {
+    flex: 1;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .primary-actions button,
+  .secondary-actions button {
+    min-width: 100px;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .primary-actions,
+  .secondary-actions {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .primary-actions button,
+  .secondary-actions button {
+    min-width: 80px;
+    font-size: 13px;
+    padding: 8px;
+  }
+}
