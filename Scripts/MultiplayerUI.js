@@ -18,26 +18,18 @@ function closeJoinRoomDialog() {
 }
 
 // Start multiplayer game
-function startMultiplayerGame() {
-  closeCreateRoomDialog();
+function startMultiplayerGame(difficulty, playerCount) {
+  // Close the dialog
+  closeMultiplayerDialog();
   
-  // Create difficulty selection dialog
-  const difficultyDialog = document.createElement('div');
-  difficultyDialog.className = 'modal';
-  difficultyDialog.style.display = 'block';
+  // Start the game first
+  window.startGame(difficulty, playerCount);
   
-  difficultyDialog.innerHTML = `
-    <div class="modal-content">
-      <h3>Select Difficulty</h3>
-      <div class="button-container" style="justify-content: space-around;">
-        <button onclick="startMultiplayerGameWithDifficulty('easy')">Easy</button>
-        <button onclick="startMultiplayerGameWithDifficulty('medium')">Medium</button>
-        <button onclick="startMultiplayerGameWithDifficulty('hard')">Hard</button>
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(difficultyDialog);
+  // Wait a moment for game initialization to complete
+  setTimeout(() => {
+    // Create multiplayer room
+    window.createMultiplayerRoom();
+  }, 1000); // Wait 1 second for game to initialize
 }
 
 function startMultiplayerGameWithDifficulty(difficulty) {
@@ -148,6 +140,8 @@ window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
 window.closePlayerCountDialog = closePlayerCountDialog;
+
+
 
 
 

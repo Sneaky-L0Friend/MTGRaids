@@ -160,61 +160,61 @@ function createRoom() {
     const checkInterval = setInterval(() => {
       if (socket && socket.readyState === WebSocket.OPEN) {
         clearInterval(checkInterval);
-        
-        // Make sure the game is started before creating a room
-        if (!window.startedGame) {
-          showMessage("Please start the game before creating a room");
-          return;
-        }
-        
-        // Ensure we have a valid game state
-        if (!window.monsterHealth) {
-          showMessage("Game not fully initialized. Please wait a moment and try again.");
-          return;
-        }
-        
-        // Capture the current game state
-        const initialState = captureGameState();
-        
-        // Verify the game state is valid before sending
-        if (!initialState.playerHealths || initialState.playerHealths.length === 0) {
-          showMessage("Game state not ready. Please wait a moment and try again.");
-          return;
-        }
-        
-        socket.send(JSON.stringify({
-          type: 'create_room',
-          gameState: initialState
-        }));
+        createRoomWithGameState();
       }
     }, 100);
   } else {
-    // Make sure the game is started before creating a room
-    if (!window.startedGame) {
-      showMessage("Please start the game before creating a room");
-      return;
-    }
-    
-    // Ensure we have a valid game state
-    if (!window.monsterHealth) {
-      showMessage("Game not fully initialized. Please wait a moment and try again.");
-      return;
-    }
-    
-    // Capture the current game state
-    const initialState = captureGameState();
-    
-    // Verify the game state is valid before sending
-    if (!initialState.playerHealths || initialState.playerHealths.length === 0) {
-      showMessage("Game state not ready. Please wait a moment and try again.");
-      return;
-    }
-    
-    socket.send(JSON.stringify({
-      type: 'create_room',
-      gameState: initialState
-    }));
+    createRoomWithGameState();
   }
+}
+
+// Helper function to create room with game state
+function createRoomWithGameState() {
+  // Make sure the game is started
+  if (!window.startedGame) {
+    console.warn("Game not started, initializing with defaults");
+    window.startedGame = true;
+    window.monsterHealth = 100;
+    window.numberOfPlayersGlobal = 4;
+  }
+  
+  // Force initialize player health if needed
+  if (!window.playerHealth) {
+    console.warn("Player health not initialized, creating defaults");
+    window.playerHealth = {};
+    for (let i = 1; i <= (window.numberOfPlayersGlobal || 4); i++) {
+      window.playerHealth[i] = 40;
+    }
+  }
+  
+  // Capture the current game state
+  const initialState = captureGameState();
+  
+  // Add fallback values for critical fields
+  if (!initialState.playerHealths || initialState.playerHealths.length === 0) {
+    console.warn("No player health values found, adding defaults");
+    initialState.playerHealths = [];
+    for (let i = 0; i < (window.numberOfPlayersGlobal || 4); i++) {
+      initialState.playerHealths.push(40);
+    }
+  }
+  
+  // Add a log entry if none exist
+  if (!initialState.logEntries || initialState.logEntries.length === 0) {
+    console.warn("No log entries found, adding default");
+    initialState.logEntries = [{
+      text: `Game started with ${window.numberOfPlayersGlobal || 4} players`,
+      imageUrl: null
+    }];
+  }
+  
+  console.log("Sending game state to server:", initialState);
+  
+  // Send the game state to create a room
+  socket.send(JSON.stringify({
+    type: 'create_room',
+    gameState: initialState
+  }));
 }
 
 // Join an existing room
@@ -282,7 +282,7 @@ function captureGameState() {
       cardsInMonsterGraveyard: window.cardsInMonsterGraveyard || 0,
       
       // Monster appearance
-      monsterColor: window.scryfallMonsterColors || "",
+      monsterColor: window.scryfallMonsterColors || "wubrg",
       bossMonsterImageUrl: window.bossMonsterImageUrl || "",
       
       // Game state
@@ -294,7 +294,10 @@ function captureGameState() {
       playerPoisons: [],
       
       // Flag to indicate this is a valid game state
-      isValidGameState: true
+      isValidGameState: true,
+      
+      // Timestamp for debugging
+      timestamp: new Date().toISOString()
     };
     
     // Capture player health values
@@ -331,11 +334,11 @@ function captureGameState() {
     }
     
     // If no log entries were found, add a default one
-    if (!gameState.logEntries.length) {
-      gameState.logEntries.push({
+    if (!gameState.logEntries || gameState.logEntries.length === 0) {
+      gameState.logEntries = [{
         text: `Game started with ${gameState.numberOfPlayers} players`,
         imageUrl: null
-      });
+      }];
     }
     
     console.log("Captured initial game state:", gameState);
@@ -346,16 +349,17 @@ function captureGameState() {
     return { 
       isValidGameState: true,
       difficulty: "medium",
-      numberOfPlayers: 4,
+      numberOfPlayers: window.numberOfPlayersGlobal || 4,
       currentRound: 1,
-      monsterHealth: 100,
+      monsterHealth: window.monsterHealth || 100,
       monsterInfect: 0,
-      playerHealths: [40, 40, 40, 40],
-      playerPoisons: [0, 0, 0, 0],
+      playerHealths: Array(window.numberOfPlayersGlobal || 4).fill(40),
+      playerPoisons: Array(window.numberOfPlayersGlobal || 4).fill(0),
       logEntries: [{
         text: "Game started",
         imageUrl: null
-      }]
+      }],
+      timestamp: new Date().toISOString()
     };
   }
 }
@@ -775,12 +779,74 @@ function captureFullGameState() {
   }
 }
 
+// Initialize game state for multiplayer if not already initialized
+function ensureGameInitialized() {
+  if (!window.startedGame) {
+    console.warn("Game not started, initializing with defaults for multiplayer");
+    window.startedGame = true;
+  }
+  
+  if (!window.monsterHealth) {
+    console.warn("Monster health not initialized, setting default");
+    window.monsterHealth = 100;
+  }
+  
+  if (!window.numberOfPlayersGlobal) {
+    console.warn("Number of players not initialized, setting default");
+    window.numberOfPlayersGlobal = 4;
+  }
+  
+  if (!window.playerHealth) {
+    console.warn("Player health not initialized, creating defaults");
+    window.playerHealth = {};
+    for (let i = 1; i <= window.numberOfPlayersGlobal; i++) {
+      window.playerHealth[i] = 40;
+    }
+  }
+  
+  if (!window.currentRound) {
+    console.warn("Current round not initialized, setting default");
+    window.currentRound = 1;
+  }
+  
+  if (!window.difficulty) {
+    console.warn("Difficulty not initialized, setting default");
+    window.difficulty = "medium";
+    if (typeof window.setDifficultyAtStart === 'function') {
+      window.setDifficultyAtStart("medium");
+    }
+  }
+  
+  // Create player health boxes if they don't exist
+  const playerHealthContainer = document.getElementById('playerHealthContainer');
+  if (playerHealthContainer && playerHealthContainer.children.length === 0) {
+    console.warn("Player health boxes not created, creating them");
+    if (typeof window.createPlayerHealthBoxes === 'function') {
+      window.createPlayerHealthBoxes(window.numberOfPlayersGlobal);
+    }
+  }
+  
+  console.log("Game initialization ensured for multiplayer");
+}
+
+// Update the createMultiplayerRoom function to ensure game is initialized
+window.createMultiplayerRoom = function() {
+  ensureGameInitialized();
+  createRoom();
+};
+
 // Export functions
-window.createMultiplayerRoom = createRoom;
 window.joinMultiplayerRoom = joinRoom;
 window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
+
+
+
+
+
+
+
 
 
 

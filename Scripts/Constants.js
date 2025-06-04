@@ -1,5 +1,5 @@
 // Version information
-const APP_VERSION = "1.1.05";
+const APP_VERSION = "1.1.06";
 
 // Initialize global variables
 window.easyActionsJson = null;
