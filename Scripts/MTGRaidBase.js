@@ -784,6 +784,11 @@ function millMonster() {
     addLog("MONSTER MILLED: " + cardMilled + " - " + cardName + ". CARDS LEFT: " + cardsInMonsterDeck, cardImageUrl);
     
     updateGraveyardTable();
+    
+    // Reset flags to ensure next reveal is random
+    hasCardBeenMilled = true;
+    hasCardBeenDrawn = true;
+    
     if (millButton) millButton.disabled = false;
     hideLoadingSpinner();
   } else {
