@@ -85,6 +85,30 @@ function handleServerMessage(data) {
         diceLog.style.display = "block";
       }
       
+      // Show game action buttons
+      const gameActionButtons = document.getElementById("gameActionButtons");
+      if (gameActionButtons) {
+        gameActionButtons.style.display = "block";
+      }
+      
+      // Show monster controls
+      const monsterControls = document.getElementById("monsterControls");
+      if (monsterControls) {
+        monsterControls.style.display = "flex";
+      }
+      
+      // Show turn and infect controls
+      const turnInfectControls = document.getElementById("turnInfectControls");
+      if (turnInfectControls) {
+        turnInfectControls.style.display = "flex";
+      }
+      
+      // Show monster stats container
+      const monsterStatsContainer = document.querySelector(".monster-stats-container");
+      if (monsterStatsContainer) {
+        monsterStatsContainer.style.display = "flex";
+      }
+      
       // Set game started flag
       window.startedGame = true;
       break;
@@ -346,5 +370,11 @@ window.createMultiplayerRoom = createRoom;
 window.joinMultiplayerRoom = joinRoom;
 window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
+
+
+
+
+
+
 
 
