@@ -250,6 +250,13 @@ function applyGameState(gameState) {
   try {
     console.log("Applying game state:", gameState);
     
+    // Check if we received a valid game state
+    if (!gameState || !gameState.isValidGameState) {
+      console.error("Invalid game state received:", gameState);
+      showMessage("Error: Invalid game state received");
+      return false;
+    }
+    
     // Set difficulty if provided
     if (gameState.difficulty) {
       difficulty = gameState.difficulty;
@@ -291,10 +298,7 @@ function applyGameState(gameState) {
     // Apply current round
     if (gameState.currentRound !== undefined) {
       currentRound = gameState.currentRound;
-      const roundCounter = document.getElementById('roundCounter');
-      if (roundCounter) {
-        roundCounter.textContent = currentRound;
-      }
+      updateRound();
     }
     
     // Apply cards in monster deck
@@ -339,78 +343,66 @@ function applyGameState(gameState) {
         imgElement.style.maxWidth = "100%";
         imgElement.style.maxHeight = "100%";
         
-        // Create anchor element with proper link
-        let anchorElement = document.createElement("a");
+        // If there's a Scryfall link, wrap the image in an anchor
         if (gameState.monsterScryfallLink) {
+          let anchorElement = document.createElement("a");
           anchorElement.href = gameState.monsterScryfallLink;
+          anchorElement.target = "_blank";
+          anchorElement.appendChild(imgElement);
+          monsterImageContainer.appendChild(anchorElement);
         } else {
-          // Default link if specific one not found
-          anchorElement.href = "https://scryfall.com/search?q=commander%3A" + (gameState.monsterColor || "wubrg");
+          monsterImageContainer.appendChild(imgElement);
         }
-        anchorElement.target = "_blank";
-        anchorElement.appendChild(imgElement);
-        
-        // Add the anchor element to the container
-        monsterImageContainer.appendChild(anchorElement);
       }
     }
     
     // Apply player health values
     if (gameState.playerHealth && Array.isArray(gameState.playerHealth)) {
       gameState.playerHealth.forEach((health, index) => {
-        const playerHealthElement = document.getElementById(`player${index + 1}Health`);
-        if (playerHealthElement) {
-          playerHealthElement.textContent = health;
-        }
+        updatePlayerHealth(index + 1, health);
       });
     }
     
     // Apply player poison values
     if (gameState.playerPoison && Array.isArray(gameState.playerPoison)) {
       gameState.playerPoison.forEach((poison, index) => {
-        const playerPoisonElement = document.getElementById(`player${index + 1}Poison`);
-        if (playerPoisonElement) {
-          playerPoisonElement.textContent = poison;
-        }
+        updatePlayerPoison(index + 1, poison);
       });
     }
     
     // Apply minions if available
-    if (gameState.minions && Array.isArray(gameState.minions)) {
+    if (gameState.minions && Array.isArray(gameState.minions) && gameState.minions.length > 0) {
       const container = document.getElementById("imageContainer");
       if (container) {
         // Clear existing minions
         container.innerHTML = "";
         
-        // Add saved minions
+        // Add each minion
         gameState.minions.forEach(minion => {
           const imageContainer = document.createElement("div");
           imageContainer.className = "image-container";
           
           const img = document.createElement("img");
-          img.src = `Minions/${minion.number}.jpeg`;
+          if (minion.src) {
+            img.src = minion.src;
+          } else {
+            img.src = `./Minions/${minion.number}.jpg`;
+          }
           img.alt = "Minion";
-          img.style.width = "12vw";
-          img.style.height = "12vh";
           
-          const imageText = document.createElement("div");
-          imageText.className = "image-text";
-          imageText.textContent = minion.health;
-          imageText.contentEditable = true;
-          
-          img.addEventListener("click", function () {
-            removeImage(imageContainer);
-          });
+          const healthText = document.createElement("div");
+          healthText.className = "image-text";
+          healthText.textContent = minion.health;
           
           imageContainer.appendChild(img);
-          imageContainer.appendChild(imageText);
+          imageContainer.appendChild(healthText);
           container.appendChild(imageContainer);
         });
       }
     }
     
     // Apply log entries if available
-    if (gameState.logEntries && Array.isArray(gameState.logEntries)) {
+    if (gameState.logEntries && Array.isArray(gameState.logEntries) && gameState.logEntries.length > 0) {
       // Clear existing log
       const logContainer = document.getElementById('logContainer');
       if (logContainer) {
@@ -439,34 +431,61 @@ function applyGameState(gameState) {
     window.startedGame = true;
     
     console.log("Game state applied successfully");
+    return true;
   } catch (error) {
     console.error('Error applying game state:', error);
     showMessage('Error applying game state: ' + error.message);
+    return false;
   }
 }
 
-// Add log entry without triggering sync
-function addLogWithoutSync(text, imageUrl) {
-  const logContainer = document.getElementById('logContainer');
-  const logEntry = document.createElement('div');
-  logEntry.className = 'log-entry';
-  
-  const logText = document.createElement('span');
-  logText.className = 'log-text';
-  logText.textContent = text;
-  logEntry.appendChild(logText);
-  
-  if (imageUrl) {
-    const logImage = document.createElement('img');
-    logImage.className = 'log-image';
-    logImage.src = imageUrl;
-    logImage.alt = 'Card Image';
-    logImage.onclick = function() { openPopup(imageUrl); };
-    logEntry.appendChild(logImage);
+// Add a helper function to update player health without triggering sync
+function updatePlayerHealth(playerNumber, healthValue) {
+  try {
+    const healthElement = document.getElementById(`player${playerNumber}Health`);
+    if (healthElement) {
+      healthElement.textContent = healthValue;
+    }
+  } catch (error) {
+    console.error(`Error updating player ${playerNumber} health:`, error);
   }
-  
-  logContainer.appendChild(logEntry);
-  logContainer.scrollTop = logContainer.scrollHeight;
+}
+
+// Add a helper function to update player poison without triggering sync
+function updatePlayerPoison(playerNumber, poisonValue) {
+  try {
+    const poisonElement = document.getElementById(`player${playerNumber}Poison`);
+    if (poisonElement) {
+      poisonElement.textContent = poisonValue;
+    }
+  } catch (error) {
+    console.error(`Error updating player ${playerNumber} poison:`, error);
+  }
+}
+
+// Add a helper function to add log entries without triggering sync
+function addLogWithoutSync(text, imageUrl) {
+  try {
+    const logContainer = document.getElementById('logContainer');
+    if (!logContainer) return;
+    
+    const logEntry = document.createElement('div');
+    logEntry.className = 'log-entry';
+    logEntry.textContent = text;
+    
+    if (imageUrl) {
+      logEntry.dataset.imageUrl = imageUrl;
+      logEntry.style.cursor = 'pointer';
+      logEntry.addEventListener('click', function() {
+        openPopup(imageUrl);
+      });
+    }
+    
+    logContainer.appendChild(logEntry);
+    logContainer.scrollTop = logContainer.scrollHeight;
+  } catch (error) {
+    console.error('Error adding log entry:', error);
+  }
 }
 
 // Display room code in the UI
@@ -558,7 +577,10 @@ function captureFullGameState() {
       minions: [],
       
       // Log entries
-      logEntries: []
+      logEntries: [],
+      
+      // Flag to indicate this is a valid game state
+      isValidGameState: true
     };
     
     // Get monster Scryfall link if available
@@ -596,7 +618,8 @@ function captureFullGameState() {
         
         gameState.minions.push({
           number: minionNumber,
-          health: healthText.textContent
+          health: healthText.textContent,
+          src: imgSrc
         });
       }
     });
@@ -610,10 +633,11 @@ function captureFullGameState() {
       });
     });
     
+    console.log("Captured full game state:", gameState);
     return gameState;
   } catch (error) {
-    console.error('Error capturing full game state:', error);
-    return {};
+    console.error("Error capturing game state:", error);
+    return { error: "Failed to capture game state", isValidGameState: false };
   }
 }
 
@@ -623,6 +647,7 @@ window.joinMultiplayerRoom = joinRoom;
 window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
+
 
 
 
