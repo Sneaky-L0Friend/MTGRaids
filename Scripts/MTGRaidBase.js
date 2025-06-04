@@ -603,8 +603,31 @@ function startGame(difficultyLevel, playerCount) {
   numberOfPlayersGlobal = parseInt(value);
   monsterHealth = numberOfPlayersGlobal * lifeMultiplier;
   monsterInfect = numberOfPlayersGlobal * 7;
-  updateMonsterHealth();
-  updateMonsterInfect();
+  
+  // Check if updateMonsterHealth is available
+  if (typeof window.updateMonsterHealth === 'function') {
+    window.updateMonsterHealth();
+  } else {
+    // Fallback if function not available yet
+    console.warn("updateMonsterHealth not available, updating UI directly");
+    const monsterHealthElement = document.getElementById("number");
+    if (monsterHealthElement) {
+      monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
+    }
+  }
+  
+  // Check if updateMonsterInfect is available
+  if (typeof window.updateMonsterInfect === 'function') {
+    window.updateMonsterInfect();
+  } else {
+    // Fallback if function not available yet
+    console.warn("updateMonsterInfect not available, updating UI directly");
+    const monsterInfectElement = document.getElementById("numberInfect");
+    if (monsterInfectElement) {
+      monsterInfectElement.innerText = `Infect: ${monsterInfect}`;
+    }
+  }
+  
   createPlayerHealthBoxes(numberOfPlayersGlobal);
 
   // Pick a monster and display color rectangle

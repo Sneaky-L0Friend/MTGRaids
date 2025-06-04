@@ -79,3 +79,10 @@ function changeMonNsterInfect(numberToChangeBy) {
   totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
   updateMonsterInfect();
 }
+
+// Make sure these functions are available globally
+window.updateMonsterHealth = updateMonsterHealth;
+window.increaseMonsterHealth = increaseMonsterHealth;
+window.decreaseMonsterHealth = decreaseMonsterHealth;
+window.updateMonsterInfect = updateMonsterInfect;
+window.changeMonsterInfect = changeMonsterInfect;
