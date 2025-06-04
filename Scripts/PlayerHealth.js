@@ -18,11 +18,6 @@ function increasePlayerHealth(playerNumber, amount) {
   if (typeof window.addLog === 'function') {
     window.addLog(`Player ${playerNumber} gained ${amount} health. New total: ${playerHealth[playerNumber]}`);
   }
-  
-  // Sync game state if multiplayer is enabled
-  if (typeof window.syncGameState === 'function') {
-    window.syncGameState(`Player ${playerNumber} health increased by ${amount}`);
-  }
 }
 
 function decreasePlayerHealth(playerNumber, amount) {
@@ -42,11 +37,6 @@ function decreasePlayerHealth(playerNumber, amount) {
   // Add log entry
   if (typeof window.addLog === 'function') {
     window.addLog(`Player ${playerNumber} lost ${amount} health. New total: ${playerHealth[playerNumber]}`);
-  }
-  
-  // Sync game state if multiplayer is enabled
-  if (typeof window.syncGameState === 'function') {
-    window.syncGameState(`Player ${playerNumber} health decreased by ${amount}`);
   }
 }
 
