@@ -1965,7 +1965,7 @@ function millUntilCardType(targetType, nonMatchingDestination) {
             openPopup(result.imageUrl);
             
             // Format: "FOUND TARGET CARD: [Type] - [CardName]. MILLED [count] CARDS."
-            addLog(`FOUND TARGET CARD: ${cardType} - ${result.cardName}. MILLED ${milledCount} CARDS.`, result.imageUrl);
+            addLog(`FOUND TARGET CARD: ${cardType} - ${result.cardName}. SEARCHED THROUGH ${milledCount} CARDS.`, result.imageUrl);
           }
           return { isTarget: true, result };
         })
