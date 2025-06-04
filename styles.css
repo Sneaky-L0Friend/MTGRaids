@@ -2255,7 +2255,7 @@ html, body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced monster action button styling */
+/* Enhanced monster action button styling with improved text readability */
 #monsterActionButton {
   position: relative;
   background-color: #4CAF50; /* Default color, will be overridden by JS */
@@ -2268,6 +2268,28 @@ html, body {
   transition: all 0.3s ease;
   border: 2px solid transparent;
   overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Stronger text shadow for all colors */
+  letter-spacing: 0.5px; /* Slightly increase letter spacing */
+}
+
+/* Add a semi-transparent overlay to improve text contrast */
+#monsterActionButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Subtle dark overlay for better contrast */
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+/* Position the text above the overlay */
+#monsterActionButton span {
+  position: relative;
+  z-index: 2;
 }
 
 /* Pulsing animation for the monster action button */

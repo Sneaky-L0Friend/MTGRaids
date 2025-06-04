@@ -454,6 +454,12 @@ function displayColorRectangle() {
     return null;
   }
   
+  // Wrap button text in span if not already wrapped
+  if (monsterActionButton && !monsterActionButton.querySelector('span')) {
+    const buttonText = monsterActionButton.textContent;
+    monsterActionButton.innerHTML = `<span>${buttonText}</span>`;
+  }
+  
   colorRectangle.style.display = "block";
   const pickedNumber = pickMonster();
   console.log(pickedNumber);
@@ -477,15 +483,9 @@ function displayColorRectangle() {
     if (monsterActionButton) {
       monsterActionButton.style.background = gradientStyle;
       
-      // Adjust text color for better contrast
-      const firstColor = colors[0].toLowerCase();
-      if (firstColor === "white" || firstColor === "green" || firstColor === "yellow") {
-        monsterActionButton.style.color = "#333";
-        monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
-      } else {
-        monsterActionButton.style.color = "white";
-        monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
-      }
+      // Always use white text with stronger shadow for better readability
+      monsterActionButton.style.color = "white";
+      monsterActionButton.style.textShadow = "0 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5)";
     }
   } else if (colorName) {
     // Handle single-color scenarios
@@ -495,14 +495,9 @@ function displayColorRectangle() {
     if (monsterActionButton) {
       monsterActionButton.style.background = colorName.toLowerCase();
       
-      // Adjust text color for better contrast
-      if (colorName.toLowerCase() === "white" || colorName.toLowerCase() === "green" || colorName.toLowerCase() === "yellow") {
-        monsterActionButton.style.color = "#333";
-        monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
-      } else {
-        monsterActionButton.style.color = "white";
-        monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
-      }
+      // Always use white text with stronger shadow for better readability
+      monsterActionButton.style.color = "white";
+      monsterActionButton.style.textShadow = "0 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5)";
     }
   } else {
     // Fallback if colorName is undefined
@@ -510,6 +505,7 @@ function displayColorRectangle() {
     if (monsterActionButton) {
       monsterActionButton.style.background = "gray";
       monsterActionButton.style.color = "white";
+      monsterActionButton.style.textShadow = "0 1px 3px rgba(0, 0, 0, 0.8)";
     }
     console.warn("Color not found for number:", pickedNumber);
   }
@@ -1517,6 +1513,12 @@ function loadGameState() {
       const colorRectangle = document.getElementById("colorRectangle");
       const monsterActionButton = document.getElementById("monsterActionButton");
       
+      // Wrap button text in span if not already wrapped
+      if (monsterActionButton && !monsterActionButton.querySelector('span')) {
+        const buttonText = monsterActionButton.textContent;
+        monsterActionButton.innerHTML = `<span>${buttonText}</span>`;
+      }
+      
       if (colorRectangle) {
         colorRectangle.style.display = "block";
         
@@ -1541,15 +1543,9 @@ function loadGameState() {
             if (monsterActionButton) {
               monsterActionButton.style.background = gradientStyle;
               
-              // Adjust text color for better contrast
-              const firstColor = colors[0].toLowerCase();
-              if (firstColor === "white" || firstColor === "green" || firstColor === "yellow") {
-                monsterActionButton.style.color = "#333";
-                monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
-              } else {
-                monsterActionButton.style.color = "white";
-                monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
-              }
+              // Always use white text with stronger shadow for better readability
+              monsterActionButton.style.color = "white";
+              monsterActionButton.style.textShadow = "0 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5)";
             }
           } else if (colorName) {
             colorRectangle.style.background = colorName.toLowerCase();
@@ -1558,14 +1554,9 @@ function loadGameState() {
             if (monsterActionButton) {
               monsterActionButton.style.background = colorName.toLowerCase();
               
-              // Adjust text color for better contrast
-              if (colorName.toLowerCase() === "white" || colorName.toLowerCase() === "green" || colorName.toLowerCase() === "yellow") {
-                monsterActionButton.style.color = "#333";
-                monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
-              } else {
-                monsterActionButton.style.color = "white";
-                monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
-              }
+              // Always use white text with stronger shadow for better readability
+              monsterActionButton.style.color = "white";
+              monsterActionButton.style.textShadow = "0 1px 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.5)";
             }
           }
         }
