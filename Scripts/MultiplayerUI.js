@@ -83,6 +83,12 @@ function finalizeMultiplayerGameStart(difficulty) {
     }
   });
   
+  // Hide the multiplayer container
+  const multiplayerContainers = document.querySelectorAll('.multiplayer-container');
+  multiplayerContainers.forEach(container => {
+    container.style.display = 'none';
+  });
+  
   // Start the game
   startGame(difficulty, playerCount);
   
@@ -142,5 +148,6 @@ window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
 window.closePlayerCountDialog = closePlayerCountDialog;
+
 
 

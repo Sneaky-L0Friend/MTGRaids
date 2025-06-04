@@ -530,6 +530,12 @@ function startGame(difficultyLevel, playerCount) {
     startingScreen.style.display = "none";
   }
   
+  // Hide the multiplayer container
+  const multiplayerContainers = document.querySelectorAll('.multiplayer-container');
+  multiplayerContainers.forEach(container => {
+    container.style.display = 'none';
+  });
+  
   // Hide the load game button from the bottom of the screen
   const loadGameButton = document.querySelector("button[onclick='loadGameState()']");
   if (loadGameButton && loadGameButton !== document.getElementById("homeLoadGameButton")) {
@@ -1298,6 +1304,12 @@ function loadGameState() {
     if (startingScreen) {
       startingScreen.style.display = "none";
     }
+    
+    // Hide the multiplayer container
+    const multiplayerContainers = document.querySelectorAll('.multiplayer-container');
+    multiplayerContainers.forEach(container => {
+      container.style.display = 'none';
+    });
     
     // Hide the load game button from the bottom of the screen
     const loadGameButton = document.querySelector("button[onclick='loadGameState()']");
