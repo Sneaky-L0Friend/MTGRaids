@@ -1,20 +1,52 @@
 let playerHealth = {};
 
-function increasePlayerHealth(player, amount) {
-  playerHealth[player] = playerHealth[player] + amount;
-  updatePlayerHealth(player);
-}
-
-function decreasePlayerHealth(player, amount) {
-  playerHealth[player] = playerHealth[player] - amount;
-  updatePlayerHealth(player);
-}
-
-function updatePlayerHealth(player) {
-  addLog("Player " + player + ", Health Changed to: " + playerHealth[player]);
-  const healthDisplay = document.getElementById(`player${player}HealthDisplay`);
+function increasePlayerHealth(playerNumber, amount) {
+  if (!playerHealth[playerNumber]) {
+    console.error(`Player ${playerNumber} health not initialized`);
+    return;
+  }
+  
+  playerHealth[playerNumber] += amount;
+  
+  // Update the display
+  const healthDisplay = document.getElementById(`player${playerNumber}HealthDisplay`);
   if (healthDisplay) {
-    healthDisplay.textContent = `Health: ${playerHealth[player]}`;
+    healthDisplay.textContent = `Health: ${playerHealth[playerNumber]}`;
+  }
+  
+  // Add log entry
+  if (typeof window.addLog === 'function') {
+    window.addLog(`Player ${playerNumber} gained ${amount} health. New total: ${playerHealth[playerNumber]}`);
+  }
+  
+  // Sync game state if multiplayer is enabled
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Player ${playerNumber} health increased by ${amount}`);
+  }
+}
+
+function decreasePlayerHealth(playerNumber, amount) {
+  if (!playerHealth[playerNumber]) {
+    console.error(`Player ${playerNumber} health not initialized`);
+    return;
+  }
+  
+  playerHealth[playerNumber] -= amount;
+  
+  // Update the display
+  const healthDisplay = document.getElementById(`player${playerNumber}HealthDisplay`);
+  if (healthDisplay) {
+    healthDisplay.textContent = `Health: ${playerHealth[playerNumber]}`;
+  }
+  
+  // Add log entry
+  if (typeof window.addLog === 'function') {
+    window.addLog(`Player ${playerNumber} lost ${amount} health. New total: ${playerHealth[playerNumber]}`);
+  }
+  
+  // Sync game state if multiplayer is enabled
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Player ${playerNumber} health decreased by ${amount}`);
   }
 }
 
@@ -78,6 +110,7 @@ function modifyPlayerHealthFromMonster(monsterDamage) {
     decreasePlayerHealth(i, monsterDamage);
   }
 }
+
 
 
 

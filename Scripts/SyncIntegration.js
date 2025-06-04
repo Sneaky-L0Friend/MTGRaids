@@ -5,6 +5,7 @@ const originalFunctions = {};
 
 // List of functions to wrap with sync
 const functionsToSync = [
+  // Monster state functions
   'updateMonsterHealth',
   'updateMonsterInfect',
   'updateMonsterHandSize',
@@ -12,10 +13,32 @@ const functionsToSync = [
   'millMonster',
   'drawMonster',
   'nextRound',
+  
+  // Player state functions
   'decreasePlayerHealth',
   'increasePlayerHealth',
   'decreasePlayerPoison',
-  'increasePlayerPoison'
+  'increasePlayerPoison',
+  
+  // Game state functions
+  'updateRound',
+  'increaseRound',
+  'decreaseRound',
+  'takeMonsterAction',
+  'revealTopCard',
+  
+  // Card management functions
+  'addCardToGraveyard',
+  'updateGraveyardTable',
+  
+  // UI update functions
+  'createPlayerHealthBoxes',
+  'modifyPlayerHealthFromMonster',
+  
+  // Game flow functions
+  'startGame',
+  'endGame',
+  'resetGame'
 ];
 
 // Wrap each function to add sync after execution
@@ -37,6 +60,9 @@ function wrapWithSync() {
         
         return result;
       };
+      console.log(`Wrapped function: ${funcName} with sync`);
+    } else {
+      console.warn(`Function ${funcName} not found for sync wrapping`);
     }
   });
   
@@ -55,6 +81,45 @@ function wrapWithSync() {
       
       return result;
     };
+    console.log("Wrapped addLog function with sync");
+  }
+  
+  // Special handling for saveGameState
+  if (typeof window.saveGameState === 'function') {
+    originalFunctions.saveGameState = window.saveGameState;
+    
+    window.saveGameState = function() {
+      // Call original function
+      const result = originalFunctions.saveGameState.call(this);
+      
+      // Sync game state
+      if (window.syncGameState) {
+        window.syncGameState("Game state saved");
+      }
+      
+      return result;
+    };
+    console.log("Wrapped saveGameState function with sync");
+  }
+  
+  // Special handling for loadGameState
+  if (typeof window.loadGameState === 'function') {
+    originalFunctions.loadGameState = window.loadGameState;
+    
+    window.loadGameState = function() {
+      // Call original function
+      const result = originalFunctions.loadGameState.call(this);
+      
+      // Sync game state after a short delay to allow loading to complete
+      if (window.syncGameState) {
+        setTimeout(() => {
+          window.syncGameState("Game state loaded");
+        }, 500);
+      }
+      
+      return result;
+    };
+    console.log("Wrapped loadGameState function with sync");
   }
 }
 
@@ -62,4 +127,11 @@ function wrapWithSync() {
 document.addEventListener('DOMContentLoaded', function() {
   // Wait a bit to ensure all game functions are loaded
   setTimeout(wrapWithSync, 1000);
+  console.log("SyncIntegration initialized");
 });
+
+// Add a function to manually wrap functions if they're loaded later
+window.initializeSyncIntegration = function() {
+  wrapWithSync();
+  console.log("SyncIntegration manually initialized");
+};

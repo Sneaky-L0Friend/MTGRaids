@@ -20,6 +20,11 @@ function updateMonsterHealth() {
   } else if (window.startedGame) {
     console.log(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`);
   }
+  
+  // Sync game state if multiplayer is enabled
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Monster health updated to ${monsterHealth}`);
+  }
 }
 
 function increaseMonsterHealth(numberToIncreaseBy) {
@@ -51,13 +56,19 @@ function updateMonsterInfect() {
   } else if (window.startedGame) {
     console.log(`TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
   }
+  
+  // Sync game state if multiplayer is enabled
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Monster infect updated to ${monsterInfect}`);
+  }
 }
 
 function changeMonsterInfect(numberToChangeBy) {
   monsterInfect = monsterInfect + numberToChangeBy;
-  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy; // Fixed: was using totalRoundLifeChange
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
   updateMonsterInfect();
 }
+
 
 
 

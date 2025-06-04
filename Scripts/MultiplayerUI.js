@@ -146,6 +146,57 @@ function closePlayerCountDialog() {
   }
 }
 
+// Add a function to create the multiplayer controls
+function createMultiplayerControls(roomCode, isHost) {
+  const multiplayerControls = document.getElementById('multiplayerControls');
+  if (!multiplayerControls) return;
+  
+  // Clear existing controls
+  multiplayerControls.innerHTML = '';
+  
+  // Create sync button
+  const syncButton = document.createElement('button');
+  syncButton.id = 'syncButton';
+  syncButton.className = 'display-box';
+  syncButton.style.backgroundColor = '#2a5d8a';
+  syncButton.textContent = 'Sync from Host';
+  syncButton.onclick = window.forceSyncFromHost;
+  multiplayerControls.appendChild(syncButton);
+  
+  // Create force full sync button
+  const fullSyncButton = document.createElement('button');
+  fullSyncButton.id = 'fullSyncButton';
+  fullSyncButton.className = 'display-box';
+  fullSyncButton.style.backgroundColor = '#2a8a2a';
+  fullSyncButton.style.marginTop = '5px';
+  fullSyncButton.textContent = 'Force Full Sync';
+  fullSyncButton.onclick = window.forceFullSync;
+  multiplayerControls.appendChild(fullSyncButton);
+  
+  // Create room code display
+  const roomCodeDisplay = document.createElement('div');
+  roomCodeDisplay.id = 'roomCodeDisplay';
+  roomCodeDisplay.style.marginTop = '5px';
+  roomCodeDisplay.style.fontWeight = 'bold';
+  roomCodeDisplay.textContent = `Room Code: ${roomCode}`;
+  multiplayerControls.appendChild(roomCodeDisplay);
+  
+  // Show the controls
+  multiplayerControls.style.display = 'block';
+}
+
+// Update the room joined function to use the new controls
+function roomJoined(roomCode, isHost) {
+  // Show success message
+  showMessage(`Successfully ${isHost ? 'created' : 'joined'} room: ${roomCode}`);
+  
+  // Create multiplayer controls
+  createMultiplayerControls(roomCode, isHost);
+  
+  // Close any open dialogs
+  closeMultiplayerDialog();
+}
+
 // Make functions globally available
 window.showCreateRoomDialog = showCreateRoomDialog;
 window.closeCreateRoomDialog = closeCreateRoomDialog;
@@ -158,6 +209,9 @@ window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
 window.closePlayerCountDialog = closePlayerCountDialog;
+window.createMultiplayerControls = createMultiplayerControls;
+window.roomJoined = roomJoined;
+
 
 
 
