@@ -205,7 +205,10 @@
         <th>Count</th>
       </tr>
     </table>
-    
+        <!-- Add shortcuts button here -->
+    <button id="shortcutsButton" class="display-box" style="background-color: #8a2a5d; color: white; border: none; border-radius: 5px; cursor: pointer; padding: 10px 15px; font-weight: bold; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); width: 100%;">
+      Keyboard Shortcuts
+    </button>
     <button id="refreshButton" style="width: 100%;" onclick="window.refreshPage()">Restart</button>
     <button id="clearSavedGameButton" style="background-color: #d32f2f; color: white; border: none; border-radius: 5px; cursor: pointer; padding: 10px 15px; font-weight: bold; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); width: 100%;" onclick="clearSavedGameState()">
       Clear Saved Game
@@ -395,12 +398,6 @@
   </script>
 
   <!-- Add Keyboard Shortcuts popup -->
-  <div id="shortcutsButtonContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 100;">
-    <button id="shortcutsButton" class="display-box" style="background-color: #8a2a5d; padding: 8px 15px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-      Keyboard Shortcuts
-    </button>
-  </div>
-
   <div id="shortcutsPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); max-width: 80%; max-height: 80%; overflow-y: auto; z-index: 10002;">
     <h2 style="margin-top: 0; color: #4CAF50;">Keyboard Shortcuts</h2>
     <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
@@ -491,9 +488,9 @@
         }
       });
       
-      function updateThemeToggleText(theme) {
-        themeToggleBtn.innerHTML = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
-      }
+      // function updateThemeToggleText(theme) {
+      //   themeToggleBtn.innerHTML = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+      // }
     });
   </script>
 
