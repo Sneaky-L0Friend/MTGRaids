@@ -509,6 +509,11 @@ function updateMonsterLandCountByAmount(amount) {
       container.style.display = "block";
     }
   });
+  
+  // Explicitly sync the land count change
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Monster land count updated to ${currentMonsterLands}`);
+  }
 }
 
 function startGame(difficultyLevel, playerCount) {
@@ -797,6 +802,11 @@ function millMonster() {
     
     if (millButton) millButton.disabled = false;
     hideLoadingSpinner();
+    
+    // Explicitly sync after milling
+    if (typeof window.syncGameState === 'function') {
+      window.syncGameState("Milled revealed card: " + cardMilled);
+    }
   } else {
     // Pick a new random card type
     cardMilled = pickRandomCardType(true);
@@ -838,6 +848,11 @@ function millMonster() {
         updateGraveyardTable();
         if (millButton) millButton.disabled = false;
         hideLoadingSpinner();
+        
+        // Explicitly sync after milling
+        if (typeof window.syncGameState === 'function') {
+          window.syncGameState("Milled random card: " + cardMilled);
+        }
       })
       .catch(error => {
         console.error("Error fetching card:", error);
@@ -848,6 +863,11 @@ function millMonster() {
         updateGraveyardTable();
         if (millButton) millButton.disabled = false;
         hideLoadingSpinner();
+        
+        // Sync even on error
+        if (typeof window.syncGameState === 'function') {
+          window.syncGameState("Milled card (image failed): " + cardMilled);
+        }
       });
   }
 }

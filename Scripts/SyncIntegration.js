@@ -38,7 +38,13 @@ const functionsToSync = [
   // Game flow functions
   'startGame',
   'endGame',
-  'resetGame'
+  'resetGame',
+  
+  // Additional functions to ensure complete sync
+  'updateMonsterLandCountByAmount',
+  'changeMonsterInfect',
+  'increaseMonsterHealth',
+  'decreaseMonsterHealth'
 ];
 
 // Wrap each function to add sync after execution
@@ -53,9 +59,20 @@ function wrapWithSync() {
         // Call original function
         const result = originalFunctions[funcName].apply(this, args);
         
-        // Sync game state
+        // Sync game state with descriptive action
         if (window.syncGameState) {
-          window.syncGameState(`${funcName}(${args.join(', ')})`);
+          let actionDescription = `${funcName}`;
+          
+          // Add more context for specific functions
+          if (funcName === 'updateMonsterLandCountByAmount' && args.length > 0) {
+            actionDescription = `Land count changed by ${args[0]}`;
+          } else if (funcName === 'increaseMonsterHealth' || funcName === 'decreaseMonsterHealth') {
+            actionDescription = `Monster health ${funcName.includes('increase') ? 'increased' : 'decreased'} by ${args[0]}`;
+          } else if (args.length > 0) {
+            actionDescription += `(${args.join(', ')})`;
+          }
+          
+          window.syncGameState(actionDescription);
         }
         
         return result;
@@ -83,44 +100,6 @@ function wrapWithSync() {
     };
     console.log("Wrapped addLog function with sync");
   }
-  
-  // Special handling for saveGameState
-  if (typeof window.saveGameState === 'function') {
-    originalFunctions.saveGameState = window.saveGameState;
-    
-    window.saveGameState = function() {
-      // Call original function
-      const result = originalFunctions.saveGameState.call(this);
-      
-      // Sync game state
-      if (window.syncGameState) {
-        window.syncGameState("Game state saved");
-      }
-      
-      return result;
-    };
-    console.log("Wrapped saveGameState function with sync");
-  }
-  
-  // Special handling for loadGameState
-  if (typeof window.loadGameState === 'function') {
-    originalFunctions.loadGameState = window.loadGameState;
-    
-    window.loadGameState = function() {
-      // Call original function
-      const result = originalFunctions.loadGameState.call(this);
-      
-      // Sync game state after a short delay to allow loading to complete
-      if (window.syncGameState) {
-        setTimeout(() => {
-          window.syncGameState("Game state loaded");
-        }, 500);
-      }
-      
-      return result;
-    };
-    console.log("Wrapped loadGameState function with sync");
-  }
 }
 
 // Initialize sync integration when document is ready
@@ -135,3 +114,4 @@ window.initializeSyncIntegration = function() {
   wrapWithSync();
   console.log("SyncIntegration manually initialized");
 };
+

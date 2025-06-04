@@ -285,18 +285,42 @@ function syncGameState(actionDescription) {
   // Capture the current state
   const currentState = captureGameState();
   
-  // If we have a previous state, only send the changes
+  // If we have a previous state, check for changes
   if (lastSyncedState) {
     const changedData = {};
     let hasChanges = false;
     
     // Compare current state with last synced state
     for (const key in currentState) {
-      // Skip complex objects that need special handling
-      if (key === 'graveyard' || key === 'milledCardImages' || key === 'logEntries') continue;
-      
+      // Handle complex objects specially
+      if (key === 'graveyard') {
+        // For graveyard, check if any card counts changed
+        if (!lastSyncedState[key] || JSON.stringify(currentState[key]) !== JSON.stringify(lastSyncedState[key])) {
+          changedData[key] = currentState[key];
+          hasChanges = true;
+        }
+      } 
+      else if (key === 'milledCardImages') {
+        // For milledCardImages, check if length changed (new cards were milled)
+        if (!lastSyncedState[key] || 
+            currentState[key].length !== lastSyncedState[key].length) {
+          changedData[key] = currentState[key];
+          hasChanges = true;
+        }
+      }
+      else if (key === 'logEntries') {
+        // For logEntries, check if new entries were added
+        if (!lastSyncedState[key] || 
+            currentState[key].length !== lastSyncedState[key].length) {
+          // Only send the new log entries
+          changedData[key] = currentState[key].slice(lastSyncedState[key] ? lastSyncedState[key].length : 0);
+          if (changedData[key].length > 0) {
+            hasChanges = true;
+          }
+        }
+      }
       // For arrays (like playerHealths), compare each element
-      if (Array.isArray(currentState[key])) {
+      else if (Array.isArray(currentState[key])) {
         if (!Array.isArray(lastSyncedState[key]) || 
             currentState[key].length !== lastSyncedState[key].length ||
             currentState[key].some((val, idx) => val !== lastSyncedState[key][idx])) {
@@ -311,13 +335,46 @@ function syncGameState(actionDescription) {
       }
     }
     
-    // Always include these important fields for context
+    // Always include these critical fields
     changedData.isValidGameState = true;
     changedData.timestamp = new Date().toISOString();
     
-    // Only send if there are actual changes
-    if (hasChanges) {
-      console.log("Syncing changed data:", changedData);
+    // Add important game state values that might be needed for context
+    changedData.cardsInMonsterDeck = currentState.cardsInMonsterDeck;
+    changedData.cardsInMonsterGraveyard = currentState.cardsInMonsterGraveyard;
+    
+    // For land changes, always include the current land count
+    if (actionDescription.includes("land") || actionDescription.includes("Land")) {
+      changedData.monsterLandCount = currentState.monsterLandCount;
+      hasChanges = true;
+    }
+    
+    // For health changes, always include the current health
+    if (actionDescription.includes("health") || actionDescription.includes("Health")) {
+      changedData.monsterHealth = currentState.monsterHealth;
+      hasChanges = true;
+    }
+    
+    // For infect changes, always include the current infect count
+    if (actionDescription.includes("infect") || actionDescription.includes("Infect")) {
+      changedData.monsterInfect = currentState.monsterInfect;
+      hasChanges = true;
+    }
+    
+    // For round changes, always include the current round
+    if (actionDescription.includes("round") || actionDescription.includes("Round") || 
+        actionDescription.includes("turn") || actionDescription.includes("Turn")) {
+      changedData.currentRound = currentState.currentRound;
+      hasChanges = true;
+    }
+    
+    // Only send if there are actual changes or critical game state updates
+    if (hasChanges || 
+        actionDescription.includes("Mill") || 
+        actionDescription.includes("Reveal") ||
+        actionDescription.includes("Draw") ||
+        actionDescription.includes("Action")) {
+      console.log("Syncing data after action:", actionDescription);
       socket.send(JSON.stringify({
         type: 'game_update',
         gameState: changedData,
@@ -925,6 +982,10 @@ window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
 window.forceFullSync = forceFullSync;
+
+
+
+
 
 
 

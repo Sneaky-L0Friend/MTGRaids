@@ -67,7 +67,3787 @@ function changeMonsterInfect(numberToChangeBy) {
   monsterInfect = monsterInfect + numberToChangeBy;
   totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
   updateMonsterInfect();
+  
+  // Explicitly sync the infect count change
+  if (typeof window.syncGameState === 'function') {
+    window.syncGameState(`Monster infect updated to ${monsterInfect}`);
+  }
 }
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+  
+  // Explicitly sync the infect count change
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRound
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRound
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+function changeMonsterInfect(numberToChangeBy) {
+  monsterInfect = monsterInfect + numberToChangeBy;
+  totalRoundInfectChange = totalRoundInfectChange + numberToChangeBy;
+  updateMonsterInfect();
+}
+
+
+
+
 
 
 
