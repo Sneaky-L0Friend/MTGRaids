@@ -60,6 +60,33 @@ function handleServerMessage(data) {
       if (data.gameState) {
         applyGameState(data.gameState);
       }
+      
+      // Hide the starting screen
+      const startingScreen = document.querySelector(".starting-screen");
+      if (startingScreen) {
+        startingScreen.style.display = "none";
+      }
+      
+      // Hide the multiplayer container
+      const multiplayerContainers = document.querySelectorAll('.multiplayer-container');
+      multiplayerContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+      
+      // Show the top section container
+      const topSectionContainer = document.querySelector(".top-section-container");
+      if (topSectionContainer) {
+        topSectionContainer.style.display = "flex";
+      }
+      
+      // Show dice log
+      const diceLog = document.getElementById("diceLog");
+      if (diceLog) {
+        diceLog.style.display = "block";
+      }
+      
+      // Set game started flag
+      window.startedGame = true;
       break;
       
     case 'client_joined':
@@ -319,3 +346,5 @@ window.createMultiplayerRoom = createRoom;
 window.joinMultiplayerRoom = joinRoom;
 window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
+
+
