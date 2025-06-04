@@ -447,6 +447,8 @@ function setDifficultyAtStart(difficultyLevel) {
 
 function displayColorRectangle() {
   const colorRectangle = document.getElementById("colorRectangle");
+  const monsterActionButton = document.getElementById("monsterActionButton");
+  
   if (!colorRectangle) {
     console.error("Color rectangle element not found!");
     return null;
@@ -458,6 +460,8 @@ function displayColorRectangle() {
   // Set the background color of the rectangle based on the chosen number
   const colorName = colorMap[pickedNumber];
   console.log(colorName);
+  
+  // Set the background for both the color rectangle and the monster action button
   if (colorName && colorName.includes("-")) {
     const colors = colorName.split("-");
     const widthPercentage = 100 / colors.length;
@@ -465,13 +469,48 @@ function displayColorRectangle() {
       (color, index) =>
         `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`,
     );
-    colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+    const gradientStyle = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+    
+    colorRectangle.style.background = gradientStyle;
+    
+    // Apply the same gradient to the monster action button
+    if (monsterActionButton) {
+      monsterActionButton.style.background = gradientStyle;
+      
+      // Adjust text color for better contrast
+      const firstColor = colors[0].toLowerCase();
+      if (firstColor === "white" || firstColor === "green" || firstColor === "yellow") {
+        monsterActionButton.style.color = "#333";
+        monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
+      } else {
+        monsterActionButton.style.color = "white";
+        monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
+      }
+    }
   } else if (colorName) {
     // Handle single-color scenarios
     colorRectangle.style.background = colorName.toLowerCase();
+    
+    // Apply the same color to the monster action button
+    if (monsterActionButton) {
+      monsterActionButton.style.background = colorName.toLowerCase();
+      
+      // Adjust text color for better contrast
+      if (colorName.toLowerCase() === "white" || colorName.toLowerCase() === "green" || colorName.toLowerCase() === "yellow") {
+        monsterActionButton.style.color = "#333";
+        monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
+      } else {
+        monsterActionButton.style.color = "white";
+        monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
+      }
+    }
   } else {
     // Fallback if colorName is undefined
     colorRectangle.style.background = "gray";
+    if (monsterActionButton) {
+      monsterActionButton.style.background = "gray";
+      monsterActionButton.style.color = "white";
+    }
     console.warn("Color not found for number:", pickedNumber);
   }
   
@@ -1476,6 +1515,8 @@ function loadGameState() {
       
       // Display color rectangle
       const colorRectangle = document.getElementById("colorRectangle");
+      const monsterActionButton = document.getElementById("monsterActionButton");
+      
       if (colorRectangle) {
         colorRectangle.style.display = "block";
         
@@ -1492,9 +1533,40 @@ function loadGameState() {
               (color, index) =>
                 `${color.toLowerCase()} ${widthPercentage * index}% ${widthPercentage * (index + 1)}%`,
             );
-            colorRectangle.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+            const gradientStyle = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+            
+            colorRectangle.style.background = gradientStyle;
+            
+            // Apply the same gradient to the monster action button
+            if (monsterActionButton) {
+              monsterActionButton.style.background = gradientStyle;
+              
+              // Adjust text color for better contrast
+              const firstColor = colors[0].toLowerCase();
+              if (firstColor === "white" || firstColor === "green" || firstColor === "yellow") {
+                monsterActionButton.style.color = "#333";
+                monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
+              } else {
+                monsterActionButton.style.color = "white";
+                monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
+              }
+            }
           } else if (colorName) {
             colorRectangle.style.background = colorName.toLowerCase();
+            
+            // Apply the same color to the monster action button
+            if (monsterActionButton) {
+              monsterActionButton.style.background = colorName.toLowerCase();
+              
+              // Adjust text color for better contrast
+              if (colorName.toLowerCase() === "white" || colorName.toLowerCase() === "green" || colorName.toLowerCase() === "yellow") {
+                monsterActionButton.style.color = "#333";
+                monsterActionButton.style.textShadow = "0 1px 1px rgba(255,255,255,0.5)";
+              } else {
+                monsterActionButton.style.color = "white";
+                monsterActionButton.style.textShadow = "0 1px 2px rgba(0,0,0,0.5)";
+              }
+            }
           }
         }
       }
