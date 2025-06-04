@@ -191,6 +191,7 @@ button:active,
 .player-name input {
   width: 100%;
   text-align: center;
+  margin-bottom: 10px;
   padding: 8px;
   background-color: #444;
   color: white;
