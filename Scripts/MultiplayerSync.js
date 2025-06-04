@@ -282,26 +282,22 @@ function syncGameState(actionDescription) {
   // Force refresh the current state before capturing
   ensureGameInitialized();
   
-  // Capture the current state with the latest values
-  const currentState = captureGameState();
+  // Capture the FULL current state with the latest values
+  const currentState = captureFullGameState();
   
   // Log the current monster health for debugging
   console.log("Current monster health before sync:", window.monsterHealth);
   console.log("Monster health in state to sync:", currentState.monsterHealth);
   
-  // Only send if state has changed
-  if (JSON.stringify(currentState) !== JSON.stringify(lastSyncedState)) {
-    socket.send(JSON.stringify({
-      type: 'game_update',
-      gameState: currentState,
-      action: actionDescription
-    }));
-    
-    lastSyncedState = JSON.parse(JSON.stringify(currentState)); // Deep copy
-    console.log("Game state synced with action:", actionDescription);
-  } else {
-    console.log("No changes detected, skipping sync");
-  }
+  // Send the full state with every action
+  socket.send(JSON.stringify({
+    type: 'game_update',
+    gameState: currentState,
+    action: actionDescription
+  }));
+  
+  lastSyncedState = JSON.parse(JSON.stringify(currentState)); // Deep copy
+  console.log("Full game state synced with action:", actionDescription);
 }
 
 // Capture current game state for initial room creation
@@ -886,6 +882,7 @@ window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
 window.forceFullSync = forceFullSync;
+
 
 
 
