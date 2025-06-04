@@ -75,6 +75,14 @@ function finalizeMultiplayerGameStart(difficulty) {
     modalToRemove.remove();
   }
   
+  // Also remove any other modals that might be open
+  const allModals = document.querySelectorAll('.modal');
+  allModals.forEach(modal => {
+    if (modal.style.display === 'block') {
+      modal.style.display = 'none';
+    }
+  });
+  
   // Start the game
   startGame(difficulty, playerCount);
   
@@ -134,4 +142,5 @@ window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
 window.closePlayerCountDialog = closePlayerCountDialog;
+
 
