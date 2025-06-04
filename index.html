@@ -79,6 +79,14 @@
               Load Saved Game
             </button>
           </div>
+          <div class="multiplayer-container">
+            <button id="createRoomBtn" class="display-box" style="background-color: #2a5d8a; margin-top: 10px;" onclick="showCreateRoomDialog()">
+              Create Multiplayer Room
+            </button>
+            <button id="joinRoomBtn" class="display-box" style="background-color: #2a5d8a; margin-top: 10px;" onclick="showJoinRoomDialog()">
+              Join Multiplayer Room
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -390,5 +398,55 @@
       }
     });
   </script>
+  <div id="createRoomDialog" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;">
+    <div class="modal-content" style="background-color: white; margin: 15% auto; padding: 20px; width: 80%; max-width: 500px; border-radius: 5px;">
+      <h3>Create Multiplayer Room</h3>
+      <p>Start a new game to create a room that others can join.</p>
+      <div class="button-container" style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <button onclick="closeCreateRoomDialog()">Cancel</button>
+        <button onclick="startMultiplayerGame()">Start New Game</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="joinRoomDialog" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;">
+    <div class="modal-content" style="background-color: white; margin: 15% auto; padding: 20px; width: 80%; max-width: 500px; border-radius: 5px;">
+      <h3>Join Multiplayer Room</h3>
+      <p>Enter the room code to join:</p>
+      <input type="text" id="roomCodeInput" placeholder="Enter 6-digit code"
+    </div>
+  </div>
+  <script src="Scripts/MultiplayerSync.js"></script>
+  <script src="Scripts/MultiplayerUI.js"></script>
+  <script src="Scripts/SyncIntegration.js"></script>
+  <div class="multiplayer-container" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+    <button id="createRoomBtn" style="padding: 10px 15px; background-color: #2a5d8a; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="showCreateRoomDialog()">
+      Create Multiplayer Room
+    </button>
+    <button id="joinRoomBtn" style="padding: 10px 15px; background-color: #2a5d8a; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="showJoinRoomDialog()">
+      Join Multiplayer Room
+    </button>
+  </div>
+  <div id="createRoomDialog" class="modal">
+    <div class="modal-content">
+      <h3>Create Multiplayer Room</h3>
+      <p>Start a new game to create a room that others can join.</p>
+      <div class="button-container">
+        <button onclick="closeCreateRoomDialog()">Cancel</button>
+        <button onclick="startMultiplayerGame()">Start New Game</button>
+      </div>
+    </div>
+  </div>
+  <div id="joinRoomDialog" class="modal">
+    <div class="modal-content">
+      <h3>Join Multiplayer Room</h3>
+      <p>Enter the room code to join:</p>
+      <input type="text" id="roomCodeInput" placeholder="Enter 6-digit code" maxlength="6" style="text-transform: uppercase;">
+      <div class="button-container">
+        <button onclick="closeJoinRoomDialog()">Cancel</button>
+        <button onclick="joinExistingRoom()">Join Room</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
