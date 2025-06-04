@@ -56,7 +56,8 @@ function wrapWithSync() {
       
       // Replace with wrapped version
       window[funcName] = function(...args) {
-        // Call original function
+        // Call original function directly from our stored reference
+        // This prevents the infinite recursion
         const result = originalFunctions[funcName].apply(this, args);
         
         // Sync game state with descriptive action
@@ -72,7 +73,10 @@ function wrapWithSync() {
             actionDescription += `(${args.join(', ')})`;
           }
           
-          window.syncGameState(actionDescription);
+          // Use setTimeout to break the potential call stack
+          setTimeout(() => {
+            window.syncGameState(actionDescription);
+          }, 0);
         }
         
         return result;
@@ -93,7 +97,10 @@ function wrapWithSync() {
       
       // Sync game state
       if (window.syncGameState) {
-        window.syncGameState(`Log: ${text.substring(0, 30)}${text.length > 30 ? '...' : ''}`);
+        // Use setTimeout to break the potential call stack
+        setTimeout(() => {
+          window.syncGameState(`Log: ${text.substring(0, 30)}${text.length > 30 ? '...' : ''}`);
+        }, 0);
       }
       
       return result;
@@ -114,4 +121,7 @@ window.initializeSyncIntegration = function() {
   wrapWithSync();
   console.log("SyncIntegration manually initialized");
 };
+
+
+
 

@@ -275,126 +275,146 @@ function joinRoom(code) {
   }
 }
 
+// Flag to prevent recursive sync calls
+let isSyncing = false;
+
 // Sync game state after an action
 function syncGameState(actionDescription) {
+  // Prevent recursive calls
+  if (isSyncing) {
+    console.log("Already syncing, skipping recursive call");
+    return;
+  }
+  
+  // Check if sync is enabled and socket is connected
   if (!syncEnabled || !socket || socket.readyState !== WebSocket.OPEN) return;
   
-  // Force refresh the current state before capturing
-  ensureGameInitialized();
-  
-  // Capture the current state
-  const currentState = captureGameState();
-  
-  // If we have a previous state, check for changes
-  if (lastSyncedState) {
-    const changedData = {};
-    let hasChanges = false;
+  try {
+    // Set syncing flag
+    isSyncing = true;
     
-    // Compare current state with last synced state
-    for (const key in currentState) {
-      // Handle complex objects specially
-      if (key === 'graveyard') {
-        // For graveyard, check if any card counts changed
-        if (!lastSyncedState[key] || JSON.stringify(currentState[key]) !== JSON.stringify(lastSyncedState[key])) {
-          changedData[key] = currentState[key];
-          hasChanges = true;
-        }
-      } 
-      else if (key === 'milledCardImages') {
-        // For milledCardImages, check if length changed (new cards were milled)
-        if (!lastSyncedState[key] || 
-            currentState[key].length !== lastSyncedState[key].length) {
-          changedData[key] = currentState[key];
-          hasChanges = true;
-        }
-      }
-      else if (key === 'logEntries') {
-        // For logEntries, check if new entries were added
-        if (!lastSyncedState[key] || 
-            currentState[key].length !== lastSyncedState[key].length) {
-          // Only send the new log entries
-          changedData[key] = currentState[key].slice(lastSyncedState[key] ? lastSyncedState[key].length : 0);
-          if (changedData[key].length > 0) {
+    // Force refresh the current state before capturing
+    ensureGameInitialized();
+    
+    // Capture the current state
+    const currentState = captureGameState();
+    
+    // If we have a previous state, check for changes
+    if (lastSyncedState) {
+      const changedData = {};
+      let hasChanges = false;
+      
+      // Compare current state with last synced state
+      for (const key in currentState) {
+        // Handle complex objects specially
+        if (key === 'graveyard') {
+          // For graveyard, check if any card counts changed
+          if (!lastSyncedState[key] || JSON.stringify(currentState[key]) !== JSON.stringify(lastSyncedState[key])) {
+            changedData[key] = currentState[key];
+            hasChanges = true;
+          }
+        } 
+        else if (key === 'milledCardImages') {
+          // For milledCardImages, check if length changed (new cards were milled)
+          if (!lastSyncedState[key] || 
+              currentState[key].length !== lastSyncedState[key].length) {
+            changedData[key] = currentState[key];
             hasChanges = true;
           }
         }
-      }
-      // For arrays (like playerHealths), compare each element
-      else if (Array.isArray(currentState[key])) {
-        if (!Array.isArray(lastSyncedState[key]) || 
-            currentState[key].length !== lastSyncedState[key].length ||
-            currentState[key].some((val, idx) => val !== lastSyncedState[key][idx])) {
+        else if (key === 'logEntries') {
+          // For logEntries, check if new entries were added
+          if (!lastSyncedState[key] || 
+              currentState[key].length !== lastSyncedState[key].length) {
+            // Only send the new log entries
+            changedData[key] = currentState[key].slice(lastSyncedState[key] ? lastSyncedState[key].length : 0);
+            if (changedData[key].length > 0) {
+              hasChanges = true;
+            }
+          }
+        }
+        // For arrays (like playerHealths), compare each element
+        else if (Array.isArray(currentState[key])) {
+          if (!Array.isArray(lastSyncedState[key]) || 
+              currentState[key].length !== lastSyncedState[key].length ||
+              currentState[key].some((val, idx) => val !== lastSyncedState[key][idx])) {
+            changedData[key] = currentState[key];
+            hasChanges = true;
+          }
+        } 
+        // For simple values, direct comparison
+        else if (currentState[key] !== lastSyncedState[key]) {
           changedData[key] = currentState[key];
           hasChanges = true;
         }
-      } 
-      // For simple values, direct comparison
-      else if (currentState[key] !== lastSyncedState[key]) {
-        changedData[key] = currentState[key];
+      }
+      
+      // Always include these critical fields
+      changedData.isValidGameState = true;
+      changedData.timestamp = new Date().toISOString();
+      
+      // Add important game state values that might be needed for context
+      changedData.cardsInMonsterDeck = currentState.cardsInMonsterDeck;
+      changedData.cardsInMonsterGraveyard = currentState.cardsInMonsterGraveyard;
+      
+      // For land changes, always include the current land count
+      if (actionDescription.includes("land") || actionDescription.includes("Land")) {
+        changedData.monsterLandCount = currentState.monsterLandCount;
         hasChanges = true;
       }
-    }
-    
-    // Always include these critical fields
-    changedData.isValidGameState = true;
-    changedData.timestamp = new Date().toISOString();
-    
-    // Add important game state values that might be needed for context
-    changedData.cardsInMonsterDeck = currentState.cardsInMonsterDeck;
-    changedData.cardsInMonsterGraveyard = currentState.cardsInMonsterGraveyard;
-    
-    // For land changes, always include the current land count
-    if (actionDescription.includes("land") || actionDescription.includes("Land")) {
-      changedData.monsterLandCount = currentState.monsterLandCount;
-      hasChanges = true;
-    }
-    
-    // For health changes, always include the current health
-    if (actionDescription.includes("health") || actionDescription.includes("Health")) {
-      changedData.monsterHealth = currentState.monsterHealth;
-      hasChanges = true;
-    }
-    
-    // For infect changes, always include the current infect count
-    if (actionDescription.includes("infect") || actionDescription.includes("Infect")) {
-      changedData.monsterInfect = currentState.monsterInfect;
-      hasChanges = true;
-    }
-    
-    // For round changes, always include the current round
-    if (actionDescription.includes("round") || actionDescription.includes("Round") || 
-        actionDescription.includes("turn") || actionDescription.includes("Turn")) {
-      changedData.currentRound = currentState.currentRound;
-      hasChanges = true;
-    }
-    
-    // Only send if there are actual changes or critical game state updates
-    if (hasChanges || 
-        actionDescription.includes("Mill") || 
-        actionDescription.includes("Reveal") ||
-        actionDescription.includes("Draw") ||
-        actionDescription.includes("Action")) {
-      console.log("Syncing data after action:", actionDescription);
+      
+      // For health changes, always include the current health
+      if (actionDescription.includes("health") || actionDescription.includes("Health")) {
+        changedData.monsterHealth = currentState.monsterHealth;
+        hasChanges = true;
+      }
+      
+      // For infect changes, always include the current infect count
+      if (actionDescription.includes("infect") || actionDescription.includes("Infect")) {
+        changedData.monsterInfect = currentState.monsterInfect;
+        hasChanges = true;
+      }
+      
+      // For round changes, always include the current round
+      if (actionDescription.includes("round") || actionDescription.includes("Round") || 
+          actionDescription.includes("turn") || actionDescription.includes("Turn")) {
+        changedData.currentRound = currentState.currentRound;
+        hasChanges = true;
+      }
+      
+      // Only send if there are actual changes or critical game state updates
+      if (hasChanges || 
+          actionDescription.includes("Mill") || 
+          actionDescription.includes("Reveal") ||
+          actionDescription.includes("Draw") ||
+          actionDescription.includes("Action")) {
+        console.log("Syncing data after action:", actionDescription);
+        socket.send(JSON.stringify({
+          type: 'game_update',
+          gameState: changedData,
+          action: actionDescription
+        }));
+      } else {
+        console.log("No changes to sync");
+      }
+    } else {
+      // First sync - send full state
+      console.log("First sync - sending full state");
       socket.send(JSON.stringify({
         type: 'game_update',
-        gameState: changedData,
+        gameState: currentState,
         action: actionDescription
       }));
-    } else {
-      console.log("No changes to sync");
     }
-  } else {
-    // First sync - send full state
-    console.log("First sync - sending full state");
-    socket.send(JSON.stringify({
-      type: 'game_update',
-      gameState: currentState,
-      action: actionDescription
-    }));
+    
+    // Store current state for next comparison
+    lastSyncedState = JSON.parse(JSON.stringify(currentState)); // Deep copy
+  } catch (error) {
+    console.error("Error during sync:", error);
+  } finally {
+    // Reset syncing flag
+    isSyncing = false;
   }
-  
-  // Store current state for next comparison
-  lastSyncedState = JSON.parse(JSON.stringify(currentState)); // Deep copy
 }
 
 // Capture current game state for initial room creation
@@ -982,6 +1002,8 @@ window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
 window.forceFullSync = forceFullSync;
+
+
 
 
 

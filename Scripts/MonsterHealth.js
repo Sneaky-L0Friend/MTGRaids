@@ -1,65 +1,93 @@
 let monsterHealth = 0;
 let monsterInfect = 0;
-let totalRoundLifeChange = 0;
+let totalRoundHealthChange = 0;
 let totalRoundInfectChange = 0;
 
+// Flag to prevent recursive sync calls
+let isUpdatingMonsterHealth = false;
+let isUpdatingMonsterInfect = false;
+
 function updateMonsterHealth() {
-  const monsterHealthElement = document.getElementById("number");
-  if (!monsterHealthElement) {
-    console.error("Monster health element not found!");
-    return;
-  }
+  // Prevent recursive calls
+  if (isUpdatingMonsterHealth) return;
   
-  monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
-  
-  // Check if addLog is defined before calling it
-  if (window.startedGame && typeof window.addLog === 'function') {
-    window.addLog(
-      `TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`,
-    );
-  } else if (window.startedGame) {
-    console.log(`TOTAL MONSTER HP CHANGED THIS ROUND: ${totalRoundLifeChange > 0 ? "+" : ""}${totalRoundLifeChange} TO ${monsterHealth}`);
-  }
-  
-  // Sync game state if multiplayer is enabled
-  if (typeof window.syncGameState === 'function') {
-    window.syncGameState(`Monster health updated to ${monsterHealth}`);
+  try {
+    isUpdatingMonsterHealth = true;
+    
+    const monsterHealthElement = document.getElementById("number");
+    if (!monsterHealthElement) {
+      console.error("Monster health element not found!");
+      return;
+    }
+    
+    monsterHealthElement.innerText = `Monster Health: ${monsterHealth}`;
+    
+    // Check if addLog is defined before calling it
+    if (window.startedGame && typeof window.addLog === 'function') {
+      window.addLog(
+        `TOTAL MONSTER HEALTH CHANGED THIS ROUND: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`,
+      );
+    } else if (window.startedGame) {
+      console.log(`TOTAL MONSTER HEALTH CHANGED THIS ROUND: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`);
+    }
+    
+    // Sync game state if multiplayer is enabled
+    if (typeof window.syncGameState === 'function') {
+      // Use setTimeout to break potential call stack
+      setTimeout(() => {
+        window.syncGameState(`Monster health updated to ${monsterHealth}`);
+      }, 0);
+    }
+  } finally {
+    isUpdatingMonsterHealth = false;
   }
 }
 
 function increaseMonsterHealth(numberToIncreaseBy) {
   monsterHealth = monsterHealth + numberToIncreaseBy;
-  totalRoundLifeChange = totalRoundLifeChange + numberToIncreaseBy;
+  totalRoundHealthChange = totalRoundHealthChange + numberToIncreaseBy;
   updateMonsterHealth();
 }
 
 function decreaseMonsterHealth(numberToDecreaseBy) {
   monsterHealth = Math.max(0, monsterHealth - numberToDecreaseBy);
-  totalRoundLifeChange = totalRoundLifeChange - numberToDecreaseBy;
+  totalRoundHealthChange = totalRoundHealthChange - numberToDecreaseBy;
   updateMonsterHealth();
 }
 
 function updateMonsterInfect() {
-  const monsterHealthElement = document.getElementById("numberInfect");
-  if (!monsterHealthElement) {
-    console.error("Monster infect element not found!");
-    return;
-  }
+  // Prevent recursive calls
+  if (isUpdatingMonsterInfect) return;
   
-  monsterHealthElement.innerText = `Infect: ${monsterInfect}`;
-  
-  // Check if addLog is defined before calling it
-  if (window.startedGame && typeof window.addLog === 'function') {
-    window.addLog(
-      `TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
-    );
-  } else if (window.startedGame) {
-    console.log(`TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
-  }
-  
-  // Sync game state if multiplayer is enabled
-  if (typeof window.syncGameState === 'function') {
-    window.syncGameState(`Monster infect updated to ${monsterInfect}`);
+  try {
+    isUpdatingMonsterInfect = true;
+    
+    const monsterInfectElement = document.getElementById("numberInfect");
+    if (!monsterInfectElement) {
+      console.error("Monster infect element not found!");
+      return;
+    }
+    
+    monsterInfectElement.innerText = `Infect: ${monsterInfect}`;
+    
+    // Check if addLog is defined before calling it
+    if (window.startedGame && typeof window.addLog === 'function') {
+      window.addLog(
+        `TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
+      );
+    } else if (window.startedGame) {
+      console.log(`TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
+    }
+    
+    // Sync game state if multiplayer is enabled
+    if (typeof window.syncGameState === 'function') {
+      // Use setTimeout to break potential call stack
+      setTimeout(() => {
+        window.syncGameState(`Monster infect updated to ${monsterInfect}`);
+      }, 0);
+    }
+  } finally {
+    isUpdatingMonsterInfect = false;
   }
 }
 
