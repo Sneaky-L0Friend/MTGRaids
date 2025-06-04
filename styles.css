@@ -2302,34 +2302,6 @@ html, body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Add a subtle shine effect */
-#monsterActionButton::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: rotate(45deg);
-  pointer-events: none;
-  z-index: 10;
-  transition: all 0.3s ease;
-  animation: shineEffect 3s infinite;
-}
-
-@keyframes shineEffect {
-  0% { left: -50%; top: -50%; }
-  100% { left: 150%; top: 150%; }
-}
-
 .primary-actions button {
   flex: 1;
   min-width: 120px;
