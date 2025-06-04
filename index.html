@@ -276,6 +276,9 @@
     <button class="display-box" onclick="saveGameState()" style="background-color: #2a6e2a;">
       Save Game
     </button>
+    <button class="display-box" onclick="undoLastAction()" style="background-color: #8a5d2a;">
+      Undo Last Action
+    </button>
   </div>
 
   <!-- Add style for temporary messages -->
@@ -389,6 +392,210 @@
         console.log('Scripts loaded successfully.');
       }
     });
+  </script>
+
+  <!-- Add Keyboard Shortcuts popup -->
+  <div id="shortcutsButtonContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 100;">
+    <button id="shortcutsButton" class="display-box" style="background-color: #8a2a5d; padding: 8px 15px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+      Keyboard Shortcuts
+    </button>
+  </div>
+
+  <div id="shortcutsPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #333; color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); max-width: 80%; max-height: 80%; overflow-y: auto; z-index: 10002;">
+    <h2 style="margin-top: 0; color: #4CAF50;">Keyboard Shortcuts</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+      <tr>
+        <th style="text-align: left; padding: 8px; border-bottom: 1px solid #555;">Key</th>
+        <th style="text-align: left; padding: 8px; border-bottom: 1px solid #555;">Action</th>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #555;"><kbd>m</kbd></td>
+        <td style="padding: 8px; border-bottom: 1px solid #555;">Take Monster Action</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #555;"><kbd>r</kbd></td>
+        <td style="padding: 8px; border-bottom: 1px solid #555;">Reveal Top Card</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #555;"><kbd>l</kbd></td>
+        <td style="padding: 8px; border-bottom: 1px solid #555;">Mill Monster</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #555;"><kbd>+</kbd> or <kbd>=</kbd></td>
+        <td style="padding: 8px; border-bottom: 1px solid #555;">Increase Round</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #555;"><kbd>-</kbd></td>
+        <td style="padding: 8px; border-bottom: 1px solid #555;">Decrease Round</td>
+      </tr>
+    </table>
+    <button id="closeShortcutsButton" style="background-color: #4CAF50; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold;">Close</button>
+  </div>
+
+  <!-- Add script for Shortcuts functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const shortcutsButton = document.getElementById('shortcutsButton');
+      const shortcutsPopup = document.getElementById('shortcutsPopup');
+      const closeShortcutsButton = document.getElementById('closeShortcutsButton');
+      const overlay = document.getElementById('overlay');
+      
+      shortcutsButton.addEventListener('click', function() {
+        shortcutsPopup.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+      
+      closeShortcutsButton.addEventListener('click', function() {
+        shortcutsPopup.style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      
+      // Close shortcuts when clicking outside
+      overlay.addEventListener('click', function(event) {
+        if (event.target === overlay) {
+          shortcutsPopup.style.display = 'none';
+          overlay.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+  <!-- Add Dark Mode Toggle -->
+  <div id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 100;">
+    <button id="themeToggleBtn" class="display-box" style="background-color: #555; padding: 8px 15px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
+      🌙 Toggle Theme
+    </button>
+  </div>
+
+  <!-- Add Dark Mode Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      
+      // Check for saved theme preference or use default
+      const currentTheme = localStorage.getItem('theme') || 'dark';
+      document.body.classList.add(currentTheme);
+      
+      // Update button text based on current theme
+      updateThemeToggleText(currentTheme);
+      
+      themeToggleBtn.addEventListener('click', function() {
+        if (document.body.classList.contains('light')) {
+          document.body.classList.replace('light', 'dark');
+          localStorage.setItem('theme', 'dark');
+          updateThemeToggleText('dark');
+        } else {
+          document.body.classList.replace('dark', 'light');
+          localStorage.setItem('theme', 'light');
+          updateThemeToggleText('light');
+        }
+      });
+      
+      function updateThemeToggleText(theme) {
+        themeToggleBtn.innerHTML = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+      }
+    });
+  </script>
+
+  <!-- Add theme styles -->
+  <style>
+    body.light {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    body.light .display-box {
+      background-color: #e0e0e0;
+      color: #333;
+      border: 1px solid #ccc;
+    }
+    
+    body.light #diceLog {
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    
+    body.light #faqPopup,
+    body.light #shortcutsPopup {
+      background-color: #fff;
+      color: #333;
+    }
+    
+    body.light .temp-message {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+      border: 1px solid #ddd;
+    }
+  </style>
+
+  <!-- Improved Loading Spinner -->
+  <style>
+    .loading-spinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #4CAF50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    .spinner-text {
+      position: absolute;
+      color: white;
+      font-size: 16px;
+      margin-top: 80px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <script>
+    // Override the existing showLoadingSpinner function
+    window.showLoadingSpinner = function(message = "Loading...") {
+      // Create spinner if it doesn't exist
+      let spinner = document.getElementById('loadingSpinner');
+      if (!spinner) {
+        spinner = document.createElement('div');
+        spinner.id = 'loadingSpinner';
+        spinner.className = 'loading-spinner';
+        
+        const spinnerElement = document.createElement('div');
+        spinnerElement.className = 'spinner';
+        
+        const spinnerText = document.createElement('div');
+        spinnerText.className = 'spinner-text';
+        spinnerText.id = 'spinnerText';
+        spinnerText.textContent = message;
+        
+        spinner.appendChild(spinnerElement);
+        spinner.appendChild(spinnerText);
+        document.body.appendChild(spinner);
+      } else {
+        // Update message if spinner exists
+        const spinnerText = document.getElementById('spinnerText');
+        if (spinnerText) {
+          spinnerText.textContent = message;
+        }
+      }
+      spinner.style.display = 'flex';
+    };
   </script>
 
 </body>

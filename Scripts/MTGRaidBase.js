@@ -48,6 +48,66 @@ let graveyard = {
   "Land": 0
 };
 
+// Add action history tracking
+let actionHistory = [];
+const MAX_HISTORY_LENGTH = 10;
+
+function recordAction(actionType, details) {
+  actionHistory.push({
+    type: actionType,
+    details: details,
+    timestamp: new Date().getTime()
+  });
+  
+  // Keep history at a reasonable size
+  if (actionHistory.length > MAX_HISTORY_LENGTH) {
+    actionHistory.shift();
+  }
+}
+
+function undoLastAction() {
+  if (!window.startedGame) {
+    showErrorMessage("Please Start the Game First");
+    return;
+  }
+  
+  if (actionHistory.length === 0) {
+    showErrorMessage("No actions to undo");
+    return;
+  }
+  
+  const lastAction = actionHistory.pop();
+  
+  switch(lastAction.type) {
+    case 'monsterAction':
+      // Undo monster action by striking it out
+      strikeOutMonsterAction();
+      addLog("UNDID: Monster Action");
+      break;
+      
+    case 'millCard':
+      // Undo mill by increasing deck count and decreasing graveyard
+      cardsInMonsterDeck++;
+      cardsInMonsterGraveyard--;
+      updateDeckAndGraveyardCounts();
+      addLog("UNDID: Mill Card");
+      break;
+      
+    case 'roundChange':
+      // Undo round change
+      if (lastAction.details.direction === 'increase') {
+        decreaseRound();
+      } else {
+        increaseRound();
+      }
+      addLog("UNDID: Round Change");
+      break;
+      
+    default:
+      addLog("UNDID: Last Action");
+  }
+}
+
 function takeMonsterAction() {
   if (!window.startedGame) {
     showErrorMessage("Please Start the Game First");
@@ -1989,6 +2049,65 @@ function millUntilCardType(targetType, nonMatchingDestination) {
         let randomCardUrl;
         if (cardType == "Land") {
           randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+        } else {
+          randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardType + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+        }
+        
+        // Add this card's fetch operation to our promises array
+        fetchPromises.push(getRandomCardImageUrl(randomCardUrl)
+          .then(result => {
+            if (result && result.imageUrl) {
+              // Store the milled card image
+              milledCardImages.push({
+                url: result.imageUrl,
+                name: result.cardName,
+                type: cardType
+              });
+            }
+            return result;
+          })
+          .catch(error => {
+            console.error(`Error fetching non-matching card (${cardType}):`, error);
+            return null;
+          }));
+      }
+    }
+  }
+  
+  // Wait for all fetch operations to complete
+  Promise.all(fetchPromises)
+    .then(results => {
+      // Update the actual graveyard with our temporary one
+      graveyard = tempGraveyard;
+      
+      // Create a summary of milled cards
+      const typeCounts = {};
+      results.forEach(result => {
+        if (result && result.type) {
+          typeCounts[result.type] = (typeCounts[result.type] || 0) + 1;
+        }
+      });
+      
+      const summary = Object.entries(typeCounts)
+        .map(([type, count]) => `${type}: ${count}`)
+        .join(', ');
+      
+      console.log(`Mill summary: ${summary}`);
+      
+      // Log the mill action
+      addLog(`MONSTER MILLED ${milledCount} CARDS (${summary}). CARDS LEFT: ${cardsInMonsterDeck}`);
+      
+      // Update the graveyard table
+      updateGraveyardTable();
+      
+      // Re-enable buttons
+      document.getElementById('executeMillUntilTypeBtn').disabled = false;
+      document.getElementById('closeAdvancedMillBtn').disabled = false;
+      
+      // Hide loading spinner
+      hideLoadingSpinner();
+      
+      // Close the popup
         } else {
           randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardType + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
         }
