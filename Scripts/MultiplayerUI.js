@@ -41,8 +41,11 @@ function startMultiplayerGame() {
 }
 
 function startMultiplayerGameWithDifficulty(difficulty) {
-  // Remove difficulty dialog
-  document.querySelector('.modal:last-child').remove();
+  // Remove difficulty dialog - with null check
+  const modalToRemove = document.querySelector('.modal:last-child');
+  if (modalToRemove) {
+    modalToRemove.remove();
+  }
   
   // Create player count dialog
   const playerCountDialog = document.createElement('div');
@@ -54,7 +57,7 @@ function startMultiplayerGameWithDifficulty(difficulty) {
       <h3>Number of Players</h3>
       <input type="number" id="multiplayerPlayerCount" min="1" max="12" value="4">
       <div class="button-container">
-        <button onclick="document.querySelector('.modal:last-child').remove();">Cancel</button>
+        <button onclick="closePlayerCountDialog()">Cancel</button>
         <button onclick="finalizeMultiplayerGameStart('${difficulty}')">Start Game</button>
       </div>
     </div>
@@ -66,8 +69,11 @@ function startMultiplayerGameWithDifficulty(difficulty) {
 function finalizeMultiplayerGameStart(difficulty) {
   const playerCount = parseInt(document.getElementById('multiplayerPlayerCount').value);
   
-  // Remove player count dialog
-  document.querySelector('.modal:last-child').remove();
+  // Remove player count dialog - with null check
+  const modalToRemove = document.querySelector('.modal:last-child');
+  if (modalToRemove) {
+    modalToRemove.remove();
+  }
   
   // Start the game
   startGame(difficulty, playerCount);
@@ -109,6 +115,14 @@ function showMessage(message) {
   }, 2000);
 }
 
+// Add a new function to close the player count dialog
+function closePlayerCountDialog() {
+  const modalToRemove = document.querySelector('.modal:last-child');
+  if (modalToRemove) {
+    modalToRemove.remove();
+  }
+}
+
 // Make functions globally available
 window.showCreateRoomDialog = showCreateRoomDialog;
 window.closeCreateRoomDialog = closeCreateRoomDialog;
@@ -119,3 +133,5 @@ window.startMultiplayerGameWithDifficulty = startMultiplayerGameWithDifficulty;
 window.finalizeMultiplayerGameStart = finalizeMultiplayerGameStart;
 window.joinExistingRoom = joinExistingRoom;
 window.showMessage = showMessage;
+window.closePlayerCountDialog = closePlayerCountDialog;
+
