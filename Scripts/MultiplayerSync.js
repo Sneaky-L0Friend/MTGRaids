@@ -282,22 +282,62 @@ function syncGameState(actionDescription) {
   // Force refresh the current state before capturing
   ensureGameInitialized();
   
-  // Capture the FULL current state with the latest values
-  const currentState = captureFullGameState();
+  // Capture the current state
+  const currentState = captureGameState();
   
-  // Log the current monster health for debugging
-  console.log("Current monster health before sync:", window.monsterHealth);
-  console.log("Monster health in state to sync:", currentState.monsterHealth);
+  // If we have a previous state, only send the changes
+  if (lastSyncedState) {
+    const changedData = {};
+    let hasChanges = false;
+    
+    // Compare current state with last synced state
+    for (const key in currentState) {
+      // Skip complex objects that need special handling
+      if (key === 'graveyard' || key === 'milledCardImages' || key === 'logEntries') continue;
+      
+      // For arrays (like playerHealths), compare each element
+      if (Array.isArray(currentState[key])) {
+        if (!Array.isArray(lastSyncedState[key]) || 
+            currentState[key].length !== lastSyncedState[key].length ||
+            currentState[key].some((val, idx) => val !== lastSyncedState[key][idx])) {
+          changedData[key] = currentState[key];
+          hasChanges = true;
+        }
+      } 
+      // For simple values, direct comparison
+      else if (currentState[key] !== lastSyncedState[key]) {
+        changedData[key] = currentState[key];
+        hasChanges = true;
+      }
+    }
+    
+    // Always include these important fields for context
+    changedData.isValidGameState = true;
+    changedData.timestamp = new Date().toISOString();
+    
+    // Only send if there are actual changes
+    if (hasChanges) {
+      console.log("Syncing changed data:", changedData);
+      socket.send(JSON.stringify({
+        type: 'game_update',
+        gameState: changedData,
+        action: actionDescription
+      }));
+    } else {
+      console.log("No changes to sync");
+    }
+  } else {
+    // First sync - send full state
+    console.log("First sync - sending full state");
+    socket.send(JSON.stringify({
+      type: 'game_update',
+      gameState: currentState,
+      action: actionDescription
+    }));
+  }
   
-  // Send the full state with every action
-  socket.send(JSON.stringify({
-    type: 'game_update',
-    gameState: currentState,
-    action: actionDescription
-  }));
-  
+  // Store current state for next comparison
   lastSyncedState = JSON.parse(JSON.stringify(currentState)); // Deep copy
-  console.log("Full game state synced with action:", actionDescription);
 }
 
 // Capture current game state for initial room creation
@@ -768,6 +808,9 @@ function forceFullSync() {
     action: 'Force full sync'
   }));
   
+  // Update last synced state
+  lastSyncedState = JSON.parse(JSON.stringify(captureGameState())); // Deep copy of basic state
+  
   console.log("Forced full sync of game state");
 }
 
@@ -882,6 +925,8 @@ window.disconnectMultiplayer = disconnectMultiplayer;
 window.syncGameState = syncGameState;
 window.forceSyncFromHost = forceSyncFromHost;
 window.forceFullSync = forceFullSync;
+
+
 
 
 
