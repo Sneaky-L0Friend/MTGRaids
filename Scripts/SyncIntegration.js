@@ -3,6 +3,9 @@
 // Store original functions
 const originalFunctions = {};
 
+// Flag to prevent recursive sync calls
+let isCurrentlySyncing = false;
+
 // List of functions to wrap with sync
 const functionsToSync = [
   // Monster state functions
@@ -56,11 +59,14 @@ function wrapWithSync() {
       
       // Replace with wrapped version
       window[funcName] = function(...args) {
-        // Call original function directly from our stored reference
+        // Skip sync if we're already in a sync operation
+        const shouldSync = !isCurrentlySyncing;
+        
+        // Call original function
         const result = originalFunctions[funcName].apply(this, args);
         
-        // Sync game state with descriptive action
-        if (window.syncGameState) {
+        // Only sync if we're not already in a sync operation
+        if (shouldSync && window.syncGameState) {
           let actionDescription = `${funcName}`;
           
           // Add more context for specific functions
@@ -74,7 +80,14 @@ function wrapWithSync() {
           
           // Use setTimeout to break the potential call stack
           setTimeout(() => {
-            window.syncGameState(actionDescription);
+            // Set syncing flag before calling syncGameState
+            isCurrentlySyncing = true;
+            try {
+              window.syncGameState(actionDescription);
+            } finally {
+              // Reset syncing flag after sync is complete
+              isCurrentlySyncing = false;
+            }
           }, 0);
         }
         
@@ -99,6 +112,7 @@ window.initializeSyncIntegration = function() {
   wrapWithSync();
   console.log("SyncIntegration manually initialized");
 };
+
 
 
 
