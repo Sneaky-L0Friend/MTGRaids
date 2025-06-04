@@ -2255,6 +2255,81 @@ html, body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Enhanced monster action button styling */
+#monsterActionButton {
+  position: relative;
+  background: linear-gradient(to bottom, #4CAF50, #388E3C);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  overflow: hidden;
+}
+
+/* Pulsing animation for the monster action button */
+@keyframes pulseButton {
+  0% { transform: scale(1); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 6px 12px rgba(76, 175, 80, 0.5); }
+  100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+}
+
+/* Glowing border animation */
+@keyframes glowBorder {
+  0% { border-color: rgba(76, 175, 80, 0.3); }
+  50% { border-color: rgba(76, 175, 80, 1); }
+  100% { border-color: rgba(76, 175, 80, 0.3); }
+}
+
+/* Apply animations when the button needs attention */
+.needs-action #monsterActionButton {
+  animation: pulseButton 2s infinite, glowBorder 2s infinite;
+}
+
+/* Hover effect */
+#monsterActionButton:hover {
+  background: linear-gradient(to bottom, #5CBF60, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Active effect */
+#monsterActionButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Add a subtle shine effect */
+#monsterActionButton::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+  z-index: 10;
+  transition: all 0.3s ease;
+  animation: shineEffect 3s infinite;
+}
+
+@keyframes shineEffect {
+  0% { left: -50%; top: -50%; }
+  100% { left: 150%; top: 150%; }
+}
+
 .primary-actions button {
   flex: 1;
   min-width: 120px;

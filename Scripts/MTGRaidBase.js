@@ -54,6 +54,9 @@ function takeMonsterAction() {
     return;
   }
   
+  // Remove highlight when action is taken
+  removeMonsterActionHighlight();
+  
   // Reset any previous strike-through styling
   let actionElement = document.getElementById("action");
   if (actionElement) {
@@ -185,6 +188,22 @@ function updateRound() {
   hasCardBeenDrawn = true;
 }
 
+// Add this function to highlight the monster action button when it's time to take an action
+function highlightMonsterActionButton() {
+  const gameActionButtons = document.getElementById("gameActionButtons");
+  if (gameActionButtons) {
+    gameActionButtons.classList.add("needs-action");
+  }
+}
+
+// Remove highlight when action is taken
+function removeMonsterActionHighlight() {
+  const gameActionButtons = document.getElementById("gameActionButtons");
+  if (gameActionButtons) {
+    gameActionButtons.classList.remove("needs-action");
+  }
+}
+
 function showPlayerTurnIndicator() {
   let indicator = document.getElementById("playerTurnIndicator");
   if (!indicator) {
@@ -221,6 +240,8 @@ function increaseRound() {
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(1);
   hidePlayerTurnIndicator();
+  // After updating the round, highlight the monster action button
+  highlightMonsterActionButton();
 }
 
 function decreaseRound() {
