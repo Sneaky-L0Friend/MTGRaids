@@ -50,7 +50,7 @@ let graveyard = {
 
 function takeMonsterAction() {
   if (!window.startedGame) {
-    showErrorMessage("Please Start the Game First");
+    showErrorMessage("Please Start the Game First ");
     return;
   }
   
