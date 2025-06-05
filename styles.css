@@ -2266,7 +2266,6 @@ html, body {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  border: 2px solid transparent;
   overflow: hidden;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); /* Stronger text shadow for all colors */
   letter-spacing: 0.5px; /* Slightly increase letter spacing */
@@ -2299,22 +2298,16 @@ html, body {
   100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
 }
 
-/* Glowing border animation */
-@keyframes glowBorder {
+/* Simplified border highlight animation */
+@keyframes highlightBorder {
   0% { border-color: rgba(255, 255, 255, 0.3); }
-  50% { border-color: rgba(255, 255, 255, 1); }
+  50% { border-color: rgba(255, 255, 255, 0.8); }
   100% { border-color: rgba(255, 255, 255, 0.3); }
-}
-
-/* Glare effect animation */
-@keyframes shineEffect {
-  0% { left: -150%; top: -50%; }
-  100% { left: 150%; top: 50%; }
 }
 
 /* Apply animations when the button needs attention */
 .needs-action #monsterActionButton {
-  animation: pulseButton 2s infinite, glowBorder 2s infinite;
+  animation: pulseButton 2s infinite, highlightBorder 2s infinite;
 }
 
 /* Only add the glare effect when action is needed */
@@ -2339,11 +2332,18 @@ html, body {
   animation: shineEffect 2s infinite;
 }
 
+/* Glare effect animation */
+@keyframes shineEffect {
+  0% { left: -150%; top: -50%; }
+  100% { left: 150%; top: 50%; }
+}
+
 /* Hover effect */
 #monsterActionButton:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.5); /* Slightly brighter border on hover */
 }
 
 /* Active effect */
