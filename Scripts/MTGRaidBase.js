@@ -243,6 +243,12 @@ function increaseRound() {
   updateMonsterLandCountByAmount(1);
   hidePlayerTurnIndicator();
   
+  // Update action element to indicate monster's turn
+  let actionElement = document.getElementById("action");
+  if (actionElement) {
+    actionElement.innerText = `Monster needs to take ${Math.floor(currentRound / 2)} actions this turn`;
+  }
+  
   // After updating the round, highlight the monster action button if not round 1
   if (currentRound > 1) {
     highlightMonsterActionButton();
@@ -259,6 +265,16 @@ function decreaseRound() {
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(-1);
+  
+  // Update action element to indicate monster's turn
+  let actionElement = document.getElementById("action");
+  if (actionElement) {
+    if (currentRound == 1) {
+      actionElement.innerText = "Monster cannot take actions on Round 1";
+    } else {
+      actionElement.innerText = `Monster needs to take ${Math.floor(currentRound / 2)} actions this turn`;
+    }
+  }
 }
 
 function checkInput() {
