@@ -54,8 +54,8 @@ function takeMonsterAction() {
     return;
   }
   
-  // Remove highlight when action is taken
-  removeMonsterActionHighlight();
+  // Don't remove highlight here anymore - only remove when all actions are taken
+  // We'll check if more actions are needed in updateRound()
   
   // Reset any previous strike-through styling
   let actionElement = document.getElementById("action");
@@ -180,8 +180,10 @@ function updateRound() {
   // Add player turn indicator
   if (numberOfDiceRolled >= drValue && currentRound > 1) {
     showPlayerTurnIndicator();
-  } else {
+    removeMonsterActionHighlight(); // Remove highlight when all actions are taken
+  } else if (currentRound > 1) {
     hidePlayerTurnIndicator();
+    highlightMonsterActionButton(); // Keep highlighting until all actions are taken
   }
   
   totalRoundLifeChange = 0;
@@ -196,7 +198,7 @@ function highlightMonsterActionButton() {
   }
 }
 
-// Remove highlight when action is taken
+// Remove highlight when all actions for the turn are taken
 function removeMonsterActionHighlight() {
   const gameActionButtons = document.getElementById("gameActionButtons");
   if (gameActionButtons) {
@@ -240,8 +242,11 @@ function increaseRound() {
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(1);
   hidePlayerTurnIndicator();
-  // After updating the round, highlight the monster action button
-  highlightMonsterActionButton();
+  
+  // After updating the round, highlight the monster action button if not round 1
+  if (currentRound > 1) {
+    highlightMonsterActionButton();
+  }
 }
 
 function decreaseRound() {
@@ -694,8 +699,11 @@ function startGame(difficultyLevel, playerCount) {
   updateGraveyardTable();
   addLog(`ROUND ${currentRound}`);
   
-  // Show player turn indicator
+  // Show player turn indicator for round 1
   showPlayerTurnIndicator();
+  
+  // Don't highlight monster action button on round 1
+  removeMonsterActionHighlight();
 }
 
 // Make startGame globally available
