@@ -454,43 +454,6 @@
     });
   </script>
 
-  <!-- Add Dark Mode Toggle
-  <div id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; z-index: 100;">
-    <button id="themeToggleBtn" class="display-box" style="background-color: #555; padding: 8px 15px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
-      🌙 Toggle Theme
-    </button>
-  </div> -->
-
-  <!-- Add Dark Mode Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggleBtn = document.getElementById('themeToggleBtn');
-      
-      // Check for saved theme preference or use default
-      const currentTheme = localStorage.getItem('theme') || 'dark';
-      document.body.classList.add(currentTheme);
-      
-      // Update button text based on current theme
-      updateThemeToggleText(currentTheme);
-      
-      themeToggleBtn.addEventListener('click', function() {
-        if (document.body.classList.contains('light')) {
-          document.body.classList.replace('light', 'dark');
-          localStorage.setItem('theme', 'dark');
-          updateThemeToggleText('dark');
-        } else {
-          document.body.classList.replace('dark', 'light');
-          localStorage.setItem('theme', 'light');
-          updateThemeToggleText('light');
-        }
-      });
-      
-      // function updateThemeToggleText(theme) {
-      //   themeToggleBtn.innerHTML = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
-      // }
-    });
-  </script>
-
   <!-- Add theme styles -->
   <style>
     body.light {
