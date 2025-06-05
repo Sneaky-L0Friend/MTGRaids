@@ -16,10 +16,10 @@ function updateMonsterHealth() {
   // Check if addLog is defined before calling it
   if (window.startedGame && typeof window.addLog === 'function') {
     window.addLog(
-      `TOTAL MONSTER HEALTH CHANGED THIS ROUND: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`,
+      `TOTAL MONSTER HEALTH CHANGED THIS TURN: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`,
     );
   } else if (window.startedGame) {
-    console.log(`TOTAL MONSTER HEALTH CHANGED THIS ROUND: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`);
+    console.log(`TOTAL MONSTER HEALTH CHANGED THIS TURN: ${totalRoundHealthChange > 0 ? "+" : ""}${totalRoundHealthChange} TO ${monsterHealth}`);
   }
 
 }
@@ -49,10 +49,10 @@ function updateMonsterInfect() {
   // Check if addLog is defined before calling it
   if (window.startedGame && typeof window.addLog === 'function') {
     window.addLog(
-      `TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
+      `TOTAL MONSTER INFECT CHANGED THIS TURN: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`,
     );
   } else if (window.startedGame) {
-    console.log(`TOTAL MONSTER INFECT CHANGED THIS ROUND: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
+    console.log(`TOTAL MONSTER INFECT CHANGED THIS TURN: ${totalRoundInfectChange > 0 ? "+" : ""}${totalRoundInfectChange} TO ${monsterInfect}`);
   }
 }
 

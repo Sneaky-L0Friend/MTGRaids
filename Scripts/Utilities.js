@@ -33,7 +33,7 @@ function strikeOutMonsterAction() {
       const entry = logEntries[i];
       if (
         entry && 
-        !entry.innerText.includes("ROUND") &&
+        !entry.innerText.includes("TURN") &&
         !entry.innerText.includes("HP") &&
         entry.innerText.includes(currentAction.substring(0, 30)) // Match first part of action
       ) {

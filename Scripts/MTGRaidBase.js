@@ -237,7 +237,7 @@ function increaseRound() {
   currentRound++;
   numberOfDiceRolled = 0;
   // Create a new log entry
-  addLog(`ROUND ${currentRound}`);
+  addLog(`TURN ${currentRound}`);
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(1);
@@ -255,7 +255,7 @@ function decreaseRound() {
     return;
   }
   currentRound = Math.max(1, currentRound - 1);
-  addLog(`ROUND ${currentRound}`);
+  addLog(`TURN ${currentRound}`);
   updateRound();
   updateMonsterHandSize();
   updateMonsterLandCountByAmount(-1);
@@ -697,7 +697,7 @@ function startGame(difficultyLevel, playerCount) {
   // Initialize other game elements
   readActionJsonFiles();
   updateGraveyardTable();
-  addLog(`ROUND ${currentRound}`);
+  addLog(`TURN ${currentRound}`);
   
   // Show player turn indicator for round 1
   showPlayerTurnIndicator();
