@@ -1681,17 +1681,57 @@ function clearSavedGameState() {
       return;
     }
     
-    // Remove the saved game state
-    localStorage.removeItem('mtgRaidBossGameState');
-    showMessage("Saved game cleared successfully!");
+    // Show confirmation popup
+    showClearConfirmation();
   } catch (error) {
-    console.error("Error clearing game state:", error);
-    showMessage("Failed to clear saved game");
+    console.error("Error checking game state:", error);
+    showMessage("Failed to check saved game");
   }
 }
 
-// Make function globally available
+// Add confirmation popup function
+function showClearConfirmation() {
+  // Create modal container
+  const modal = document.createElement('div');
+  modal.className = 'confirmation-modal';
+  
+  // Create modal content
+  const content = document.createElement('div');
+  content.className = 'confirmation-content';
+  
+  // Add heading and message
+  content.innerHTML = `
+    <h3>Clear Saved Game</h3>
+    <p>Are you sure you want to clear your saved game? This action cannot be undone.</p>
+    <div class="confirmation-buttons">
+      <button class="confirm-yes">Yes, Clear It</button>
+      <button class="confirm-no">No, Cancel</button>
+    </div>
+  `;
+  
+  // Add to DOM
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  
+  // Add event listeners
+  const yesButton = content.querySelector('.confirm-yes');
+  const noButton = content.querySelector('.confirm-no');
+  
+  yesButton.addEventListener('click', function() {
+    // Remove the saved game state
+    localStorage.removeItem('mtgRaidBossGameState');
+    showMessage("Saved game cleared successfully!");
+    document.body.removeChild(modal);
+  });
+  
+  noButton.addEventListener('click', function() {
+    document.body.removeChild(modal);
+  });
+}
+
+// Make functions globally available
 window.clearSavedGameState = clearSavedGameState;
+window.showClearConfirmation = showClearConfirmation;
 
 // Make these functions globally available
 window.takeMonsterAction = takeMonsterAction;

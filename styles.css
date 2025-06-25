@@ -2294,8 +2294,64 @@ html, body {
 /* Pulsing animation for the monster action button */
 @keyframes pulseButton {
   0% { transform: scale(1); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
-  50% { transform: scale(1.05); box-shadow: 0 6px 12px rgba(255, 255, 255, 0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); }
   100% { transform: scale(1); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+}
+
+/* Confirmation modal styling */
+.confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-content {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.confirmation-content h3 {
+  margin-top: 0;
+  color: #e2e2e2;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.confirmation-buttons button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.confirm-yes {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.confirm-no {
+  background-color: #555;
+  color: white;
 }
 
 /* Simplified border highlight animation */
