@@ -2500,4 +2500,154 @@ html, body {
     font-size: 13px;
     padding: 8px;
   }
+    /* Add these styles to the end of your CSS file */
+
+    /* Player turn indicator - prominent banner */
+    .player-turn-indicator {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 30px 60px;
+        font-size: 48px;
+        font-weight: bold;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(76, 175, 80, 0.6);
+        z-index: 9999;
+        text-align: center;
+        animation: pulse 2s infinite;
+        border: 4px solid white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Monster turn indicator */
+    .monster-turn-indicator {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #F44336, #d32f2f);
+        color: white;
+        padding: 15px 40px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(244, 67, 54, 0.6);
+        z-index: 9999;
+        text-align: center;
+        animation: pulse 2s infinite;
+        border: 3px solid white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        display: none;
+    }
+
+    /* Pulse animation for turn indicators */
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+    }
+
+    /* Special animation for monster turn indicator */
+    @keyframes pulseMonster {
+        0%, 100% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        50% {
+            opacity: 0.8;
+            transform: translateX(-50%) scale(1.05);
+        }
+    }
+
+    .monster-turn-indicator {
+        animation: pulseMonster 2s infinite;
+    }
+
+    /* Highlight the game action buttons when monster needs to act */
+    .needs-action {
+        animation: borderPulse 1.5s infinite;
+        border: 3px solid #ff9800 !important;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    @keyframes borderPulse {
+        0%, 100% {
+            border-color: #ff9800;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+
+        50% {
+            border-color: #ff5722;
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
+        }
+    }
+
+    /* Make the monster action button more prominent when it needs to be clicked */
+    .needs-action #monsterActionButton {
+        animation: buttonGlow 1.5s infinite;
+        transform: scale(1.05);
+    }
+
+    @keyframes buttonGlow {
+        0%, 100% {
+            box-shadow: 0 4px 8px rgba(255, 152, 0, 0.4), 0 0 20px rgba(255, 152, 0, 0.3);
+        }
+
+        50% {
+            box-shadow: 0 4px 8px rgba(255, 152, 0, 0.6), 0 0 30px rgba(255, 152, 0, 0.5);
+        }
+    }
+
+    /* Next turn button styling when it's time to advance */
+    .ready-for-next-turn #round {
+        animation: readyPulse 1.5s infinite;
+    }
+
+    @keyframes readyPulse {
+        0%, 100% {
+            background-color: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        50% {
+            background-color: #45a049;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+        }
+    }
+
+    /* Mobile responsive adjustments */
+    @media (max-width: 768px) {
+        .player-turn-indicator {
+            font-size: 32px;
+            padding: 20px 40px;
+        }
+
+        .monster-turn-indicator {
+            font-size: 18px;
+            padding: 10px 30px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .player-turn-indicator {
+            font-size: 24px;
+            padding: 15px 30px;
+        }
+
+        .monster-turn-indicator {
+            font-size: 16px;
+            padding: 8px 20px;
+        }
+    }
 }

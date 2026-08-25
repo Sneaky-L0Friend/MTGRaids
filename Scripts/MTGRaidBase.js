@@ -49,24 +49,23 @@ let graveyard = {
 };
 
 function takeMonsterAction() {
-  if (!window.startedGame) {
-    showErrorMessage("Please Start the Game First ");
-    return;
-  }
-  
-  // Don't remove highlight here anymore - only remove when all actions are taken
-  // We'll check if more actions are needed in updateRound()
-  
-  // Reset any previous strike-through styling
-  let actionElement = document.getElementById("action");
-  if (actionElement) {
-    actionElement.style.textDecoration = "none";
-  }
-  
-  if (currentRound == 1) {
-    showErrorMessage("Monster cannot take actions on Round 1");
-    return;
-  }
+    if (!window.startedGame) {
+        showErrorMessage("Please Start the Game First ");
+        return;
+    }
+
+    // Don't remove highlight here anymore - only remove when all actions are taken
+    // We'll check if more actions are needed in updateRound()
+
+    // Reset any previous strike-through styling
+    let actionElement = document.getElementById("action");
+    if (actionElement) {
+        actionElement.style.textDecoration = "none";
+    }
+
+    if (currentRound == 1) {
+        showErrorMessage("Monster cannot take actions on Round 1");
+        return;
   
   if (cardsInMonsterDeck == 0) {
     addLog("YOU WON VIA MILLING! CONGRATS");
@@ -171,23 +170,29 @@ function takeMonsterAction() {
 }
 
 function updateRound() {
-  const roundElement = document.getElementById("round");
-  const round2Element = document.getElementById("rounds");
-  roundElement.innerText = `Turn: ${currentRound}`;
-  const drValue = Math.floor(currentRound / 2); // Calculate DR value
-  round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
-  
-  // Add player turn indicator
-  if (numberOfDiceRolled >= drValue && currentRound > 1) {
-    showPlayerTurnIndicator();
-    removeMonsterActionHighlight(); // Remove highlight when all actions are taken
-  } else if (currentRound > 1) {
-    hidePlayerTurnIndicator();
-    highlightMonsterActionButton(); // Keep highlighting until all actions are taken
-  }
-  
-  totalRoundLifeChange = 0;
-  hasCardBeenDrawn = true;
+    const roundElement = document.getElementById("round");
+    const round2Element = document.getElementById("rounds");
+    roundElement.innerText = `Turn: ${currentRound}`;
+    const drValue = Math.floor(currentRound / 2); // Calculate DR value
+    round2Element.innerText = `Actions this turn:  ${numberOfDiceRolled} / ${drValue}`;
+
+    // Add player turn indicator
+    if (numberOfDiceRolled >= drValue && currentRound > 1) {
+        showPlayerTurnIndicator();
+        hideMonsterTurnIndicator();
+        removeMonsterActionHighlight(); // Remove highlight when all actions are taken
+    } else if (currentRound > 1) {
+        hidePlayerTurnIndicator();
+        showMonsterTurnIndicator();
+        highlightMonsterActionButton(); // Keep highlighting until all actions are taken
+    } else {
+        // Turn 1 - players start first
+        hideMonsterTurnIndicator();
+        showPlayerTurnIndicator();
+    }
+
+    totalRoundLifeChange = 0;
+    hasCardBeenDrawn = true;
 }
 
 // Add this function to highlight the monster action button when it's time to take an action
@@ -207,22 +212,57 @@ function removeMonsterActionHighlight() {
 }
 
 function showPlayerTurnIndicator() {
-  let indicator = document.getElementById("playerTurnIndicator");
-  if (!indicator) {
-    indicator = document.createElement("div");
-    indicator.id = "playerTurnIndicator";
-    indicator.className = "player-turn-indicator";
-    indicator.innerHTML = "PLAYERS' TURN";
-    document.body.appendChild(indicator);
-  }
-  indicator.style.display = "block";
+    let indicator = document.getElementById("playerTurnIndicator");
+    if (!indicator) {
+        indicator = document.createElement("div");
+        indicator.id = "playerTurnIndicator";
+        indicator.className = "player-turn-indicator";
+        indicator.innerHTML = "PLAYERS' TURN<br><span style='font-size: 24px;'>Click + to advance to next turn when ready</span>";
+        document.body.appendChild(indicator);
+    }
+    indicator.style.display = "block";
+
+    // Add green glow to the turn advance button
+    const turnControls = document.getElementById("turnInfectControls");
+    if (turnControls) {
+        turnControls.classList.add("ready-for-next-turn");
+    }
 }
 
 function hidePlayerTurnIndicator() {
-  const indicator = document.getElementById("playerTurnIndicator");
-  if (indicator) {
-    indicator.style.display = "none";
-  }
+    const indicator = document.getElementById("playerTurnIndicator");
+    if (indicator) {
+        indicator.style.display = "none";
+    }
+
+    // Remove green glow from turn advance button
+    const turnControls = document.getElementById("turnInfectControls");
+    if (turnControls) {
+        turnControls.classList.remove("ready-for-next-turn");
+    }
+}
+
+function showMonsterTurnIndicator() {
+    let indicator = document.getElementById("monsterTurnIndicator");
+    if (!indicator) {
+        indicator = document.createElement("div");
+        indicator.id = "monsterTurnIndicator";
+        indicator.className = "monster-turn-indicator";
+        document.body.appendChild(indicator);
+    }
+
+    const actionsNeeded = Math.floor(currentRound / 2);
+    const actionsTaken = numberOfDiceRolled;
+    indicator.innerHTML = `MONSTER'S TURN - Click "Click for Monster Action" (${actionsTaken}/${actionsNeeded} actions taken)`;
+    indicator.style.display = "block";
+}
+
+// Add new function to hide monster turn indicator
+function hideMonsterTurnIndicator() {
+    const indicator = document.getElementById("monsterTurnIndicator");
+    if (indicator) {
+        indicator.style.display = "none";
+    }
 }
 
 // Make these functions globally available
