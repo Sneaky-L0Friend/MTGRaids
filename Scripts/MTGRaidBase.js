@@ -29,6 +29,7 @@ let difficulty = "medium"; // Default difficulty
 
 // Add this array to store milled card images
 let milledCardImages = [];
+let handCardTypes = []; // Tracks the actual cards in the monster's hand (type/name/url)
 
 // Percentage for millings:
 let creaturePercent = 30;
@@ -270,29 +271,32 @@ window.showPlayerTurnIndicator = showPlayerTurnIndicator;
 window.hidePlayerTurnIndicator = hidePlayerTurnIndicator;
 
 function increaseRound() {
-  if (!window.startedGame) {
-    showErrorMessage("Please Start the Game First");
-    return;
-  }
-  currentRound++;
-  numberOfDiceRolled = 0;
-  // Create a new log entry
-  addLog(`TURN ${currentRound}`);
-  updateRound();
-  updateMonsterHandSize();
-  updateMonsterLandCountByAmount(1);
-  hidePlayerTurnIndicator();
-  
-  // Update action element to indicate monster's turn
-  let actionElement = document.getElementById("action");
-  if (actionElement) {
-    actionElement.innerText = `Monster needs to take ${Math.floor(currentRound / 2)} actions this turn`;
-  }
-  
-  // After updating the round, highlight the monster action button if not round 1
-  if (currentRound > 1) {
-    highlightMonsterActionButton();
-  }
+    if (!window.startedGame) {
+        showErrorMessage("Please Start the Game First");
+        return;
+    }
+    currentRound++;
+    numberOfDiceRolled = 0;
+    // Create a new log entry
+    addLog(`TURN ${currentRound}`);
+    updateRound();
+    updateMonsterHandSize();
+    updateMonsterLandCountByAmount(1);
+    hidePlayerTurnIndicator();
+
+    // NEW: Auto discard (hand > 8) or auto draw (hand == 0) at turn start
+    handleMonsterHandSizeAtTurnStart();
+
+    // Update action element to indicate monster's turn
+    let actionElement = document.getElementById("action");
+    if (actionElement) {
+        actionElement.innerText = `Monster needs to take ${Math.floor(currentRound / 2)} actions this turn`;
+    }
+
+    // After updating the round, highlight the monster action button if not round 1
+    if (currentRound > 1) {
+        highlightMonsterActionButton();
+    }
 }
 
 function decreaseRound() {
@@ -575,37 +579,29 @@ function displayColorRectangle() {
 }
 
 function updateMonsterHandSize() {
-  const monsterHandDiv = document.getElementById("monsterHand");
-  if (!monsterHandDiv) {
-    console.error("Monster hand element not found!");
-    return;
-  }
-  
-  monsterHandSize =
-    monsterStartingHandSize -
-    Math.floor(currentRound / 2) +
-    modifiedMonsterHandSize;
-  monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
-  monsterHandDiv.style.display = "block";
-  
-  // Show the buttons
-  const buttonContainers = document.querySelectorAll("#monsterHandButtons");
-  buttonContainers.forEach(container => {
-    if (container) {
-      container.style.display = "block";
+    const monsterHandDiv = document.getElementById("monsterHand");
+    if (!monsterHandDiv) {
+        console.error("Monster hand element not found!");
+        return;
     }
-  });
+
+    monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
+    monsterHandDiv.style.display = "block";
+
+    // Show the buttons
+    const buttonContainers = document.querySelectorAll("#monsterHandButtons");
+    buttonContainers.forEach(container => {
+        if (container) {
+            container.style.display = "block";
+        }
+    });
 }
 
 function updateMonsterHandSizeByAmount(amount) {
-  const monsterHandDiv = document.getElementById("monsterHand");
-  modifiedMonsterHandSize = modifiedMonsterHandSize + amount;
-  monsterHandSize =
-    monsterStartingHandSize -
-    Math.floor(currentRound / 2) +
-    modifiedMonsterHandSize;
-  monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
-  monsterHandDiv.style.display = "block";
+    const monsterHandDiv = document.getElementById("monsterHand");
+    monsterHandSize = Math.max(0, monsterHandSize + amount);
+    monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
+    monsterHandDiv.style.display = "block";
 }
 
 function updateMonsterLandCountByAmount(amount) {
@@ -716,6 +712,8 @@ function startGame(difficultyLevel, playerCount) {
   numberOfPlayersGlobal = parseInt(value);
   monsterHealth = numberOfPlayersGlobal * lifeMultiplier;
   monsterInfect = numberOfPlayersGlobal * 7;
+  monsterHandSize = monsterStartingHandSize;
+  handCardTypes = [];
   
   // Check if updateMonsterHealth is available
   if (typeof window.updateMonsterHealth === 'function') {
@@ -1000,6 +998,127 @@ function millMonster() {
   }
 }
 
+    // Draws a card into the monster's hand. Follows the same path as milling
+    // (removes it from the deck and affects the same type-percent tracking),
+    // but the card goes to hand instead of straight to the graveyard.
+    function drawMonsterCard() {
+        if (cardsInMonsterDeck <= 0) {
+            addLog("MONSTER CANNOT DRAW: DECK IS EMPTY");
+            return Promise.resolve();
+        }
+
+        // Uses the same weighted picker as mill, and decrements the same
+        // running percentages so a type that's been drawn out is less likely
+        // to be milled/drawn again.
+        const cardDrawn = pickRandomCardType(true);
+        cardsInMonsterDeck--;
+        monsterHandSize++;
+        updateMonsterHandSize();
+
+        let randomCardUrl;
+        if (cardDrawn == "Land") {
+            randomCardUrl = "https://api.scryfall.com/cards/random?q=commander%3A" + scryfallMonsterColors + "+t%3Aland+-layout%3A%22modal_dfc%22+legal%3Acommander";
+        } else {
+            randomCardUrl = "https://api.scryfall.com/cards/random?q=t%3A" + cardDrawn + "+commander%3A" + scryfallMonsterColors + "+legal%3Acommander";
+        }
+
+        return getRandomCardImageUrl(randomCardUrl)
+            .then(result => {
+                const cardInfo = {
+                    type: cardDrawn,
+                    url: result ? result.imageUrl : null,
+                    name: result ? result.cardName : cardDrawn
+                };
+                handCardTypes.push(cardInfo);
+
+                addLog(
+                    "MONSTER DREW: " + cardDrawn + (result ? " - " + result.cardName : "") + ". HAND SIZE: " + monsterHandSize,
+                    cardInfo.url
+                );
+            })
+            .catch(error => {
+                console.error("Error fetching drawn card image:", error);
+                handCardTypes.push({ type: cardDrawn, url: null, name: cardDrawn });
+                addLog("MONSTER DREW: " + cardDrawn + ". HAND SIZE: " + monsterHandSize);
+            });
+    }
+
+    // Recursively draws until the target hand size is reached (used when the
+    // monster's hand hits 0 at the start of a turn - draws back up to 7).
+    function drawMonsterCardsUntil(targetHandSize) {
+        if (monsterHandSize >= targetHandSize || cardsInMonsterDeck <= 0) {
+            return Promise.resolve();
+        }
+        return drawMonsterCard().then(() => drawMonsterCardsUntil(targetHandSize));
+    }
+
+    // Discards a card FROM THE MONSTER'S HAND (not the deck) into the graveyard.
+    // Follows the same path as milling (Scryfall popup, log, graveyard tracking)
+    // but does NOT reduce cardsInMonsterDeck since that card was already
+    // removed from the deck when it was drawn.
+    function discardMonster() {
+        if (!window.startedGame) {
+            showErrorMessage("Please Start the Game First");
+            return;
+        }
+
+        if (handCardTypes.length === 0) {
+            showErrorMessage("Monster has no cards in hand to discard");
+            return;
+        }
+
+        const discardButton = document.getElementById("discardButton");
+        if (discardButton) discardButton.disabled = true;
+        showLoadingSpinner();
+
+        // Pick a random card from the monster's actual hand to discard
+        const index = Math.floor(Math.random() * handCardTypes.length);
+        const [discardedCard] = handCardTypes.splice(index, 1);
+
+        monsterHandSize = Math.max(0, monsterHandSize - 1);
+        updateMonsterHandSize();
+
+        // Track it the same way mill does - it goes to the graveyard
+        graveyard[discardedCard.type]++;
+        cardsInMonsterGraveyard++;
+
+        if (discardedCard.url) {
+            milledCardImages.push({
+                url: discardedCard.url,
+                name: discardedCard.name,
+                type: discardedCard.type
+            });
+            openPopup(discardedCard.url);
+        }
+
+        addLog(
+            "MONSTER DISCARDED: " + discardedCard.type + " - " + discardedCard.name + ". HAND SIZE: " + monsterHandSize,
+            discardedCard.url
+        );
+
+        updateGraveyardTable();
+
+        if (discardButton) discardButton.disabled = false;
+        hideLoadingSpinner();
+    }
+
+    // Checked at the start of every monster turn (from increaseRound):
+    // - Hand > 8 => discard one card (hand size limit)
+    // - Hand == 0 => draw back up to 7 cards
+    function handleMonsterHandSizeAtTurnStart() {
+        if (monsterHandSize > 8) {
+            addLog("MONSTER HAND SIZE EXCEEDS MAXIMUM (8): DISCARDING A CARD");
+            discardMonster();
+        } else if (monsterHandSize === 0) {
+            addLog("MONSTER HAND IS EMPTY: DRAWING BACK UP TO 7 CARDS");
+            drawMonsterCardsUntil(7);
+        }
+    }
+
+    // Make these globally available
+    window.drawMonsterCard = drawMonsterCard;
+    window.discardMonster = discardMonster;
+    window.handleMonsterHandSizeAtTurnStart = handleMonsterHandSizeAtTurnStart;
 function openPopup(imageSrc) {
   let overlay = document.getElementById('overlay');
   let popup = document.getElementById('popup');
@@ -1373,6 +1492,9 @@ document.addEventListener('keydown', function(event) {
     case '-': // '-' for decrease round
       decreaseRound();
       break;
+    case 'd': // 'd' for discard
+      discardMonster();
+      break;
   }
 });
 
@@ -1384,21 +1506,23 @@ function saveGameState() {
   }
   
   try {
-    const gameState = {
-      monsterHealth: monsterHealth,
-      monsterInfect: monsterInfect,
-      currentRound: currentRound,
-      numberOfDiceRolled: numberOfDiceRolled,
-      cardsInMonsterDeck: cardsInMonsterDeck,
-      graveyard: graveyard,
-      cardsInMonsterGraveyard: cardsInMonsterGraveyard,
-      milledCardImages: milledCardImages, // Save milled card images
-      bossMonsterImageUrl: bossMonsterImageUrl,
-      scryfallMonsterColors: scryfallMonsterColors,
-      difficulty: difficulty,
-      playerHealths: [],
-      minions: []
-    };
+      const gameState = {
+          monsterHealth: monsterHealth,
+          monsterInfect: monsterInfect,
+          currentRound: currentRound,
+          numberOfDiceRolled: numberOfDiceRolled,
+          cardsInMonsterDeck: cardsInMonsterDeck,
+          graveyard: graveyard,
+          cardsInMonsterGraveyard: cardsInMonsterGraveyard,
+          milledCardImages: milledCardImages,
+          monsterHandSize: monsterHandSize,      // NEW
+          handCardTypes: handCardTypes,          // NEW
+          bossMonsterImageUrl: bossMonsterImageUrl,
+          scryfallMonsterColors: scryfallMonsterColors,
+          difficulty: difficulty,
+          playerHealths: [],
+          minions: []
+      };
     
     // Get player health values - with error handling
     for (let i = 1; i <= numberOfPlayersGlobal; i++) {
@@ -1520,6 +1644,8 @@ function loadGameState() {
     currentRound = gameState.currentRound || 1;
     numberOfDiceRolled = gameState.numberOfDiceRolled || 0;
     cardsInMonsterDeck = gameState.cardsInMonsterDeck || 99;
+    monsterHandSize = gameState.monsterHandSize !== undefined ? gameState.monsterHandSize : monsterStartingHandSize;
+    handCardTypes = gameState.handCardTypes || [];
     difficulty = gameState.difficulty || "medium";
     numberOfPlayersGlobal = gameState.playerHealths ? gameState.playerHealths.length : 4;
     
