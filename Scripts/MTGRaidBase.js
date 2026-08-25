@@ -67,6 +67,7 @@ function takeMonsterAction() {
     if (currentRound == 1) {
         showErrorMessage("Monster cannot take actions on Round 1");
         return;
+    }
   
   if (cardsInMonsterDeck == 0) {
     addLog("YOU WON VIA MILLING! CONGRATS");
