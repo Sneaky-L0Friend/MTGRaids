@@ -600,7 +600,24 @@ function updateMonsterHandSize() {
 
 function updateMonsterHandSizeByAmount(amount) {
     const monsterHandDiv = document.getElementById("monsterHand");
-    monsterHandSize = Math.max(0, monsterHandSize + amount);
+
+    if (amount > 0) {
+        // Adding cards to hand manually - add placeholder entries so they
+        // can be discarded later
+        for (let i = 0; i < amount; i++) {
+            const cardType = pickRandomCardType(false);
+            handCardTypes.push({ type: cardType, url: null, name: cardType });
+        }
+        monsterHandSize += amount;
+    } else if (amount < 0) {
+        // Removing cards manually - pop entries from the tracked hand too
+        const removeCount = Math.min(Math.abs(amount), handCardTypes.length);
+        for (let i = 0; i < removeCount; i++) {
+            handCardTypes.pop();
+        }
+        monsterHandSize = Math.max(0, monsterHandSize + amount);
+    }
+
     monsterHandDiv.innerText = `Hand: ${monsterHandSize}`;
     monsterHandDiv.style.display = "block";
 }
@@ -713,8 +730,13 @@ function startGame(difficultyLevel, playerCount) {
   numberOfPlayersGlobal = parseInt(value);
   monsterHealth = numberOfPlayersGlobal * lifeMultiplier;
   monsterInfect = numberOfPlayersGlobal * 7;
-  monsterHandSize = monsterStartingHandSize;
-  handCardTypes = [];
+    monsterHandSize = monsterStartingHandSize;
+    handCardTypes = [];
+    for (let i = 0; i < monsterStartingHandSize; i++) {
+        isMill = false //so the opening hand doesn't skew mill/draw percentages
+        const startingType = pickRandomCardType(false);
+        handCardTypes.push({ type: startingType, url: null, name: startingType });
+    }
   
   // Check if updateMonsterHealth is available
   if (typeof window.updateMonsterHealth === 'function') {
@@ -1057,51 +1079,57 @@ function millMonster() {
     // Follows the same path as milling (Scryfall popup, log, graveyard tracking)
     // but does NOT reduce cardsInMonsterDeck since that card was already
     // removed from the deck when it was drawn.
-    function discardMonster() {
-        if (!window.startedGame) {
-            showErrorMessage("Please Start the Game First");
-            return;
-        }
-
-        if (handCardTypes.length === 0) {
-            showErrorMessage("Monster has no cards in hand to discard");
-            return;
-        }
-
-        const discardButton = document.getElementById("discardButton");
-        if (discardButton) discardButton.disabled = true;
-        showLoadingSpinner();
-
-        // Pick a random card from the monster's actual hand to discard
-        const index = Math.floor(Math.random() * handCardTypes.length);
-        const [discardedCard] = handCardTypes.splice(index, 1);
-
-        monsterHandSize = Math.max(0, monsterHandSize - 1);
-        updateMonsterHandSize();
-
-        // Track it the same way mill does - it goes to the graveyard
-        graveyard[discardedCard.type]++;
-        cardsInMonsterGraveyard++;
-
-        if (discardedCard.url) {
-            milledCardImages.push({
-                url: discardedCard.url,
-                name: discardedCard.name,
-                type: discardedCard.type
-            });
-            openPopup(discardedCard.url);
-        }
-
-        addLog(
-            "MONSTER DISCARDED: " + discardedCard.type + " - " + discardedCard.name + ". HAND SIZE: " + monsterHandSize,
-            discardedCard.url
-        );
-
-        updateGraveyardTable();
-
-        if (discardButton) discardButton.disabled = false;
-        hideLoadingSpinner();
+function discardMonster() {
+    if (!window.startedGame) {
+        showErrorMessage("Please Start the Game First");
+        return;
     }
+
+    // Safety net: if the tracked hand is out of sync with monsterHandSize
+    // (shouldn't normally happen), backfill with placeholder cards instead
+    // of blocking the discard.
+    if (handCardTypes.length === 0 && monsterHandSize > 0) {
+        const fallbackType = pickRandomCardType(false);
+        handCardTypes.push({ type: fallbackType, url: null, name: fallbackType });
+    }
+
+    if (handCardTypes.length === 0) {
+        showErrorMessage("Monster has no cards in hand to discard");
+        return;
+    }
+
+    const discardButton = document.getElementById("discardButton");
+    if (discardButton) discardButton.disabled = true;
+    showLoadingSpinner();
+
+    const index = Math.floor(Math.random() * handCardTypes.length);
+    const [discardedCard] = handCardTypes.splice(index, 1);
+
+    monsterHandSize = Math.max(0, monsterHandSize - 1);
+    updateMonsterHandSize();
+
+    graveyard[discardedCard.type]++;
+    cardsInMonsterGraveyard++;
+
+    if (discardedCard.url) {
+        milledCardImages.push({
+            url: discardedCard.url,
+            name: discardedCard.name,
+            type: discardedCard.type
+        });
+        openPopup(discardedCard.url);
+    }
+
+    addLog(
+        "MONSTER DISCARDED: " + discardedCard.type + " - " + discardedCard.name + ". HAND SIZE: " + monsterHandSize,
+        discardedCard.url
+    );
+
+    updateGraveyardTable();
+
+    if (discardButton) discardButton.disabled = false;
+    hideLoadingSpinner();
+}
 
     // Checked at the start of every monster turn (from increaseRound):
     // - Hand > 8 => discard one card (hand size limit)
